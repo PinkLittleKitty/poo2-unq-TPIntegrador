@@ -163,3 +163,71 @@ class Cancelada {
 siguiente() EstadoReserva
 cancelar() EstadoReserva
 }
+
+Traslado -- Adaptador
+Adaptador --> TrasladoEstandar
+Adaptador --> TrasladoVip
+Adaptador --> SinTraslado
+
+class Traslado {
+    costo()
+}
+
+class Adaptador {
+    costo()
+}
+
+class TrasladoEstandar {
+    estimarTraslado(int cantidadPasajeros, Direccion direccionDestino)
+}
+
+class TrasladoVip {
+    # Donde dice "El costo se calcula como porcentaje fijo sobre el valor total de la reserva" (relacionar esto con precio total de los servicios/paquetes turísticos)
+    calcularCosto(float precio)
+}
+
+class SinTraslado {
+    costo() # Qué onda con la estimación?
+}
+
+MetodoDePago <|-- TarjetaCreditoInteracional
+MetodoDePago <|-- TransferenciaBancaria
+MetodoDePago <|-- BilleteraVirtual
+
+
+
+class MetodoDePago {
+    <<Abstract>>
+    ProcesarPago()* # Este método tendría los cuatro en orden, hook, no lo implementan los otros
+    validarDatos()*
+    reservarFondos()*
+    ejecutarTransaccion()*
+    notificarResultado()
+}
+
+class TarjetaCreditoInteracional {
+    - nroTarjeta
+    - cvv
+    - vencimiento
+    validarDatos()
+    reservarFondos()
+    ejecutarTransaccion()
+    notificarResultado()
+}
+
+class TransferenciaBancaria {
+    - cbu
+    - alias    
+    validarDatos()
+    reservarFondos()
+    ejecutarTransaccion()
+    notificarResultado()
+}
+
+class BilleteraVirtual {
+    - saldo
+    validarDatos()
+    reservarFondos()
+    ejecutarTransaccion()
+    notificarResultado()
+}

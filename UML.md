@@ -38,8 +38,8 @@ class Catalogo {
 - descripcion : String
 - precioBase : real
 - cupoDisponible : int
-+ agregarCupo(num) : int %% necesitamos decir cuantos cupos reservo?
-+ liberarCupo(num) : int
++ agregarCupo(cupo) : int %% necesitamos decir cuantos cupos reservo?
++ liberarCupo(cupo) : int
 + getCupo() : int
 + precioBase()* real
 + precioFinal(descuento)* real
@@ -50,6 +50,7 @@ class ServicioIndividual {
 - ID : int
 - proovedor : String
 - precioBase : real
+- categoria : Categoria
 + precioBase() real
 + precioFinal(descuento) real
 + proovedor() String
@@ -62,8 +63,8 @@ class ServicioIndividual {
 class PaqueteTurístico {
 - descuento : real
 + PaqueteTurístico(List<Catalogo>, descuento, nombre, descripcion)
-+ agregarCupo(num) : int %% aca tenemos que reescribirla logica para la lista interna del paquete.
-+ liberarCupo(num) : int
++ agregarCupo(cupo) : int %% aca tenemos que reescribirla logica para la lista interna del paquete.
++ liberarCupo(cupo) : int
 + porcentaje()
 + setDescuento()
 + precioBase() real

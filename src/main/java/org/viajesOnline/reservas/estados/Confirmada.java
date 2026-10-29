@@ -1,8 +1,17 @@
 package org.viajesOnline.reservas.estados;
 
-public class Confirmada extends EstadoReserva {
+import org.viajesOnline.Catalogo;
+import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Solicitud;
+
+public class Confirmada implements EstadoReserva {
     @Override
-    public EstadoReserva siguiente() {
-        return new EnCheckin();
+    public void siguiente(ContextoReserva r) {
+        r.setEstadoActual(new Confirmada());
+    }
+
+    @Override
+    public void decrementarCupo(Catalogo servicio, Solicitud solicitud) {
+        solicitud.decrementarCupo();
     }
 }

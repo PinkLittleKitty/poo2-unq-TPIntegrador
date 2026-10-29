@@ -14,4 +14,8 @@ public interface EstadoReserva {
     public default void agregarServicio(Catalogo servicio, Solicitud solicitud) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public default decrementarCupo() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -14,4 +14,16 @@ public class Solicitud {
     public void eliminarServicio(Catalogo s) {
         servicios.remove(s);
     }
+
+    public void decrementarCupo() {
+        for (Catalogo s: servicios) {
+            s.decrementarCupo();
+        }
+    }
+
+    public void reiniciarCupo() {
+        for (Catalogo s: servicios) {
+            s.incrementarCupo();
+        }
+    }
 }

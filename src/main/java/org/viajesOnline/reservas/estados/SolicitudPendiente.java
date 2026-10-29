@@ -7,7 +7,10 @@ import org.viajesOnline.reservas.Solicitud;
 public class SolicitudPendiente implements EstadoReserva {
     @Override
     public void siguiente(ContextoReserva r) {
-        r.setEstadoActual(new Confirmada());
+        EstadoReserva EstadoConfirmada = new Confirmada();
+
+        r.setEstadoActual(EstadoConfirmada);
+        EstadoConfirmada.decrementarCupo();
     }
 
     @Override

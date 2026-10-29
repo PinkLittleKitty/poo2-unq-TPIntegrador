@@ -1,8 +1,9 @@
 package org.viajesOnline;
 
+import org.viajesOnline.atributos.DefinicionAtributo;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 
 public class ServicioIndividual extends Catalogo {

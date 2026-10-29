@@ -1,7 +1,11 @@
+```mermaid
+---
+title: UML TP Integrador
+---
 classDiagram
-Catalogo "*" <-- "servicios" Cliente
-Catalogo <|-- ServicioIndividual
-Catalogo <|-- PaqueteTurístico
+    Catalogo "*" <-- "servicios" Cliente
+    Catalogo <|-- ServicioIndividual
+    Catalogo <|-- PaqueteTurístico
 PaqueteTurístico "Catalogos" o-- "*" Catalogo
 
 ServicioIndividual --> "1" Categoria : Categoria
@@ -13,7 +17,7 @@ TipoDato <|-- TipoNumerico
 TipoDato <|-- TipoBooleano
 TipoDato <|-- TipoFecha
 
-ContextoReserva --> "*" Catalogo : servicios 
+ContextoReserva --> "*" Catalogo : servicios
 %% Este sería nuestro cliente, y este mismo usaría ServicioTraslado para costear el transporte
 
 EstadoReserva <--o ContextoReserva
@@ -33,7 +37,7 @@ class Cliente {
 %% Es conceptual
 + cliente(List<Catalogo>) cliente
 + navegarCatalogo() void
-  }
+}
 
 class Catalogo {
 <<Abstract>>
@@ -41,19 +45,18 @@ class Catalogo {
 - descripcion : String
 - precioBase : real
 - cupoDisponible : int
-+ agregarCupo(cupo) : int %% necesitamos decir cuantos cupos reservo?
-+ liberarCupo(cupo) : int
++ agregarCupo(num) : int %% necesitamos decir cuantos cupos reservo?
++ liberarCupo(num) : int
 + getCupo() : int
 + precioBase()* real
 + precioFinal(descuento)* real
 + catalogo(nombre, descripcion) Catalogo
-  }
+}
 
 class ServicioIndividual {
 - ID : int
 - proovedor : String
 - precioBase : real
-- categoria : Categoria
 + precioBase() real
 + precioFinal(descuento) real
 + proovedor() String
@@ -61,13 +64,13 @@ class ServicioIndividual {
 + esValido() boolean
 + agregarAtributo(atributo : DefinicionAtributo) void
 + servicioIndividual(precio, nombre, descripcion) ServicioIndividual
-  }
+}
 
 class PaqueteTurístico {
 - descuento : real
 + PaqueteTurístico(List<Catalogo>, descuento, nombre, descripcion)
-+ agregarCupo(cupo) : int %% aca tenemos que reescribirla logica para la lista interna del paquete.
-+ liberarCupo(cupo) : int
++ agregarCupo(num) : int %% aca tenemos que reescribirla logica para la lista interna del paquete.
++ liberarCupo(num) : int
 + porcentaje()
 + setDescuento()
 + precioBase() real
@@ -75,7 +78,8 @@ class PaqueteTurístico {
 + AddCatalogo()
 + RemoveCatalogo()
 + GetCatalogo()
-  }
+}
+
 
 class Categoria {
 <<Enumeration>>
@@ -92,28 +96,28 @@ class DefinicionAtributo {
 + validar() boolean
 + esObligatorio() boolean
 + getNombre() String
-  }
+}
 
 class TipoDato {
 <<interface>>
 + esValido(valor : Object)
-  }
+}
 
 class TipoTexto {
 + esValido(valor : Object)
-  }
+}
 
 class TipoNumerico {
 + esValido(valor : Object)
-  }
+}
 
 class TipoBooleano {
 + esValido(valor : Object)
-  }
+}
 
 class TipoFecha {
 + esValido(valor : Object)
-  }
+}
 
 class ContextoReserva {
 - estadoActual : EstadoReserva
@@ -130,7 +134,7 @@ class ContextoReserva {
 + solicitarReembolso() void %% delega a otra cosa de pagos
 - verificacionAgregarQuitarServicio()
 - generarVoucher()
-  }
+}
 
 class EstadoReserva {
 <<abstract>>
@@ -174,24 +178,24 @@ Adaptador --> TrasladoVip
 Adaptador --> SinTraslado
 
 class Traslado {
-    costo()
+costo()
 }
 
 class Adaptador {
-    costo()
+costo()
 }
 
 class TrasladoEstandar {
-    estimarTraslado(int cantidadPasajeros, Direccion direccionDestino)
+estimarTraslado(int cantidadPasajeros, Direccion direccionDestino)
 }
 
 class TrasladoVip {
-    # Donde dice "El costo se calcula como porcentaje fijo sobre el valor total de la reserva" (relacionar esto con precio total de los servicios/paquetes turísticos)
-    calcularCosto(float precio)
+# Donde dice "El costo se calcula como porcentaje fijo sobre el valor total de la reserva" (relacionar esto con precio total de los servicios/paquetes turísticos)
+calcularCosto(float precio)
 }
 
 class SinTraslado {
-    costo() # Qué onda con la estimación?
+costo() # Qué onda con la estimación?
 }
 
 MetodoDePago <|-- TarjetaCreditoInteracional
@@ -199,41 +203,40 @@ MetodoDePago <|-- TransferenciaBancaria
 MetodoDePago <|-- BilleteraVirtual
 
 
-
 class MetodoDePago {
-    <<Abstract>>
-    ProcesarPago()* # Este método tendría los cuatro en orden, hook, no lo implementan los otros
-    validarDatos()*
-    reservarFondos()*
-    ejecutarTransaccion()*
-    notificarResultado()
+<<Abstract>>
+ProcesarPago()* # Este método tendría los cuatro en orden, hook, no lo implementan los otros
+validarDatos()*
+reservarFondos()*
+ejecutarTransaccion()*
+notificarResultado()
 }
 
 class TarjetaCreditoInteracional {
-    - nroTarjeta
-    - cvv
-    - vencimiento
-    validarDatos()
-    reservarFondos()
-    ejecutarTransaccion()
-    notificarResultado()
+- nroTarjeta
+- cvv
+- vencimiento
+validarDatos()
+reservarFondos()
+ejecutarTransaccion()
+notificarResultado()
 }
 
 class TransferenciaBancaria {
-    - cbu
-    - alias    
-    validarDatos()
-    reservarFondos()
-    ejecutarTransaccion()
-    notificarResultado()
+- cbu
+- alias
+validarDatos()
+reservarFondos()
+ejecutarTransaccion()
+notificarResultado()
 }
 
 class BilleteraVirtual {
-    - saldo
-    validarDatos()
-    reservarFondos()
-    ejecutarTransaccion()
-    notificarResultado()
+- saldo
+validarDatos()
+reservarFondos()
+ejecutarTransaccion()
+notificarResultado()
 }
 
 ObservadorAbstracto <|-- NotificadorMail
@@ -241,19 +244,141 @@ ObservadorAbstracto <|-- GeneradorFactura
 ObservadorAbstracto <|-- Fidelización
 
 class ObservadorAbstracto {
-    <<Abstract>>
-    actualizar(Reserva)*
+<<Abstract>>
+actualizar(Reserva)*
 }
 
 class NotificadorMail {
-    actualizar(Reserva) # La reserva puede estar CONFIRMADA, EN_CURSO y FINALIZADA.
-    # persona.enviarMail(String direccionDestino, String titulo, String mensaje, Object adjunto)
+actualizar(Reserva) # La reserva puede estar CONFIRMADA, EN_CURSO y FINALIZADA.
+# persona.enviarMail(String direccionDestino, String titulo, String mensaje, Object adjunto)
 }
 
 class GeneradorFactura {
-    actualizar(Reserva)
+actualizar(Reserva)
 }
 
 class Fidelización {
-    actualizar(Reserva)
+actualizar(Reserva)
 }
+
+
+class Reporte {
+
+<<interface>>
++accept(v: FormatoVisitante) void
++calcularDatos(c:catalogo)
+}
+
+class ServicioMasReservado {
+
+-String atributo
++masReservados()
+
++accept(v: FormatoVisitante) void
+%% v.servicioMasReservado(this)
+
+
++calcularDatos(c:catalogo)
+%%ret calcula datos no los guarda
+
+}
+
+class RegistroDeCupos {
+
+-String atributo
+
++registroCupos(ca)
+%%implementa cosas de registro de cupos
+
++accept(v: FormatoVisitante) void
+
++calcularDatos(c:catalogo)
+%%ret calcula datos no los guarda
+
+}
+
+class RegistroDeOperadores {
+
++registrarOperadores()
+%%implementa cosas de operadores del servicio
+
++accept(v: FormatoVisitante) void
+
++calcularDatos(c:catalogo)
+%%ret calcula datos no los guarda
+
+}
+
+
+
+class FormatoVisitante {
+
+<<interface>>
++visitar(e: ServicioMasReservado) void
++visitar(e: RegistroDeCupos) void
++visitar(e: RegistroDeOperadores) void
++obtenerReporte() string
+}
+
+class FormatoHtml {
+
+%% NOSE DE que tipo es esto
+-reporteHtml
+
++visitar(e: ServicioMasReservado) void
+%% reporteHtml =  e.pideCosasALaClase
+
++visitar(e: RegistroDeCupos) void
++visitar(e: RegistroDeOperadores) void
++obtenerReporte() string
+}
+
+class FormatoCsv {
+
+%% NOSE DE que tipo es esto
+-reporteCsv
+
++visitar(e: ServicioMasReservado) void
+%% aca retorna la informacion para exportar
+e.pideCosasALaClase
+
++visitar(e: RegistroDeCupos) void
++visitar(e: RegistroDeOperadores) void
++obtenerReporte() string
+}
+
+
+class FormatoTextoPlano {
+
+%% NOSE DE que tipo es esto
+-reporteTextoPlano
+
++visitar(e: ServicioMasReservado) void
+%% aca retorna la informacion para exportar
+e.pideCosasALaClase
+
++visitar(e: RegistroDeCupos) void
++visitar(e: RegistroDeOperadores) void
++obtenerReporte() string
+}
+
+%%implementan interfaces
+Reporte <|-- ServicioMasReservado
+Reporte <|-- RegistroDeCupos
+Reporte <|-- RegistroDeOperadores
+
+%%implementan interfaces
+FormatoVisitante <|-- FormatoHtml
+FormatoVisitante <|-- FormatoCsv
+FormatoVisitante <|-- FormatoTextoPlano
+
+%% interface formato visitante conoce 
+%% a reporte mas reservado
+Reporte ..> FormatoVisitante
+FormatoVisitante ..> ServicioMasReservado
+ServicioMasReservado ..> Catalogo
+RegistroDeCupos ..> Catalogo
+RegistroDeOperadores ..> Catalogo
+
+%%HtmlVisitante ..> ReporteMasReservado : usa
+```

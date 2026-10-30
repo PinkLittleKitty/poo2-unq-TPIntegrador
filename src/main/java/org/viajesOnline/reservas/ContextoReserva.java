@@ -14,16 +14,20 @@ public class ContextoReserva {
         return estadoActual;
     }
 
+    public Solicitud getSolicitud() {
+        return solicitud;
+    }
+
     public void setEstadoActual(EstadoReserva estadoActual) {
         this.estadoActual = estadoActual;
     }
 
     public void siguiente() {
-        estadoActual = estadoActual.siguiente();
+        estadoActual.siguiente(this);
     }
 
     public void cancelar() {
-        estadoActual = estadoActual.cancelar();
+        estadoActual.cancelar(this);
     }
 
     public void agregarServicio(Catalogo servicio) {

@@ -5,7 +5,9 @@ import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.Solicitud;
 
 public interface EstadoReserva {
-    public abstract void siguiente(ContextoReserva r);
+    public default void siguiente(ContextoReserva r) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     public default void cancelar(ContextoReserva r) {
         r.setEstadoActual(new Cancelada());
@@ -15,7 +17,7 @@ public interface EstadoReserva {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public default decrementarCupo() {
+    public default void decrementarCupo(Solicitud solicitud) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

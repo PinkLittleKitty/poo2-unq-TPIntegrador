@@ -1,8 +1,10 @@
 package org.viajesOnline.reservas.estados;
 
-public class EnCurso extends EstadoReserva {
+import org.viajesOnline.reservas.ContextoReserva;
+
+public class EnCurso implements EstadoReserva {
     @Override
-    public EstadoReserva siguiente() {
-        return new Finalizada();
+    public void siguiente(ContextoReserva r) {
+        r.setEstadoActual(new Finalizada());
     }
 }

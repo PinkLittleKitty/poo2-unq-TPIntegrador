@@ -10,7 +10,7 @@ public class SolicitudPendiente implements EstadoReserva {
         EstadoReserva EstadoConfirmada = new Confirmada();
 
         r.setEstadoActual(EstadoConfirmada);
-        EstadoConfirmada.decrementarCupo();
+        EstadoConfirmada.decrementarCupo(r.getSolicitud());
     }
 
     @Override

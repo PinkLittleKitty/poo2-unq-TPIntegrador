@@ -33,4 +33,8 @@ public class ContextoReserva {
     public void agregarServicio(Catalogo servicio) {
         estadoActual.agregarServicio(servicio, solicitud);
     }
+
+    public void reembolsar() {
+        solicitud.reembolsar();
+    }
 }

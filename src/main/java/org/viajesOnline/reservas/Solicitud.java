@@ -26,4 +26,7 @@ public class Solicitud {
             s.incrementarCupo();
         }
     }
+
+    // No estoy seguro de cómo implementar esto, pero acá habría que generar y registrar el voucher de crédito.
+    public void reembolsar() {}
 }

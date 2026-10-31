@@ -6,12 +6,12 @@ public abstract class Catalogo {
   private double precioBase;
   private int cupoDisponible;
 
-  public void recuperarCupo(int cupo) {
-    cupoDisponible += cupo;
+  public void incrementarCupo() {
+    cupoDisponible += 1;
   }
 
-  public void liberarCupo(int cupo) {
-    cupoDisponible -= cupo;
+  public void decrementarCupo() {
+    cupoDisponible -= 1;
   }
 
   public double precioFinal(int descuento){

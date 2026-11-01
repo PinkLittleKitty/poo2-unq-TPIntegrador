@@ -37,4 +37,11 @@ public class ContextoReserva {
     public void reembolsar() {
         solicitud.reembolsar();
     }
+
+    public double precioFinalReserva(){
+
+        //sumar todos los precios finales de los servicios reservados
+        //sum
+        return 0;
+    }
 }

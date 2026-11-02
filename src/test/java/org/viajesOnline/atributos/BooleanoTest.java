@@ -1,7 +1,6 @@
-package org.viajesOnline;
+package org.viajesOnline.atributos;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.atributos.Booleano;
 
 import static org.junit.jupiter.api.Assertions.*;
 

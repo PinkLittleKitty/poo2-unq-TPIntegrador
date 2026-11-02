@@ -7,6 +7,8 @@ import java.util.List;
 public class Solicitud {
     private List<Catalogo> servicios;
 
+    public List<Catalogo> getServicios(){return servicios;}
+
     public void agregarServicio(Catalogo s) {
         servicios.add(s);
     }

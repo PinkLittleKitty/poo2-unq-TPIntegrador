@@ -1,7 +1,12 @@
 package org.viajesOnline.notificacionReservas;
 
 
-class GeneradorFactura {
-    actualizar(Reserva)
+import org.viajesOnline.reservas.ContextoReserva;
+
+class GeneradorFactura implements ObservadorNotificadorAbstracto {
+
+    public void recibirNotificacion(ContextoReserva r){
+
+    }
 }
 

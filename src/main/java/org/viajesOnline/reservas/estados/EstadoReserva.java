@@ -5,6 +5,7 @@ import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.Solicitud;
 
 public interface EstadoReserva {
+
     public default void siguiente(ContextoReserva r) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -20,4 +21,6 @@ public interface EstadoReserva {
     public default void decrementarCupo(Solicitud solicitud) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 }
+

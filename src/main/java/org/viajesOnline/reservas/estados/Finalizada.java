@@ -1,3 +1,9 @@
 package org.viajesOnline.reservas.estados;
 
-public class Finalizada implements EstadoReserva { }
+import org.viajesOnline.notificacionReservas.SujetoEstadoAbstracto;
+import org.viajesOnline.reservas.ContextoReserva;
+
+public class Finalizada extends SujetoEstadoAbstracto implements EstadoReserva {
+
+
+}

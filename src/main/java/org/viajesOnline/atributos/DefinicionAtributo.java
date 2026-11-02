@@ -1,4 +1,4 @@
-package org.viajesOnline;
+package org.viajesOnline.atributos;
 
 public class DefinicionAtributo {
   private String nombre;

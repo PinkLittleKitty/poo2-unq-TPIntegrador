@@ -4,13 +4,16 @@ package org.viajesOnline.notificacionReservas;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.utils.MailSender;
 
-class NotificadorMail implements ObservadorNotificadorAbstracto, MailSender {
+class NotificadorMail implements ObservadorNotificadorAbstracto {
 
-    public void recibirNotificacion(ContextoReserva r){
-        this.enviarMail(r.getEmail(), "Cambio de estado en tu reserva", "Tu reserva cambió a " + r.getEstadoActual(), r.getSolicitud());
+    private MailSender MS;
+
+    public NotificadorMail(MailSender mailSender) {
+        this.MS = mailSender;
     }
 
-    @Override
-    public void enviarMail(String direcciónDestino, String titulo, String mensaje, Object Adjunto) {}
+    public void recibirNotificacion(ContextoReserva r){
+        MS.enviarMail(r.getUsuario().getEmail(), "Cambio de estado en tu reserva", "Tu reserva cambió a " + r.getEstadoActual(), r.getSolicitud());
+    }
 }
 

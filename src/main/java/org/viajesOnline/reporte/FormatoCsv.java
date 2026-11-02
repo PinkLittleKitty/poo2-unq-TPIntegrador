@@ -22,6 +22,7 @@ class FormatoCsv implements FormatoVisitante {
         //reporteCsv = e.pideCosasALaClase
     }
 
+
     public String obtenerReporte(){
 
         //retorna para exportar en formato csv

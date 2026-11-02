@@ -2,14 +2,21 @@ package org.viajesOnline.traslados;
 
 public class Punto_encuentro implements CostoTraslado {
 
-    //la estimacion de disponibilidad depende de si hay guias en el puesto
+    private boolean hayGuiasDisponibles = true;
+
+    public void guiasDisponibles(boolean guiasDisponibles) {
+        this.hayGuiasDisponibles = guiasDisponibles;
+    }
 
     @Override
-    public double calcularCosto(ContextoTrasladoAeropuertoHotel c){
-
-        //# Donde dice "El costo se calcula como porcentaje fijo
-        // sobre el valor total de la reserva" (relacionar esto con
-        // precio total de los servicios/paquetes turísticos)
+    public float calcularCosto(ContextoTraslado c){
+        this.hayGuiasDisponibles();
         return 0;
+    }
+
+    private void hayGuiasDisponibles() {
+        if (!hayGuiasDisponibles) {
+            throw new UnsupportedOperationException("No hay guías disponibles");
+        }
     }
 }

@@ -1,14 +1,14 @@
 package org.viajesOnline.traslados;
 
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.utils.Direccion;
 
-public class ContextoTrasladoAeropuertoHotel extends ContextoReserva {
+public class ContextoTraslado extends ContextoReserva {
 
     private Direccion direccionDeDestino;
     private int pasajeros;
                                             //String
-    public ContextoTrasladoAeropuertoHotel(Direccion direccionDeDestino, int pasajeros){
-
+    public ContextoTraslado(Direccion direccionDeDestino, int pasajeros){
         this.direccionDeDestino = direccionDeDestino;
         this.pasajeros = pasajeros;
     }
@@ -20,5 +20,5 @@ public class ContextoTrasladoAeropuertoHotel extends ContextoReserva {
 
     public int cantPasajeros(){return this.pasajeros;}
 
-    public String direccionDestino(){return this.direccionDeDestino;}
+    public Direccion direccionDestino(){return this.direccionDeDestino;}
 }

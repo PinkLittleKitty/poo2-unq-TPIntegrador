@@ -5,17 +5,22 @@ public abstract class Catalogo {
   private String descripcion;
   private double precioBase;
   private int cupoDisponible;
+  private int descuento = 0;
 
   public void incrementarCupo() {
     cupoDisponible += 1;
+  }
+
+  public int descuento() {
+    return descuento;
   }
 
   public void decrementarCupo() {
     cupoDisponible -= 1;
   }
 
-  public double precioFinal(int descuento){
-    return this.getPrecioBase() * (descuento/100);
+  public double precioFinal(){
+    return this.getPrecioBase() * ( 1 - this.descuento()/100);
   }
 
   public Catalogo(String nombre, String descripcion, double precioBase, int cupoDisponible){

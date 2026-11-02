@@ -1,4 +1,4 @@
-package org.viajesOnline;
+package org.viajesOnline.atributos;
 
 public class Numerico implements TipoDato {
   private Integer valor;

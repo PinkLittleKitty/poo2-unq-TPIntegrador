@@ -1,6 +1,6 @@
-package org.viajesOnline;
+package org.viajesOnline.atributos;
 
-public class Booleano implements  TipoDato{
+public class Booleano implements TipoDato {
   private Boolean valor;
 
   private static void validacionNotNull(Object arg){ // Object... indica que agarra cualquier numero de parametros

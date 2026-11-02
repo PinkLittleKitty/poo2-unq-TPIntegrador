@@ -1,9 +1,8 @@
-package org.viajesOnline;
+package org.viajesOnline.atributos;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Fecha implements  TipoDato{
+public class Fecha implements TipoDato {
   private LocalDate valor;
 
   private static void validacionNotNull(Object arg){ // Object... indica que agarra cualquier numero de parametros

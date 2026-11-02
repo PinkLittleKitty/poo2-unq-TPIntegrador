@@ -4,6 +4,7 @@ import org.viajesOnline.Catalogo;
 import org.viajesOnline.notificacionReservas.ObservadorNotificadorAbstracto;
 import org.viajesOnline.notificacionReservas.SujetoEstadoAbstracto;
 import org.viajesOnline.notificacionReservas.vouchers.ComprobanteFiscal;
+import org.viajesOnline.notificacionReservas.vouchers.Voucher;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.Usuario;
 
@@ -14,7 +15,7 @@ public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
     private T estadoActual;
     private Solicitud solicitud =  new Solicitud();
     private Usuario usuario;
-    private ComprobanteFiscal comprobanteFiscal; //TODO: Tipo XML o PDF o algo así, extraer todo lo relacionado a una clase voucer o algo así
+    private Voucher voucher; //TODO: Tipo XML o PDF o algo así, extraer todo lo relacionado a una clase voucher o algo así
 
     public ContextoReserva(Usuario usuario) {
         this.usuario = usuario;
@@ -22,12 +23,12 @@ public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
 
     public ContextoReserva() {}
 
-    public void setComprobanteFiscal(ComprobanteFiscal comprobanteFiscal) {
-        this.comprobanteFiscal = comprobanteFiscal;
+    public void setVoucher(Voucher voucher) {
+        this.voucher = voucher;
     }
 
-    public ComprobanteFiscal getComprobanteFiscal() {
-        return comprobanteFiscal;
+    public Voucher getVoucher() {
+        return voucher;
     }
 
     public EstadoReserva getEstadoActual() {return this.estadoActual;}

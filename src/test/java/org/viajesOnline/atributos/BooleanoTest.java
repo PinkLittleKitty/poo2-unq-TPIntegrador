@@ -1,26 +1,27 @@
 package org.viajesOnline;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.atributos.Booleano;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TextoTest {
-  private Texto texto = new Texto();
+class BooleanoTest {
+  private Booleano boleano = new Booleano();
   @Test
-  void guardaUnString() {
-    texto.validar("una descripcion larga de algo");
-    assertEquals("una descripcion larga de algo", texto.getValor());
+  void guardaUnBoolean() {
+    boleano.validar(false);
+    assertEquals(false, boleano.getValor());
   }
 
   @Test
   void rechazaNull() {
     assertThrows(IllegalArgumentException.class,
-            () -> texto.validar(null));
+            () -> boleano.validar(null));
   }
 
   @Test
   void tipoIncompatibleLanzaClassCastException() {
     assertThrows(ClassCastException.class,
-            () -> texto.validar(1234));
+            () -> boleano.validar(1));
   }
 }

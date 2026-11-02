@@ -1,6 +1,7 @@
 package org.viajesOnline;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.atributos.Fecha;
 
 import java.time.LocalDate;
 

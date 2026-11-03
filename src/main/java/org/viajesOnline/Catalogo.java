@@ -15,12 +15,28 @@ public abstract class Catalogo {
     return descuento;
   }
 
-  public void decrementarCupo() {
-    cupoDisponible -= 1;
+  private boolean esDescuentoValido(int _desc){
+    return _desc >= 0 && _desc <= 100;
   }
 
-  public double precioFinal(){
-    return this.getPrecioBase() * ( 1 - this.descuento()/100);
+  public void darDescuento(int descuento){
+    if (esDescuentoValido(descuento)) {
+      this.descuento = descuento;
+    } else {
+      throw new IllegalArgumentException("El descuento es de numeros de 1 al 100");
+    }
+  }
+
+  private double descuentoAplicable(){
+    return this.getPrecioBase() * this.getDescuento()/100;
+  }
+
+  public double precioFinal() {
+    return this.getPrecioBase() - this.descuentoAplicable();
+  }
+  
+  public void decrementarCupo() {
+    cupoDisponible -= 1;
   }
 
   public Catalogo(String nombre, String descripcion, double precioBase, int cupoDisponible){
@@ -44,6 +60,10 @@ public abstract class Catalogo {
 
   public int getCupoDisponible() {
     return cupoDisponible;
+  }
+
+  public int getDescuento() {
+    return descuento;
   }
 }
 

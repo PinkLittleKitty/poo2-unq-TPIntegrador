@@ -63,5 +63,9 @@ public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
     public float precioFinalReserva(){
         return (float) solicitud.getServicios().stream().mapToDouble(Catalogo::precioFinal).sum();
     }
+
+    public Object getTasas() {
+    return null;
+    }
 }
 

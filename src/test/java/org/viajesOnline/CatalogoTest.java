@@ -44,17 +44,17 @@ class CatalogoTest {
 
   @Test
   void recuperarCupoAumentaElCupoDisponible() {
-    catalogo.recuperarCupo(3);
+    catalogo.incrementarCupo();
 
-    assertEquals(13, catalogo.getCupoDisponible());
+    assertEquals(11, catalogo.getCupoDisponible());
   }
 
   @Test
   void liberarCupoReduceElCupoDisponible() {
 
-    catalogo.liberarCupo(3);
+    catalogo.decrementarCupo();
 
-    assertEquals(7, catalogo.getCupoDisponible());
+    assertEquals(9, catalogo.getCupoDisponible());
 
   }
 }

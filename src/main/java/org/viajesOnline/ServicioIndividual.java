@@ -1,13 +1,14 @@
 package org.viajesOnline;
 
+import org.viajesOnline.atributos.DefinicionAtributo;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 
 public class ServicioIndividual extends Catalogo {
   private int idReserva; //??????
-  private String proovedor;
+  private String proveedor;
   private Categoria categoria;
   private List<DefinicionAtributo> atributosDinamicos = new ArrayList<DefinicionAtributo>();
 
@@ -20,34 +21,38 @@ public class ServicioIndividual extends Catalogo {
     // TO DO: encontrar una forma que tarde menos en checkear cada cosa. Si hay algo que venga con java o se tarde menos sacar.
     for (Object a : args){
       if (a==null) {
-        throw new IllegalArgumentException("Se requiere que todos los atributos obligatorios sean completados");
+        throw new IllegalArgumentException("Se requiere que todos los atributos sean completados");
       }
     }
   }
 
   public ServicioIndividual(String nombre, String descripcion, int cupo, int idReserva, String proveedor, double precio, Categoria categoria){
-    validacionNotNull(nombre,descripcion,cupo,idReserva,proveedor,precio,categoria);
     super(nombre,descripcion,precio,cupo);
-    this.idReserva = idReserva; //no se si esto deberia ser obligatorio
-    this.proovedor = proveedor;
+    validacionNotNull(nombre,descripcion,idReserva,proveedor,categoria);
+    this.idReserva = idReserva;
+    this.proveedor = proveedor;
     this.categoria = categoria;
   }
 
   public void agregarAtributoExtra(DefinicionAtributo _atributo){
     //_atributo deberia internamente verificar que no tiene nada null
+    validacionNotNull(_atributo);
     atributosDinamicos.add(_atributo);
   }
 
   public List<DefinicionAtributo> getAtributosDinamicos() {
-    // TO DO: implementar atributos dinamicos.
-    return atributosDinamicos;
+    return List.copyOf(atributosDinamicos);
   }
 
-  public String proovedor(){
-    return proovedor;
+  public String proveedor(){
+    return proveedor;
   }
 
   public Categoria categoria(){
     return categoria;
+  }
+
+  public int getIdReserva() {
+    return idReserva;
   }
 }

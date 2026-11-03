@@ -7,12 +7,12 @@ public abstract class Catalogo {
   private int cupoDisponible;
   private int descuento = 0;
 
-  public void recuperarCupo(int cupo) {
-    cupoDisponible += cupo;
+  public void incrementarCupo() {
+    cupoDisponible += 1;
   }
 
-  public void liberarCupo(int cupo) {
-    cupoDisponible -= cupo;
+  public int descuento() {
+    return descuento;
   }
 
   private boolean esDescuentoValido(int _desc){
@@ -33,6 +33,10 @@ public abstract class Catalogo {
 
   public double precioFinal() {
     return this.getPrecioBase() - this.descuentoAplicable();
+  }
+  
+  public void decrementarCupo() {
+    cupoDisponible -= 1;
   }
 
   public Catalogo(String nombre, String descripcion, double precioBase, int cupoDisponible){

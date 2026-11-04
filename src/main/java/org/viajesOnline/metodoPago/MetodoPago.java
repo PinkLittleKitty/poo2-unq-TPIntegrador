@@ -20,9 +20,9 @@ public abstract class MetodoPago {
 
     public abstract boolean validarDatos();
 
-    public abstract void reservarFondos();
+    public abstract boolean reservarFondos();
 
-    public abstract void ejecutarTransaccion();
+    public abstract double ejecutarTransaccion();;
 
     public void notificarResultado(){};
 }

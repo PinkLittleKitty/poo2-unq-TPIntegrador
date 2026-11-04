@@ -6,8 +6,8 @@ public interface ApiTarjetaCredito {
 
     public boolean validar(String nro_tarjeta,String cvv,LocalDate vencimiento);
 
-    public void reservar();
+    public boolean reservar();
 
-    public void ejecutar();
+    public double ejecutar();
 
 }

@@ -4,15 +4,20 @@ package org.viajesOnline.notificacionReservas;
 import org.viajesOnline.notificacionReservas.vouchers.ComprobanteFiscal;
 import org.viajesOnline.reporte.FormatoVisitante;
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
+import org.viajesOnline.reservas.estados.EstadoReserva;
+import org.viajesOnline.reservas.estados.Finalizada;
 import org.viajesOnline.utils.Usuario;
 
-class GeneradorFactura implements ObservadorNotificadorAbstracto {
+class GeneradorFactura implements ObservadorCambioEstado {
     //TODO: Posible visitor XML.
-    public void recibirNotificacion(ContextoReserva r){
-        // Esto quizá debería guardarlo el contextoReserva
-        Usuario usuario = r.getUsuario();
-        ComprobanteFiscal comprobante = new ComprobanteFiscal(); //usuario.getNombre(), usuario.getEmail(), usuario.getCUIT(), usuario.getDNI(), usuario.getDomicilio(), usuario.getEsResponsableInscripto().toString(), r.getTasas()); //how tf funca el stringbuilder
-        r.setVoucher(comprobante);
+
+    @Override
+    public void cambioDeEstado(ContextoReserva reserva, EstadoReserva anterior, EstadoReserva nuevo) {
+        if (nuevo instanceof Finalizada) {
+            ComprobanteFiscal comprobante = new ComprobanteFiscal();
+            reserva.setVoucher(comprobante);
+        }
     }
 }
 

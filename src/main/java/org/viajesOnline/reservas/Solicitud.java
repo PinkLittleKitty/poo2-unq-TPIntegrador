@@ -2,10 +2,11 @@ package org.viajesOnline.reservas;
 
 import org.viajesOnline.Catalogo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Solicitud {
-    private List<Catalogo> servicios;
+    private List<Catalogo> servicios = new ArrayList<>();
 
     public List<Catalogo> getServicios() { return servicios; }
 

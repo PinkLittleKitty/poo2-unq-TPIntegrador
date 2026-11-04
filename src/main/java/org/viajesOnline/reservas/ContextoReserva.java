@@ -1,18 +1,17 @@
 package org.viajesOnline.reservas;
 
 import org.viajesOnline.Catalogo;
-import org.viajesOnline.notificacionReservas.ObservadorNotificadorAbstracto;
-import org.viajesOnline.notificacionReservas.SujetoEstadoAbstracto;
-import org.viajesOnline.notificacionReservas.vouchers.ComprobanteFiscal;
 import org.viajesOnline.notificacionReservas.vouchers.Voucher;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
+public class ContextoReserva {
 
-    private T estadoActual;
+    private EstadoReserva estadoActual;
+    private List<ObservadorCambioEstado> observadores = new ArrayList<>();
     private Solicitud solicitud =  new Solicitud();
     private Usuario usuario;
     private Voucher voucher; //TODO: Tipo XML o PDF o algo así, extraer todo lo relacionado a una clase voucher o algo así
@@ -22,6 +21,26 @@ public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
     }
 
     public ContextoReserva() {}
+
+    public void agregarObservador(ObservadorCambioEstado observador) {
+        this.observadores.add(observador);
+    }
+
+    public void quitarObservador(ObservadorCambioEstado observador) {
+        this.observadores.remove(observador);
+    }
+
+    public void setEstadoActual(EstadoReserva nuevoEstado) {
+        EstadoReserva estadoAnterior = this.estadoActual;
+        this.estadoActual = nuevoEstado;
+        this.notificarObservadores(estadoAnterior, nuevoEstado);
+    }
+
+    private void notificarObservadores(EstadoReserva anterior, EstadoReserva nuevo) {
+        for (ObservadorCambioEstado observador : observadores) {
+            observador.cambioDeEstado(this, anterior, nuevo);
+        }
+    }
 
     public void setVoucher(Voucher voucher) {
         this.voucher = voucher;
@@ -36,13 +55,6 @@ public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
     public Solicitud getSolicitud() {return this.solicitud;}
 
     public Usuario getUsuario() { return this.usuario; }
-
-    //ES DE TIPO T o sea
-    public void setEstadoActual(T estadoActual) {
-
-        this.estadoActual = estadoActual;
-        estadoActual.notificarObservadores(this);
-    }
 
     public void siguiente() {
         estadoActual.siguiente(this);

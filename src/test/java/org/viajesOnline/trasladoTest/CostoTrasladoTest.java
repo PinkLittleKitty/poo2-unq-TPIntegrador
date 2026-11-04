@@ -31,7 +31,6 @@ public class CostoTrasladoTest {
     void devuelveLaEstimacionDeLaPlataforma() {
 
         when(plataforma.estimarTraslado(2, direccionDestino)).thenReturn(500f);
-
         assertEquals(500f, plataforma.estimarTraslado(2, direccionDestino), 0.001f);
     }
 
@@ -39,7 +38,6 @@ public class CostoTrasladoTest {
     void lePideLaEstimacionConLosDatosCorrectos() {
 
         plataforma.estimarTraslado(4, direccionDestino);
-
         verify(plataforma).estimarTraslado(4, direccionDestino);
     }
 

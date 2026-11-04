@@ -1,5 +1,7 @@
 package org.viajesOnline.metodoPago;
 
+import org.viajesOnline.exceptions.MetodoPagoExcepcion;
+
 import java.time.LocalDate;
 
 public class TarjetaCreditoInternacional extends MetodoPago {
@@ -21,11 +23,24 @@ public class TarjetaCreditoInternacional extends MetodoPago {
     @Override
     public boolean validarDatos(){
 
-       return apiTCredito.validar(nroTarjeta,cvv,vencimiento);
+        if(!apiTCredito.validar(nroTarjeta,cvv,vencimiento)){
+
+           throw new MetodoPagoExcepcion("Tarjeta de credito denegada, no se pudo validar");
+        }
+
+        return true;
     }
 
     @Override
-    public boolean reservarFondos(){return apiTCredito.reservar();};
+    public boolean reservarFondos(){
+
+        if(!apiTCredito.reservar()){
+
+            throw new MetodoPagoExcepcion("Tarjeta no autorizada por el banco");
+        }
+
+        return true;
+    }
 
     @Override
     public double ejecutarTransaccion(){return apiTCredito.ejecutar();}

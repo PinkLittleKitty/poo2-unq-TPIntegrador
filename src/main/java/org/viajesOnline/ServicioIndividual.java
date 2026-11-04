@@ -1,6 +1,7 @@
 package org.viajesOnline;
 
 import org.viajesOnline.atributos.DefinicionAtributo;
+import org.viajesOnline.reservas.Cupo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ServicioIndividual extends Catalogo {
     }
   }
 
-  public ServicioIndividual(String nombre, String descripcion, int cupo, int idReserva, String proveedor, double precio, Categoria categoria){
+  public ServicioIndividual(String nombre, String descripcion, Cupo cupo, int idReserva, String proveedor, double precio, Categoria categoria){
     super(nombre,descripcion,precio,cupo);
     validacionNotNull(nombre,descripcion,idReserva,proveedor,categoria);
     this.idReserva = idReserva;

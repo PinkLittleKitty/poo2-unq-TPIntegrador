@@ -1,15 +1,14 @@
 package org.viajesOnline;
 
+import org.viajesOnline.reservas.Cupo;
+
 public abstract class Catalogo {
   private String nombre;
   private String descripcion;
   private double precioBase;
   private int cupoDisponible;
   private int descuento = 0;
-
-  public void incrementarCupo() {
-    cupoDisponible += 1;
-  }
+  private Cupo cupo;
 
   public int descuento() {
     return descuento;
@@ -34,16 +33,12 @@ public abstract class Catalogo {
   public double precioFinal() {
     return this.getPrecioBase() - this.descuentoAplicable();
   }
-  
-  public void decrementarCupo() {
-    cupoDisponible -= 1;
-  }
 
-  public Catalogo(String nombre, String descripcion, double precioBase, int cupoDisponible){
+  public Catalogo(String nombre, String descripcion, double precioBase, Cupo cupoDisponible){
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.precioBase = precioBase;
-    this.cupoDisponible = cupoDisponible;
+    this.cupo = cupoDisponible;
   }
 
   public String getNombre() {
@@ -59,8 +54,10 @@ public abstract class Catalogo {
   }
 
   public int getCupoDisponible() {
-    return cupoDisponible;
+    return cupo.getCupoDisponible();
   }
+  public void incrementarCupo() { cupo.incrementarCupo(); }
+  public void decrementarCupo() { cupo.decrementarCupo(); }
 
   public int getDescuento() {
     return descuento;

@@ -11,7 +11,7 @@ public class EnCheckin extends SujetoEstadoAbstracto implements EstadoReserva {
 
     @Override
     public void cancelar(ContextoReserva r) {
-        r.getSolicitud().reiniciarCupo();
+        r.getSolicitud().incrementarCupo();
         r.reembolsar();
         EstadoReserva.super.cancelar(r);
     }

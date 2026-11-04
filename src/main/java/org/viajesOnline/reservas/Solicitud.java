@@ -23,7 +23,7 @@ public class Solicitud {
         }
     }
 
-    public void reiniciarCupo() {
+    public void incrementarCupo() {
         for (Catalogo s: servicios) {
             s.incrementarCupo();
         }

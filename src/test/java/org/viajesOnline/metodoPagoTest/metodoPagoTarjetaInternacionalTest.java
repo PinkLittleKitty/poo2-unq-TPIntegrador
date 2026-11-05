@@ -4,13 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
 import org.viajesOnline.gestorDeRecibos.FormatoVisitante;
-import org.viajesOnline.gestorDeRecibos.FormatoXml;
 import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
 import org.viajesOnline.gestorDeRecibos.VoucherParaPago;
 import org.viajesOnline.metodoPago.ApiTarjetaCredito;
 import org.viajesOnline.metodoPago.MetodoPago;
 import org.viajesOnline.metodoPago.MetodoPagoTarjetaInternacional;
-import org.viajesOnline.traslados.CostoTraslado;
+
 
 import java.time.LocalDateTime;
 import java.time.YearMonth;
@@ -22,26 +21,25 @@ public class metodoPagoTarjetaInternacionalTest {
 
     private ApiTarjetaCredito visaInt;
     private ApiTarjetaCredito mastercardInt;
-    private MetodoPago tarjetaInternacional;
-    private MetodoPago otraTarjetaInternacional;
+
+    private MetodoPagoTarjetaInternacional tarjetaInternacional;
+    private MetodoPagoTarjetaInternacional otraTarjetaInternacional;
+
     private GestorDeRecibos gestorMock;
     private VoucherParaPago voucherParaPago;
-    private CostoTraslado trasladoStandard;
-    private FormatoVisitante formatoXlm;
 
     @BeforeEach
     void setUp() {
 
-        formatoXlm = mock(FormatoVisitante.class);
         voucherParaPago = mock(VoucherParaPago.class);
         gestorMock = mock(GestorDeRecibos.class);
         visaInt = mock(ApiTarjetaCredito.class);
         mastercardInt = mock(ApiTarjetaCredito.class);
 
-        tarjetaInternacional = new MetodoPagoTarjetaInternacional(gestorMock,"1234567891234567", "111",
+        tarjetaInternacional = new MetodoPagoTarjetaInternacional(gestorMock,500.2,"1234567891234567", "111",
                 YearMonth.of(2020, 12), visaInt);
 
-        otraTarjetaInternacional = new MetodoPagoTarjetaInternacional(gestorMock,"1234567891111561", "555",
+        otraTarjetaInternacional = new MetodoPagoTarjetaInternacional(gestorMock,500.2,"1234567891111561", "555",
                 YearMonth.of(2030, 12), mastercardInt);
 
     }
@@ -99,10 +97,8 @@ public class metodoPagoTarjetaInternacionalTest {
         when(mastercardInt.reservar()).thenReturn(true);
         when(mastercardInt.ejecutar()).thenReturn(1501.50);
 
-        // 2. Act: Ejecutamos el flujo completo del Template Method
         assertDoesNotThrow(() -> {otraTarjetaInternacional.procesarPago();});
 
-        // 3. Assert 1: Verificamos resultados de estado (monto)
         assertEquals(1501.50, otraTarjetaInternacional.monto(), 0.001);
 
         // 4. Assert 2: Verificamos que se hayan invocado los métodos de la API en orden
@@ -125,13 +121,12 @@ public class metodoPagoTarjetaInternacionalTest {
 
     @Test
     void debeLanzarExcepcionSiNoSePuedenReservarLosFondos() {
-        // Arrange: La validación pasa, pero la reserva de fondos falla en el banco
+
         when(mastercardInt.validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12)))
                 .thenReturn(true);
 
         when(mastercardInt.reservar()).thenReturn(false);
 
-        // Act & Assert
         MetodoPagoExcepcion excepcion = assertThrows(MetodoPagoExcepcion.class, () -> {
             otraTarjetaInternacional.procesarPago();
         });

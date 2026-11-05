@@ -1,7 +1,6 @@
 package org.viajesOnline.metodoPago;
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
 import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
-import org.viajesOnline.gestorDeRecibos.Voucher;
 import org.viajesOnline.gestorDeRecibos.VoucherParaPago;
 
 
@@ -9,15 +8,17 @@ import java.time.YearMonth;
 
 public class MetodoPagoTarjetaInternacional extends MetodoPago {
 
+    //private double monto;
     private String nroTarjeta;
     private String cvv;
     private YearMonth vencimiento;
     private ApiTarjetaCredito apiTCredito;
-
-    public MetodoPagoTarjetaInternacional(GestorDeRecibos gestor,String nroTarjeta, String cvv
+    private GestorDeRecibos gestor;
+    public MetodoPagoTarjetaInternacional(GestorDeRecibos gestor,Double monto,String nroTarjeta, String cvv
                                         , YearMonth vencimiento, ApiTarjetaCredito apiTCredito)
     {
-          super(gestor);
+          super(monto);
+          this.gestor = gestor;
           this.nroTarjeta = nroTarjeta;
           this.cvv = cvv;
           this.vencimiento = vencimiento;
@@ -61,5 +62,7 @@ public class MetodoPagoTarjetaInternacional extends MetodoPago {
 
          return new VoucherParaPago(ultimoCodigoTransaccion,nroTarjeta,cvv,monto);
     }
+
+    //public double monto(){return monto;}
 
 }

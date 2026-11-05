@@ -18,7 +18,8 @@ public abstract class MetodoPago {
     protected GestorDeRecibos gestor;
     protected String ultimoCodigoTransaccion;
 
-    public MetodoPago(GestorDeRecibos gestor){this.gestor = gestor;}
+    public MetodoPago(double saldo){
+        this.monto = monto;}
 
     public final void procesarPago(){
 

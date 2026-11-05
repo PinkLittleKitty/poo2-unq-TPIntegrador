@@ -12,9 +12,9 @@ public class GestorDeRecibos {
     private List<VoucherParaPago> historialVouchersParaPagos = new ArrayList<>();
     //private List<VoucherReembolso> historialVoucchersReembolso = new ArrayList<>();
     //private List<ComprobanteFiscal> historialComprobanteFiscal = new ArrayList<>();
-    //private List<ComprobanteCbu> historialComprobanteCbu = new ArrayList<>();
+    private List<ComprobanteCbu> historialComprobanteCbu = new ArrayList<>();
 
-    public void registrarVoucher(VoucherParaFactura vouchersFactura) {
+    public void registrarVoucherParaFactura(VoucherParaFactura vouchersFactura) {
 
         historialVouchersFactura.add(vouchersFactura);
     }
@@ -34,11 +34,12 @@ public class GestorDeRecibos {
 
         historialComprobanteFiscal.add(comprobanteFiscal);
     }
+     */
 
     public void registrarComprobanteCbu(ComprobanteCbu comprobanteCbu) {
 
         historialComprobanteCbu.add(comprobanteCbu);
-    }*/
+    }
 
     public List<VoucherParaPago> obtenerVouchersParaPago(){return historialVouchersParaPagos;}
 }

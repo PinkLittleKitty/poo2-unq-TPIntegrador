@@ -22,7 +22,6 @@ public class CostoTrasladoTest {
 
         plataforma = mock(PlataformaTransporte.class);
         direccionDestino = mock(DireccionMock.class);
-
         trasladoStandard = new CostoTrasladoStandard(plataforma,direccionDestino);
 
     }

@@ -8,7 +8,17 @@ package org.viajesOnline.metodoPago;
     //# TEMPLATE METHOD Este método tendría los cuatro en orden, hook, no lo implementan los otros
      */
 
+import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
+
+import java.util.UUID;
+
 public abstract class MetodoPago {
+
+    protected double monto;
+    protected GestorDeRecibos gestor;
+    protected String ultimoCodigoTransaccion;
+
+    public MetodoPago(GestorDeRecibos gestor){this.gestor = gestor;}
 
     public final void procesarPago(){
 
@@ -22,11 +32,17 @@ public abstract class MetodoPago {
 
     public abstract boolean reservarFondos();
 
-    public abstract double ejecutarTransaccion();
+    public abstract void ejecutarTransaccion();
 
-    public void notificarResultado(){
+    public void notificarResultado() {
 
-        //implementacion registro de codigo de transaccion
+        this.ultimoCodigoTransaccion = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+
+        System.out.println("Transacción exitosa. Código transacción: " + ultimoCodigoTransaccion);
     }
+
+    public String getUltimoCodigoTransaccion() {return ultimoCodigoTransaccion;}
+
+    public double monto(){return monto;}
 }
 

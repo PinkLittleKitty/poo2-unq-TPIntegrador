@@ -10,3 +10,4 @@ public class TransferenciaBancaria extends MetodoPago{
     ejecutarTransaccion()
     notificarResultado()
 }
+*/

@@ -139,7 +139,7 @@ public class metodoPagoTarjetaInternacionalTest {
     }
 
     @Test
-    public void testExportarVoucherAXml() {
+    public void testSobreTarjetaMastercardSeProcesaExitosamenteElPago() {
 
         when(mastercardInt.validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12)))
                 .thenReturn(true);

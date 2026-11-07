@@ -55,7 +55,7 @@ public class MetodoPagoTarjetaInternacional extends MetodoPago {
         super.notificarResultado();
 
         Documento nuevoVoucher = this.generarVoucher();
-        gestor.registrarVoucher(nuevoVoucher);
+        gestor.registrarDocumento(nuevoVoucher);
     }
 
     public Documento generarVoucher() {

@@ -44,7 +44,7 @@ class MetodoPagoTransferenciaBancariaTest {
             transferenciaBancaria.procesarPago();
         });
 
-        verify(gestorMock).registrarComprobanteCbu(any(ComprobanteCbu.class));
+        verify(gestorMock).registrarDocumento(any(ComprobanteCbu.class));
 
         verify(apiTBancariaMock).validar("0110001230000011112222", "usuario.alias");
         verify(apiTBancariaMock).reservar();
@@ -67,7 +67,7 @@ class MetodoPagoTransferenciaBancariaTest {
         verify(apiTBancariaMock).validar("0110001230000011112222", "usuario.alias");
         verify(apiTBancariaMock, never()).reservar();
         verify(apiTBancariaMock, never()).ejecutar();
-        verify(gestorMock, never()).registrarComprobanteCbu(any());
+        verify(gestorMock, never()).registrarDocumento(any());
     }
 
     @Test
@@ -84,6 +84,6 @@ class MetodoPagoTransferenciaBancariaTest {
         verify(apiTBancariaMock).validar("0110001230000011112222", "usuario.alias");
         verify(apiTBancariaMock).reservar();
         verify(apiTBancariaMock, never()).ejecutar();
-        verify(gestorMock, never()).registrarComprobanteCbu(any());
+        verify(gestorMock, never()).registrarDocumento(any());
     }
 }

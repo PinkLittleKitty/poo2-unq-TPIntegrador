@@ -18,7 +18,6 @@ public class VoucherParaPago extends Documento {
 
     public String tipoDocumento(){return nombreVoucher;}
 
-
     @Override
     public void mostrarDetalles() {
         // Reutilizamos el comportamiento de la clase padre para no repetir código

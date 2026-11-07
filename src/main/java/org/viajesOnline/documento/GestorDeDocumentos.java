@@ -1,14 +1,21 @@
 package org.viajesOnline.documento;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GestorDeDocumentos{
 
-    private List<Documento> listaComprobantes = new ArrayList<>();
-    private List<Documento>listaDeVouchers = new ArrayList<>();
+    private List<Documento> listaDocumentos = new ArrayList<>();
 
-    public void registrarVoucher(Documento voucher) {listaDeVouchers.add(voucher);}
+    public void registrarDocumento(Documento unDocumento) {listaDocumentos.add(unDocumento);}
 
-    public void registrarComprobanteCbu(Documento comprobanteCbu) {listaComprobantes.add(comprobanteCbu);}
+    public List<Documento> obtenerDocumentos() {
+        // Devuelve una "vista" de solo lectura de tu lista interna
+        return Collections.unmodifiableList(this.listaDocumentos);
+    }
+
+    public int cantidadDocumentos() {return this.listaDocumentos.size();}
+
+
 }

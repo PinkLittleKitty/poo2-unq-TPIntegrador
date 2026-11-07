@@ -5,13 +5,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import org.viajesOnline.documento.Documento;
 import org.viajesOnline.documento.VoucherParaPago;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-
 
 
 public class VoucherPagoTest {
@@ -22,6 +21,12 @@ public class VoucherPagoTest {
 
     @BeforeEach
     void setUp() {
+
+        //Limpiamos el capturador por si otro test dejó basura
+        outputStreamCaptor.reset();
+
+        //Redirigimos la consola de forma segura
+        System.setOut(new PrintStream(outputStreamCaptor));
 
         voucherParaPago = new VoucherParaPago("B744777C",("1234567891234567"), ("111"), 1000);
     }
@@ -43,15 +48,10 @@ public class VoucherPagoTest {
 
         voucherParaPago.mostrarDetalles();
 
-        String consolaOutput = outputStreamCaptor.toString();
-
-        // 1. Ejecutas el método
-        voucherParaPago.mostrarDetalles();
-
-// 2. IMPORTANTE: Forza a que la consola use UTF-8 para evitar problemas con el "$"
+        // 2. IMPORTANTE: Forza a que la consola use UTF-8 para evitar problemas con el "$"
         String consolaOutput = outputStreamCaptor.toString(StandardCharsets.UTF_8);
 
-// 3. Agrega un mensaje de error personalizado para saber QUÉ falló si el test da error
+        //mensaje de error personalizado para saber QUÉ falló si el test da error
         assertTrue(consolaOutput.contains("Codigo Transaccion: " + voucherParaPago.codTransaccion()),
                 "Fallo Codigo Transaccion. Lo que imprimió fue:\n" + consolaOutput);
 
@@ -61,7 +61,6 @@ public class VoucherPagoTest {
         assertTrue(consolaOutput.contains("Fecha: " + voucherParaPago.fechaEmision().toLocalDate()),
                 "Fallo Fecha. Lo que imprimió fue:\n" + consolaOutput);
 
-// Si este falla por el "$", puedes probar buscando solo el monto primero: ".contains(String.valueOf(voucherParaPago.monto()))"
         assertTrue(consolaOutput.contains("Total Pagado: $" + voucherParaPago.monto()),
                 "Fallo Total Pagado. Lo que imprimió fue:\n" + consolaOutput);
 
@@ -71,15 +70,6 @@ public class VoucherPagoTest {
         assertTrue(consolaOutput.contains("Numero Tarjeta: " + ((VoucherParaPago) voucherParaPago).numeroTarjeta()),
                 "Fallo Numero Tarjeta. Lo que imprimió fue:\n" + consolaOutput);
 
-
-        /*
-        assertTrue(consolaOutput.contains("Codigo Transaccion: " + voucherParaPago.codTransaccion()));
-         assertTrue(consolaOutput.contains("Emisor: " + voucherParaPago.emisor()));
-         assertTrue(consolaOutput.contains("Fecha: " + voucherParaPago.fechaEmision().toLocalDate()));
-         assertTrue(consolaOutput.contains("Total Pagado: $" + voucherParaPago.monto()));
-         assertTrue(consolaOutput.contains("Tipo Voucher: "  + ((VoucherParaPago)voucherParaPago).tipoDocumento()));
-         assertTrue(consolaOutput.contains("Numero Tarjeta: " + ((VoucherParaPago) voucherParaPago).numeroTarjeta()));
-        */
     }
 
     @AfterEach

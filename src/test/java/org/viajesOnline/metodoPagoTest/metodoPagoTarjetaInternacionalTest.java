@@ -72,7 +72,7 @@ public class metodoPagoTarjetaInternacionalTest {
 
         //o que hace el verify en Mockito?
         //Le pregunta al mock del gestor: "Che, ¿la tarjeta te llamó al método registrarVoucherParaPago?".
-        verify(gestorMock).registrarVoucher(any(VoucherParaPago.class));
+        verify(gestorMock).registrarDocumento(any(VoucherParaPago.class));
 
     }
 
@@ -146,7 +146,7 @@ public class metodoPagoTarjetaInternacionalTest {
 
         //o que hace el verify en Mockito?
         //Le pregunta al mock del gestor: "Che, ¿la tarjeta te llamó al método registrarVoucherParaPago?".
-        verify(gestorMock).registrarVoucher(any(VoucherParaPago.class));
+        verify(gestorMock).registrarDocumento(any(VoucherParaPago.class));
 
     }
 
@@ -198,7 +198,7 @@ public class metodoPagoTarjetaInternacionalTest {
 
         //o que hace el verify en Mockito?
         //Le pregunta al mock del gestor: "Che, ¿la tarjeta te llamó al método registrarVoucherParaPago?".
-        verify(gestorMock).registrarVoucher(any(VoucherParaPago.class));
+        verify(gestorMock).registrarDocumento(any(VoucherParaPago.class));
 
 
     }

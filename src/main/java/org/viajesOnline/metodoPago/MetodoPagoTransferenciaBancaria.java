@@ -53,7 +53,7 @@ public class MetodoPagoTransferenciaBancaria extends MetodoPago{
 
         super.notificarResultado();
         Documento nuevoComprobanteCbu = this.generarVoucher();
-        gestor.registrarComprobanteCbu(nuevoComprobanteCbu);
+        gestor.registrarDocumento(nuevoComprobanteCbu);
     }
 
     public Documento generarVoucher() {

@@ -9,6 +9,7 @@ import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.documento.VoucherParaPago;
 
 import org.viajesOnline.metodoPago.ApiTarjetaCredito;
+import org.viajesOnline.metodoPago.MetodoPago;
 import org.viajesOnline.metodoPago.MetodoPagoTarjetaInternacional;
 
 import java.time.YearMonth;
@@ -21,8 +22,8 @@ public class metodoPagoTarjetaInternacionalTest {
     private ApiTarjetaCredito visaInt;
     private ApiTarjetaCredito mastercardInt;
 
-    private MetodoPagoTarjetaInternacional tarjetaInternacional;
-    private MetodoPagoTarjetaInternacional otraTarjetaInternacional;
+    private MetodoPago tarjetaInternacional;
+    private MetodoPago otraTarjetaInternacional;
 
     private GestorDeDocumentos gestorMock;
     private Documento voucherParaPago;
@@ -44,6 +45,38 @@ public class metodoPagoTarjetaInternacionalTest {
     }
 
     @Test
+    void procesarPagoExitosoParaTarjetaIntenacionalVisaDebeEjecutarTodoElFlujoCorrectamente() {
+
+        when(visaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
+                .thenReturn(true);
+
+        when(visaInt.reservar()).thenReturn(true);
+        when(visaInt.ejecutar()).thenReturn(500.2);
+
+        //Verifica explícitamente que no falle que todo esta
+        //efectivamente bien
+        assertDoesNotThrow(() -> {tarjetaInternacional.procesarPago();});
+
+        assertEquals(500.2, tarjetaInternacional.monto(), 0.001);
+
+        //Verificamos que se hayan invocado los métodos de la API en orden
+        verify(visaInt).validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12)));
+        verify(visaInt).reservar();
+        verify(visaInt).ejecutar();
+
+        //Assert: Verificamos usando el getter que el código NO sea nulo y se haya generado
+        String codigoGenerado = (tarjetaInternacional).getUltimoCodigoTransaccion();
+
+        assertNotNull(codigoGenerado);
+        assertEquals(8, codigoGenerado.length());
+
+        //o que hace el verify en Mockito?
+        //Le pregunta al mock del gestor: "Che, ¿la tarjeta te llamó al método registrarVoucherParaPago?".
+        verify(gestorMock).registrarVoucher(any(VoucherParaPago.class));
+
+    }
+
+    @Test
     void sePasaUnaFechaDeTarjetaVisaParaQueSeValideComoVencida() {
 
         when(visaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
@@ -58,14 +91,16 @@ public class metodoPagoTarjetaInternacionalTest {
 
         verify(visaInt).validar("1234567891234567", "111", YearMonth.of(2020, 12));
 
-        assertThrows(MetodoPagoExcepcion.class, () -> {
-            tarjetaInternacional.procesarPago();
-        });
+        assertThrows(MetodoPagoExcepcion.class, () -> {tarjetaInternacional.procesarPago();});
+
+
+        verify(visaInt, never()).reservar();
+        verify(visaInt, never()).ejecutar();
 
     }
 
     @Test
-    void procesarPagoDebeFallarEnValidacionYNoEjecutarElResto() {
+    void procesarPagoDebeFallarEnValidacionYNoEjecutarElRestoParaTarjetaVisa() {
 
         // 1. Arrange: Configuramos el mock para que la validación falle
         when(visaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
@@ -106,7 +141,7 @@ public class metodoPagoTarjetaInternacionalTest {
         verify(mastercardInt).ejecutar();
 
         //Assert: Verificamos usando el getter que el código NO sea nulo y se haya generado
-        String codigoGenerado = ((MetodoPagoTarjetaInternacional) otraTarjetaInternacional).getUltimoCodigoTransaccion();
+        String codigoGenerado = (otraTarjetaInternacional).getUltimoCodigoTransaccion();
 
         assertNotNull(codigoGenerado);
         assertEquals(8, codigoGenerado.length());
@@ -116,7 +151,6 @@ public class metodoPagoTarjetaInternacionalTest {
         verify(gestorMock).registrarVoucher(any(VoucherParaPago.class));
 
     }
-
 
     @Test
     void debeLanzarExcepcionSiNoSePuedenReservarLosFondos() {
@@ -159,7 +193,7 @@ public class metodoPagoTarjetaInternacionalTest {
         verify(mastercardInt).ejecutar();
 
         //Assert: Verificamos usando el getter que el código NO sea nulo y se haya generado
-        String codigoGenerado = ((MetodoPagoTarjetaInternacional) otraTarjetaInternacional).getUltimoCodigoTransaccion();
+        String codigoGenerado = (otraTarjetaInternacional).getUltimoCodigoTransaccion();
 
         assertNotNull(codigoGenerado);
         assertEquals(8, codigoGenerado.length());

@@ -1,6 +1,7 @@
 package org.viajesOnline.notificacionReservas.vouchers;
 
-public class ComprobanteFiscal extends Voucher{
+
+public class ComprobanteFiscalBis extends Voucher{
     Boolean esResponsableInscripto;
     float tasas;
 }

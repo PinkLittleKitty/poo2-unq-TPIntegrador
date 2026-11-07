@@ -1,6 +1,6 @@
 package org.viajesOnline.reporte;
 
-class FormatoCsv implements FormatoVisitante {
+class FormatoCsv implements FormatoVisitanteReportes {
 
     private String reporteCsv;
 

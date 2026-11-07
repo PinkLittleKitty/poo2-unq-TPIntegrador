@@ -1,6 +1,6 @@
 package org.viajesOnline.reporte;
 
-class FormatoHtml implements FormatoVisitante {
+class FormatoHtml implements FormatoVisitanteReportes {
 
     private String reporteHtml;
 

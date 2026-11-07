@@ -7,15 +7,14 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
-import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.metodoPago.ApiBilleteraVirtual;
-import org.viajesOnline.metodoPago.MetodoPago;
 import org.viajesOnline.metodoPago.MetodoPagoBilleteraVirtual;
 
 class MetodoPagoBilleteraVirtualTest {
 
     private ApiBilleteraVirtual apiBVirtualMock;
-    private GestorDeRecibos gestorMock;
+    private GestorDeDocumentos gestorMock;
     private MetodoPagoBilleteraVirtual billeteraVirtual;
     private double saldoPrueba = 5000.0;
 
@@ -23,7 +22,7 @@ class MetodoPagoBilleteraVirtualTest {
     void setUp() {
 
         apiBVirtualMock = mock(ApiBilleteraVirtual.class);
-        gestorMock = mock(GestorDeRecibos.class);
+        gestorMock = mock(GestorDeDocumentos.class);
 
         billeteraVirtual = new MetodoPagoBilleteraVirtual(saldoPrueba,apiBVirtualMock);
     }

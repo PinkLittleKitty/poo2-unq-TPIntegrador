@@ -1,25 +1,13 @@
 package org.viajesOnline.metodoPago;
 
-/*Lo de interfaces se puede referir al protocolo que tiene cada una de esas clases
-      que van a definir para la estructura del template method. Como menciona el enunciado
-      no es necesario que los mensajes de esas clases tengan un metodo/implementacion solo
-      que modelen el disparador de estos eventos. Va de la mano con lo que te escribi antes,
-      podes usar un mock para comprobar que se disparan los eventos.
-    //# TEMPLATE METHOD Este método tendría los cuatro en orden, hook, no lo implementan los otros
-     */
-
-import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
-
 import java.util.UUID;
 
 public abstract class MetodoPago {
 
     protected double monto;
-    protected GestorDeRecibos gestor;
-    protected String ultimoCodigoTransaccion;
+    protected String codigoTransaccion;
 
-    public MetodoPago(double saldo){
-        this.monto = monto;}
+    public MetodoPago(double saldo){this.monto = monto;}
 
     public final void procesarPago(){
 
@@ -37,12 +25,12 @@ public abstract class MetodoPago {
 
     public void notificarResultado() {
 
-        this.ultimoCodigoTransaccion = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        this.codigoTransaccion = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
-        System.out.println("Transacción exitosa. Código transacción: " + ultimoCodigoTransaccion);
+        System.out.println("Transacción exitosa. Código transacción: " + codigoTransaccion);
     }
 
-    public String getUltimoCodigoTransaccion() {return ultimoCodigoTransaccion;}
+    public String getUltimoCodigoTransaccion() {return codigoTransaccion;}
 
     public double monto(){return monto;}
 }

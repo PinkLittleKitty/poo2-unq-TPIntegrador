@@ -1,19 +1,13 @@
 package org.viajesOnline.metodoPago;
-
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
-import org.viajesOnline.gestorDeRecibos.ComprobanteCbu;
-import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
 
 public class MetodoPagoBilleteraVirtual extends MetodoPago {
 
     private ApiBilleteraVirtual apiBVirtual;
 
-    //private double saldo;
-
     public MetodoPagoBilleteraVirtual(Double monto,ApiBilleteraVirtual apiBVirtual)
     {
         super(monto);
-        //this.saldo = saldo;
         this.apiBVirtual = apiBVirtual;
     }
 

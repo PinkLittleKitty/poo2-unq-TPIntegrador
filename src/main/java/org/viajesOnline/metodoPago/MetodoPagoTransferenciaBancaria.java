@@ -1,19 +1,19 @@
 package org.viajesOnline.metodoPago;
 
-
+import org.viajesOnline.documento.Documento;
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
-import org.viajesOnline.gestorDeRecibos.ComprobanteCbu;
-import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
+import org.viajesOnline.documento.ComprobanteCbu;
+import org.viajesOnline.documento.GestorDeDocumentos;
 
 public class MetodoPagoTransferenciaBancaria extends MetodoPago{
 
-    //private double monto;
+
     private String cbu;
     private String aliasUsuario;
     private ApiTransferenciaBancaria apiTBancaria;
-    private GestorDeRecibos gestor;
+    private GestorDeDocumentos gestor;
 
-    public MetodoPagoTransferenciaBancaria(GestorDeRecibos gestor,Double monto,String cbu,String aliasUsuario
+    public MetodoPagoTransferenciaBancaria(GestorDeDocumentos gestor,Double monto,String cbu,String aliasUsuario
                                            ,ApiTransferenciaBancaria apiTBancaria)
     {
         super(monto);
@@ -52,14 +52,13 @@ public class MetodoPagoTransferenciaBancaria extends MetodoPago{
     public void notificarResultado() {
 
         super.notificarResultado();
-        ComprobanteCbu nuevoComprobanteCbu = this.generarVoucher();
+        Documento nuevoComprobanteCbu = this.generarVoucher();
         gestor.registrarComprobanteCbu(nuevoComprobanteCbu);
     }
 
-    public ComprobanteCbu generarVoucher() {
+    public Documento generarVoucher() {
 
-        return new ComprobanteCbu(ultimoCodigoTransaccion,monto,cbu,aliasUsuario);
+        return new ComprobanteCbu(codigoTransaccion,monto,cbu,aliasUsuario);
     }
 
-    //public double monto(){return monto;}
 }

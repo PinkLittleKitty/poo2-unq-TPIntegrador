@@ -3,8 +3,9 @@ package org.viajesOnline.metodoPagoTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
-import org.viajesOnline.gestorDeRecibos.ComprobanteCbu;
-import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
+import org.viajesOnline.documento.ComprobanteCbu;
+
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.metodoPago.ApiTransferenciaBancaria;
 import org.viajesOnline.metodoPago.MetodoPago;
 import org.viajesOnline.metodoPago.MetodoPagoTransferenciaBancaria;
@@ -17,14 +18,14 @@ import static org.mockito.Mockito.*;
 class MetodoPagoTransferenciaBancariaTest {
 
     private ApiTransferenciaBancaria apiTBancariaMock;
-    private GestorDeRecibos gestorMock;
+    private GestorDeDocumentos gestorMock;
     private MetodoPago transferenciaBancaria;
 
     @BeforeEach
     void setUp() {
 
         apiTBancariaMock = mock(ApiTransferenciaBancaria.class);
-        gestorMock = mock(GestorDeRecibos.class);
+        gestorMock = mock(GestorDeDocumentos.class);
 
         transferenciaBancaria = new MetodoPagoTransferenciaBancaria(
                 gestorMock,500.2, "0110001230000011112222", "usuario.alias",

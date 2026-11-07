@@ -3,15 +3,14 @@ package org.viajesOnline.metodoPagoTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
-import org.viajesOnline.gestorDeRecibos.FormatoVisitante;
-import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
-import org.viajesOnline.gestorDeRecibos.VoucherParaPago;
+
+import org.viajesOnline.documento.Documento;
+import org.viajesOnline.documento.GestorDeDocumentos;
+import org.viajesOnline.documento.VoucherParaPago;
+
 import org.viajesOnline.metodoPago.ApiTarjetaCredito;
-import org.viajesOnline.metodoPago.MetodoPago;
 import org.viajesOnline.metodoPago.MetodoPagoTarjetaInternacional;
 
-
-import java.time.LocalDateTime;
 import java.time.YearMonth;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,14 +24,14 @@ public class metodoPagoTarjetaInternacionalTest {
     private MetodoPagoTarjetaInternacional tarjetaInternacional;
     private MetodoPagoTarjetaInternacional otraTarjetaInternacional;
 
-    private GestorDeRecibos gestorMock;
-    private VoucherParaPago voucherParaPago;
+    private GestorDeDocumentos gestorMock;
+    private Documento voucherParaPago;
 
     @BeforeEach
     void setUp() {
 
-        voucherParaPago = mock(VoucherParaPago.class);
-        gestorMock = mock(GestorDeRecibos.class);
+        voucherParaPago = mock(Documento.class);
+        gestorMock = mock(GestorDeDocumentos.class);
         visaInt = mock(ApiTarjetaCredito.class);
         mastercardInt = mock(ApiTarjetaCredito.class);
 
@@ -114,7 +113,7 @@ public class metodoPagoTarjetaInternacionalTest {
 
         //o que hace el verify en Mockito?
         //Le pregunta al mock del gestor: "Che, ¿la tarjeta te llamó al método registrarVoucherParaPago?".
-        verify(gestorMock).registrarVoucherParaPago(any(VoucherParaPago.class));
+        verify(gestorMock).registrarVoucher(any(VoucherParaPago.class));
 
     }
 
@@ -167,7 +166,7 @@ public class metodoPagoTarjetaInternacionalTest {
 
         //o que hace el verify en Mockito?
         //Le pregunta al mock del gestor: "Che, ¿la tarjeta te llamó al método registrarVoucherParaPago?".
-        verify(gestorMock).registrarVoucherParaPago(any(VoucherParaPago.class));
+        verify(gestorMock).registrarVoucher(any(VoucherParaPago.class));
 
 
     }

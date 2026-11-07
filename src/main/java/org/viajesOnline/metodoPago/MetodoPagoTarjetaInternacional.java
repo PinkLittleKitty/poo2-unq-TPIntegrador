@@ -1,20 +1,19 @@
 package org.viajesOnline.metodoPago;
+import org.viajesOnline.documento.Documento;
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
-import org.viajesOnline.gestorDeRecibos.GestorDeRecibos;
-import org.viajesOnline.gestorDeRecibos.VoucherParaPago;
-
+import org.viajesOnline.documento.GestorDeDocumentos;
+import org.viajesOnline.documento.VoucherParaPago;
 
 import java.time.YearMonth;
 
 public class MetodoPagoTarjetaInternacional extends MetodoPago {
 
-    //private double monto;
     private String nroTarjeta;
     private String cvv;
     private YearMonth vencimiento;
     private ApiTarjetaCredito apiTCredito;
-    private GestorDeRecibos gestor;
-    public MetodoPagoTarjetaInternacional(GestorDeRecibos gestor,Double monto,String nroTarjeta, String cvv
+    private GestorDeDocumentos gestor;
+    public MetodoPagoTarjetaInternacional(GestorDeDocumentos gestor,Double monto,String nroTarjeta, String cvv
                                         , YearMonth vencimiento, ApiTarjetaCredito apiTCredito)
     {
           super(monto);
@@ -54,15 +53,14 @@ public class MetodoPagoTarjetaInternacional extends MetodoPago {
     public void notificarResultado() {
 
         super.notificarResultado();
-        VoucherParaPago nuevoVoucher = this.generarVoucher();
-        gestor.registrarVoucherParaPago(nuevoVoucher);
+
+        Documento nuevoVoucher = this.generarVoucher();
+        gestor.registrarVoucher(nuevoVoucher);
     }
 
-    public VoucherParaPago generarVoucher() {
+    public Documento generarVoucher() {
 
-         return new VoucherParaPago(ultimoCodigoTransaccion,nroTarjeta,cvv,monto);
+         return new VoucherParaPago(codigoTransaccion,nroTarjeta,cvv,monto);
     }
-
-    //public double monto(){return monto;}
 
 }

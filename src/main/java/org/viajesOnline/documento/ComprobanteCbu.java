@@ -1,11 +1,11 @@
-package org.viajesOnline.gestorDeRecibos;
+package org.viajesOnline.documento;
 
-
-public class ComprobanteCbu extends Recibo {
+public class ComprobanteCbu extends Documento {
 
     private String aliasUsuario;
     private String codTransaccion;
     private String cbu;
+    private String nombreComprobante;
 
     public ComprobanteCbu(String codTransaccion,double monto,String Cbu,String aliasUsuario)
     {
@@ -13,11 +13,14 @@ public class ComprobanteCbu extends Recibo {
         this.aliasUsuario = aliasUsuario;
         this.codTransaccion = codTransaccion;
         this.cbu = Cbu;
+        this.nombreComprobante = "Comprobante Cbu";
     }
 
     public String obtenerAliasUsuario(){return aliasUsuario;}
 
     public String obtenerCbu(){return cbu;}
+
+    public String tipoDocumento(){return nombreComprobante;}
 
     @Override
     public void mostrarDetalles() {

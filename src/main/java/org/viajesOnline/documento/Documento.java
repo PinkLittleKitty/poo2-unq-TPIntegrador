@@ -1,19 +1,16 @@
-package org.viajesOnline.gestorDeRecibos;
+package org.viajesOnline.documento;
 
 import java.time.LocalDateTime;
 
-public abstract class Recibo {
+public abstract class Documento{
 
+    //QUIZAS FALTE PASARLE EL RECEPTOR
     private String codTransaccion;
-    private String emisor = "Empresa Viajes";
+    private String emisor = "Empresa Turismo";
     private LocalDateTime fechaEmisionVoucher;
     protected double monto;
 
-    //protected String archivoParaRegistro;
-    //public abstract void accept(FormatoVisitante v);
-    //public String archivoConFormato(){return archivoParaRegistro;}
-
-    public Recibo(String codTransaccion, double monto) {
+    public Documento(String codTransaccion, double monto) {
 
         this.monto = monto;
         this.codTransaccion = codTransaccion;

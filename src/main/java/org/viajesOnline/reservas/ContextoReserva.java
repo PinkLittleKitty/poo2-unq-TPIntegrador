@@ -1,14 +1,10 @@
 package org.viajesOnline.reservas;
 
 import org.viajesOnline.Catalogo;
-import org.viajesOnline.notificacionReservas.ObservadorNotificadorAbstracto;
 import org.viajesOnline.notificacionReservas.SujetoEstadoAbstracto;
-import org.viajesOnline.notificacionReservas.vouchers.ComprobanteFiscal;
 import org.viajesOnline.notificacionReservas.vouchers.Voucher;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.Usuario;
-
-import java.util.List;
 
 public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
 

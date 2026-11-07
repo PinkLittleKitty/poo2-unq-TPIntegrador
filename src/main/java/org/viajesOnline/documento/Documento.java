@@ -17,7 +17,6 @@ public abstract class Documento{
         this.fechaEmisionVoucher = LocalDateTime.now(); // Se genera automáticamente al crearse
     }
 
-
     public String codTransaccion() { return codTransaccion; }
 
     public double monto() { return monto; }

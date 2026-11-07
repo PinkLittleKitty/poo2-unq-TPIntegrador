@@ -1,65 +1,92 @@
 package org.viajesOnline.documentoTest;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.viajesOnline.documento.Documento;
-import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.documento.VoucherParaPago;
-import org.viajesOnline.metodoPago.ApiTarjetaCredito;
-import org.viajesOnline.metodoPago.MetodoPago;
-import org.viajesOnline.metodoPago.MetodoPagoTarjetaInternacional;
-
-import java.time.YearMonth;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
+
 
 public class VoucherPagoTest {
 
-    private ApiTarjetaCredito apiVisaInt;
-
-    //MetodoPagoTarjetaInternacional
-    private MetodoPago tarjetaInternacionalMock;
-
-    private GestorDeDocumentos gestorMock;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
     private Documento voucherParaPago;
 
     @BeforeEach
     void setUp() {
 
-        tarjetaInternacionalMock = mock(MetodoPago.class);
-        gestorMock = mock(GestorDeDocumentos.class);
-        apiVisaInt = mock(ApiTarjetaCredito.class);
-        voucherParaPago = new VoucherParaPago("84920473",("1234567891234567"), ("111"), 1000);
-
-        //tarjetaInternacional = new MetodoPagoTarjetaInternacional(gestorMock,500.2,"1234567891234567", "111",
-        // YearMonth.of(2020, 12), apiVisaInt);
-
+        voucherParaPago = new VoucherParaPago("B744777C",("1234567891234567"), ("111"), 1000);
     }
 
     @Test
-    void procesarPagoExitosoParaTarjetaIntenacionalVisaDebeEjecutarTodoElFlujoCorrectamente() {
-
-        when(apiVisaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
-                .thenReturn(true);
-
-        when(apiVisaInt.reservar()).thenReturn(true);
-        when(apiVisaInt.ejecutar()).thenReturn(1000.0);
-
-
+    void procesarPagoExitosoHaceQueSeIngreseElVoucherAlGestor() {
 
         assertEquals(1000.0,voucherParaPago.monto(),0.001);
+
         assertEquals("1234567891234567",((VoucherParaPago) voucherParaPago).numeroTarjeta());
 
         assertEquals("Voucher Pago",((VoucherParaPago)voucherParaPago).tipoDocumento());
 
-        assertEquals("84920473",((VoucherParaPago)voucherParaPago).codigoAutorizacion());
+        assertEquals("B744777C",voucherParaPago.codTransaccion());
 
+        assertEquals("Empresa Turismo",voucherParaPago.emisor());
+
+        assertEquals(LocalDate.now(),voucherParaPago.fechaEmision().toLocalDate());
+
+        voucherParaPago.mostrarDetalles();
+
+        String consolaOutput = outputStreamCaptor.toString();
+
+        // 1. Ejecutas el método
+        voucherParaPago.mostrarDetalles();
+
+// 2. IMPORTANTE: Forza a que la consola use UTF-8 para evitar problemas con el "$"
+        String consolaOutput = outputStreamCaptor.toString(StandardCharsets.UTF_8);
+
+// 3. Agrega un mensaje de error personalizado para saber QUÉ falló si el test da error
+        assertTrue(consolaOutput.contains("Codigo Transaccion: " + voucherParaPago.codTransaccion()),
+                "Fallo Codigo Transaccion. Lo que imprimió fue:\n" + consolaOutput);
+
+        assertTrue(consolaOutput.contains("Emisor: " + voucherParaPago.emisor()),
+                "Fallo Emisor. Lo que imprimió fue:\n" + consolaOutput);
+
+        assertTrue(consolaOutput.contains("Fecha: " + voucherParaPago.fechaEmision().toLocalDate()),
+                "Fallo Fecha. Lo que imprimió fue:\n" + consolaOutput);
+
+// Si este falla por el "$", puedes probar buscando solo el monto primero: ".contains(String.valueOf(voucherParaPago.monto()))"
+        assertTrue(consolaOutput.contains("Total Pagado: $" + voucherParaPago.monto()),
+                "Fallo Total Pagado. Lo que imprimió fue:\n" + consolaOutput);
+
+        assertTrue(consolaOutput.contains("Tipo Voucher: " + ((VoucherParaPago)voucherParaPago).tipoDocumento()),
+                "Fallo Tipo Voucher. Lo que imprimió fue:\n" + consolaOutput);
+
+        assertTrue(consolaOutput.contains("Numero Tarjeta: " + ((VoucherParaPago) voucherParaPago).numeroTarjeta()),
+                "Fallo Numero Tarjeta. Lo que imprimió fue:\n" + consolaOutput);
+
+
+        /*
+        assertTrue(consolaOutput.contains("Codigo Transaccion: " + voucherParaPago.codTransaccion()));
+         assertTrue(consolaOutput.contains("Emisor: " + voucherParaPago.emisor()));
+         assertTrue(consolaOutput.contains("Fecha: " + voucherParaPago.fechaEmision().toLocalDate()));
+         assertTrue(consolaOutput.contains("Total Pagado: $" + voucherParaPago.monto()));
+         assertTrue(consolaOutput.contains("Tipo Voucher: "  + ((VoucherParaPago)voucherParaPago).tipoDocumento()));
+         assertTrue(consolaOutput.contains("Numero Tarjeta: " + ((VoucherParaPago) voucherParaPago).numeroTarjeta()));
+        */
     }
 
-
+    @AfterEach
+    public void tearDown() {
+        // Al terminar el test, devolvemos System.out a su estado original
+        System.setOut(originalOut);
+    }
 
 }
+

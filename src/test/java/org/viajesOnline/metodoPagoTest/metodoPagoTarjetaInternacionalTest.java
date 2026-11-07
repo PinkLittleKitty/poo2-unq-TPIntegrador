@@ -19,8 +19,8 @@ import static org.mockito.Mockito.*;
 
 public class metodoPagoTarjetaInternacionalTest {
 
-    private ApiTarjetaCredito visaInt;
-    private ApiTarjetaCredito mastercardInt;
+    private ApiTarjetaCredito apiVisaInt;
+    private ApiTarjetaCredito apiMastercardInt;
 
     private MetodoPago tarjetaInternacional;
     private MetodoPago otraTarjetaInternacional;
@@ -33,25 +33,25 @@ public class metodoPagoTarjetaInternacionalTest {
 
         voucherParaPago = mock(Documento.class);
         gestorMock = mock(GestorDeDocumentos.class);
-        visaInt = mock(ApiTarjetaCredito.class);
-        mastercardInt = mock(ApiTarjetaCredito.class);
+        apiVisaInt = mock(ApiTarjetaCredito.class);
+        apiMastercardInt = mock(ApiTarjetaCredito.class);
 
         tarjetaInternacional = new MetodoPagoTarjetaInternacional(gestorMock,500.2,"1234567891234567", "111",
-                YearMonth.of(2020, 12), visaInt);
+                YearMonth.of(2020, 12), apiVisaInt);
 
         otraTarjetaInternacional = new MetodoPagoTarjetaInternacional(gestorMock,500.2,"1234567891111561", "555",
-                YearMonth.of(2030, 12), mastercardInt);
+                YearMonth.of(2030, 12), apiMastercardInt);
 
     }
 
     @Test
-    void procesarPagoExitosoParaTarjetaIntenacionalVisaDebeEjecutarTodoElFlujoCorrectamente() {
+    void procesarPagoExitosoParaTarjetaInternacionalVisaDebeEjecutarTodoElFlujoCorrectamente() {
 
-        when(visaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
+        when(apiVisaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
                 .thenReturn(true);
 
-        when(visaInt.reservar()).thenReturn(true);
-        when(visaInt.ejecutar()).thenReturn(500.2);
+        when(apiVisaInt.reservar()).thenReturn(true);
+        when(apiVisaInt.ejecutar()).thenReturn(500.2);
 
         //Verifica explícitamente que no falle que todo esta
         //efectivamente bien
@@ -60,9 +60,9 @@ public class metodoPagoTarjetaInternacionalTest {
         assertEquals(500.2, tarjetaInternacional.monto(), 0.001);
 
         //Verificamos que se hayan invocado los métodos de la API en orden
-        verify(visaInt).validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12)));
-        verify(visaInt).reservar();
-        verify(visaInt).ejecutar();
+        verify(apiVisaInt).validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12)));
+        verify(apiVisaInt).reservar();
+        verify(apiVisaInt).ejecutar();
 
         //Assert: Verificamos usando el getter que el código NO sea nulo y se haya generado
         String codigoGenerado = (tarjetaInternacional).getUltimoCodigoTransaccion();
@@ -79,7 +79,7 @@ public class metodoPagoTarjetaInternacionalTest {
     @Test
     void sePasaUnaFechaDeTarjetaVisaParaQueSeValideComoVencida() {
 
-        when(visaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
+        when(apiVisaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
                 .thenReturn(false);
 
 
@@ -89,13 +89,12 @@ public class metodoPagoTarjetaInternacionalTest {
 
         assertEquals("Tarjeta de credito denegada, no se pudo validar", excepcion.getMessage());
 
-        verify(visaInt).validar("1234567891234567", "111", YearMonth.of(2020, 12));
+        verify(apiVisaInt).validar("1234567891234567", "111", YearMonth.of(2020, 12));
 
         assertThrows(MetodoPagoExcepcion.class, () -> {tarjetaInternacional.procesarPago();});
 
-
-        verify(visaInt, never()).reservar();
-        verify(visaInt, never()).ejecutar();
+        verify(apiVisaInt, never()).reservar();
+        verify(apiVisaInt, never()).ejecutar();
 
     }
 
@@ -103,7 +102,7 @@ public class metodoPagoTarjetaInternacionalTest {
     void procesarPagoDebeFallarEnValidacionYNoEjecutarElRestoParaTarjetaVisa() {
 
         // 1. Arrange: Configuramos el mock para que la validación falle
-        when(visaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
+        when(apiVisaInt.validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12))))
                 .thenReturn(false);
 
         // 2. Act & Assert: El proceso completo (procesarPago) debe lanzar la excepción
@@ -114,31 +113,30 @@ public class metodoPagoTarjetaInternacionalTest {
         assertEquals("Tarjeta de credito denegada, no se pudo validar", excepcion.getMessage());
 
         // 3. Verificamos que se llamó a validar...
-        verify(visaInt).validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12)));
+        verify(apiVisaInt).validar(("1234567891234567"), ("111"), (YearMonth.of(2020, 12)));
 
         //PERO verificamos con "never()" que NUNCA avanzó a los siguientes pasos
-        verify(visaInt, never()).reservar();
-        verify(visaInt, never()).ejecutar();
+        verify(apiVisaInt, never()).reservar();
+        verify(apiVisaInt, never()).ejecutar();
     }
 
-    //7
     @Test
     void procesarPagoExitosoDebeEjecutarTodoElFlujoCorrectamente() {
 
-        when(mastercardInt.validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12)))
+        when(apiMastercardInt.validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12)))
                 .thenReturn(true);
 
-        when(mastercardInt.reservar()).thenReturn(true);
-        when(mastercardInt.ejecutar()).thenReturn(1501.50);
+        when(apiMastercardInt.reservar()).thenReturn(true);
+        when(apiMastercardInt.ejecutar()).thenReturn(1501.50);
 
         assertDoesNotThrow(() -> {otraTarjetaInternacional.procesarPago();});
 
         assertEquals(1501.50, otraTarjetaInternacional.monto(), 0.001);
 
         // 4. Assert 2: Verificamos que se hayan invocado los métodos de la API en orden
-        verify(mastercardInt).validar("1234567891111561", "555", YearMonth.of(2030, 12));
-        verify(mastercardInt).reservar();
-        verify(mastercardInt).ejecutar();
+        verify(apiMastercardInt).validar("1234567891111561", "555", YearMonth.of(2030, 12));
+        verify(apiMastercardInt).reservar();
+        verify(apiMastercardInt).ejecutar();
 
         //Assert: Verificamos usando el getter que el código NO sea nulo y se haya generado
         String codigoGenerado = (otraTarjetaInternacional).getUltimoCodigoTransaccion();
@@ -155,10 +153,10 @@ public class metodoPagoTarjetaInternacionalTest {
     @Test
     void debeLanzarExcepcionSiNoSePuedenReservarLosFondos() {
 
-        when(mastercardInt.validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12)))
+        when(apiMastercardInt.validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12)))
                 .thenReturn(true);
 
-        when(mastercardInt.reservar()).thenReturn(false);
+        when(apiMastercardInt.reservar()).thenReturn(false);
 
         MetodoPagoExcepcion excepcion = assertThrows(MetodoPagoExcepcion.class, () -> {
             otraTarjetaInternacional.procesarPago();
@@ -167,19 +165,19 @@ public class metodoPagoTarjetaInternacionalTest {
         assertEquals("Tarjeta no autorizada por el banco", excepcion.getMessage());
 
         // Verificamos que se intentó validar y reservar, pero NUNCA se llegó a ejecutar la transacción
-        verify(mastercardInt).validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12));
-        verify(mastercardInt).reservar();
-        verify(mastercardInt, never()).ejecutar();
+        verify(apiMastercardInt).validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12));
+        verify(apiMastercardInt).reservar();
+        verify(apiMastercardInt, never()).ejecutar();
     }
 
     @Test
     public void testSobreTarjetaMastercardSeProcesaExitosamenteElPago() {
 
-        when(mastercardInt.validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12)))
+        when(apiMastercardInt.validar(("1234567891111561"), ("555"), YearMonth.of(2030, 12)))
                 .thenReturn(true);
 
-        when(mastercardInt.reservar()).thenReturn(true);
-        when(mastercardInt.ejecutar()).thenReturn(1501.50);
+        when(apiMastercardInt.reservar()).thenReturn(true);
+        when(apiMastercardInt.ejecutar()).thenReturn(1501.50);
 
         // 2. Act: Ejecutamos el flujo completo del Template Method
         assertDoesNotThrow(() -> {otraTarjetaInternacional.procesarPago();});
@@ -188,9 +186,9 @@ public class metodoPagoTarjetaInternacionalTest {
         assertEquals(1501.50, otraTarjetaInternacional.monto(), 0.001);
 
         // 4. Assert 2: Verificamos que se hayan invocado los métodos de la API en orden
-        verify(mastercardInt).validar("1234567891111561", "555", YearMonth.of(2030, 12));
-        verify(mastercardInt).reservar();
-        verify(mastercardInt).ejecutar();
+        verify(apiMastercardInt).validar("1234567891111561", "555", YearMonth.of(2030, 12));
+        verify(apiMastercardInt).reservar();
+        verify(apiMastercardInt).ejecutar();
 
         //Assert: Verificamos usando el getter que el código NO sea nulo y se haya generado
         String codigoGenerado = (otraTarjetaInternacional).getUltimoCodigoTransaccion();

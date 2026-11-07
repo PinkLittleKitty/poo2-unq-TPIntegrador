@@ -45,4 +45,13 @@ public class SolicitudPendienteTest {
 
         verify(contextoMock).setEstadoActual(any(Cancelada.class));
     }
+
+    @Test
+    void notificar() {
+        ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
+
+        estado.notificar(contextoMock, observadorMock);
+
+        verify(observadorMock, times(1)).reservaPendiente(contextoMock);
+    }
 }

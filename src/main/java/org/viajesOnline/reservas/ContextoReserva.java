@@ -33,13 +33,11 @@ public class ContextoReserva {
     public void setEstadoActual(EstadoReserva nuevoEstado) {
         EstadoReserva estadoAnterior = this.estadoActual;
         this.estadoActual = nuevoEstado;
-        this.notificarObservadores(estadoAnterior, nuevoEstado);
+        this.notificarObservadores(nuevoEstado);
     }
 
-    private void notificarObservadores(EstadoReserva anterior, EstadoReserva nuevo) {
-        for (ObservadorCambioEstado observador : observadores) {
-            observador.cambioDeEstado(this, anterior, nuevo);
-        }
+    private void notificarObservadores(EstadoReserva nuevo) {
+        observadores.forEach(observador -> nuevo.notificar(this, observador));
     }
 
     public void setVoucher(Voucher voucher) {
@@ -77,7 +75,6 @@ public class ContextoReserva {
     }
 
     public Object getTasas() {
-    return null;
+        return null;
     }
 }
-

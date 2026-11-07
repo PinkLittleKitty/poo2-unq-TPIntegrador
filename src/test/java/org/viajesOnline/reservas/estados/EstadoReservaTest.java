@@ -72,5 +72,15 @@ class EstadoReservaTest {
 
         verify(contextoMock).setEstadoActual(any(Cancelada.class));
     }
+
+    @Test
+    void default_notificar() {
+        EstadoReserva estado = new EstadoReserva() {};
+        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        org.viajesOnline.reservas.ObservadorCambioEstado observerMock = mock(org.viajesOnline.reservas.ObservadorCambioEstado.class);
+
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> estado.notificar(contextoMock, observerMock));
+        verifyNoInteractions(observerMock);
+    }
 }
 

@@ -14,4 +14,15 @@ public class CanceladaTest {
 
         assertThrows(UnsupportedOperationException.class, () -> estado.siguiente(contextoMock));
     }
+
+    @Test
+    void notificar() {
+        Cancelada estado = new Cancelada();
+        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
+
+        estado.notificar(contextoMock, observadorMock);
+
+        verify(observadorMock, times(1)).reservaCancelada(contextoMock);
+    }
 }

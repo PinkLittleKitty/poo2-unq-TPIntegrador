@@ -1,6 +1,7 @@
 package org.viajesOnline.reservas.estados;
 
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
 
 public class EnCheckin implements EstadoReserva {
     @Override
@@ -15,4 +16,8 @@ public class EnCheckin implements EstadoReserva {
         EstadoReserva.super.cancelar(r);
     }
 
+    @Override
+    public void notificar(ContextoReserva reserva, ObservadorCambioEstado observador) {
+        observador.reservaEnCheckin(reserva);
+    }
 }

@@ -35,4 +35,13 @@ public class EnCheckinTest {
         verify(contextoMock).reembolsar();
         verify(contextoMock).setEstadoActual(any(Cancelada.class));
     }
+
+    @Test
+    void notificar() {
+        ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
+
+        estado.notificar(contextoMock, observadorMock);
+
+        verify(observadorMock, times(1)).reservaEnCheckin(contextoMock);
+    }
 }

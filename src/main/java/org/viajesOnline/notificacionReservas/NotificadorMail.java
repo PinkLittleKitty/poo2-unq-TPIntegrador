@@ -1,11 +1,10 @@
 package org.viajesOnline.notificacionReservas;
 
-
-import org.viajesOnline.reservas.*;
-import org.viajesOnline.reservas.estados.*;
+import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.utils.MailSender;
 
-class NotificadorMail implements ObservadorCambioEstado {
+public class NotificadorMail implements ObservadorCambioEstado {
 
     private MailSender mailSender;
 
@@ -14,10 +13,25 @@ class NotificadorMail implements ObservadorCambioEstado {
     }
 
     @Override
-    public void cambioDeEstado(ContextoReserva reserva, EstadoReserva anterior, EstadoReserva nuevo) {
-        if (nuevo instanceof Confirmada || nuevo instanceof EnCurso || nuevo instanceof Finalizada) {
-            mailSender.enviarMail(reserva.getUsuario().getEmail(), "Cambio de estado", "Tu reserva cambió a: " + nuevo.getClass().getSimpleName(), reserva.getSolicitud());
-        }
+    public void reservaConfirmada(ContextoReserva reserva) {
+        enviarMail(reserva, "Confirmada");
+    }
+
+    @Override
+    public void reservaEnCurso(ContextoReserva reserva) {
+        enviarMail(reserva, "EnCurso");
+    }
+
+    @Override
+    public void reservaFinalizada(ContextoReserva reserva) {
+        enviarMail(reserva, "Finalizada");
+    }
+
+    private void enviarMail(ContextoReserva reserva, String estado) {
+        mailSender.enviarMail(
+                reserva.getUsuario().getEmail(),
+                "Cambio de estado",
+                "Tu reserva cambió a: " + estado,
+                reserva.getSolicitud());
     }
 }
-

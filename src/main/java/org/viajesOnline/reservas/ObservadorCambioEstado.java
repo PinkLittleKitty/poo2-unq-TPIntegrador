@@ -1,7 +1,21 @@
 package org.viajesOnline.reservas;
 
-import org.viajesOnline.reservas.estados.EstadoReserva;
-
 public interface ObservadorCambioEstado {
-    public void cambioDeEstado(ContextoReserva reserva, EstadoReserva anterior, EstadoReserva nuevo);
+    default void reservaPendiente(ContextoReserva reserva) {
+    }
+
+    default void reservaConfirmada(ContextoReserva reserva) {
+    }
+
+    default void reservaEnCheckin(ContextoReserva reserva) {
+    }
+
+    default void reservaEnCurso(ContextoReserva reserva) {
+    }
+
+    default void reservaFinalizada(ContextoReserva reserva) {
+    }
+
+    default void reservaCancelada(ContextoReserva reserva) {
+    }
 }

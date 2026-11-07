@@ -2,6 +2,7 @@ package org.viajesOnline.reservas.estados;
 
 import org.viajesOnline.Catalogo;
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.Solicitud;
 
 public class SolicitudPendiente implements EstadoReserva {
@@ -17,4 +18,8 @@ public class SolicitudPendiente implements EstadoReserva {
         solicitud.agregarServicio(servicio);
     }
 
+    @Override
+    public void notificar(ContextoReserva reserva, ObservadorCambioEstado observador) {
+        observador.reservaPendiente(reserva);
+    }
 }

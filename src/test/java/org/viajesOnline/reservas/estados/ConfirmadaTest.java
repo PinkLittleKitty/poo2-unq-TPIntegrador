@@ -31,4 +31,13 @@ public class ConfirmadaTest {
 
         verify(solicitudMock).decrementarCupo();
     }
+
+    @Test
+    void notificar() {
+        ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
+
+        estado.notificar(contextoMock, observadorMock);
+
+        verify(observadorMock, times(1)).reservaConfirmada(contextoMock);
+    }
 }

@@ -50,23 +50,24 @@ class ContextoReservaTest {
     }
 
     @Test
-    void setEstado() {;
+    void setEstado() {
         contexto.agregarObservador(observerMock);
 
         contexto.setEstadoActual(estadoNuevoMock);
 
         assertEquals(estadoNuevoMock, contexto.getEstadoActual());
-        verify(observerMock, times(1)).cambioDeEstado(contexto, estadoMock, estadoNuevoMock);
+        verify(estadoNuevoMock, times(1)).notificar(contexto, observerMock);
     }
 
     @Test
     void quitarNotificador() {
+        EstadoReserva estadoNuevo = mock(EstadoReserva.class);
         contexto.agregarObservador(observerMock);
         contexto.quitarObservador(observerMock);
 
-        contexto.setEstadoActual(mock(EstadoReserva.class));
+        contexto.setEstadoActual(estadoNuevo);
 
-        verifyNoInteractions(observerMock);
+        verify(estadoNuevo, never()).notificar(contexto, observerMock);
     }
 
     @Test
@@ -88,7 +89,7 @@ class ContextoReservaTest {
 
     @Test
     void precioFinalReserva() {
-        Catalogo servicioMock =mock(Catalogo.class);
+        Catalogo servicioMock = mock(Catalogo.class);
         when(servicioMock.precioFinal()).thenReturn(100.0);
 
         contexto.getSolicitud().agregarServicio(servicioMock);
@@ -96,4 +97,3 @@ class ContextoReservaTest {
         assertEquals(100.0f, contexto.precioFinalReserva());
     }
 }
-

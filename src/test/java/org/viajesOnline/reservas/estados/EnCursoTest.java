@@ -16,4 +16,15 @@ public class EnCursoTest {
 
         verify(contextoMock).setEstadoActual(any(Finalizada.class));
     }
+
+    @Test
+    void notificar() {
+        EnCurso estado = new EnCurso();
+        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
+
+        estado.notificar(contextoMock, observadorMock);
+
+        verify(observadorMock, times(1)).reservaEnCurso(contextoMock);
+    }
 }

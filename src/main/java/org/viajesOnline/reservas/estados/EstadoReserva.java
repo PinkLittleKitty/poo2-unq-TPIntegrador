@@ -2,6 +2,7 @@ package org.viajesOnline.reservas.estados;
 
 import org.viajesOnline.Catalogo;
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.Solicitud;
 
 public interface EstadoReserva {
@@ -22,5 +23,6 @@ public interface EstadoReserva {
         throw new UnsupportedOperationException("No se puede modificar el cupo en este estado de la reserva.");
     }
 
+    public default void notificar(ContextoReserva reserva, ObservadorCambioEstado observador) {
+    }
 }
-

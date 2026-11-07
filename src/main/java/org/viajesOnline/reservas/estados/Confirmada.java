@@ -1,6 +1,7 @@
 package org.viajesOnline.reservas.estados;
 
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.Solicitud;
 
 public class Confirmada implements EstadoReserva {
@@ -14,4 +15,8 @@ public class Confirmada implements EstadoReserva {
         solicitud.decrementarCupo();
     }
 
+    @Override
+    public void notificar(ContextoReserva reserva, ObservadorCambioEstado observador) {
+        observador.reservaConfirmada(reserva);
+    }
 }

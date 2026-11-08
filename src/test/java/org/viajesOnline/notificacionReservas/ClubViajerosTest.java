@@ -11,13 +11,16 @@ import static org.mockito.Mockito.verifyNoInteractions;
 
 class ClubViajerosTest {
 
+    private MailSender mailSenderMock;
     private ClubViajeros clubViajeros;
     private ContextoReserva reservaMock;
     private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
-        clubViajeros = new ClubViajeros();
+
+        mailSenderMock = mock(MailSender.class);
+        clubViajeros = new ClubViajeros(mailSenderMock);
         reservaMock = mock(ContextoReserva.class);
         gestor = mock(GestorDeDocumentos.class);
     }

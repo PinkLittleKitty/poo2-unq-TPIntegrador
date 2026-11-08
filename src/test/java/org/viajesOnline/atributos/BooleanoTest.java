@@ -1,6 +1,7 @@
 package org.viajesOnline.atributos;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.exceptions.CompletarCampos;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,13 +15,13 @@ class BooleanoTest {
 
   @Test
   void rechazaNull() {
-    assertThrows(IllegalArgumentException.class,
+    assertThrows(CompletarCampos.class,
             () -> boleano.validar(null));
   }
 
   @Test
-  void tipoIncompatibleLanzaClassCastException() {
-    assertThrows(ClassCastException.class,
+  void rechazatipoIncompatible() {
+    assertThrows(CompletarCampos.class,
             () -> boleano.validar(1));
   }
 }

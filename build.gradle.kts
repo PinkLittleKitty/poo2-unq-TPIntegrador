@@ -20,6 +20,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.mockito:mockito-core:5.14.2")
     testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
+    implementation("org.apache.commons:commons-lang3:3.21.0")
 }
 
 tasks.test {

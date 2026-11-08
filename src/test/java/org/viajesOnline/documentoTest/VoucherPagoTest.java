@@ -22,10 +22,8 @@ public class VoucherPagoTest {
     @BeforeEach
     void setUp() {
 
-        //Limpiamos el capturador por si otro test dejó basura
         outputStreamCaptor.reset();
 
-        //Redirigimos la consola de forma segura
         System.setOut(new PrintStream(outputStreamCaptor));
 
         voucherParaPago = new VoucherParaPago("B744777C",("1234567891234567"), ("111"), 1000);
@@ -48,10 +46,8 @@ public class VoucherPagoTest {
 
         voucherParaPago.mostrarDetalles();
 
-        // 2. IMPORTANTE: Forza a que la consola use UTF-8 para evitar problemas con el "$"
         String consolaOutput = outputStreamCaptor.toString(StandardCharsets.UTF_8);
 
-        //mensaje de error personalizado para saber QUÉ falló si el test da error
         assertTrue(consolaOutput.contains("Codigo Transaccion: " + voucherParaPago.codTransaccion()),
                 "Fallo Codigo Transaccion. Lo que imprimió fue:\n" + consolaOutput);
 
@@ -74,7 +70,7 @@ public class VoucherPagoTest {
 
     @AfterEach
     public void tearDown() {
-        // Al terminar el test, devolvemos System.out a su estado original
+
         System.setOut(originalOut);
     }
 

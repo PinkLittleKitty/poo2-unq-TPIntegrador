@@ -10,6 +10,8 @@ import java.util.UUID;
 public class NotificadorMail implements ObservadorCambioEstado {
 
     private MailSender mailSender;
+    private String codTrans;
+    private String estadoANotificar;
 
     public NotificadorMail(MailSender mailSender) {
         this.mailSender = mailSender;
@@ -17,28 +19,41 @@ public class NotificadorMail implements ObservadorCambioEstado {
 
     @Override
     public void reservaConfirmada(ContextoReserva reserva) {
-        enviarMail(reserva, "Confirmada");
+
+        estadoANotificar = "Confirmada";
+
+        codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
+        enviarMail(reserva, reciboSolicitud);
     }
 
     @Override
     public void reservaEnCurso(ContextoReserva reserva) {
-        enviarMail(reserva, "EnCurso");
+
+        estadoANotificar = "EnCurso";
+
+        codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
+        enviarMail(reserva, reciboSolicitud);
     }
 
     @Override
     public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
 
-        String codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        estadoANotificar = "Finalizada";
+
+        codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
         enviarMail(reserva, reciboSolicitud);
     }
+
+    public String estadoANotificar(){return estadoANotificar;}
 
     private void enviarMail(ContextoReserva reserva, Documento unDocumento) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
                 "Cambio de estado",
-                "Tu reserva cambió a: " + "Finalizada",
+                "Tu reserva cambió a: " + this.estadoANotificar(),
                 unDocumento);
-                // Hay que añadir el comprobante fiscal y la factura como adjunto al mail.
     }
 }

@@ -9,8 +9,9 @@ import java.util.UUID;
 
 public class ClubViajeros implements ObservadorCambioEstado {
 
-
     private MailSender mailSender;
+
+    private String estadoANotificar;
 
     public ClubViajeros(MailSender mailSender) {
         this.mailSender = mailSender;
@@ -18,6 +19,7 @@ public class ClubViajeros implements ObservadorCambioEstado {
 
     @Override
     public void reservaCancelada(ContextoReserva reserva) {
+
         String codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Documento cupon = new CuponDescuento(codTrans, 5);
 

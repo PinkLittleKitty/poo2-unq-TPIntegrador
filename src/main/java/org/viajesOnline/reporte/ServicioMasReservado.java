@@ -11,7 +11,7 @@ class ServicioMasReservado implements Reporte{
         this.catalogo = c;
     }
 
-    public void accept(FormatoVisitante v){v.visitar(this);}
+    public void accept(FormatoVisitanteReportes v){v.visitar(this);}
 
     public void calcularDatos(){
 

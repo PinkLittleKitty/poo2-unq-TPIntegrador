@@ -1,6 +1,6 @@
 package org.viajesOnline.reporte;
 
-public interface FormatoVisitante {
+public interface FormatoVisitanteReportes {
 
     public void visitar(ServicioMasReservado s);
     public void visitar(RegistroDeCupos r);

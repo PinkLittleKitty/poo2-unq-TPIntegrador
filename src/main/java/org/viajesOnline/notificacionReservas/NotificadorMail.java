@@ -2,7 +2,6 @@ package org.viajesOnline.notificacionReservas;
 
 
 import org.viajesOnline.reservas.ContextoReserva;
-import org.viajesOnline.utils.MailSender;
 
 class NotificadorMail implements ObservadorNotificadorAbstracto {
 

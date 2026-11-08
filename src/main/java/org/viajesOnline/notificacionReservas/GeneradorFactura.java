@@ -1,8 +1,6 @@
 package org.viajesOnline.notificacionReservas;
 
-import org.viajesOnline.documento.ComprobanteFiscal;
-import org.viajesOnline.documento.Documento;
-import org.viajesOnline.documento.GestorDeDocumentos;
+import org.viajesOnline.documento.*;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 
@@ -12,8 +10,11 @@ public class GeneradorFactura implements ObservadorCambioEstado {
 
     @Override
     public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
+
         String codTransaccion = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        Documento comprobante = new ComprobanteFiscal(codTransaccion, 100);
-        gestor.registrarDocumento(comprobante);
+        Documento comprobanteFiscal = new ComprobanteFiscal(codTransaccion, 100);
+        Documento voucherParaFactura = new VoucherParaFactura(codTransaccion, 100);
+        gestor.registrarDocumento(comprobanteFiscal);
+        gestor.registrarDocumento(voucherParaFactura);
     }
 }

@@ -15,6 +15,11 @@ public class ComprobanteFiscal extends Documento implements FormatearComprobante
 
     public String obtenerArchivoFormateado(FormatoVisitanteDocumento v){return v.obtenerArchivo(this);}
 
+    @Override
+    public void mostrarDetalles() {
+
+        System.out.println("Tipo Voucher: " + this.tipoDocumento());
+    }
 }
 
 

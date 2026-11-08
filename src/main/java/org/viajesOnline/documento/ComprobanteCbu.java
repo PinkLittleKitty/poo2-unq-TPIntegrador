@@ -23,6 +23,7 @@ public class ComprobanteCbu extends Documento {
     @Override
     public void mostrarDetalles() {
         super.mostrarDetalles();
+        System.out.println("Tipo Voucher: " + this.tipoDocumento());
         System.out.println("Alias Usuario: " + aliasUsuario);
         System.out.println("Cbu: " + cbu);
     }

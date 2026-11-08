@@ -12,4 +12,15 @@ public class Busqueda {
     return items.stream().filter(criterio::sastifaceCriterio).toList();
   }
 
+  public List<Catalogo> getItems() {
+    return List.copyOf(items);
+  }
+
+  public void addItem(Catalogo i){
+    items.add(i);
+  }
+
+  public void delItem(Catalogo i){
+    items.remove(i);
+  }
 }

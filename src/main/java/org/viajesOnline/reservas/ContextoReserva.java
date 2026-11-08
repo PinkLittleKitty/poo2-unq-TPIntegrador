@@ -1,6 +1,7 @@
 package org.viajesOnline.reservas;
 
 import org.viajesOnline.Catalogo;
+import org.viajesOnline.notificacionReservas.SujetoEstadoAbstracto;
 import org.viajesOnline.notificacionReservas.vouchers.Voucher;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.Usuario;

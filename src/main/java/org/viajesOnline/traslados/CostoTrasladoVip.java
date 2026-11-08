@@ -18,8 +18,6 @@ public class CostoTrasladoVip implements CostoTraslado {
     @Override
     public float calcularCosto(ContextoTraslado c){
 
-       //# Donde dice "El costo se calcula como porcentaje fijo sobre el valor total de la reserva"
-        // (relacionar esto con precio total de los servicios/paquetes turísticos)
         return (c.precioFinalReserva() * this.porcentajeFijo()) + cargoBase;
     }
 }

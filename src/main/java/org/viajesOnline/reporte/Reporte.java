@@ -1,10 +1,8 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.Catalogo;
-
 public interface Reporte {
 
-    public void accept(FormatoVisitante v);
+    public void accept(FormatoVisitanteReportes v);
 
     //public abstract calcularDatos(Catalogo c);
 }

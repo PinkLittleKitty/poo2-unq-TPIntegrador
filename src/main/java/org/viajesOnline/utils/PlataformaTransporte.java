@@ -1,4 +1,5 @@
-package org.viajesOnline.utils;
+
+/*package org.viajesOnline.utils;
 
 public class PlataformaTransporte {
 
@@ -6,3 +7,4 @@ public class PlataformaTransporte {
         return cantidadPasajeros; // Desconocemos la implementación de la librería, por lo que dejamos la cantidad de pasajeros como output placeholder.
     }
 }
+*/

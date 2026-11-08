@@ -1,7 +1,7 @@
 package org.viajesOnline.reporte;
 
 
-class FormatoTextoPlano implements FormatoVisitante{
+class FormatoTextoPlano implements FormatoVisitanteReportes {
 
     private String reporteTextoPlano;
 

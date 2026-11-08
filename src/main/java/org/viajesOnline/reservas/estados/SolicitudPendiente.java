@@ -1,18 +1,16 @@
 package org.viajesOnline.reservas.estados;
 
 import org.viajesOnline.Catalogo;
-import org.viajesOnline.notificacionReservas.SujetoEstadoAbstracto;
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.Solicitud;
 
-public class SolicitudPendiente extends SujetoEstadoAbstracto implements EstadoReserva {
+public class SolicitudPendiente implements EstadoReserva {
     @Override
     public void siguiente(ContextoReserva r) {
-
-        EstadoReserva EstadoConfirmada = new Confirmada();
-
-        r.setEstadoActual(new Confirmada());
-        EstadoConfirmada.decrementarCupo(r.getSolicitud());
+        Confirmada confirmada = new Confirmada();
+        r.setEstadoActual(confirmada);
+        confirmada.decrementarCupo(r.getSolicitud());
     }
 
     @Override
@@ -20,4 +18,8 @@ public class SolicitudPendiente extends SujetoEstadoAbstracto implements EstadoR
         solicitud.agregarServicio(servicio);
     }
 
+    @Override
+    public void notificar(ContextoReserva reserva, ObservadorCambioEstado observador) {
+        observador.reservaPendiente(reserva);
+    }
 }

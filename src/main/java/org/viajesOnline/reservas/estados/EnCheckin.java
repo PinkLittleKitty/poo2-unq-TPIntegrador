@@ -1,9 +1,9 @@
 package org.viajesOnline.reservas.estados;
 
-import org.viajesOnline.notificacionReservas.SujetoEstadoAbstracto;
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
 
-public class EnCheckin extends SujetoEstadoAbstracto implements EstadoReserva {
+public class EnCheckin implements EstadoReserva {
     @Override
     public void siguiente(ContextoReserva r) {
         r.setEstadoActual(new EnCurso());
@@ -11,9 +11,13 @@ public class EnCheckin extends SujetoEstadoAbstracto implements EstadoReserva {
 
     @Override
     public void cancelar(ContextoReserva r) {
-        r.getSolicitud().reiniciarCupo();
+        r.getSolicitud().incrementarCupo();
         r.reembolsar();
         EstadoReserva.super.cancelar(r);
     }
 
+    @Override
+    public void notificar(ContextoReserva reserva, ObservadorCambioEstado observador) {
+        observador.reservaEnCheckin(reserva);
+    }
 }

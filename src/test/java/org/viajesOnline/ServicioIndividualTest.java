@@ -3,6 +3,7 @@ package org.viajesOnline;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.atributos.DefinicionAtributo;
 import org.viajesOnline.atributos.Numerico;
+import org.viajesOnline.reservas.Cupo;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ class ServicioIndividualTest {
   private ServicioIndividual servicio = new ServicioIndividual(
           "Hotel",
           "Descripción",
-          2,
+          new Cupo(2),
           123,
           "ProveedorA",
           150.0,
@@ -38,7 +39,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     null,
                     "Descripción",
-                    2,
+                    new Cupo(2),
                     123,
                     "ProveedorA",
                     150.0,
@@ -53,7 +54,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     null,
-                    2,
+                    new Cupo(2),
                     123,
                     "ProveedorA",
                     150.0,
@@ -68,7 +69,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    2,
+                    new Cupo(2),
                     123,
                     null,
                     150.0,
@@ -83,7 +84,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    2,
+                    new Cupo(2),
                     123,
                     "Proveedor A",
                     150.0,

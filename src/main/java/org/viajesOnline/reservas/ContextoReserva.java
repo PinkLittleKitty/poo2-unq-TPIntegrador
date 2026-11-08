@@ -6,9 +6,13 @@ import org.viajesOnline.notificacionReservas.vouchers.Voucher;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.Usuario;
 
-public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
+import java.util.ArrayList;
+import java.util.List;
 
-    private T estadoActual;
+public class ContextoReserva {
+
+    private EstadoReserva estadoActual;
+    private List<ObservadorCambioEstado> observadores = new ArrayList<>();
     private Solicitud solicitud =  new Solicitud();
     private Usuario usuario;
     private Voucher voucher; //TODO: Tipo XML o PDF o algo así, extraer todo lo relacionado a una clase voucher o algo así
@@ -18,6 +22,24 @@ public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
     }
 
     public ContextoReserva() {}
+
+    public void agregarObservador(ObservadorCambioEstado observador) {
+        this.observadores.add(observador);
+    }
+
+    public void quitarObservador(ObservadorCambioEstado observador) {
+        this.observadores.remove(observador);
+    }
+
+    public void setEstadoActual(EstadoReserva nuevoEstado) {
+        EstadoReserva estadoAnterior = this.estadoActual;
+        this.estadoActual = nuevoEstado;
+        this.notificarObservadores(nuevoEstado);
+    }
+
+    private void notificarObservadores(EstadoReserva nuevo) {
+        observadores.forEach(observador -> nuevo.notificar(this, observador));
+    }
 
     public void setVoucher(Voucher voucher) {
         this.voucher = voucher;
@@ -32,13 +54,6 @@ public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
     public Solicitud getSolicitud() {return this.solicitud;}
 
     public Usuario getUsuario() { return this.usuario; }
-
-    //ES DE TIPO T o sea
-    public void setEstadoActual(T estadoActual) {
-
-        this.estadoActual = estadoActual;
-        estadoActual.notificarObservadores(this);
-    }
 
     public void siguiente() {
         estadoActual.siguiente(this);
@@ -61,7 +76,6 @@ public class ContextoReserva <T extends SujetoEstadoAbstracto & EstadoReserva> {
     }
 
     public Object getTasas() {
-    return null;
+        return null;
     }
 }
-

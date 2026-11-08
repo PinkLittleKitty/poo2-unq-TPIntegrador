@@ -1,16 +1,17 @@
 package org.viajesOnline;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.reservas.Cupo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CatalogoTest {
   private static class TestCatalogo extends Catalogo {
-    TestCatalogo(String nombre, String descripcion, double precio, int cupo) {
+    TestCatalogo(String nombre, String descripcion, double precio, Cupo cupo) {
       super(nombre, descripcion, precio, cupo);
     }
   }
-  Catalogo catalogo = new TestCatalogo("Hotel", "Descripción", 150.0, 10);
+  Catalogo catalogo = new TestCatalogo("Hotel", "Descripción", 150.0, new Cupo(10));
 
   @Test
   void precioFinalAplicaElDescuentoPorcentual() {

@@ -11,19 +11,19 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class PaqueteTest {
-  private Paquete paquete;
+  private Paquete paquete = new Paquete(
+          "Paquete de prueba",
+          "Descripción",
+          100.0,
+          mock(Cupo.class)
+  );
+
   Catalogo item1 = mock(Catalogo.class);
   Catalogo item2 = mock(Paquete.class);
   Catalogo item3 = mock(ServicioIndividual.class);
 
   @BeforeEach
   void setUp() {
-    paquete = new Paquete(
-            "Paquete de prueba",
-            "Descripción",
-            100.0,
-            mock(Cupo.class)
-    );
     when(item1.getPrecioBase()).thenReturn(10.50);
     when(item2.getPrecioBase()).thenReturn(20.00);
     when(item3.getPrecioBase()).thenReturn(4.25);

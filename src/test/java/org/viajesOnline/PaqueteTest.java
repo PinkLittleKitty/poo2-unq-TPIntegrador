@@ -12,6 +12,9 @@ import static org.mockito.Mockito.when;
 
 class PaqueteTest {
   private Paquete paquete;
+  Catalogo item1 = mock(Catalogo.class);
+  Catalogo item2 = mock(Paquete.class);
+  Catalogo item3 = mock(ServicioIndividual.class);
 
   @BeforeEach
   void setUp() {
@@ -21,64 +24,59 @@ class PaqueteTest {
             100.0,
             mock(Cupo.class)
     );
+    when(item1.getPrecioBase()).thenReturn(10.50);
+    when(item2.getPrecioBase()).thenReturn(20.00);
+    when(item3.getPrecioBase()).thenReturn(4.25);
   }
 
   @Test
-  void verItemsInicialmenteEstaVacio() {
+  void noTieneItems() {
     assertTrue(paquete.verItems().isEmpty());
   }
 
   @Test
-  void agregarItemLoIncluyeEnLaLista() {
+  void agregarUno() {
     Catalogo item = mock(Catalogo.class);
     paquete.agregarItem(item);
     assertEquals(1, paquete.verItems().size());
-    assertSame(item, paquete.verItems().get(0));
-  }
-
-  @Test
-  void verItemsDevuelveUnaListaNoModificable() {
-    paquete.agregarItem(mock(Catalogo.class));
-    List<Catalogo> items = paquete.verItems();
-    assertThrows(
-            UnsupportedOperationException.class,
-            () -> items.add(mock(Catalogo.class))
-    );
+    assertSame(item, paquete.verItems().getFirst());
   }
 
   @Test
   void modificarLaListaDevueltaNoAfectaAlPaquete() {
-    Catalogo item = mock(Catalogo.class);
-    paquete.agregarItem(item);
+    paquete.agregarItem(item1);
 
     List<Catalogo> items = paquete.verItems();
 
     assertThrows(
             UnsupportedOperationException.class,
-            () -> items.remove(item)
+            () -> items.remove(item1)
     );
     assertEquals(1, paquete.verItems().size());
+    assertTrue(paquete.verItems().contains(item1));
   }
 
   @Test
   void precioBaseEsLaSumaDeLosPreciosDeLosItems() {
-    Catalogo item1 = mock(Catalogo.class);
-    Catalogo item2 = mock(Paquete.class);
-    Catalogo item3 = mock(ServicioIndividual.class);
-
-    when(item1.getPrecioBase()).thenReturn(10.50);
-    when(item2.getPrecioBase()).thenReturn(20.00);
-    when(item3.getPrecioBase()).thenReturn(4.25);
-
     paquete.agregarItem(item1);
     paquete.agregarItem(item2);
     paquete.agregarItem(item3);
-
     assertEquals(34.75, paquete.getPrecioBase());
   }
 
   @Test
-  void precioBaseEsCeroCuandoNoHayItems() {
-    assertEquals(0.0, paquete.getPrecioBase());
+  void precioFinalEsCeroCuandoNoHayItems() {
+    assertEquals(0.0, paquete.precioFinal());
   }
+
+  @Test
+  void seLeAplicaUnDescuentoALaSumaDeTodos(){
+    paquete.agregarItem(item1);
+    paquete.agregarItem(item2);
+    paquete.agregarItem(item3);
+    paquete.darDescuento(10);
+    assertEquals(31.275, paquete.precioFinal());
+  }
+
+
 }

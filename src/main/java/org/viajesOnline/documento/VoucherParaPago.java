@@ -27,6 +27,7 @@ public class VoucherParaPago extends Documento {
         super.mostrarDetalles();
         System.out.println("Tipo Voucher: " + this.tipoDocumento());
         System.out.println("Numero Tarjeta: " + this.numeroTarjeta());
+        System.out.println("Total Pagado: $ " + this.monto());
     }
 
 }

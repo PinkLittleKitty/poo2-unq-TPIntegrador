@@ -18,7 +18,7 @@ public class ComprobanteCbuTest {
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-    private Documento comprobandteCbu;
+    private Documento comprobanteCbu;
 
     @BeforeEach
     void setUp() {
@@ -27,47 +27,50 @@ public class ComprobanteCbuTest {
 
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        comprobandteCbu = new ComprobanteCbu("B745777C",1000
+        comprobanteCbu = new ComprobanteCbu("B745777C",1000.0
                                             ,"0110001230000011112222", "usuario.alias" );
     }
 
     @Test
     void procesarPagoExitosoHaceQueSeIngreseElVoucherAlGestor() {
 
-        assertEquals(1000.0,comprobandteCbu.monto(),0.001);
+        assertEquals("Comprobante Cbu",((ComprobanteCbu)comprobanteCbu).tipoDocumento());
 
-        assertEquals("Comprobante Cbu",((ComprobanteCbu)comprobandteCbu).tipoDocumento());
+        assertEquals("usuario.alias",((ComprobanteCbu)comprobanteCbu).obtenerAliasUsuario());
 
-        assertEquals("0110001230000011112222",((ComprobanteCbu)comprobandteCbu).obtenerCbu());
+        assertEquals("0110001230000011112222",((ComprobanteCbu)comprobanteCbu).obtenerCbu());
 
-        assertEquals("usuario.alias",((ComprobanteCbu)comprobandteCbu).obtenerAliasUsuario());
+        assertEquals(1000.0,((ComprobanteCbu)comprobanteCbu).monto(),0.001);
 
-        assertEquals("Empresa Turismo",comprobandteCbu.emisor());
+        assertEquals("Empresa Turismo",comprobanteCbu.emisor());
 
-        assertEquals(LocalDate.now(),comprobandteCbu.fechaEmision().toLocalDate());
+        assertEquals(LocalDate.now(),comprobanteCbu.fechaEmision().toLocalDate());
 
-        comprobandteCbu.mostrarDetalles();
+        comprobanteCbu.mostrarDetalles();
 
         String consolaOutput = outputStreamCaptor.toString(StandardCharsets.UTF_8);
 
-        assertTrue(consolaOutput.contains("Codigo Transaccion: " + comprobandteCbu.codTransaccion()),
+        assertTrue(consolaOutput.contains("Codigo Transaccion: " + comprobanteCbu.codTransaccion()),
                 "Fallo Codigo Transaccion. Lo que imprimió fue:\n" + consolaOutput);
 
-        assertTrue(consolaOutput.contains("Emisor: " + comprobandteCbu.emisor()),
+        assertTrue(consolaOutput.contains("Emisor: " + comprobanteCbu.emisor()),
                 "Fallo Emisor. Lo que imprimió fue:\n" + consolaOutput);
 
-        assertTrue(consolaOutput.contains("Fecha: " + comprobandteCbu.fechaEmision().toLocalDate()),
+        assertTrue(consolaOutput.contains("Fecha: " + comprobanteCbu.fechaEmision().toLocalDate()),
                 "Fallo Fecha. Lo que imprimió fue:\n" + consolaOutput);
 
-        assertTrue(consolaOutput.contains("Total Pagado: $" + comprobandteCbu.monto()),
-                "Fallo Total Pagado. Lo que imprimió fue:\n" + consolaOutput);
-
-
-        assertTrue(consolaOutput.contains("Alias Usuario: " + ((ComprobanteCbu)comprobandteCbu).obtenerAliasUsuario()),
+        assertTrue(consolaOutput.contains("Tipo Voucher: " + ((ComprobanteCbu)comprobanteCbu).tipoDocumento()),
                 "Fallo Tipo Voucher. Lo que imprimió fue:\n" + consolaOutput);
 
-        assertTrue(consolaOutput.contains("Cbu: " + ((ComprobanteCbu) comprobandteCbu).obtenerCbu()),
+
+        assertTrue(consolaOutput.contains("Alias Usuario: " + ((ComprobanteCbu)comprobanteCbu).obtenerAliasUsuario()),
+                "Fallo Tipo Voucher. Lo que imprimió fue:\n" + consolaOutput);
+
+        assertTrue(consolaOutput.contains("Cbu: " + ((ComprobanteCbu) comprobanteCbu).obtenerCbu()),
                 "Fallo Numero Tarjeta. Lo que imprimió fue:\n" + consolaOutput);
+
+        assertTrue(consolaOutput.contains("Total Pagado $: " + ((ComprobanteCbu)comprobanteCbu).monto()),
+                "Fallo Total Pagado. Lo que imprimió fue:\n" + consolaOutput);
     }
 
     @AfterEach

@@ -23,8 +23,8 @@ public class NotificadorMail implements ObservadorCambioEstado {
         estadoANotificar = "Confirmada";
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
-        enviarMail(reserva, reciboSolicitud);
+        //Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
+        //enviarMail(reserva, reciboSolicitud);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class NotificadorMail implements ObservadorCambioEstado {
         estadoANotificar = "EnCurso";
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
-        enviarMail(reserva, reciboSolicitud);
+        //Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
+        //enviarMail(reserva, reciboSolicitud);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class NotificadorMail implements ObservadorCambioEstado {
         estadoANotificar = "Finalizada";
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
-        enviarMail(reserva, reciboSolicitud);
+        //Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
+        //enviarMail(reserva, reciboSolicitud);
     }
 
     private void enviarMail(ContextoReserva reserva, Documento unDocumento) {

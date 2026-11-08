@@ -1,6 +1,7 @@
 package org.viajesOnline.atributos;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.exceptions.CompletarCampos;
 
 import java.time.LocalDate;
 
@@ -17,13 +18,13 @@ class FechaTest {
 
   @Test
   void rechazaNull() {
-    assertThrows(IllegalArgumentException.class,
+    assertThrows(CompletarCampos.class,
             () -> fecha.validar(null));
   }
 
   @Test
-  void tipoIncompatibleLanzaClassCastException() {
-    assertThrows(ClassCastException.class,
+  void rechazaTipoIncompatible() {
+    assertThrows(CompletarCampos.class,
             () -> fecha.validar(123));
   }
 }

@@ -1,22 +1,25 @@
 package org.viajesOnline.atributos;
 
+import org.apache.commons.lang3.Validate;
+import org.viajesOnline.exceptions.CompletarCampos;
+
+import java.util.Objects;
+
 public class Numerico implements TipoDato {
   private Integer valor;
 
-  private static void validacionNotNull(Object arg){ // Object... indica que agarra cualquier numero de parametros
-    // TO DO: encontrar una forma que tarde menos en checkear cada cosa. Si hay algo que venga con java o se tarde menos sacar.
-    if (arg==null) {
-      throw new IllegalArgumentException("Se requiere que todos los atributos sean completados");
+  @Override
+  public void validar(Object _valor){
+    try {
+      Objects.requireNonNull(_valor);
+      this.valor = (Integer) _valor;
+      Validate.validState(valor >= 0);
+    } catch (Exception e) {
+      throw new CompletarCampos("Valor y tipo no corresponden al atributo");
     }
   }
 
-  @Override
-  public void validar(Object _valor) {
-    validacionNotNull(_valor);
-    this.valor = (Integer) _valor;
-  }
-
-  public Integer getValor() { //para facilitar el testing
+  public Integer getValor() {//tests mas simples
     return valor;
   }
 }

@@ -1,6 +1,7 @@
 package org.viajesOnline.atributos;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.exceptions.CompletarCampos;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,39 +9,36 @@ class DefinicionAtributoTest {
   @Test
   void creaAtributoConDatosValidos() {
     DefinicionAtributo atributo =
-            new DefinicionAtributo("RatingEstrellas", true, 5, new Numerico());
+            new DefinicionAtributo("RatingEstrellas", 5, new Numerico());
 
     assertEquals("RatingEstrellas", atributo.getNombre());
     assertEquals(5, atributo.getValor());
-    assertTrue(atributo.esObligatorio());
   }
 
   @Test
   void rechazaNombreNulo() {
-    assertThrows(IllegalArgumentException.class,
-            () -> new DefinicionAtributo(null, true, 5, new Numerico()));
+    assertThrows(CompletarCampos.class,
+            () -> new DefinicionAtributo(null, 5, new Numerico()));
   }
 
   @Test
   void rechazaValorNulo() {
-    assertThrows(IllegalArgumentException.class,
-            () -> new DefinicionAtributo("RatingEstrellas", true, null, new Numerico()));
+    assertThrows(CompletarCampos.class,
+            () -> new DefinicionAtributo("RatingEstrellas", null, new Numerico()));
   }
 
   @Test
   void rechazaTipoNulo() {
-    assertThrows(IllegalArgumentException.class,
-            () -> new DefinicionAtributo("RatingEstrellas", true, 5, null));
+    assertThrows(CompletarCampos.class,
+            () -> new DefinicionAtributo("RatingEstrellas", 5, null));
   }
 
   @Test
   void rechazaValorQueNoCorrespondeAlTipo() {
-    IllegalArgumentException excepcion = assertThrows(
-            IllegalArgumentException.class,
-            () -> new DefinicionAtributo("RatingEstrellas", true, "cinco", new Numerico())
+   assertThrows(
+           CompletarCampos.class,
+            () -> new DefinicionAtributo("RatingEstrellas", "cinco", new Numerico())
     );
-
-    assertEquals("Valor y tipo no corresponden al atributo", excepcion.getMessage());
   }
 
   @Test
@@ -48,7 +46,7 @@ class DefinicionAtributoTest {
     Numerico tipo = new Numerico();
 
     DefinicionAtributo atributo =
-            new DefinicionAtributo("RatingEstrellas", true, 5, tipo);
+            new DefinicionAtributo("RatingEstrellas", 5, tipo);
 
     assertSame(tipo, atributo.getTipo());
   }

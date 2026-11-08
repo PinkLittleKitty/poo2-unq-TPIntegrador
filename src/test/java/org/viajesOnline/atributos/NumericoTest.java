@@ -1,6 +1,7 @@
 package org.viajesOnline.atributos;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.exceptions.CompletarCampos;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,13 +16,13 @@ class NumericoTest {
 
   @Test
   void rechazaNull() {
-    assertThrows(IllegalArgumentException.class,
+    assertThrows(CompletarCampos.class,
             () -> numerico.validar(null));
   }
 
   @Test
-  void tipoIncompatibleLanzaClassCastException() {
-    assertThrows(ClassCastException.class,
+  void rechazaTipoIncompatible() {
+    assertThrows(CompletarCampos.class,
             () -> numerico.validar("1"));
   }
 

@@ -1,9 +1,11 @@
 package org.viajesOnline;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class CatalogoTest {
   private static class TestCatalogo extends Catalogo {
@@ -11,17 +13,62 @@ class CatalogoTest {
       super(nombre, descripcion, precio, cupo);
     }
   }
+  Cupo cupo = mock(Cupo.class);
   Catalogo catalogo = new TestCatalogo("Hotel", "Descripción", 150.0, new Cupo(10));
 
   @Test
-  void precioFinalAplicaElDescuentoPorcentual() {
+  void GetterNombreEsCorrecto(){
+    assertEquals("Hotel", catalogo.getNombre());
+  }
+
+  @Test
+  void GetterDescripcionEsCorrecto(){
+    assertEquals("Descripción", catalogo.getDescripcion());
+  }
+
+  @Test
+  void lanzaCompletarCamposSiNombreEsNull() {
+    assertThrows(
+            CompletarCampos.class,
+            () -> new TestCatalogo(null, "Descripción", 100.0, cupo)
+    );
+  }
+
+  @Test
+  void lanzaCompletarCamposSiDescripcionEsNull() {
+    assertThrows(
+            CompletarCampos.class,
+            () -> new TestCatalogo("Curso", null, 100.0, cupo)
+    );
+  }
+
+  @Test
+  void lanzaCompletarCamposSiCupoEsNull() {
+    assertThrows(
+            CompletarCampos.class,
+            () -> new TestCatalogo("Curso", "Descripción", 100.0, null)
+    );
+  }
+
+  @Test
+  void rechazaSiPrecioEsNegativoOCero() {
+    assertAll(
+            () -> assertThrows(CompletarCampos.class,
+                    () -> new TestCatalogo("Curso", "Descripción", 0.0, cupo)),
+            () -> assertThrows(CompletarCampos.class,
+                    () -> new TestCatalogo("Curso", "Descripción", -1.0, cupo))
+    );
+  }
+
+  @Test
+  void precioFinalAplicaElDescuento() {
     catalogo.darDescuento(20);
     assertEquals(120.0, catalogo.precioFinal());
   }
 
   @Test
   void precioFinalSinDescuentoDevuelvePrecioBase() {
-    assertEquals(150.0, catalogo.precioFinal());
+    assertEquals(catalogo.getPrecioBase(), catalogo.precioFinal());
   }
 
   @Test
@@ -44,18 +91,14 @@ class CatalogoTest {
   }
 
   @Test
-  void recuperarCupoAumentaElCupoDisponible() {
+  void incrementarCupoAumentaElCupoDisponible() {
     catalogo.incrementarCupo();
-
     assertEquals(11, catalogo.getCupoDisponible());
   }
 
   @Test
-  void liberarCupoReduceElCupoDisponible() {
-
+  void decrementarReduceElCupoDisponible() {
     catalogo.decrementarCupo();
-
     assertEquals(9, catalogo.getCupoDisponible());
-
   }
 }

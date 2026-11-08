@@ -47,13 +47,11 @@ public class NotificadorMail implements ObservadorCambioEstado {
         enviarMail(reserva, reciboSolicitud);
     }
 
-    public String estadoANotificar(){return estadoANotificar;}
-
     private void enviarMail(ContextoReserva reserva, Documento unDocumento) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
                 "Cambio de estado",
-                "Tu reserva cambió a: " + this.estadoANotificar(),
+                "Tu reserva cambió a: " + estadoANotificar,
                 unDocumento);
     }
 }

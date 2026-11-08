@@ -10,8 +10,8 @@ import java.util.UUID;
 public class ClubViajeros implements ObservadorCambioEstado {
 
     private MailSender mailSender;
-
     private String estadoANotificar;
+    private double descuento = 5;
 
     public ClubViajeros(MailSender mailSender) {
         this.mailSender = mailSender;
@@ -21,17 +21,16 @@ public class ClubViajeros implements ObservadorCambioEstado {
     public void reservaCancelada(ContextoReserva reserva) {
 
         String codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        Documento cupon = new CuponDescuento(codTrans, 5);
+        Documento cupon = new CuponDescuento(codTrans, descuento);
 
-        this.enviarMail(reserva, unDocumento);
+        this.enviarMail(reserva, cupon);
     }
 
     private void enviarMail(ContextoReserva reserva, Documento unDocumento) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
-                "Cambio de estado",
-                "Tu reserva cambió a: " + "Finalizada",
+                "Cupon de Descuento",
+                "Obtuviste un cupon del: " + descuento + "porciento.",
                 unDocumento);
-        // Hay que añadir el comprobante fiscal y la factura como adjunto al mail.
     }
 }

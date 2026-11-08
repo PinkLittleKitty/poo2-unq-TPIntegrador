@@ -22,7 +22,6 @@ public class ComprobanteCbu extends Documento {
 
     @Override
     public void mostrarDetalles() {
-        // Reutilizamos el comportamiento de la clase padre para no repetir código
         super.mostrarDetalles();
         System.out.println("Alias Usuario: " + aliasUsuario);
         System.out.println("Cbu: " + cbu);

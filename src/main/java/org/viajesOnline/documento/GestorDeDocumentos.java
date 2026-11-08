@@ -11,7 +11,7 @@ public class GestorDeDocumentos{
     public void registrarDocumento(Documento unDocumento) {listaDocumentos.add(unDocumento);}
 
     public List<Documento> obtenerDocumentos() {
-        // Devuelve una "vista" de solo lectura de tu lista interna
+
         return Collections.unmodifiableList(this.listaDocumentos);
     }
 

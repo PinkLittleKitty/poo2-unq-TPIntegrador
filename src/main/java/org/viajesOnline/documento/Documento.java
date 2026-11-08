@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 public abstract class Documento{
 
-    //QUIZAS FALTE PASARLE EL RECEPTOR
     private String codTransaccion;
     private String emisor = "Empresa Turismo";
     private LocalDateTime fechaEmisionVoucher;

@@ -3,16 +3,19 @@ package org.viajesOnline.documento;
 
 public class VoucherParaPago extends Documento {
 
-    private double monto;
     private String nroTarjeta;
     private String nombreVoucher;
+    private double monto;
 
     public VoucherParaPago(String codTransaccion,String nroTarjeta,String codigoAutorizacion,double monto){
 
-        super(codTransaccion,monto);
+        super(codTransaccion);
+        this.monto = monto;
         this.nroTarjeta = nroTarjeta;
         this.nombreVoucher = "Voucher Pago";
     }
+
+    public double monto() { return monto; }
 
     public String numeroTarjeta(){return nroTarjeta;}
 

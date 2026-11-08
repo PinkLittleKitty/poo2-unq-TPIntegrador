@@ -9,7 +9,7 @@ public class CuponDescuento extends Documento implements FormatearComprobante {
 
     public CuponDescuento(String codTrans, double porcentajeDescuento)
     {
-        super(codTrans, porcentajeDescuento);
+        super(codTrans);
         this.porcentajeDescuento = porcentajeDescuento;
         this.nombreVoucher = "Cupon Descuento";
     }
@@ -26,6 +26,7 @@ public class CuponDescuento extends Documento implements FormatearComprobante {
     public void mostrarDetalles() {
 
         System.out.println("Tipo Voucher: " + this.tipoDocumento());
+        System.out.println("Descuento Obtenido: " + this.porcentajeDescuento());
     }
 
 

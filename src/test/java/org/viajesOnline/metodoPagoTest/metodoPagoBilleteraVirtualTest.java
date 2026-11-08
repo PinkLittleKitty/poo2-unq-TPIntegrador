@@ -23,7 +23,6 @@ class MetodoPagoBilleteraVirtualTest {
 
         apiBVirtualMock = mock(ApiBilleteraVirtual.class);
         gestorMock = mock(GestorDeDocumentos.class);
-
         billeteraVirtual = new MetodoPagoBilleteraVirtual(saldoPrueba,apiBVirtualMock);
     }
 
@@ -40,22 +39,18 @@ class MetodoPagoBilleteraVirtualTest {
         verify(apiBVirtualMock).ejecutar(anyDouble());
         verify(apiBVirtualMock).notificar();
 
-        // Comprobamos que el monto se asignó correctamente en la clase abstracta
     }
 
     @Test
     void debeLanzarExcepcionSiNoHaySaldoSuficiente() {
-        // Arrange: La API rechaza la validación por falta de saldo
+
         when(apiBVirtualMock.validar(anyDouble())).thenReturn(false);
 
-        // Act & Assert
         MetodoPagoExcepcion excepcion = assertThrows(MetodoPagoExcepcion.class, () -> {
-            billeteraVirtual.procesarPago();
-        });
+            billeteraVirtual.procesarPago();});
 
         assertEquals("Transferencia denegada, saldo insuficiente en cuenta", excepcion.getMessage());
 
-        // Verificamos que validó, pero cortó el flujo de inmediato (nunca reservó, ejecutó ni notificó)
         verify(apiBVirtualMock).validar(anyDouble());
         verify(apiBVirtualMock, never()).reservar();
         verify(apiBVirtualMock, never()).ejecutar(anyDouble());
@@ -64,18 +59,15 @@ class MetodoPagoBilleteraVirtualTest {
 
     @Test
     void debeLanzarExcepcionSiFallaElBloqueoDeSaldo() {
-        // Arrange: Pasa la validación de saldo, pero falla al intentar bloquearlo
+
         when(apiBVirtualMock.validar(anyDouble())).thenReturn(true);
         when(apiBVirtualMock.reservar()).thenReturn(false);
 
-        // Act & Assert
         MetodoPagoExcepcion excepcion = assertThrows(MetodoPagoExcepcion.class, () -> {
-            billeteraVirtual.procesarPago();
-        });
+            billeteraVirtual.procesarPago();});
 
         assertEquals("Bloqueo del saldo hasta confirmar", excepcion.getMessage());
 
-        // Verificamos que intentó validar y reservar, pero se detuvo antes de ejecutar o notificar
         verify(apiBVirtualMock).validar(anyDouble());
         verify(apiBVirtualMock).reservar();
         verify(apiBVirtualMock, never()).ejecutar(saldoPrueba);
@@ -87,17 +79,13 @@ class MetodoPagoBilleteraVirtualTest {
 
         when(apiBVirtualMock.validar(anyDouble())).thenReturn(true);
         when(apiBVirtualMock.reservar()).thenReturn(true);
-        // Como ejecutar() ahora es void, no requiere un .thenReturn() obligatoriamente
 
-        // Act
         assertDoesNotThrow(() -> {
-            billeteraVirtual.procesarPago();
-        });
+            billeteraVirtual.procesarPago();});
 
-        // Assert: Verificamos que se llamó a ejecutar pasando el monto exacto
         verify(apiBVirtualMock).validar(anyDouble());
         verify(apiBVirtualMock).reservar();
-        verify(apiBVirtualMock).ejecutar(anyDouble()); // ¡Verificamos que pasó el monto!
+        verify(apiBVirtualMock).ejecutar(anyDouble());
         verify(apiBVirtualMock).notificar();
     }
 }

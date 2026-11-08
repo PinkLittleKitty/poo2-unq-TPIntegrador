@@ -13,8 +13,8 @@ public class MetodoPagoTransferenciaBancaria extends MetodoPago{
     private ApiTransferenciaBancaria apiTBancaria;
     private GestorDeDocumentos gestor;
 
-    public MetodoPagoTransferenciaBancaria(GestorDeDocumentos gestor,Double monto,String cbu,String aliasUsuario
-                                           ,ApiTransferenciaBancaria apiTBancaria)
+    public MetodoPagoTransferenciaBancaria(GestorDeDocumentos gestor, Double monto, String cbu, String aliasUsuario
+                                           , ApiTransferenciaBancaria apiTBancaria)
     {
         super(monto);
         this.gestor = gestor;

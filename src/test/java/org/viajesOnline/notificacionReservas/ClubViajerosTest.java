@@ -2,6 +2,7 @@ package org.viajesOnline.notificacionReservas;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -12,11 +13,13 @@ class ClubViajerosTest {
 
     private ClubViajeros clubViajeros;
     private ContextoReserva reservaMock;
+    private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
         clubViajeros = new ClubViajeros();
         reservaMock = mock(ContextoReserva.class);
+        gestor = mock(GestorDeDocumentos.class);
     }
 
     @Test
@@ -31,7 +34,7 @@ class ClubViajerosTest {
             clubViajeros.reservaConfirmada(reservaMock);
             clubViajeros.reservaEnCheckin(reservaMock);
             clubViajeros.reservaEnCurso(reservaMock);
-            clubViajeros.reservaFinalizada(reservaMock);
+            clubViajeros.reservaFinalizada(gestor, reservaMock);
         });
         verifyNoInteractions(reservaMock);
     }

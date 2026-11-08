@@ -1,8 +1,8 @@
 package org.viajesOnline.notificacionReservas;
 
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
-import org.viajesOnline.utils.MailSender;
 
 public class NotificadorMail implements ObservadorCambioEstado {
 
@@ -23,7 +23,7 @@ public class NotificadorMail implements ObservadorCambioEstado {
     }
 
     @Override
-    public void reservaFinalizada(ContextoReserva reserva) {
+    public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
         enviarMail(reserva, "Finalizada");
     }
 

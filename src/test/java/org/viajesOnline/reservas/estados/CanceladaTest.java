@@ -1,6 +1,7 @@
 package org.viajesOnline.reservas.estados;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,8 +21,9 @@ public class CanceladaTest {
         Cancelada estado = new Cancelada();
         ContextoReserva contextoMock = mock(ContextoReserva.class);
         ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
+        GestorDeDocumentos gestor = mock(GestorDeDocumentos.class);
 
-        estado.notificar(contextoMock, observadorMock);
+        estado.notificar(gestor, contextoMock, observadorMock);
 
         verify(observadorMock, times(1)).reservaCancelada(contextoMock);
     }

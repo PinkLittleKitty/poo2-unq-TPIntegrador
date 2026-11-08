@@ -1,8 +1,7 @@
 package org.viajesOnline.reservas;
 
 import org.viajesOnline.Catalogo;
-import org.viajesOnline.notificacionReservas.SujetoEstadoAbstracto;
-import org.viajesOnline.notificacionReservas.vouchers.Voucher;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.Usuario;
 
@@ -15,7 +14,7 @@ public class ContextoReserva {
     private List<ObservadorCambioEstado> observadores = new ArrayList<>();
     private Solicitud solicitud =  new Solicitud();
     private Usuario usuario;
-    private Voucher voucher; //TODO: Tipo XML o PDF o algo así, extraer todo lo relacionado a una clase voucher o algo así
+    private GestorDeDocumentos gestor;
 
     public ContextoReserva(Usuario usuario) {
         this.usuario = usuario;
@@ -38,15 +37,7 @@ public class ContextoReserva {
     }
 
     private void notificarObservadores(EstadoReserva nuevo) {
-        observadores.forEach(observador -> nuevo.notificar(this, observador));
-    }
-
-    public void setVoucher(Voucher voucher) {
-        this.voucher = voucher;
-    }
-
-    public Voucher getVoucher() {
-        return voucher;
+        observadores.forEach(observador -> nuevo.notificar(gestor, this, observador));
     }
 
     public EstadoReserva getEstadoActual() {return this.estadoActual;}

@@ -1,5 +1,7 @@
 package org.viajesOnline.reservas;
 
+import org.viajesOnline.documento.GestorDeDocumentos;
+
 public interface ObservadorCambioEstado {
     default void reservaPendiente(ContextoReserva reserva) {
     }
@@ -13,7 +15,7 @@ public interface ObservadorCambioEstado {
     default void reservaEnCurso(ContextoReserva reserva) {
     }
 
-    default void reservaFinalizada(ContextoReserva reserva) {
+    default void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
     }
 
     default void reservaCancelada(ContextoReserva reserva) {

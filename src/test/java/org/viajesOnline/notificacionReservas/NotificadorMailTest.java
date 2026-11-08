@@ -2,9 +2,9 @@ package org.viajesOnline.notificacionReservas;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.Solicitud;
-import org.viajesOnline.utils.MailSender;
 import org.viajesOnline.utils.Usuario;
 
 import static org.mockito.Mockito.*;
@@ -16,6 +16,7 @@ class NotificadorMailTest {
     private ContextoReserva reservaMock;
     private Usuario usuarioMock;
     private Solicitud solicitudMock;
+    private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
@@ -24,6 +25,7 @@ class NotificadorMailTest {
         reservaMock = mock(ContextoReserva.class);
         usuarioMock = mock(Usuario.class);
         solicitudMock = mock(Solicitud.class);
+        gestor = mock(GestorDeDocumentos.class);
 
         when(reservaMock.getUsuario()).thenReturn(usuarioMock);
         when(reservaMock.getSolicitud()).thenReturn(solicitudMock);
@@ -54,7 +56,7 @@ class NotificadorMailTest {
 
     @Test
     void reservaFinalizada() {
-        notificadorMail.reservaFinalizada(reservaMock);
+        notificadorMail.reservaFinalizada(gestor, reservaMock);
 
         verify(mailSenderMock, times(1)).enviarMail(
                 "viajero@test.com",

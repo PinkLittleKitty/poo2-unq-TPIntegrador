@@ -1,7 +1,7 @@
 package org.viajesOnline.reservas.estados;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.*;
 
 import static org.mockito.Mockito.*;
@@ -22,8 +22,9 @@ public class EnCursoTest {
         EnCurso estado = new EnCurso();
         ContextoReserva contextoMock = mock(ContextoReserva.class);
         ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
+        GestorDeDocumentos gestor = mock(GestorDeDocumentos.class);
 
-        estado.notificar(contextoMock, observadorMock);
+        estado.notificar(gestor, contextoMock, observadorMock);
 
         verify(observadorMock, times(1)).reservaEnCurso(contextoMock);
     }

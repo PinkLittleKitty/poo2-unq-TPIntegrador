@@ -13,7 +13,7 @@ public class MetodoPagoTarjetaInternacional extends MetodoPago {
     private YearMonth vencimiento;
     private ApiTarjetaCredito apiTCredito;
     private GestorDeDocumentos gestor;
-    public MetodoPagoTarjetaInternacional(GestorDeDocumentos gestor,Double monto,String nroTarjeta, String cvv
+    public MetodoPagoTarjetaInternacional(GestorDeDocumentos gestor, Double monto, String nroTarjeta, String cvv
                                         , YearMonth vencimiento, ApiTarjetaCredito apiTCredito)
     {
           super(monto);

@@ -2,6 +2,7 @@ package org.viajesOnline.reservas.estados;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.*;
 
 import static org.mockito.Mockito.*;
@@ -10,12 +11,14 @@ public class EnCheckinTest {
     private EnCheckin estado;
     private ContextoReserva contextoMock;
     private Solicitud solicitudMock;
+    private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
         estado = new EnCheckin();
         contextoMock = mock(ContextoReserva.class);
         solicitudMock = mock(Solicitud.class);
+        gestor = mock(GestorDeDocumentos.class);
 
         when(contextoMock.getSolicitud()).thenReturn(solicitudMock);
     }
@@ -40,7 +43,7 @@ public class EnCheckinTest {
     void notificar() {
         ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
 
-        estado.notificar(contextoMock, observadorMock);
+        estado.notificar(gestor, contextoMock, observadorMock);
 
         verify(observadorMock, times(1)).reservaEnCheckin(contextoMock);
     }

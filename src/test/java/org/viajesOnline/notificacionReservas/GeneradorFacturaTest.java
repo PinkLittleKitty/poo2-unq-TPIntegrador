@@ -2,7 +2,8 @@ package org.viajesOnline.notificacionReservas;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.notificacionReservas.vouchers.ComprobanteFiscal;
+import org.viajesOnline.documento.ComprobanteFiscal;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -12,18 +13,20 @@ class GeneradorFacturaTest {
 
     private GeneradorFactura generadorFactura;
     private ContextoReserva reservaMock;
+    private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
         generadorFactura = new GeneradorFactura();
         reservaMock = mock(ContextoReserva.class);
+        gestor = mock(GestorDeDocumentos.class);
     }
 
     @Test
     void reservaFinalizada() {
-        generadorFactura.reservaFinalizada(reservaMock);
+        generadorFactura.reservaFinalizada(gestor, reservaMock);
 
-        verify(reservaMock, times(1)).setVoucher(any(ComprobanteFiscal.class));
+        verify(gestor, times(1)).registrarDocumento(any(ComprobanteFiscal.class));
     }
 
     @Test

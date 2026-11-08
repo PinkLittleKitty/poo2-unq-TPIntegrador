@@ -3,7 +3,7 @@ package org.viajesOnline.reservas;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.Catalogo;
-import org.viajesOnline.notificacionReservas.vouchers.Voucher;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.estados.EstadoReserva;
 import org.viajesOnline.utils.Usuario;
 
@@ -16,6 +16,7 @@ class ContextoReservaTest {
     private EstadoReserva estadoMock;
     private EstadoReserva estadoNuevoMock;
     private ObservadorCambioEstado observerMock;
+    private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
@@ -24,6 +25,7 @@ class ContextoReservaTest {
         estadoNuevoMock = mock(EstadoReserva.class);
         contexto.setEstadoActual(estadoMock);
         observerMock = mock(ObservadorCambioEstado.class);
+        gestor = mock(GestorDeDocumentos.class);
     }
 
     @Test
@@ -56,7 +58,7 @@ class ContextoReservaTest {
         contexto.setEstadoActual(estadoNuevoMock);
 
         assertEquals(estadoNuevoMock, contexto.getEstadoActual());
-        verify(estadoNuevoMock, times(1)).notificar(contexto, observerMock);
+        verify(estadoNuevoMock, times(1)).notificar(gestor, contexto, observerMock);
     }
 
     @Test
@@ -67,19 +69,12 @@ class ContextoReservaTest {
 
         contexto.setEstadoActual(estadoNuevo);
 
-        verify(estadoNuevo, never()).notificar(contexto, observerMock);
+        verify(estadoNuevo, never()).notificar(gestor, contexto, observerMock);
     }
 
     @Test
     void getUsuario() {
         assertNotNull(contexto.getUsuario());
-    }
-
-    @Test
-    void voucher_getterYsetter() {
-        Voucher voucherMock = mock(Voucher.class);
-        contexto.setVoucher(voucherMock);
-        assertEquals(voucherMock, contexto.getVoucher());
     }
 
     @Test

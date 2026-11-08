@@ -3,9 +3,12 @@ package org.viajesOnline.reservas.estados;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.Catalogo;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.Solicitud;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -13,11 +16,13 @@ class EstadoReservaTest {
 
     private Catalogo servicioMock;
     private Solicitud solicitudMock;
+    private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
         servicioMock = mock(Catalogo.class);
         solicitudMock = mock(Solicitud.class);
+        gestor = mock(GestorDeDocumentos.class);
     }
 
     @Test
@@ -77,9 +82,9 @@ class EstadoReservaTest {
     void default_notificar() {
         EstadoReserva estado = new EstadoReserva() {};
         ContextoReserva contextoMock = mock(ContextoReserva.class);
-        org.viajesOnline.reservas.ObservadorCambioEstado observerMock = mock(org.viajesOnline.reservas.ObservadorCambioEstado.class);
+        ObservadorCambioEstado observerMock = mock(ObservadorCambioEstado.class);
 
-        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> estado.notificar(contextoMock, observerMock));
+        assertDoesNotThrow(() -> estado.notificar(gestor, contextoMock, observerMock));
         verifyNoInteractions(observerMock);
     }
 }

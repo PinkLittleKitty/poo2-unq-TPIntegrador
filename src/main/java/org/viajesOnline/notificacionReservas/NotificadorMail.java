@@ -24,7 +24,7 @@ public class NotificadorMail implements ObservadorCambioEstado {
         estadoANotificar = "Confirmada";
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans);;
+        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);;
         enviarMail(reserva, reciboSolicitud);
     }
 
@@ -36,7 +36,7 @@ public class NotificadorMail implements ObservadorCambioEstado {
         estadoANotificar = "En Curso";
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans);
+        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);
         enviarMail(reserva, reciboSolicitud);
     }
 
@@ -48,7 +48,7 @@ public class NotificadorMail implements ObservadorCambioEstado {
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
         //Falta agregar los datos pripios de un recibo solicitud
-        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans);
+        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);
         enviarMail(reserva, reciboSolicitud);
     }
 

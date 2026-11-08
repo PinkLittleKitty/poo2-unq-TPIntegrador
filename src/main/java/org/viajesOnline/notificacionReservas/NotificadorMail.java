@@ -33,5 +33,6 @@ public class NotificadorMail implements ObservadorCambioEstado {
                 "Cambio de estado",
                 "Tu reserva cambió a: " + estado,
                 reserva.getSolicitud());
+                // Hay que añadir el comprobante fiscal y la factura como adjunto al mail.
     }
 }

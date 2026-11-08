@@ -20,12 +20,12 @@ class ContextoReservaTest {
 
     @BeforeEach
     void setUp() {
-        contexto = new ContextoReserva(new Usuario());
         estadoMock = mock(EstadoReserva.class);
         estadoNuevoMock = mock(EstadoReserva.class);
-        contexto.setEstadoActual(estadoMock);
         observerMock = mock(ObservadorCambioEstado.class);
         gestor = mock(GestorDeDocumentos.class);
+        contexto = new ContextoReserva(gestor, new Usuario());
+        contexto.setEstadoActual(estadoMock);
     }
 
     @Test

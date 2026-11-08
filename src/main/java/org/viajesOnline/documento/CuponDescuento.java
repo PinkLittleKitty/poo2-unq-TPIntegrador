@@ -1,10 +1,13 @@
 package org.viajesOnline.documento;
 
-public class CuponDescuento implements FormatearComprobante {
+import java.util.UUID;
+
+public class CuponDescuento extends Documento implements FormatearComprobante {
     private double porcentajeDescuento;
 
-    public CuponDescuento(double porcentajeDescuento)
+    public CuponDescuento(String codTrans, double porcentajeDescuento)
     {
+        super(codTrans, porcentajeDescuento);
         this.porcentajeDescuento = porcentajeDescuento;
     }
 

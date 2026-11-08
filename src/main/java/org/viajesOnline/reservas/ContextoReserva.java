@@ -16,7 +16,8 @@ public class ContextoReserva {
     private Usuario usuario;
     private GestorDeDocumentos gestor;
 
-    public ContextoReserva(Usuario usuario) {
+    public ContextoReserva(GestorDeDocumentos gestor, Usuario usuario) {
+        this.gestor = gestor;
         this.usuario = usuario;
     }
 

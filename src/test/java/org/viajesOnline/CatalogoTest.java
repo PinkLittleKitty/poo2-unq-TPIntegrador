@@ -38,7 +38,7 @@ class CatalogoTest {
   void lanzaCompletarCamposSiDescripcionEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Curso", null, 100.0, cupo)
+            () -> new TestCatalogo("Hotel", null, 100.0, cupo)
     );
   }
 
@@ -46,18 +46,16 @@ class CatalogoTest {
   void lanzaCompletarCamposSiCupoEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Curso", "Descripción", 100.0, null)
+            () -> new TestCatalogo("Hotel", "Descripción", 100.0, null)
     );
   }
 
   @Test
   void rechazaSiPrecioEsNegativoOCero() {
-    assertAll(
-            () -> assertThrows(CompletarCampos.class,
-                    () -> new TestCatalogo("Curso", "Descripción", 0.0, cupo)),
-            () -> assertThrows(CompletarCampos.class,
-                    () -> new TestCatalogo("Curso", "Descripción", -1.0, cupo))
-    );
+    assertThrows(CompletarCampos.class,
+            () -> new TestCatalogo("Hotel", "Descripción", 0.0, cupo));
+    assertThrows(CompletarCampos.class,
+                    () -> new TestCatalogo("Hotel", "Descripción", -1.0, cupo));
   }
 
   @Test

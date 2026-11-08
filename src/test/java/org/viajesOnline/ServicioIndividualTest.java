@@ -3,6 +3,7 @@ package org.viajesOnline;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.atributos.DefinicionAtributo;
 import org.viajesOnline.atributos.Numerico;
+import org.viajesOnline.criterios.Nombre;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 
@@ -55,6 +56,30 @@ class ServicioIndividualTest {
                     cat
             )
     );
+  }
+
+  @Test
+  void rechazaProveedorVacio() {
+    assertThrows(CompletarCampos.class, () ->
+            new ServicioIndividual(
+            "Hotel",
+            "Descripción",
+            new Cupo(2),
+            123,
+            "",
+            150.0,
+            cat
+    ));
+
+    assertThrows(CompletarCampos.class, () ->
+            new ServicioIndividual(
+            "Hotel",
+            "Descripción",
+            new Cupo(2),
+            123,
+            "   ",
+            150.0,
+            cat));
   }
 
   @Test

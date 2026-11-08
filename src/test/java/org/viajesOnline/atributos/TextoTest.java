@@ -1,6 +1,7 @@
 package org.viajesOnline.atributos;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.criterios.Nombre;
 import org.viajesOnline.exceptions.CompletarCampos;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,9 +15,10 @@ class TextoTest {
   }
 
   @Test
-  void rechazaNull() {
-    assertThrows(CompletarCampos.class,
-            () -> texto.validar(null));
+  void rechazaNuloOVacio() {
+    assertThrows(CompletarCampos.class, () -> texto.validar(null));
+    assertThrows(CompletarCampos.class, () -> texto.validar(""));
+    assertThrows(CompletarCampos.class, () ->texto.validar("   "));
   }
 
   @Test

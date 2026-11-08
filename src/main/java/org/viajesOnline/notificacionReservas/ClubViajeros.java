@@ -26,11 +26,13 @@ public class ClubViajeros implements ObservadorCambioEstado {
         this.enviarMail(reserva, cupon);
     }
 
+    public double descuento(){return descuento;}
+
     private void enviarMail(ContextoReserva reserva, Documento unDocumento) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
                 "Cupon de Descuento",
-                "Obtuviste un cupon del: " + descuento + "porciento.",
+                "Obtuviste un cupon del: " + this.descuento() + "porciento.",
                 unDocumento);
     }
 }

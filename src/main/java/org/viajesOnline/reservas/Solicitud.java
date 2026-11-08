@@ -35,10 +35,11 @@ public class Solicitud {
         }
     }
 
-    // No estoy seguro de cómo implementar esto, pero acá habría que generar y registrar el voucher de crédito.
     public void reembolsar() {
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+
+        //Falta agregar los datos propios de un voucher de reembolso servicio y tasas
         Documento reembolso = new VoucherReembolso(codTrans,1,1);
     }
 }

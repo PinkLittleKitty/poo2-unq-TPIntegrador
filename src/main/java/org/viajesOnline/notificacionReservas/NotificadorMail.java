@@ -2,6 +2,7 @@ package org.viajesOnline.notificacionReservas;
 
 import org.viajesOnline.documento.Documento;
 import org.viajesOnline.documento.GestorDeDocumentos;
+import org.viajesOnline.documento.ReciboDeSolicitud;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 
@@ -23,18 +24,20 @@ public class NotificadorMail implements ObservadorCambioEstado {
         estadoANotificar = "Confirmada";
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        //Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
-        //enviarMail(reserva, reciboSolicitud);
+        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans);;
+        enviarMail(reserva, reciboSolicitud);
     }
+
+    public String estadoANotificar(){return estadoANotificar;}
 
     @Override
     public void reservaEnCurso(ContextoReserva reserva) {
 
-        estadoANotificar = "EnCurso";
+        estadoANotificar = "En Curso";
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        //Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
-        //enviarMail(reserva, reciboSolicitud);
+        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans);
+        enviarMail(reserva, reciboSolicitud);
     }
 
     @Override
@@ -43,15 +46,17 @@ public class NotificadorMail implements ObservadorCambioEstado {
         estadoANotificar = "Finalizada";
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        //Documento reciboSolicitud = new ReciboSolicitud(codTrans,monto);
-        //enviarMail(reserva, reciboSolicitud);
+
+        //Falta agregar los datos pripios de un recibo solicitud
+        Documento reciboSolicitud = new ReciboDeSolicitud(codTrans);
+        enviarMail(reserva, reciboSolicitud);
     }
 
     private void enviarMail(ContextoReserva reserva, Documento unDocumento) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
                 "Cambio de estado",
-                "Tu reserva cambió a: " + estadoANotificar,
+                "Tu reserva cambió a: " + this.estadoANotificar(),
                 unDocumento);
     }
 }

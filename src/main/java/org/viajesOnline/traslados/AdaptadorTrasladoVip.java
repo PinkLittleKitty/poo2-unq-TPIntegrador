@@ -4,22 +4,18 @@ import org.viajesOnline.reservas.ContextoReserva;
 
 public class AdaptadorTrasladoVip implements Traslado {
 
-    private ContextoReserva reserva;
     private TrasladoVip trasladoVip;
 
-    public AdaptadorTrasladoVip(TrasladoVip trasladoVip, ContextoReserva reserva){
+    public AdaptadorTrasladoVip(TrasladoVip trasladoVip){
 
-        this.setReserva(reserva);
         this.setTrasladoVip(trasladoVip);
     }
 
     public void setTrasladoVip(TrasladoVip trasladoVip) {this.trasladoVip = trasladoVip;}
 
-    public void setReserva(ContextoReserva reserva){this.reserva = reserva;}
-
     @Override
-    public float calcularCosto(){
+    public float calcularCosto(ContextoTraslado c){
 
-        return trasladoVip.calcularCosto(reserva.precioFinalReserva());
+        return trasladoVip.calcularCosto(c.precioReserva());
     }
 }

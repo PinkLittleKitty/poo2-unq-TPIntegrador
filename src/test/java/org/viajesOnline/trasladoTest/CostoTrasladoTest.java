@@ -22,7 +22,7 @@ public class CostoTrasladoTest {
 
         plataforma = mock(PlataformaTransporte.class);
         direccionDestino = mock(DireccionMock.class);
-        trasladoStandard = new TrasladoStandard(4,plataforma,direccionDestino);
+        trasladoStandard = new TrasladoStandard(plataforma,direccionDestino);
 
     }
 

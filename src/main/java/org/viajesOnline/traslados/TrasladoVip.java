@@ -15,7 +15,6 @@ public class TrasladoVip {
         return 1 - porcentajeFijo / 100;
     }
 
-
     public float calcularCosto(float precio){
 
         return (precio * this.porcentajeFijo()) + cargoBase;

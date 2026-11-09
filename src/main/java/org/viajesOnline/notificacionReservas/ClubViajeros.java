@@ -7,7 +7,7 @@ import org.viajesOnline.reservas.ObservadorCambioEstado;
 
 import java.util.UUID;
 
-public class ClubViajeros extends Mail implements ObservadorCambioEstado {
+public class ClubViajeros implements ObservadorCambioEstado {
 
     private double descuento = 5;
     //private MailSender mailSender;

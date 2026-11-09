@@ -8,7 +8,7 @@ import org.viajesOnline.reservas.ObservadorCambioEstado;
 
 import java.util.UUID;
 
-public class NotificadorMail extends Mail implements ObservadorCambioEstado {
+public class NotificadorMail implements ObservadorCambioEstado {
 
     private Documento reciboSolicitud;
     private String codTrans;

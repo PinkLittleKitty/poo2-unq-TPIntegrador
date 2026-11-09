@@ -1,6 +1,6 @@
 package org.viajesOnline.traslados;
 
-public interface CostoTraslado {
+public interface Traslado {
 
     public float calcularCosto(ContextoTraslado c);
 }

@@ -2,7 +2,7 @@ package org.viajesOnline.trasladoTest;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.traslados.CostoTraslado;
+import org.viajesOnline.traslados.Traslado;
 import org.viajesOnline.traslados.CostoTrasladoStandard;
 
 import org.viajesOnline.traslados.DireccionMock;
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 public class CostoTrasladoTest {
 
     private PlataformaTransporte plataforma;
-    private CostoTraslado trasladoStandard;
+    private Traslado trasladoStandard;
     private DireccionMock direccionDestino;
 
     @BeforeEach

@@ -1,9 +1,6 @@
 package org.viajesOnline.traslados;
 
-import org.viajesOnline.traslados.PlataformaTransporte;
-import org.viajesOnline.traslados.DireccionMock;
-
-public class CostoTrasladoStandard implements CostoTraslado {
+public class CostoTrasladoStandard implements Traslado {
 
     private PlataformaTransporte plataforma;
     private DireccionMock direccionDestino;

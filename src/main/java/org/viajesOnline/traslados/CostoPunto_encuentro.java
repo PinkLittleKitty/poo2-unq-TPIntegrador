@@ -1,6 +1,6 @@
 package org.viajesOnline.traslados;
 
-public class Punto_encuentro implements CostoTraslado {
+public class CostoPunto_encuentro implements Traslado {
 
     private boolean hayGuiasDisponibles = true;
 

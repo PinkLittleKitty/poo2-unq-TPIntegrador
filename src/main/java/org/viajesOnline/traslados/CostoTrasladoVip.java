@@ -1,6 +1,6 @@
 package org.viajesOnline.traslados;
 
-public class CostoTrasladoVip implements CostoTraslado {
+public class CostoTrasladoVip implements Traslado {
 
     private float cargoBase;
     private float porcentajeFijo;

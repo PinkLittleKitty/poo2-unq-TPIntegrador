@@ -1,6 +1,5 @@
 package org.viajesOnline.traslados;
 
-import org.viajesOnline.reservas.ContextoReserva;
 
 public class AdaptadorTrasladoVip implements Traslado {
 
@@ -10,6 +9,8 @@ public class AdaptadorTrasladoVip implements Traslado {
 
         this.setTrasladoVip(trasladoVip);
     }
+
+    public TrasladoVip trasladoVip(){return trasladoVip();}
 
     public void setTrasladoVip(TrasladoVip trasladoVip) {this.trasladoVip = trasladoVip;}
 

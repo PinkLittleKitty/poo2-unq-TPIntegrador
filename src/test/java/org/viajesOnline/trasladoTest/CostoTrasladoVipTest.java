@@ -11,8 +11,13 @@ public class CostoTrasladoVipTest {
 
     private ContextoTraslado contextoTraslado;
     private ContextoReserva reserva;
+
     private Traslado adaptadorTrasladoVip;
+
+
+
     private TrasladoVip trasladoVip;
+    private TrasladoVip otroTrasladoVip;
 
     private PlataformaTransporte plataforma;
     private DireccionMock direccionDestino;
@@ -29,12 +34,16 @@ public class CostoTrasladoVipTest {
         trasladoVip = new TrasladoVip(100f,20f);
         adaptadorTrasladoVip = new AdaptadorTrasladoVip(trasladoVip);
 
+        otroTrasladoVip = new TrasladoVip(300f,50f);
+
         contextoTraslado = new ContextoTraslado(adaptadorTrasladoVip,4,reservaMock);
     }
 
     @Test
     void prueba() {
 
+        assertEquals(100f, ((AdaptadorTrasladoVip) adaptadorTrasladoVip).trasladoVip().cargoBase()
+                    ,0.001f);
 
     }
 

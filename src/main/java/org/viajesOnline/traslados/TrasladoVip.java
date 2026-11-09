@@ -11,7 +11,9 @@ public class TrasladoVip {
         this.cargoBase = cargoBase;
     }
 
-    private float porcentajeFijo() {
+    public float cargoBase() {return cargoBase;}
+
+    public float porcentajeFijo() {
         return 1 - porcentajeFijo / 100;
     }
 

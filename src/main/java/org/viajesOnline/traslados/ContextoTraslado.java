@@ -14,16 +14,18 @@ public class ContextoTraslado {
         this.setReserva(reserva);
     }
 
-    public void setTraslado(Traslado costoTraslado){this.tipoTraslado = tipoTraslado;}
+    public void setTraslado(Traslado tipoTraslado){this.tipoTraslado = tipoTraslado;}
 
     public void setReserva(ContextoReserva reserva){this.reserva = reserva;}
 
-    public double costoParaTipoDeTraslado(Traslado t){
+    public double costoParaTipoDeTraslado(){
 
-        return t.calcularCosto(this);
+        //la cantidad de pasajeros y la direccion salen de la reserva
+        return tipoTraslado.calcularCosto(this);
     }
 
-    public int cantPasajeros(){return this.pasajeros;}
+    //public int cantPasajeros(){return this.pasajeros;}
 
-    public Direccion direccionDestino(){return this.direccionDeDestino;}
+    //public Direccion direccionDestino(){return this.direccionDeDestino;}
+
 }

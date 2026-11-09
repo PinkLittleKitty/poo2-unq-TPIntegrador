@@ -12,6 +12,7 @@ public class CostoTrasladoStandard implements Traslado {
 
     @Override
     public float calcularCosto(ContextoTraslado c) {
+
         return plataforma.estimarTraslado(c.cantPasajeros(),direccionDestino);
     }
 

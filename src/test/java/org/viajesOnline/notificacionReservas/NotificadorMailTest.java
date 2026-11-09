@@ -22,7 +22,7 @@ class NotificadorMailTest {
     @BeforeEach
     void setUp() {
         mailSenderMock = mock(MailSender.class);
-        notificadorMail = new NotificadorMail(mailSenderMock);
+        //notificadorMail = new NotificadorMail(mailSenderMock);
         reservaMock = mock(ContextoReserva.class);
         usuarioMock = mock(Usuario.class);
         solicitudMock = mock(Documento.class);

@@ -1,10 +1,7 @@
 package org.viajesOnline.documento;
 
-import org.viajesOnline.documento.FormatoParaAdjunto.FormatoXml;
-
 public class CuponDescuento extends Documento {
 
-    private FormatoXml formato;
     private double porcentajeDescuento;
     private String nombreVoucher;
 
@@ -18,11 +15,6 @@ public class CuponDescuento extends Documento {
     public double porcentajeDescuento() {
         return porcentajeDescuento;
     }
-
-
-    @Override
-    public String darFormato(){return formato.obtenerArchivo(this);}
-
 
     public String tipoDocumento(){return nombreVoucher;}
 

@@ -20,7 +20,7 @@ class ClubViajerosTest {
     void setUp() {
 
         mailSenderMock = mock(MailSender.class);
-        clubViajeros = new ClubViajeros(mailSenderMock);
+        //clubViajeros = new ClubViajeros(mailSenderMock);
         reservaMock = mock(ContextoReserva.class);
         gestor = mock(GestorDeDocumentos.class);
     }

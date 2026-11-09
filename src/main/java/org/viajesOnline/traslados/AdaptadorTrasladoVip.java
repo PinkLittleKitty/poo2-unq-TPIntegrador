@@ -10,7 +10,7 @@ public class AdaptadorTrasladoVip implements Traslado {
         this.setTrasladoVip(trasladoVip);
     }
 
-    public TrasladoVip trasladoVip(){return trasladoVip();}
+    public TrasladoVip trasladoVip(){return trasladoVip;}
 
     public void setTrasladoVip(TrasladoVip trasladoVip) {this.trasladoVip = trasladoVip;}
 

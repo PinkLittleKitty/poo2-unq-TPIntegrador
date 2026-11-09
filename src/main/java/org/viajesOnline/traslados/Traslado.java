@@ -5,5 +5,4 @@ public interface Traslado {
 
     public float calcularCosto(ContextoTraslado c);
 
-    ///public float calcularCosto();
 }

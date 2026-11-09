@@ -10,57 +10,73 @@ import static org.mockito.Mockito.*;
 public class CostoTrasladoVipTest {
 
     private ContextoTraslado contextoTraslado;
-    private ContextoReserva reserva;
-
-    private Traslado adaptadorTrasladoVip;
+    //private AdaptadorTrasladoVip adaptadorTrasladoVip;
 
 
-
-    private TrasladoVip trasladoVip;
-    private TrasladoVip otroTrasladoVip;
-
-    private PlataformaTransporte plataforma;
-    private DireccionMock direccionDestino;
+    private TrasladoVip trasladoVipMock;
+    private TrasladoVip otroTrasladoVipMock;
     private ContextoReserva reservaMock;
+    private AdaptadorTrasladoVip adaptadorTrasladoVipMock;;
 
     @BeforeEach
     void setUp() {
 
-        plataforma = mock(PlataformaTransporte.class);
-        direccionDestino = mock(DireccionMock.class);
         reservaMock = mock(ContextoReserva.class);
+        trasladoVipMock = mock(TrasladoVip.class);
+        otroTrasladoVipMock = mock(TrasladoVip.class);
+        adaptadorTrasladoVipMock = mock(AdaptadorTrasladoVip.class);
 
-        reserva = new ContextoReserva();
-        trasladoVip = new TrasladoVip(100f,20f);
-        adaptadorTrasladoVip = new AdaptadorTrasladoVip(trasladoVip);
 
-        otroTrasladoVip = new TrasladoVip(300f,50f);
 
-        contextoTraslado = new ContextoTraslado(adaptadorTrasladoVip,4,reservaMock);
+        contextoTraslado = new ContextoTraslado(adaptadorTrasladoVipMock,4,reservaMock);
     }
 
     @Test
-    void prueba() {
+    void costoVipConReservaDe1000Es900() {
+        when(reservaMock.precioFinalReserva()).thenReturn(1000f);
+        doNothing().when(adaptadorTrasladoVipMock).setTrasladoVip(trasladoVipMock);
 
-        assertEquals(100f, ((AdaptadorTrasladoVip) adaptadorTrasladoVip).trasladoVip().cargoBase()
-                    ,0.001f);
-
-    }
+        //when(trasladoVipMock.calcularCosto(reservaMock.precioFinalReserva())).thenReturn(900f);
 
 
-    @Test
-    void devuelveLaEstimacionDeLaPlataforma() {
+        assertEquals(900f, contextoTraslado.costoParaTipoDeTraslado(), 0.001f);
 
-        when(plataforma.estimarTraslado(4, direccionDestino)).thenReturn(500f);
-        assertEquals(500f, plataforma.estimarTraslado(4, direccionDestino), 0.001f);
+        verify(reservaMock).precioFinalReserva();
     }
 
     @Test
-    void lePideLaEstimacionConLosDatosCorrectos() {
+    void ContextoTrasladoTieneUnaReservaConPrecioDe1000PesosCalculoELcOSTOYd900() {
 
-        plataforma.estimarTraslado(4, direccionDestino);
-        verify(plataforma).estimarTraslado(4, direccionDestino);
+        when(reservaMock.precioFinalReserva()).thenReturn(1000f);
+
+        //when(adaptadorTrasladoVipMock.calcularCosto(reservaMock.precioFinalReserva()).thenReturn(900f);
+
+        when(trasladoVipMock.calcularCosto(reservaMock.precioFinalReserva())).thenReturn(900f);
+
+       // when(contextoTraslado.calcularCosto(reservaMock.precioFinalReserva())).thenReturn(900f);
+
+        //se verifica que se llamo a precio reserva
+
+        verify(reservaMock).precioFinalReserva();
+        verify(trasladoVipMock).calcularCosto(1000f);
     }
+
+    @Test
+    void CambioEltrasladoAlADAPTADOREnElMismoContextoTrasladoTieneUnaReservaConPrecioDe1000PCalculaYda900() {
+
+        when(reservaMock.precioFinalReserva()).thenReturn(1000f);
+
+        //adaptadorTrasladoVip.setTrasladoVip(otroTrasladoVipMock);
+
+        assertEquals(800f, contextoTraslado.costoParaTipoDeTraslado(),0.001f);
+
+
+        //assertEquals(300f, adaptadorTrasladoVip.trasladoVip().cargoBase(),0.001f);
+        //when(trasladoVipMock.cargoBase()).thenReturn(100f);
+        //when(trasladoVipMock.porcentajeFijo()).thenReturn(0.8f);
+
+    }
+
 }
 
 

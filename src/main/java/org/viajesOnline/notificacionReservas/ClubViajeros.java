@@ -9,11 +9,17 @@ import java.util.UUID;
 
 public class ClubViajeros implements ObservadorCambioEstado {
 
-    private double descuento = 5;
-    //private MailSender mailSender;
+    //public ClubViajeros(MailSender mailSender){super(mailSender);}
 
-    public ClubViajeros(MailSender mailSender){super(mailSender);}
-    //public void setMail(MailSender mailSender){this.mailSender = mailSender;;}
+    private MailSender mailSender;
+    private final double descuento = 5;
+
+    public ClubViajeros(MailSender mailSender){
+
+        this.setMail(mailSender);
+    }
+
+    public void setMail(MailSender mailSender){this.mailSender = mailSender;;}
 
     public double descuento(){return descuento;}
 

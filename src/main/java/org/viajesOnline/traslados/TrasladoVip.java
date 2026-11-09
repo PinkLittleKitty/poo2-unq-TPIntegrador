@@ -2,8 +2,8 @@ package org.viajesOnline.traslados;
 
 public class TrasladoVip {
 
-    private float cargoBase;
-    private float porcentajeFijo;
+    private final float cargoBase;
+    private final float porcentajeFijo;
 
     public TrasladoVip(float cargoBase, float porcentajeFijo){
 

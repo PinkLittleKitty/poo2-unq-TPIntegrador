@@ -10,13 +10,19 @@ import java.util.UUID;
 
 public class NotificadorMail implements ObservadorCambioEstado {
 
+    //public NotificadorMail(MailSender mailSender) {super(mailSender);}
+
     private Documento reciboSolicitud;
     private String codTrans;
     private String estadoANotificar;
-    //private MailSender mailSender;
+    private MailSender mailSender;
 
-    public NotificadorMail(MailSender mailSender) {super(mailSender);}
-    //public void setMail(MailSender mailSender){this.mailSender = mailSender;;}
+    public NotificadorMail(MailSender mailSender) {
+
+        this.setMail(mailSender);
+    }
+
+    public void setMail(MailSender mailSender){this.mailSender = mailSender;;}
 
     @Override
     public void reservaConfirmada(ContextoReserva reserva) {

@@ -1,11 +1,11 @@
 package org.viajesOnline.traslados;
 
-public class CostoTrasladoVip implements Traslado {
+public class TrasladoVip {
 
     private float cargoBase;
     private float porcentajeFijo;
 
-    public CostoTrasladoVip(float cargoBase, float porcentajeFijo){
+    public TrasladoVip(float cargoBase, float porcentajeFijo){
 
         this.porcentajeFijo = porcentajeFijo;
         this.cargoBase = cargoBase;
@@ -15,7 +15,7 @@ public class CostoTrasladoVip implements Traslado {
         return 1 - porcentajeFijo / 100;
     }
 
-    @Override
+
     public float calcularCosto(float precio){
 
         return (precio * this.porcentajeFijo()) + cargoBase;

@@ -3,7 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.traslados.Traslado;
-import org.viajesOnline.traslados.CostoTrasladoStandard;
+import org.viajesOnline.traslados.TrasladoStandard;
 
 import org.viajesOnline.traslados.DireccionMock;
 import org.viajesOnline.traslados.PlataformaTransporte;
@@ -22,7 +22,7 @@ public class CostoTrasladoTest {
 
         plataforma = mock(PlataformaTransporte.class);
         direccionDestino = mock(DireccionMock.class);
-        trasladoStandard = new CostoTrasladoStandard(4,plataforma,direccionDestino);
+        trasladoStandard = new TrasladoStandard(4,plataforma,direccionDestino);
 
     }
 

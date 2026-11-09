@@ -1,6 +1,6 @@
 package org.viajesOnline.traslados;
 
-public class CostoPuntoEncuentro implements Traslado {
+public class PuntoEncuentro implements Traslado {
 
     private boolean hayGuiasDisponibles = true;
 
@@ -9,7 +9,7 @@ public class CostoPuntoEncuentro implements Traslado {
     }
 
     @Override
-    public float calcularCosto(float precio){
+    public float calcularCosto(){
         this.hayGuiasDisponibles();
         return 0;
     }

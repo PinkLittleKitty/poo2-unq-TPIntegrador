@@ -1,14 +1,12 @@
 package org.viajesOnline.traslados;
 
-import org.viajesOnline.reservas.ContextoReserva;
-
-public class CostoTrasladoStandard implements Traslado {
+public class TrasladoStandard implements Traslado {
 
     private PlataformaTransporte plataforma;
     private DireccionMock direccionDestino;
     private int cantPasajeros;
 
-    public CostoTrasladoStandard(int cantPasajeros, PlataformaTransporte plataforma, DireccionMock direccionDestino) {
+    public TrasladoStandard(int cantPasajeros, PlataformaTransporte plataforma, DireccionMock direccionDestino) {
 
         this.setCantPasajeros(cantPasajeros);
         this.plataforma = plataforma;

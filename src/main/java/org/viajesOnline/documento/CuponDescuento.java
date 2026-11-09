@@ -1,9 +1,10 @@
 package org.viajesOnline.documento;
 
-import java.util.UUID;
+import org.viajesOnline.documento.FormatoParaAdjunto.FormatoXml;
 
-public class CuponDescuento extends Documento implements FormatearComprobante {
+public class CuponDescuento extends Documento {
 
+    private FormatoXml formato;
     private double porcentajeDescuento;
     private String nombreVoucher;
 
@@ -18,7 +19,10 @@ public class CuponDescuento extends Documento implements FormatearComprobante {
         return porcentajeDescuento;
     }
 
-    public String obtenerArchivoFormateado(FormatoVisitanteDocumento v){return v.obtenerArchivo(this);}
+
+    @Override
+    public String darFormato(){return formato.obtenerArchivo(this);}
+
 
     public String tipoDocumento(){return nombreVoucher;}
 

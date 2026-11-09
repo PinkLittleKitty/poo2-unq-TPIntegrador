@@ -13,6 +13,10 @@ public class ClubViajeros implements ObservadorCambioEstado {
     private String estadoANotificar;
     private double descuento = 5;
 
+    //private String archivoConFormato;
+    //private Formato archivoConFormato;
+    //private FormatoAdjunto formato
+
     public ClubViajeros(MailSender mailSender) {
         this.mailSender = mailSender;
     }
@@ -24,6 +28,9 @@ public class ClubViajeros implements ObservadorCambioEstado {
         Documento cupon = new CuponDescuento(codTrans, descuento);
 
         this.enviarMail(reserva, cupon);
+
+        //archivoConFormato = this.darFormatoParaDocumentoAdjunto(reciboSolicitud);
+        //enviarMail(reserva, archivoConFormato);
     }
 
     public double descuento(){return descuento;}

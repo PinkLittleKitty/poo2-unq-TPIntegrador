@@ -1,12 +1,13 @@
-package org.viajesOnline.documento;
+package org.viajesOnline.documento.FormatoParaAdjunto;
 
 
-public class FormatoXml implements FormatoVisitanteDocumento {
+import org.viajesOnline.documento.Documento;
+
+public class FormatoXml extends FormatoAdjunto {
 
     private String archivoXml;
 
-    @Override
-    public String obtenerArchivo(ComprobanteFiscal c) {
+    public String obtenerArchivo(Documento c) {
         this.archivoXml = """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <voucherPago>
@@ -23,12 +24,12 @@ public class FormatoXml implements FormatoVisitanteDocumento {
                 c.codTransaccion(),
                 //c.numeroTarjeta(),
                 //c.codigoAutorizacion(),
-                c.monto()
         );
 
         return archivoXml;
     }
 
+    /*
     public String obtenerArchivo(CuponDescuento c){
 
             // Se genera el XML y se asigna al atributo de la clase
@@ -43,5 +44,7 @@ public class FormatoXml implements FormatoVisitanteDocumento {
 
             return archivoXml;
         }
+    */
 }
+
 

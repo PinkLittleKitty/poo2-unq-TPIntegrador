@@ -1,6 +1,7 @@
 package org.viajesOnline.notificacionReservas;
 
 import org.viajesOnline.documento.Documento;
+import org.viajesOnline.documento.FormatoParaAdjunto.FormatoAdjunto;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.documento.ReciboDeSolicitud;
 import org.viajesOnline.reservas.ContextoReserva;
@@ -13,6 +14,11 @@ public class NotificadorMail implements ObservadorCambioEstado {
     private MailSender mailSender;
     private String codTrans;
     private String estadoANotificar;
+    private FormatoAdjunto formato;
+
+    //private String archivoConFormato;
+    //private Formato archivoConFormato;
+    //private FormatoAdjunto formato
 
     public NotificadorMail(MailSender mailSender) {
         this.mailSender = mailSender;
@@ -25,7 +31,17 @@ public class NotificadorMail implements ObservadorCambioEstado {
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Documento reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);;
+
         enviarMail(reserva, reciboSolicitud);
+
+        //archivoConFormato = this.darFormatoParaDocumentoAdjunto(reciboSolicitud);
+        //enviarMail(reserva, archivoConFormato);
+    }
+
+
+    public String darFormatoParaDocumentoAdjunto(Documento d)
+    {
+        return d.darFormato();
     }
 
     public String estadoANotificar(){return estadoANotificar;}
@@ -49,6 +65,7 @@ public class NotificadorMail implements ObservadorCambioEstado {
 
         //Falta agregar los datos pripios de un recibo solicitud
         Documento reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);
+
         enviarMail(reserva, reciboSolicitud);
     }
 

@@ -22,15 +22,15 @@ public class CostoTrasladoTest {
 
         plataforma = mock(PlataformaTransporte.class);
         direccionDestino = mock(DireccionMock.class);
-        trasladoStandard = new CostoTrasladoStandard(plataforma,direccionDestino);
+        trasladoStandard = new CostoTrasladoStandard(4,plataforma,direccionDestino);
 
     }
 
     @Test
     void devuelveLaEstimacionDeLaPlataforma() {
 
-        when(plataforma.estimarTraslado(2, direccionDestino)).thenReturn(500f);
-        assertEquals(500f, plataforma.estimarTraslado(2, direccionDestino), 0.001f);
+        when(plataforma.estimarTraslado(4, direccionDestino)).thenReturn(500f);
+        assertEquals(500f, plataforma.estimarTraslado(4, direccionDestino), 0.001f);
     }
 
     @Test
@@ -39,6 +39,4 @@ public class CostoTrasladoTest {
         plataforma.estimarTraslado(4, direccionDestino);
         verify(plataforma).estimarTraslado(4, direccionDestino);
     }
-
-
 }

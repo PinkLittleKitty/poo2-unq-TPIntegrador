@@ -8,7 +8,7 @@ public class ContextoTraslado {
     private ContextoReserva reserva;
     private Traslado tipoTraslado;
 
-    public ContextoTraslado(ContextoReserva reserva, Traslado tipoTraslado){
+    public ContextoTraslado(Traslado tipoTraslado, int cantPasajeros){
 
         this.setTraslado(tipoTraslado);
         this.setReserva(reserva);
@@ -21,11 +21,7 @@ public class ContextoTraslado {
     public double costoParaTipoDeTraslado(){
 
         //la cantidad de pasajeros y la direccion salen de la reserva
-        return tipoTraslado.calcularCosto(this);
+        return tipoTraslado.calcularCosto(reserva.precioFinalReserva());
     }
-
-    //public int cantPasajeros(){return this.pasajeros;}
-
-    //public Direccion direccionDestino(){return this.direccionDeDestino;}
 
 }

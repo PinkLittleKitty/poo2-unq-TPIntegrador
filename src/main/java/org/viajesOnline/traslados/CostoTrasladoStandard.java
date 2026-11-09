@@ -1,19 +1,29 @@
 package org.viajesOnline.traslados;
 
+import org.viajesOnline.reservas.ContextoReserva;
+
 public class CostoTrasladoStandard implements Traslado {
 
     private PlataformaTransporte plataforma;
     private DireccionMock direccionDestino;
+    private int cantPasajeros;
 
-    public CostoTrasladoStandard(PlataformaTransporte plataforma,DireccionMock direccionDestino) {
+    public CostoTrasladoStandard(int cantPasajeros, PlataformaTransporte plataforma, DireccionMock direccionDestino) {
+
+        this.setCantPasajeros(cantPasajeros);
         this.plataforma = plataforma;
         this.direccionDestino = direccionDestino;
     }
 
-    @Override
-    public float calcularCosto(ContextoTraslado c) {
+    public void setCantPasajeros(int cantPasajeros) {
 
-        return plataforma.estimarTraslado(c.cantPasajeros(),direccionDestino);
+        this.cantPasajeros = cantPasajeros;
+    }
+
+    @Override
+    public float calcularCosto() {
+
+        return plataforma.estimarTraslado(cantPasajeros,direccionDestino);
     }
 
 }

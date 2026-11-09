@@ -16,8 +16,8 @@ public class CostoTrasladoVip implements Traslado {
     }
 
     @Override
-    public float calcularCosto(ContextoTraslado c){
+    public float calcularCosto(float precio){
 
-        return (c.precioFinalReserva() * this.porcentajeFijo()) + cargoBase;
+        return (precio * this.porcentajeFijo()) + cargoBase;
     }
 }

@@ -8,28 +8,22 @@ import org.viajesOnline.reservas.ObservadorCambioEstado;
 
 import java.util.UUID;
 
-public class NotificadorMail implements ObservadorCambioEstado {
+public class NotificadorMail extends Mail implements ObservadorCambioEstado {
 
     private Documento reciboSolicitud;
-    private MailSender mailSender;
     private String codTrans;
     private String estadoANotificar;
+    //private MailSender mailSender;
 
-    public NotificadorMail(MailSender mailSender) {
-
-        this.setMail(mailSender);
-    }
-
-    public void setMail(MailSender mailSender){this.mailSender = mailSender;;}
+    public NotificadorMail(MailSender mailSender) {super(mailSender);}
+    //public void setMail(MailSender mailSender){this.mailSender = mailSender;;}
 
     @Override
     public void reservaConfirmada(ContextoReserva reserva) {
 
         estadoANotificar = "Confirmada";
-
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);;
-
         enviarMail(reserva, reciboSolicitud);
     }
 
@@ -39,10 +33,8 @@ public class NotificadorMail implements ObservadorCambioEstado {
     public void reservaEnCurso(ContextoReserva reserva) {
 
         estadoANotificar = "En Curso";
-
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);
-
         enviarMail(reserva, reciboSolicitud);
     }
 

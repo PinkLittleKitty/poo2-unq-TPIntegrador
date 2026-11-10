@@ -2,6 +2,7 @@ package org.viajesOnline.reservas;
 
 import org.viajesOnline.Catalogo;
 import org.viajesOnline.documento.Documento;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.documento.VoucherReembolso;
 
 import java.util.ArrayList;
@@ -35,11 +36,7 @@ public class Solicitud {
         }
     }
 
-    public void reembolsar() {
-
-        codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-
-        //TODO: Falta agregar los datos propios de un voucher de reembolso servicio y tasas
-        Documento reembolso = new VoucherReembolso(codTrans,1,1);
+    public double precioTotalServicios() {
+        return servicios.stream().mapToDouble(Catalogo::precioFinal).sum();
     }
 }

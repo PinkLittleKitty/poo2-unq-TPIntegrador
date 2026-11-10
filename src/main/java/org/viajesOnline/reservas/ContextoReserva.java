@@ -1,12 +1,13 @@
 package org.viajesOnline.reservas;
 
 import org.viajesOnline.Catalogo;
-import org.viajesOnline.documento.GestorDeDocumentos;
+import org.viajesOnline.documento.*;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ContextoReserva {
 
@@ -60,14 +61,19 @@ public class ContextoReserva {
     }
 
     public void reembolsar() {
-        solicitud.reembolsar();
+        double tasas = this.estadoActual.tasasReembolsables(this);
+        double costoServicios = this.solicitud.precioTotalServicios();
+        String cod = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+
+        Documento voucher = new VoucherReembolso(cod, costoServicios, tasas);
+        this.gestor.registrarDocumento(voucher);
+    }
+
+    public double getCostoTasas() {
+        return 100.0; //TODO: Revisar cuánto costarían las tasas, por ahora lo pongo en 100.
     }
 
     public float precioFinalReserva(){
         return (float) solicitud.getServicios().stream().mapToDouble(Catalogo::precioFinal).sum();
-    }
-
-    public Object getTasas() {
-        return null;
     }
 }

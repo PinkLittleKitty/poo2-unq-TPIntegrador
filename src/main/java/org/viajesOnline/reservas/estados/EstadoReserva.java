@@ -26,4 +26,8 @@ public interface EstadoReserva {
 
     public default void notificar(GestorDeDocumentos gestor, ContextoReserva reserva, ObservadorCambioEstado observador) {
     }
+
+    public default double tasasReembolsables(ContextoReserva r) {
+        return 0.0;
+    }
 }

@@ -5,14 +5,18 @@ public class ComprobanteCbu extends Documento {
     private String aliasUsuario;
     private String cbu;
     private String nombreComprobante;
+    private double monto;
 
     public ComprobanteCbu(String codTransaccion,double monto,String cbu,String aliasUsuario)
     {
-        super(codTransaccion,monto);
+        super(codTransaccion);
+        this.monto = monto;
         this.aliasUsuario = aliasUsuario;
         this.cbu = cbu;
         this.nombreComprobante = "Comprobante Cbu";
     }
+
+    public double monto() { return monto; }
 
     public String obtenerAliasUsuario(){return aliasUsuario;}
 
@@ -23,8 +27,10 @@ public class ComprobanteCbu extends Documento {
     @Override
     public void mostrarDetalles() {
         super.mostrarDetalles();
-        System.out.println("Alias Usuario: " + aliasUsuario);
-        System.out.println("Cbu: " + cbu);
+        System.out.println("Tipo Voucher: " + this.tipoDocumento());
+        System.out.println("Alias Usuario: " + this.obtenerAliasUsuario());
+        System.out.println("Cbu: " + this.obtenerCbu());
+        System.out.println("Total Pagado $: " + this.monto());
     }
 }
 

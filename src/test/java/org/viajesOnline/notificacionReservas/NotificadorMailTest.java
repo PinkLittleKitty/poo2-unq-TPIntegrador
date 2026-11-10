@@ -2,6 +2,7 @@ package org.viajesOnline.notificacionReservas;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.documento.Documento;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.Solicitud;
@@ -28,7 +29,6 @@ class NotificadorMailTest {
         gestor = mock(GestorDeDocumentos.class);
 
         when(reservaMock.getUsuario()).thenReturn(usuarioMock);
-        when(reservaMock.getSolicitud()).thenReturn(solicitudMock);
         when(usuarioMock.getEmail()).thenReturn("viajero@test.com");
     }
 
@@ -37,10 +37,10 @@ class NotificadorMailTest {
         notificadorMail.reservaConfirmada(reservaMock);
 
         verify(mailSenderMock, times(1)).enviarMail(
-                "viajero@test.com",
-                "Cambio de estado",
-                "Tu reserva cambió a: Confirmada",
-                solicitudMock);
+                eq("viajero@test.com"),
+                eq("Cambio de estado"),
+                eq("Tu reserva cambió a: Confirmada"),
+                any(Documento.class));
     }
 
     @Test
@@ -48,10 +48,10 @@ class NotificadorMailTest {
         notificadorMail.reservaEnCurso(reservaMock);
 
         verify(mailSenderMock, times(1)).enviarMail(
-                "viajero@test.com",
-                "Cambio de estado",
-                "Tu reserva cambió a: EnCurso",
-                solicitudMock);
+                eq("viajero@test.com"),
+                eq("Cambio de estado"),
+                eq("Tu reserva cambió a: En Curso"),
+                any(Documento.class));
     }
 
     @Test
@@ -59,10 +59,10 @@ class NotificadorMailTest {
         notificadorMail.reservaFinalizada(gestor, reservaMock);
 
         verify(mailSenderMock, times(1)).enviarMail(
-                "viajero@test.com",
-                "Cambio de estado",
-                "Tu reserva cambió a: Finalizada",
-                solicitudMock);
+                eq("viajero@test.com"),
+                eq("Cambio de estado"),
+                eq("Tu reserva cambió a: Finalizada"),
+                any(Documento.class));
     }
 
     @Test

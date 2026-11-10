@@ -1,24 +1,33 @@
 package org.viajesOnline.traslados;
 
 import org.viajesOnline.reservas.ContextoReserva;
-import org.viajesOnline.utils.Direccion;
 
-public class ContextoTraslado extends ContextoReserva {
+public class ContextoTraslado {
 
-    private Direccion direccionDeDestino;
-    private int pasajeros;
-                                            //String
-    public ContextoTraslado(Direccion direccionDeDestino, int pasajeros){
-        this.direccionDeDestino = direccionDeDestino;
-        this.pasajeros = pasajeros;
+    private Traslado tipoTraslado;
+    private ContextoReserva reserva;
+    private int cantPasajeros;
+
+    public ContextoTraslado(Traslado tipoTraslado,int cantPasajeros,ContextoReserva reserva){
+
+        this.setReserva(reserva);
+        this.setTraslado(tipoTraslado);
+        this.setCantPasajeros(cantPasajeros);
     }
 
-    public double costoParaTipoDeTraslado(CostoTraslado t){
+    public void setCantPasajeros(int cantPasajeros) {this.cantPasajeros = cantPasajeros;}
 
-        return t.calcularCosto(this);
+    public void setReserva(ContextoReserva reserva){this.reserva = reserva;}
+
+    public void setTraslado(Traslado tipoTraslado){this.tipoTraslado = tipoTraslado;}
+
+    public double costoParaTipoDeTraslado(){
+
+        return tipoTraslado.calcularCosto(this);
     }
 
-    public int cantPasajeros(){return this.pasajeros;}
+    public float precioReserva(){return reserva.precioFinalReserva();}
 
-    public Direccion direccionDestino(){return this.direccionDeDestino;}
+    public int cantPasajeros(){return this.cantPasajeros;}
+
 }

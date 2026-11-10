@@ -11,6 +11,11 @@ public class EnCheckin implements EstadoReserva {
     }
 
     @Override
+    public double tasasReembolsables(ContextoReserva r) {
+        return r.getCostoTasas();
+    }
+
+    @Override
     public void cancelar(ContextoReserva r) {
         r.getSolicitud().incrementarCupo();
         r.reembolsar();

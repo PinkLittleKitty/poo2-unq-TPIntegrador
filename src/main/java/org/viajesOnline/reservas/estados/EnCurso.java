@@ -14,4 +14,10 @@ public class EnCurso implements EstadoReserva {
     public void notificar(GestorDeDocumentos gestor, ContextoReserva reserva, ObservadorCambioEstado observador) {
         observador.reservaEnCurso(reserva);
     }
+
+    @Override
+    public void cancelar(ContextoReserva r) {
+        r.reembolsar();
+        EstadoReserva.super.cancelar(r);
+    }
 }

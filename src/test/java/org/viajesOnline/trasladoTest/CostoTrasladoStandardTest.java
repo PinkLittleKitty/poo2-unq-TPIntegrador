@@ -2,8 +2,7 @@ package org.viajesOnline.trasladoTest;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.traslados.CostoTraslado;
-import org.viajesOnline.traslados.CostoTrasladoStandard;
+import org.viajesOnline.traslados.TrasladoStandard;
 
 import org.viajesOnline.traslados.DireccionMock;
 import org.viajesOnline.traslados.PlataformaTransporte;
@@ -11,10 +10,10 @@ import org.viajesOnline.traslados.PlataformaTransporte;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class CostoTrasladoTest {
+public class CostoTrasladoStandardTest {
 
     private PlataformaTransporte plataforma;
-    private CostoTraslado trasladoStandard;
+    private TrasladoStandard trasladoStandard;
     private DireccionMock direccionDestino;
 
     @BeforeEach
@@ -22,15 +21,15 @@ public class CostoTrasladoTest {
 
         plataforma = mock(PlataformaTransporte.class);
         direccionDestino = mock(DireccionMock.class);
-        trasladoStandard = new CostoTrasladoStandard(plataforma,direccionDestino);
+        trasladoStandard = new TrasladoStandard(plataforma,direccionDestino);
 
     }
 
     @Test
     void devuelveLaEstimacionDeLaPlataforma() {
 
-        when(plataforma.estimarTraslado(2, direccionDestino)).thenReturn(500f);
-        assertEquals(500f, plataforma.estimarTraslado(2, direccionDestino), 0.001f);
+        when(plataforma.estimarTraslado(4, direccionDestino)).thenReturn(500f);
+        assertEquals(500f, plataforma.estimarTraslado(4, direccionDestino), 0.001f);
     }
 
     @Test
@@ -39,6 +38,4 @@ public class CostoTrasladoTest {
         plataforma.estimarTraslado(4, direccionDestino);
         verify(plataforma).estimarTraslado(4, direccionDestino);
     }
-
-
 }

@@ -1,38 +1,55 @@
 package org.viajesOnline.notificacionReservas;
 
-import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reservas.ContextoReserva;
-import org.viajesOnline.reservas.ObservadorCambioEstado;
+import org.viajesOnline.documento.*;
+import org.viajesOnline.reservas.*;
+import java.util.UUID;
 
 public class NotificadorMail implements ObservadorCambioEstado {
 
+
+    private Documento reciboSolicitud;
+    private String codTrans;
+    private String estadoANotificar;
     private MailSender mailSender;
 
     public NotificadorMail(MailSender mailSender) {
         this.mailSender = mailSender;
     }
 
+    public String estadoANotificar(){ return estadoANotificar; }
+
     @Override
     public void reservaConfirmada(ContextoReserva reserva) {
-        enviarMail(reserva, "Confirmada");
+        notificar(reserva, "Confirmada");
     }
 
     @Override
     public void reservaEnCurso(ContextoReserva reserva) {
-        enviarMail(reserva, "EnCurso");
+        notificar(reserva, "En Curso");
     }
 
     @Override
     public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
-        enviarMail(reserva, "Finalizada");
+        notificar(reserva, "Finalizada");
     }
 
-    private void enviarMail(ContextoReserva reserva, String estado) {
+    private void notificar(ContextoReserva reserva, String estado) {
+        estadoANotificar = estado;
+        codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+
+        String email = reserva.getUsuario().getEmail();
+        double total = reserva.precioFinalReserva();
+        int items = reserva.getSolicitud().cantServicios();
+
+        reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar, email, total, items);
+        this.enviarMail(reserva, reciboSolicitud);
+    }
+
+    private void enviarMail(ContextoReserva reserva, Documento adjunto) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
                 "Cambio de estado",
-                "Tu reserva cambió a: " + estado,
-                reserva.getSolicitud());
-                // Hay que añadir el comprobante fiscal y la factura como adjunto al mail.
+                "Tu reserva cambió a: " + this.estadoANotificar(),
+                adjunto);
     }
 }

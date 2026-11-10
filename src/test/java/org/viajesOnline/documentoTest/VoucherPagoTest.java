@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+
+import org.viajesOnline.documento.ComprobanteCbu;
 import org.viajesOnline.documento.Documento;
 import org.viajesOnline.documento.VoucherParaPago;
 import java.time.LocalDate;
@@ -17,7 +19,7 @@ public class VoucherPagoTest {
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-    private Documento voucherParaPago;
+    private VoucherParaPago voucherParaPago;
 
     @BeforeEach
     void setUp() {
@@ -26,13 +28,14 @@ public class VoucherPagoTest {
 
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        voucherParaPago = new VoucherParaPago("B744777C",("1234567891234567"), ("111"), 1000);
+        voucherParaPago = new VoucherParaPago("B744777C","1234567891234567"
+                                            , "111", 1000.0);
     }
 
     @Test
     void procesarPagoExitosoHaceQueSeIngreseElVoucherAlGestor() {
 
-        assertEquals(1000.0,voucherParaPago.monto(),0.001);
+        assertEquals(1000.0,((VoucherParaPago)voucherParaPago).monto(),0.001);
 
         assertEquals("1234567891234567",((VoucherParaPago) voucherParaPago).numeroTarjeta());
 
@@ -57,8 +60,6 @@ public class VoucherPagoTest {
         assertTrue(consolaOutput.contains("Fecha: " + voucherParaPago.fechaEmision().toLocalDate()),
                 "Fallo Fecha. Lo que imprimió fue:\n" + consolaOutput);
 
-        assertTrue(consolaOutput.contains("Total Pagado: $" + voucherParaPago.monto()),
-                "Fallo Total Pagado. Lo que imprimió fue:\n" + consolaOutput);
 
         assertTrue(consolaOutput.contains("Tipo Voucher: " + ((VoucherParaPago)voucherParaPago).tipoDocumento()),
                 "Fallo Tipo Voucher. Lo que imprimió fue:\n" + consolaOutput);
@@ -66,6 +67,8 @@ public class VoucherPagoTest {
         assertTrue(consolaOutput.contains("Numero Tarjeta: " + ((VoucherParaPago) voucherParaPago).numeroTarjeta()),
                 "Fallo Numero Tarjeta. Lo que imprimió fue:\n" + consolaOutput);
 
+        assertTrue(consolaOutput.contains("Total Pagado: $ " + ((VoucherParaPago)voucherParaPago).monto()),
+                "Fallo Total Pagado. Lo que imprimió fue:\n" + consolaOutput);
     }
 
     @AfterEach

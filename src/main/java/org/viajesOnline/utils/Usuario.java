@@ -3,7 +3,6 @@ package org.viajesOnline.utils;
 public class Usuario {
     private String Nombre;
     private String email;
-    private Direccion domicilio;
     private String CUIT;
     private String DNI;
     private Boolean esResponsableInscripto;
@@ -14,10 +13,6 @@ public class Usuario {
 
     public String getEmail() {
         return email;
-    }
-
-    public Direccion getDomicilio() {
-        return domicilio;
     }
 
     public String getCUIT() {

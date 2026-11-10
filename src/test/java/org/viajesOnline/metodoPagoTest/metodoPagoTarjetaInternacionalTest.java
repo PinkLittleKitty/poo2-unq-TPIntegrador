@@ -22,16 +22,16 @@ public class metodoPagoTarjetaInternacionalTest {
     private ApiTarjetaCredito apiVisaInt;
     private ApiTarjetaCredito apiMastercardInt;
 
-    private MetodoPago tarjetaInternacional;
-    private MetodoPago otraTarjetaInternacional;
+    private MetodoPagoTarjetaInternacional tarjetaInternacional;
+    private MetodoPagoTarjetaInternacional otraTarjetaInternacional;
 
     private GestorDeDocumentos gestorMock;
-    private Documento voucherParaPago;
+    private VoucherParaPago voucherParaPago;
 
     @BeforeEach
     void setUp() {
 
-        voucherParaPago = mock(Documento.class);
+        voucherParaPago = mock(VoucherParaPago.class);
         gestorMock = mock(GestorDeDocumentos.class);
         apiVisaInt = mock(ApiTarjetaCredito.class);
         apiMastercardInt = mock(ApiTarjetaCredito.class);

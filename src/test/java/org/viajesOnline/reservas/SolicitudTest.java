@@ -47,7 +47,14 @@ public class SolicitudTest {
     }
 
     @Test
-    void reembolsar() {
-        solicitud.reembolsar();
+    void precioTotalServicios() {
+        when(servicioA.precioFinal()).thenReturn(1500.0);
+        when(servicioB.precioFinal()).thenReturn(2500.0);
+
+        double total = solicitud.precioTotalServicios();
+
+        assertEquals(4000.0, total, 0.001);
+        verify(servicioA).precioFinal();
+        verify(servicioB).precioFinal();
     }
 }

@@ -5,6 +5,7 @@ import org.viajesOnline.atributos.DefinicionAtributo;
 import org.viajesOnline.atributos.Numerico;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.Periodo;
 
 import java.util.List;
 
@@ -19,11 +20,12 @@ class ServicioIndividualTest {
   private ServicioIndividual servicio = new ServicioIndividual(
           "Hotel",
           "Descripción",
-          new Cupo(2),
+          new Cupo(2, 2),
           123,
           "ProveedorA",
           150.0,
-          cat
+          cat,
+          mock(Periodo.class)
   );
   private DefinicionAtributo attDinamico = mock(DefinicionAtributo.class);
 
@@ -48,11 +50,12 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    new Cupo(2),
+                    new Cupo(2, 2),
                     123,
                     null,
                     150.0,
-                    cat
+                    cat,
+                    mock(Periodo.class)
             )
     );
   }
@@ -63,11 +66,12 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    new Cupo(2),
+                    new Cupo(2, 2),
                     123,
                     "Proveedor A",
                     150.0,
-                    null
+                    null,
+                    mock(Periodo.class)
             )
     );
   }

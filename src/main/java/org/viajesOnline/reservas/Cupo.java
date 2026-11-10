@@ -4,9 +4,13 @@ public class Cupo {
     private int cupoInicial;
     private int cupoDisponible;
 
-    public Cupo( int cupoIni) {
+    public Cupo(int cupoIni, int cupoDisponible) {
         this.cupoInicial = cupoIni;
         this.cupoDisponible = cupoIni;
+    }
+
+    public Cupo sumar(Cupo otroCupo) {
+        return new Cupo(this.cupoInicial + otroCupo.getCupoInicial(), this.cupoDisponible + otroCupo.getCupoDisponible());
     }
 
     public void decrementarCupo() {
@@ -24,4 +28,6 @@ public class Cupo {
     public int getCupoInicial() {
         return cupoInicial;
     }
+
+    public int getCupoReservado() { return cupoInicial - cupoDisponible; }
 }

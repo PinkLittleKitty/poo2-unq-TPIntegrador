@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.viajesOnline.Catalogo;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.estados.EstadoReserva;
+import org.viajesOnline.utils.Periodo;
 import org.viajesOnline.utils.Usuario;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +25,7 @@ class ContextoReservaTest {
         estadoNuevoMock = mock(EstadoReserva.class);
         observerMock = mock(ObservadorCambioEstado.class);
         gestor = mock(GestorDeDocumentos.class);
-        contexto = new ContextoReserva(gestor, new Usuario());
+        contexto = new ContextoReserva(gestor, new Usuario(), mock(Periodo.class));
         contexto.setEstadoActual(estadoMock);
     }
 

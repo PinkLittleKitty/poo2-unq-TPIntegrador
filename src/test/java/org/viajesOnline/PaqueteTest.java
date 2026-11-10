@@ -3,6 +3,7 @@ package org.viajesOnline;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.Periodo;
 
 import java.util.List;
 
@@ -15,7 +16,8 @@ class PaqueteTest {
           "Paquete de prueba",
           "Descripción",
           100.0,
-          mock(Cupo.class)
+          mock(Cupo.class),
+          mock(Periodo.class)
   );
 
   Catalogo item1 = mock(Catalogo.class);

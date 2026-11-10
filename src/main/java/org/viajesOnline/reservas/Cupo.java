@@ -6,7 +6,7 @@ public class Cupo {
 
     public Cupo(int cupoIni, int cupoDisponible) {
         this.cupoInicial = cupoIni;
-        this.cupoDisponible = cupoIni;
+        this.cupoDisponible = cupoDisponible;
     }
 
     public Cupo sumar(Cupo otroCupo) {

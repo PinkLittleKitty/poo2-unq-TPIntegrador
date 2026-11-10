@@ -7,7 +7,7 @@ import org.viajesOnline.traslados.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class CostoTrasladoVipTest {
+public class ContextoTrasladoVipTest {
 
     private ContextoTraslado contextoTraslado;
     //private AdaptadorTrasladoVip adaptadorTrasladoVip;
@@ -25,8 +25,6 @@ public class CostoTrasladoVipTest {
         trasladoVipMock = mock(TrasladoVip.class);
         otroTrasladoVipMock = mock(TrasladoVip.class);
         adaptadorTrasladoVipMock = mock(AdaptadorTrasladoVip.class);
-
-
 
         contextoTraslado = new ContextoTraslado(adaptadorTrasladoVipMock,4,reservaMock);
     }

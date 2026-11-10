@@ -1,6 +1,5 @@
 package org.viajesOnline.traslados;
 
-
 public class AdaptadorTrasladoVip implements Traslado {
 
     private TrasladoVip trasladoVip;

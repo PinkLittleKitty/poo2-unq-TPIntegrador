@@ -18,7 +18,7 @@ public class ComprobanteCbuTest {
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-    private Documento comprobanteCbu;
+    private ComprobanteCbu comprobanteCbu;
 
     @BeforeEach
     void setUp() {

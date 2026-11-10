@@ -19,7 +19,7 @@ public class VoucherPagoTest {
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-    private Documento voucherParaPago;
+    private VoucherParaPago voucherParaPago;
 
     @BeforeEach
     void setUp() {

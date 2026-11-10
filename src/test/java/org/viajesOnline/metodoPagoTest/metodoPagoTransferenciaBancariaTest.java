@@ -19,7 +19,7 @@ class MetodoPagoTransferenciaBancariaTest {
 
     private ApiTransferenciaBancaria apiTBancariaMock;
     private GestorDeDocumentos gestorMock;
-    private MetodoPago transferenciaBancaria;
+    private MetodoPagoTransferenciaBancaria transferenciaBancaria;
 
     @BeforeEach
     void setUp() {

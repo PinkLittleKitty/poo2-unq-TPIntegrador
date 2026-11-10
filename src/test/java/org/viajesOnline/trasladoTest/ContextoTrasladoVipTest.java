@@ -31,11 +31,6 @@ public class ContextoTrasladoVipTest {
     }
 
     @Test
-    void
-
-
-
-    @Test
     void costoVipConReservaDe1000Es900() {
         when(reservaMock.precioFinalReserva()).thenReturn(1000f);
         doNothing().when(adaptadorTrasladoVipMock).setTrasladoVip(trasladoVipMock);

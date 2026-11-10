@@ -48,7 +48,7 @@ public class NotificadorMail implements ObservadorCambioEstado {
         estadoANotificar = "Finalizada";
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
-        //Falta agregar los datos pripios de un recibo solicitud
+        //TODO: Falta agregar los datos pripios de un recibo solicitud
         reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar);
 
         this.enviarMail(reserva, reciboSolicitud);

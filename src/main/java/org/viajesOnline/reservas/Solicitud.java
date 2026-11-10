@@ -39,7 +39,7 @@ public class Solicitud {
 
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
-        //Falta agregar los datos propios de un voucher de reembolso servicio y tasas
+        //TODO: Falta agregar los datos propios de un voucher de reembolso servicio y tasas
         Documento reembolso = new VoucherReembolso(codTrans,1,1);
     }
 }

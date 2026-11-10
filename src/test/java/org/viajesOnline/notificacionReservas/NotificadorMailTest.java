@@ -29,6 +29,7 @@ class NotificadorMailTest {
         gestor = mock(GestorDeDocumentos.class);
 
         when(reservaMock.getUsuario()).thenReturn(usuarioMock);
+        when(reservaMock.getSolicitud()).thenReturn(solicitudMock);
         when(usuarioMock.getEmail()).thenReturn("viajero@test.com");
     }
 

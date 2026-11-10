@@ -1,18 +1,17 @@
 package org.viajesOnline.criterios;
 
-import org.viajesOnline.Catalogo;
-import org.viajesOnline.ServicioIndividual;
+import org.viajesOnline.Categoria;
 
-public class Categoria implements Criterio {
+public class PorCategoria implements Criterio {
   private Categoria categoria;
 
-  public Categoria(Categoria categoria) {
+  public PorCategoria(Categoria categoria) {
     this.categoria = categoria;
   }
 
   @Override
-  public boolean sastifaceCriterio(ServicioIndividual cat) {
-    return this.getCategoria() == cat.categoria();
+  public boolean sastifaceCriterio(Categoria cat) {
+    return this.getCategoria().equals(cat.categoria());
   }
 
   public Categoria getCategoria() {

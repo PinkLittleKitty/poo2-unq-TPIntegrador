@@ -1,6 +1,7 @@
 package org.viajesOnline;
 
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.Periodo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
 public class Paquete extends Catalogo{
   private List<Catalogo> items = new ArrayList<>();
 
-  public Paquete(String nombre, String descripcion, double precioBase, Cupo cupoDisponible) {
-    super(nombre, descripcion, precioBase, cupoDisponible);
+  public Paquete(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodo) {
+    super(nombre, descripcion, precioBase, cupoDisponible, periodo);
   }
 
   public List<Catalogo> verItems() {

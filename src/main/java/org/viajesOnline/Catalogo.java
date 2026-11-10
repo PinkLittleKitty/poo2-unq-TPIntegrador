@@ -3,7 +3,9 @@ package org.viajesOnline;
 import org.apache.commons.lang3.Validate;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.Periodo;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public abstract class Catalogo {
@@ -12,6 +14,16 @@ public abstract class Catalogo {
   private double precioBase;
   private int descuento = 0;
   private Cupo cupo;
+  private Periodo periodoVigencia;
+
+  public Catalogo(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia){
+    this.validar(nombre, descripcion,precioBase,cupoDisponible);
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.precioBase = precioBase;
+    this.cupo = cupoDisponible;
+    this.periodoVigencia = periodoVigencia;
+  }
 
   public void darDescuento(int descuento){
     Validate.inclusiveBetween(0, 100, descuento, "No es un descuento valido");
@@ -38,12 +50,12 @@ public abstract class Catalogo {
     }
   }
 
-  public Catalogo(String nombre, String descripcion, double precioBase, Cupo cupoDisponible){
-    this.validar(nombre, descripcion,precioBase,cupoDisponible);
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.precioBase = precioBase;
-    this.cupo = cupoDisponible;
+  public boolean estaDisponibleEn(LocalDate fecha) {
+    return this.getCupoDisponible() > 0 && this.periodoVigencia.incluye(fecha);
+  }
+
+  public boolean estaDisponibleEn(Periodo periodo) {
+    return this.getCupoDisponible() > 0 && this.periodoVigencia.seSuperponeCon(periodo);
   }
 
   public String getNombre() {
@@ -61,6 +73,10 @@ public abstract class Catalogo {
   public int getCupoDisponible() {
     return cupo.getCupoDisponible();
   }
+
+  public Cupo getCupo() { return cupo; }
+
+  public Periodo getPeriodoVigencia() { return periodoVigencia; }
 
   public void incrementarCupo() { cupo.incrementarCupo(); }
   public void decrementarCupo() { cupo.decrementarCupo(); }

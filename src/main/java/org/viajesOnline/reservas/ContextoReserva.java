@@ -3,11 +3,10 @@ package org.viajesOnline.reservas;
 import org.viajesOnline.Catalogo;
 import org.viajesOnline.documento.*;
 import org.viajesOnline.reservas.estados.*;
-import org.viajesOnline.utils.Usuario;
+import org.viajesOnline.utils.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
 
 public class ContextoReserva {
 
@@ -16,10 +15,13 @@ public class ContextoReserva {
     private Solicitud solicitud =  new Solicitud();
     private Usuario usuario;
     private GestorDeDocumentos gestor;
+    private Periodo periodo;
+    private LocalDate fechaCompra;
 
-    public ContextoReserva(GestorDeDocumentos gestor, Usuario usuario) {
+    public ContextoReserva(GestorDeDocumentos gestor, Usuario usuario, Periodo periodo) {
         this.gestor = gestor;
         this.usuario = usuario;
+        this.periodo = periodo;
     }
 
     public ContextoReserva() {}
@@ -47,6 +49,18 @@ public class ContextoReserva {
     public Solicitud getSolicitud() {return this.solicitud;}
 
     public Usuario getUsuario() { return this.usuario; }
+
+    public LocalDate getFechaCompra() {
+        return fechaCompra;
+    }
+
+    public void setFechaCompra(LocalDate fechaCompra) {
+        this.fechaCompra = fechaCompra;
+    }
+
+    public Periodo getPeriodo() {
+        return periodo;
+    }
 
     public void siguiente() {
         estadoActual.siguiente(this);

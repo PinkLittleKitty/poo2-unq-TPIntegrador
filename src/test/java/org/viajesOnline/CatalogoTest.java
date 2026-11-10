@@ -3,18 +3,20 @@ package org.viajesOnline;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.Periodo;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class CatalogoTest {
   private static class TestCatalogo extends Catalogo {
-    TestCatalogo(String nombre, String descripcion, double precio, Cupo cupo) {
-      super(nombre, descripcion, precio, cupo);
+    TestCatalogo(String nombre, String descripcion, double precio, Cupo cupo, Periodo periodo) {
+      super(nombre, descripcion, precio, cupo, periodo);
     }
   }
   Cupo cupo = mock(Cupo.class);
-  Catalogo catalogo = new TestCatalogo("Hotel", "Descripción", 150.0, new Cupo(10));
+  Periodo periodoMock = mock(Periodo.class);
+  Catalogo catalogo = new TestCatalogo("Hotel", "Descripción", 150.0, new Cupo(10, 10), periodoMock);
 
   @Test
   void GetterNombreEsCorrecto(){
@@ -30,7 +32,7 @@ class CatalogoTest {
   void lanzaCompletarCamposSiNombreEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo(null, "Descripción", 100.0, cupo)
+            () -> new TestCatalogo(null, "Descripción", 100.0, cupo, periodoMock)
     );
   }
 
@@ -38,7 +40,7 @@ class CatalogoTest {
   void lanzaCompletarCamposSiDescripcionEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Hotel", null, 100.0, cupo)
+            () -> new TestCatalogo("Curso", null, 100.0, cupo, periodoMock)
     );
   }
 
@@ -46,16 +48,16 @@ class CatalogoTest {
   void lanzaCompletarCamposSiCupoEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Hotel", "Descripción", 100.0, null)
+            () -> new TestCatalogo("Curso", "Descripción", 100.0, null,  periodoMock)
     );
   }
 
   @Test
   void rechazaSiPrecioEsNegativoOCero() {
     assertThrows(CompletarCampos.class,
-            () -> new TestCatalogo("Hotel", "Descripción", 0.0, cupo));
+            () -> new TestCatalogo("Hotel", "Descripción", 0.0, cupo, periodoMock));
     assertThrows(CompletarCampos.class,
-                    () -> new TestCatalogo("Hotel", "Descripción", -1.0, cupo));
+                    () -> new TestCatalogo("Hotel", "Descripción", -1.0, cupo, periodoMock));
   }
 
   @Test

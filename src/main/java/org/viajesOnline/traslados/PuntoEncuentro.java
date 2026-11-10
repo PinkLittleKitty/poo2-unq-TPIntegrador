@@ -25,11 +25,13 @@ public class PuntoEncuentro implements Traslado{
         this.hayGuiasDisponibles = guiasDisponibles;
     }
 
-    private void hayGuiasDisponibles() {
+    public boolean hayGuiasDisponibles() {
 
         if (!hayGuiasDisponibles) {
             throw new UnsupportedOperationException("No hay guías disponibles");
         }
+
+        return true;
     }
 
     public float precioEnPuntoEncuentro(){return precioEnPuntoEncuentro;}

@@ -4,6 +4,8 @@ import org.viajesOnline.atributos.DefinicionAtributo;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 import org.apache.commons.lang3.Validate;
+import org.viajesOnline.utils.Periodo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -34,8 +36,8 @@ public class ServicioIndividual extends Catalogo {
     }
   }
 
-  public ServicioIndividual(String nombre, String descripcion, Cupo cupo, int idReserva, String proveedor, double precio, Categoria categoria){
-    super(nombre,descripcion,precio,cupo);
+  public ServicioIndividual(String nombre, String descripcion, Cupo cupo, int idReserva, String proveedor, double precio, Categoria categoria, Periodo periodo){
+    super(nombre, descripcion, precio, cupo, periodo);
     this.verificacionCons(proveedor,categoria,idReserva);
     this.idReserva = idReserva;
     this.proveedor = proveedor;

@@ -3,23 +3,24 @@ package org.viajesOnline.traslados;
 public class PuntoEncuentro implements Traslado{
 
     private boolean hayGuiasDisponibles = true;
-    private PuntoEncuentro puntoEncuentro;
-    private float precioEnPuntoEncuentro;
+    private LugarPuntoEncuentro puntoEncuentro;
+    private final float precioEnPuntoEncuentro = 0;
 
 
-    public PuntoEncuentro(PuntoEncuentro puntoEncuentro){
+    public PuntoEncuentro(LugarPuntoEncuentro puntoEncuentro,boolean guiasDisponibles){
 
         this.setPuntoEncuentro(puntoEncuentro);
+        this.setGuiasDisponibles(guiasDisponibles);
     }
 
-    public void setPrecioEnPuntoEncuentro(float nuevoPrecio){nuevoPrecio = precioEnPuntoEncuentro;}
-
-    public void setPuntoEncuentro(PuntoEncuentro puntoEncuentro) {
+    public void setPuntoEncuentro(LugarPuntoEncuentro puntoEncuentro) {
 
         this.puntoEncuentro = puntoEncuentro;
     }
 
-    public void guiasDisponibles(boolean guiasDisponibles) {
+    public LugarPuntoEncuentro puntoEncuentro() {return puntoEncuentro;}
+
+    public void setGuiasDisponibles(boolean guiasDisponibles) {
 
         this.hayGuiasDisponibles = guiasDisponibles;
     }
@@ -31,7 +32,9 @@ public class PuntoEncuentro implements Traslado{
         }
     }
 
+    public float precioEnPuntoEncuentro(){return precioEnPuntoEncuentro;}
+
     @Override
-    public float calcularCosto(ContextoTraslado c){return precioEnPuntoEncuentro;}
+    public float calcularCosto(ContextoTraslado c){return this.precioEnPuntoEncuentro();}
 
 }

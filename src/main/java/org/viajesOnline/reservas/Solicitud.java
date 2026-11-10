@@ -15,6 +15,7 @@ public class Solicitud {
     private List<Catalogo> servicios = new ArrayList<>();
 
     public List<Catalogo> getServicios() { return servicios; }
+    public int cantServicios() { return servicios.size(); }
 
     public void agregarServicio(Catalogo s) {
         servicios.add(s);

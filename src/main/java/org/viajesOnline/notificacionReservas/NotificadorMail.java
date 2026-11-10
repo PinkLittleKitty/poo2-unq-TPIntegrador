@@ -1,11 +1,7 @@
 package org.viajesOnline.notificacionReservas;
 
-import org.viajesOnline.documento.Documento;
-import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.documento.ReciboDeSolicitud;
-import org.viajesOnline.reservas.ContextoReserva;
-import org.viajesOnline.reservas.ObservadorCambioEstado;
-
+import org.viajesOnline.documento.*;
+import org.viajesOnline.reservas.*;
 import java.util.UUID;
 
 public class NotificadorMail implements ObservadorCambioEstado {
@@ -17,44 +13,39 @@ public class NotificadorMail implements ObservadorCambioEstado {
     private MailSender mailSender;
 
     public NotificadorMail(MailSender mailSender) {
-
         this.mailSender = mailSender;
     }
 
+    public String estadoANotificar(){ return estadoANotificar; }
 
     @Override
     public void reservaConfirmada(ContextoReserva reserva) {
-
-        estadoANotificar = "Confirmada";
-        codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar);;
-        this.enviarMail(reserva, reciboSolicitud);
+        notificar(reserva, "Confirmada");
     }
-
-    public String estadoANotificar(){return estadoANotificar;}
 
     @Override
     public void reservaEnCurso(ContextoReserva reserva) {
-
-        estadoANotificar = "En Curso";
-        codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar);
-        this.enviarMail(reserva, reciboSolicitud);
+        notificar(reserva, "En Curso");
     }
 
     @Override
     public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
+        notificar(reserva, "Finalizada");
+    }
 
-        estadoANotificar = "Finalizada";
+    private void notificar(ContextoReserva reserva, String estado) {
+        estadoANotificar = estado;
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
-        //TODO: Falta agregar los datos pripios de un recibo solicitud
-        reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar);
+        String email = reserva.getUsuario().getEmail();
+        double total = reserva.precioFinalReserva();
+        int items = reserva.getSolicitud().cantServicios();
 
+        reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar, email, total, items);
         this.enviarMail(reserva, reciboSolicitud);
     }
 
-    private void enviarMail(ContextoReserva reserva,Documento adjunto) {
+    private void enviarMail(ContextoReserva reserva, Documento adjunto) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
                 "Cambio de estado",

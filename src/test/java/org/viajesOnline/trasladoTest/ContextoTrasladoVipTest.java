@@ -16,6 +16,7 @@ public class ContextoTrasladoVipTest {
     private TrasladoVip trasladoVipMock;
     private TrasladoVip otroTrasladoVipMock;
     private ContextoReserva reservaMock;
+    private ContextoReserva nuevaReservaMock;
     private AdaptadorTrasladoVip adaptadorTrasladoVipMock;;
 
     @BeforeEach
@@ -28,6 +29,11 @@ public class ContextoTrasladoVipTest {
 
         contextoTraslado = new ContextoTraslado(adaptadorTrasladoVipMock,4,reservaMock);
     }
+
+    @Test
+    void
+
+
 
     @Test
     void costoVipConReservaDe1000Es900() {

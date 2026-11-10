@@ -10,7 +10,6 @@ import java.util.UUID;
 
 public class NotificadorMail implements ObservadorCambioEstado {
 
-    //public NotificadorMail(MailSender mailSender) {super(mailSender);}
 
     private Documento reciboSolicitud;
     private String codTrans;
@@ -19,18 +18,17 @@ public class NotificadorMail implements ObservadorCambioEstado {
 
     public NotificadorMail(MailSender mailSender) {
 
-        this.setMail(mailSender);
+        this.mailSender = mailSender;
     }
 
-    public void setMail(MailSender mailSender){this.mailSender = mailSender;;}
 
     @Override
     public void reservaConfirmada(ContextoReserva reserva) {
 
         estadoANotificar = "Confirmada";
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);;
-        enviarMail(reserva, reciboSolicitud);
+        reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar);;
+        this.enviarMail(reserva, reciboSolicitud);
     }
 
     public String estadoANotificar(){return estadoANotificar;}
@@ -40,8 +38,8 @@ public class NotificadorMail implements ObservadorCambioEstado {
 
         estadoANotificar = "En Curso";
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);
-        enviarMail(reserva, reciboSolicitud);
+        reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar);
+        this.enviarMail(reserva, reciboSolicitud);
     }
 
     @Override
@@ -51,9 +49,9 @@ public class NotificadorMail implements ObservadorCambioEstado {
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
         //Falta agregar los datos pripios de un recibo solicitud
-        reciboSolicitud = new ReciboDeSolicitud(codTrans,estadoANotificar);
+        reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar);
 
-        enviarMail(reserva, reciboSolicitud);
+        this.enviarMail(reserva, reciboSolicitud);
     }
 
     private void enviarMail(ContextoReserva reserva,Documento adjunto) {

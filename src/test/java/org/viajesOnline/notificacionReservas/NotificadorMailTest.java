@@ -16,20 +16,19 @@ class NotificadorMailTest {
     private NotificadorMail notificadorMail;
     private ContextoReserva reservaMock;
     private Usuario usuarioMock;
-    private Documento solicitudMock;
+    private Solicitud solicitudMock;
     private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
         mailSenderMock = mock(MailSender.class);
-        //notificadorMail = new NotificadorMail(mailSenderMock);
+        notificadorMail = new NotificadorMail(mailSenderMock);
         reservaMock = mock(ContextoReserva.class);
         usuarioMock = mock(Usuario.class);
-        solicitudMock = mock(Documento.class);
+        solicitudMock = mock(Solicitud.class);
         gestor = mock(GestorDeDocumentos.class);
 
         when(reservaMock.getUsuario()).thenReturn(usuarioMock);
-        //when(reservaMock.getSolicitud()).thenReturn(solicitudMock);
         when(usuarioMock.getEmail()).thenReturn("viajero@test.com");
     }
 
@@ -38,10 +37,10 @@ class NotificadorMailTest {
         notificadorMail.reservaConfirmada(reservaMock);
 
         verify(mailSenderMock, times(1)).enviarMail(
-                "viajero@test.com",
-                "Cambio de estado",
-                "Tu reserva cambió a: Confirmada",
-                solicitudMock);
+                eq("viajero@test.com"),
+                eq("Cambio de estado"),
+                eq("Tu reserva cambió a: Confirmada"),
+                any(Documento.class));
     }
 
     @Test
@@ -49,10 +48,10 @@ class NotificadorMailTest {
         notificadorMail.reservaEnCurso(reservaMock);
 
         verify(mailSenderMock, times(1)).enviarMail(
-                "viajero@test.com",
-                "Cambio de estado",
-                "Tu reserva cambió a: EnCurso",
-                solicitudMock);
+                eq("viajero@test.com"),
+                eq("Cambio de estado"),
+                eq("Tu reserva cambió a: En Curso"),
+                any(Documento.class));
     }
 
     @Test
@@ -60,10 +59,10 @@ class NotificadorMailTest {
         notificadorMail.reservaFinalizada(gestor, reservaMock);
 
         verify(mailSenderMock, times(1)).enviarMail(
-                "viajero@test.com",
-                "Cambio de estado",
-                "Tu reserva cambió a: Finalizada",
-                solicitudMock);
+                eq("viajero@test.com"),
+                eq("Cambio de estado"),
+                eq("Tu reserva cambió a: Finalizada"),
+                any(Documento.class));
     }
 
     @Test

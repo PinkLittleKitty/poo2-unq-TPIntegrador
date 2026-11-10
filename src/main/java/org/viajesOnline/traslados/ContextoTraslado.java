@@ -1,7 +1,6 @@
 package org.viajesOnline.traslados;
 
 import org.viajesOnline.reservas.ContextoReserva;
-import org.viajesOnline.utils.Direccion;
 
 public class ContextoTraslado {
 
@@ -29,6 +28,6 @@ public class ContextoTraslado {
 
     public float precioReserva(){return reserva.precioFinalReserva();}
 
-    public int cantPasajeros(){return this.cantPasajeros();}
+    public int cantPasajeros(){return this.cantPasajeros;}
 
 }

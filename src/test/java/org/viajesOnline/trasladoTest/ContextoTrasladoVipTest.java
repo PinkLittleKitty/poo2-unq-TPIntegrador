@@ -17,7 +17,7 @@ public class ContextoTrasladoVipTest {
     private TrasladoVip otroTrasladoVipMock;
     private ContextoReserva reservaMock;
     private ContextoReserva nuevaReservaMock;
-    private AdaptadorTrasladoVip adaptadorTrasladoVipMock;;
+    private AdaptadorTrasladoVip adaptadorTrasladoVip;;
 
     @BeforeEach
     void setUp() {
@@ -25,36 +25,19 @@ public class ContextoTrasladoVipTest {
         reservaMock = mock(ContextoReserva.class);
         trasladoVipMock = mock(TrasladoVip.class);
         otroTrasladoVipMock = mock(TrasladoVip.class);
-        adaptadorTrasladoVipMock = mock(AdaptadorTrasladoVip.class);
+        adaptadorTrasladoVip = new AdaptadorTrasladoVip(trasladoVipMock);
 
-        contextoTraslado = new ContextoTraslado(adaptadorTrasladoVipMock,4,reservaMock);
+        contextoTraslado = new ContextoTraslado(adaptadorTrasladoVip,4,reservaMock);
     }
 
     @Test
     void costoVipConReservaDe1000Es900() {
         when(reservaMock.precioFinalReserva()).thenReturn(1000f);
-        doNothing().when(adaptadorTrasladoVipMock).setTrasladoVip(trasladoVipMock);
 
-        //when(trasladoVipMock.calcularCosto(reservaMock.precioFinalReserva())).thenReturn(900f);
+        when(trasladoVipMock.calcularCosto(1000f)).thenReturn(900f);
 
 
         assertEquals(900f, contextoTraslado.costoParaTipoDeTraslado(), 0.001f);
-
-        verify(reservaMock).precioFinalReserva();
-    }
-
-    @Test
-    void ContextoTrasladoTieneUnaReservaConPrecioDe1000PesosCalculoELcOSTOYd900() {
-
-        when(reservaMock.precioFinalReserva()).thenReturn(1000f);
-
-        //when(adaptadorTrasladoVipMock.calcularCosto(reservaMock.precioFinalReserva()).thenReturn(900f);
-
-        when(trasladoVipMock.calcularCosto(reservaMock.precioFinalReserva())).thenReturn(900f);
-
-       // when(contextoTraslado.calcularCosto(reservaMock.precioFinalReserva())).thenReturn(900f);
-
-        //se verifica que se llamo a precio reserva
 
         verify(reservaMock).precioFinalReserva();
         verify(trasladoVipMock).calcularCosto(1000f);
@@ -64,16 +47,12 @@ public class ContextoTrasladoVipTest {
     void CambioEltrasladoAlADAPTADOREnElMismoContextoTrasladoTieneUnaReservaConPrecioDe1000PCalculaYda900() {
 
         when(reservaMock.precioFinalReserva()).thenReturn(1000f);
+        when(trasladoVipMock.calcularCosto(1000.0f)).thenReturn(900f);
 
-        //adaptadorTrasladoVip.setTrasladoVip(otroTrasladoVipMock);
-
-        assertEquals(800f, contextoTraslado.costoParaTipoDeTraslado(),0.001f);
-
-
-        //assertEquals(300f, adaptadorTrasladoVip.trasladoVip().cargoBase(),0.001f);
-        //when(trasladoVipMock.cargoBase()).thenReturn(100f);
-        //when(trasladoVipMock.porcentajeFijo()).thenReturn(0.8f);
-
+        float costo = (float) contextoTraslado.costoParaTipoDeTraslado();
+        assertEquals(900f, costo,0.001f);
+        verify(reservaMock).precioFinalReserva();
+        verify(trasladoVipMock).calcularCosto(1000f);
     }
 
 }

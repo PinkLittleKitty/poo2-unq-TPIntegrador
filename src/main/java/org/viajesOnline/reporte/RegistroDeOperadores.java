@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-class RegistroDeOperadores {
+class RegistroDeOperadores implements Reporte {
 
     private List<ServicioIndividual> catalogo;
 
@@ -17,7 +17,8 @@ class RegistroDeOperadores {
         this.catalogo = catalogo;
     }
 
-    public void accept(FormatoVisitanteReportes v){v.visitar(this);}
+    @Override
+    public void accept(FormatoVisitanteReportes v) { v.visitar(this); }
 
     public Map<String, Double> calcularDatos() {
         double total = catalogo.size();
@@ -31,14 +32,6 @@ class RegistroDeOperadores {
                         )
                 ));
     }
-
-    /* public Map<String, Double> ordenarDatos() {
-        Map<String, Double> porcentajes = this.calcularDatos();
-
-        return porcentajes.entrySet().stream()
-                .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-    }*/
 
     public boolean hayRiesgoDeConcentracion(double porcentajeMaximo) {
         return this.calcularDatos().values().stream().anyMatch(porcentaje -> porcentaje >= porcentajeMaximo);

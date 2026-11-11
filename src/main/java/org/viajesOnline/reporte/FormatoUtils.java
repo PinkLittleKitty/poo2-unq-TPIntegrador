@@ -10,8 +10,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static java.util.Map.Entry.*;
-
 final class FormatoUtils {
     private FormatoUtils() {}
 

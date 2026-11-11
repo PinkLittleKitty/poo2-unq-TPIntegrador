@@ -1,9 +1,7 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.Catalogo;
 import org.viajesOnline.Categoria;
 import org.viajesOnline.ServicioIndividual;
-import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
 

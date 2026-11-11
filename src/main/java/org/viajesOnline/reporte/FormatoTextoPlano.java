@@ -1,11 +1,10 @@
 package org.viajesOnline.reporte;
 
-
 import org.viajesOnline.reservas.Cupo;
 
 import java.util.List;
 
-class FormatoTextoPlano implements FormatoVisitanteReportes {
+public class FormatoTextoPlano implements FormatoVisitanteReportes {
 
     private String reporteTextoPlano;
 

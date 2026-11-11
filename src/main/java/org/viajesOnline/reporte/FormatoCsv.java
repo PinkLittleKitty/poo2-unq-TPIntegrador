@@ -2,7 +2,7 @@ package org.viajesOnline.reporte;
 
 import java.util.List;
 
-class FormatoCsv implements FormatoVisitanteReportes {
+public class FormatoCsv implements FormatoVisitanteReportes {
 
     private String reporteCsv;
 

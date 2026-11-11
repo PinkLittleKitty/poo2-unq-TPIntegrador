@@ -2,7 +2,7 @@ package org.viajesOnline.reporte;
 
 import java.util.List;
 
-class FormatoHtml implements FormatoVisitanteReportes {
+public class FormatoHtml implements FormatoVisitanteReportes {
 
     private String reporteHtml;
 

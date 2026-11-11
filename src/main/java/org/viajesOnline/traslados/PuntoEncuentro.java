@@ -3,22 +3,22 @@ package org.viajesOnline.traslados;
 public class PuntoEncuentro implements Traslado{
 
     private boolean hayGuiasDisponibles = true;
-    private LugarPuntoEncuentro puntoEncuentro;
+    private LugarPuntoEncuentroMock puntoEncuentro;
     private final float precioEnPuntoEncuentro = 0;
 
 
-    public PuntoEncuentro(LugarPuntoEncuentro puntoEncuentro,boolean guiasDisponibles){
+    public PuntoEncuentro(LugarPuntoEncuentroMock puntoEncuentro, boolean guiasDisponibles){
 
         this.setPuntoEncuentro(puntoEncuentro);
         this.setGuiasDisponibles(guiasDisponibles);
     }
 
-    public void setPuntoEncuentro(LugarPuntoEncuentro puntoEncuentro) {
+    public void setPuntoEncuentro(LugarPuntoEncuentroMock puntoEncuentro) {
 
         this.puntoEncuentro = puntoEncuentro;
     }
 
-    public LugarPuntoEncuentro puntoEncuentro() {return puntoEncuentro;}
+    public LugarPuntoEncuentroMock puntoEncuentro() {return puntoEncuentro;}
 
     public void setGuiasDisponibles(boolean guiasDisponibles) {
 

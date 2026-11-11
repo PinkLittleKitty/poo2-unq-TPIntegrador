@@ -35,6 +35,7 @@ class FormatoHtml implements FormatoVisitanteReportes {
                 List.of("Operador", "Porcentaje"), filas);
     }
 
+    @Override
     public String obtenerReporte(){
         return reporteHtml;
     }

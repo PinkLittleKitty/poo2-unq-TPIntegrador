@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.Map.Entry.*;
 
@@ -33,6 +34,33 @@ final class FormatoUtils {
 
     static String formatearPorcentaje(double porcentaje) {
         return String.format(Locale.US, "%.2f", porcentaje);
+    }
+
+    static String construirCsv(List<String> encabezados, List<List<String>> filas) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(lineaCsv(encabezados));
+        for (List<String> fila : filas) {
+            sb.append("\n").append(lineaCsv(fila));
+        }
+        return sb.toString();
+    }
+
+    private static String lineaCsv(List<String> campos) {
+        return campos.stream()
+                .map(FormatoUtils::escaparCsv)
+                .collect(Collectors.joining(","));
+    }
+
+    static String escaparCsv(String valor) {
+        if (valor == null) {
+            return "";
+        }
+
+        if (valor.contains(",") || valor.contains("\"") || valor.contains("\n") || valor.contains("\r")) {
+            return "\"" + valor.replace("\"", "\"\"") + "\"";
+        }
+
+        return valor;
     }
 
     static String construirTablaHtml(String titulo, List<String> encabezados, List<List<String>> filas) {

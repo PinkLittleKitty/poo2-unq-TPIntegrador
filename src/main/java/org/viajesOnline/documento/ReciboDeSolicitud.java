@@ -6,6 +6,7 @@ public class ReciboDeSolicitud extends Documento{
     private String emailDestinatario;
     private double montoTotal;
     private int cantidadItems;
+    private String nombreRecibo;
 
     public ReciboDeSolicitud(String codigoTransaccion, String estadoDeSolicitud, String emailDestinatario, double montoTotal, int cantidadItems) {
         super(codigoTransaccion);
@@ -13,8 +14,10 @@ public class ReciboDeSolicitud extends Documento{
         this.emailDestinatario = emailDestinatario;
         this.montoTotal = montoTotal;
         this.cantidadItems = cantidadItems;
+        this.nombreRecibo = "Recibo Solicitud";
     }
 
+    public String tipoDocumento() { return nombreRecibo; }
     public String getEstadoDeSolicitud() { return estadoDeSolicitud; }
     public String getEmailDestinatario() { return emailDestinatario; }
     public double getMontoTotal() { return montoTotal; }

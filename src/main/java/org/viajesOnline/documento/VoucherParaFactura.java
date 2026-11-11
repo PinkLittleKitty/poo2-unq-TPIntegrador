@@ -1,19 +1,22 @@
 package org.viajesOnline.documento;
 
 
-public class    VoucherParaFactura extends Documento{
+public class VoucherParaFactura extends Documento{
 
     private String titular;
     private int cantidadDeServicios;
     private double monto;
+    private String nombreVoucher;
 
     public VoucherParaFactura(String codTransaccion, String titular, int cantidadDeServicios, double monto) {
         super(codTransaccion);
         this.titular = titular;
         this.cantidadDeServicios = cantidadDeServicios;
         this.monto = monto;
+        this.nombreVoucher = "Voucher Factura";
     }
 
+    public String tipoDocumento(){return nombreVoucher;}
     public String getTitular() { return titular; }
     public int getCantidadDeServicios() { return cantidadDeServicios; }
     public double getMonto() { return monto; }

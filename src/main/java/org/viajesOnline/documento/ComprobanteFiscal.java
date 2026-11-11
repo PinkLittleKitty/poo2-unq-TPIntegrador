@@ -8,6 +8,8 @@ public class ComprobanteFiscal extends Documento {
     private double importeNeto;
     private double iva;
     private double montoTotal;
+    private String nombreComprobante;
+
 
     public ComprobanteFiscal(String codTransaccion, String tipoFactura, String nombreCliente, String identificacionFiscal, double montoTotal)
     {
@@ -18,8 +20,10 @@ public class ComprobanteFiscal extends Documento {
         this.montoTotal = montoTotal;
         this.importeNeto = this.calcularIva(montoTotal / 1.21);
         this.iva = this.calcularIva(montoTotal - this.importeNeto);
+        this.nombreComprobante = "Comprobante Fiscal";
     }
 
+    public String tipoDocumento(){return nombreComprobante;}
     public String getTipoFactura() { return tipoFactura; }
     public String getNombreCliente() { return nombreCliente; }
     public String getIdentificacionFiscal() { return identificacionFiscal; }

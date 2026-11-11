@@ -14,13 +14,11 @@ import java.util.Objects;
 public class ServicioIndividual extends Catalogo {
   private int idReserva; //??????
   private String proveedor;
-  private Categoria categoria;
   private List<DefinicionAtributo> atributosDinamicos = new ArrayList<DefinicionAtributo>();
 
-  private static void verificacionCons(String proveedor,Categoria categoria,int idReserva){
+  private static void verificacionCons(String proveedor,int idReserva){
     try{
       Objects.requireNonNull(proveedor);
-      Objects.requireNonNull(categoria);
       Validate.notBlank(proveedor);
       Validate.validState(idReserva > 0);
     } catch (Exception e) {
@@ -37,11 +35,10 @@ public class ServicioIndividual extends Catalogo {
   }
 
   public ServicioIndividual(String nombre, String descripcion, Cupo cupo, int idReserva, String proveedor, double precio, Categoria categoria, Periodo periodo){
-    super(nombre, descripcion, precio, cupo, periodo);
-    this.verificacionCons(proveedor,categoria,idReserva);
+    super(nombre, descripcion, precio, cupo, periodo, categoria);
+    this.verificacionCons(proveedor,idReserva);
     this.idReserva = idReserva;
     this.proveedor = proveedor;
-    this.categoria = categoria;
   }
 
   public void agregarAtributoExtra(DefinicionAtributo _atributo){
@@ -56,10 +53,6 @@ public class ServicioIndividual extends Catalogo {
 
   public String proveedor(){
     return proveedor;
-  }
-
-  public Categoria categoria(){
-    return categoria;
   }
 
   public int getIdReserva() {

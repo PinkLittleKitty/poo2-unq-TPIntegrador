@@ -1,6 +1,7 @@
 package org.viajesOnline.atributos;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.criterios.Nombre;
 import org.viajesOnline.exceptions.CompletarCampos;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,9 +17,10 @@ class DefinicionAtributoTest {
   }
 
   @Test
-  void rechazaNombreNulo() {
-    assertThrows(CompletarCampos.class,
-            () -> new DefinicionAtributo(null, 5, new Numerico()));
+  void constructorRechazaNombreNuloOVacio() {
+    assertThrows(CompletarCampos.class, () -> new DefinicionAtributo(null, 5, new Numerico()));
+    assertThrows(CompletarCampos.class, () -> new DefinicionAtributo("", 5, new Numerico()));
+    assertThrows(CompletarCampos.class, () -> new DefinicionAtributo("   ", 5, new Numerico()));
   }
 
   @Test

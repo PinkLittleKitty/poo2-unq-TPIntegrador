@@ -15,14 +15,16 @@ public abstract class Catalogo {
   private int descuento = 0;
   private Cupo cupo;
   private Periodo periodoVigencia;
+  private Categoria categoria;
 
-  public Catalogo(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia){
-    this.validar(nombre, descripcion,precioBase,cupoDisponible);
+  public Catalogo(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia,Categoria categoria){
+    validar(nombre, descripcion,precioBase,cupoDisponible,periodoVigencia, categoria);
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.precioBase = precioBase;
     this.cupo = cupoDisponible;
     this.periodoVigencia = periodoVigencia;
+    this.categoria = categoria;
   }
 
   public void darDescuento(int descuento){
@@ -38,8 +40,10 @@ public abstract class Catalogo {
     return this.getPrecioBase() - this.descuentoAplicable();
   }
 
-  private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible){
+  private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodo,Categoria categoria){
     try {
+      Objects.requireNonNull(periodo);
+      Objects.requireNonNull(categoria);
       Objects.requireNonNull(nombre);
       Objects.requireNonNull(descripcion);
       Objects.requireNonNull(cupoDisponible);
@@ -50,9 +54,9 @@ public abstract class Catalogo {
     }
   }
 
-  public boolean estaDisponibleEn(LocalDate fecha) {
-    return this.getCupoDisponible() > 0 && this.periodoVigencia.incluye(fecha);
-  }
+//  public boolean estaDisponibleEn(LocalDate fecha) {
+//    return this.getCupoDisponible() > 0 && this.periodoVigencia.incluye(fecha);
+//  }
 
   public boolean estaDisponibleEn(Periodo periodo) {
     return this.getCupoDisponible() > 0 && this.periodoVigencia.seSuperponeCon(periodo);
@@ -83,6 +87,10 @@ public abstract class Catalogo {
 
   public int getDescuento() {
     return descuento;
+  }
+
+  public Categoria categoria() {
+    return categoria;
   }
 }
 

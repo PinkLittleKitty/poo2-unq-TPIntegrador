@@ -17,7 +17,8 @@ class PaqueteTest {
           "Descripción",
           100.0,
           mock(Cupo.class),
-          mock(Periodo.class)
+          mock(Periodo.class),
+          mock(Categoria.class)
   );
 
   Catalogo item1 = mock(Catalogo.class);

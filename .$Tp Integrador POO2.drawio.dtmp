@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
   <diagram name="Page-1" id="MEMsVOg9I4byTbGzPSWV">
-    <mxGraphModel dx="2337" dy="1986" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="4320" dy="3167" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -342,7 +342,7 @@
           <mxGeometry height="142" width="270" y="88" as="geometry" />
         </mxCell>
         <mxCell id="2ntsihJUyPQ5D5TAJWJP-113" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="MetodoPagoBilleteraVirtual" vertex="1">
-          <mxGeometry height="160" width="460" x="1620" y="-630" as="geometry" />
+          <mxGeometry height="160" width="460" x="1370" y="-730" as="geometry" />
         </mxCell>
         <mxCell id="2ntsihJUyPQ5D5TAJWJP-114" parent="2ntsihJUyPQ5D5TAJWJP-113" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="-  apiVirtual : ApiBilleteraVirtual" vertex="1">
           <mxGeometry height="26" width="460" y="26" as="geometry" />
@@ -366,7 +366,7 @@
           <mxGeometry height="130" width="515" y="118" as="geometry" />
         </mxCell>
         <mxCell id="2ntsihJUyPQ5D5TAJWJP-121" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="MetodoPagoTransferenciaBancaria&amp;nbsp;" vertex="1">
-          <mxGeometry height="250" width="470" x="533" y="-710" as="geometry" />
+          <mxGeometry height="250" width="470" x="550" y="-780" as="geometry" />
         </mxCell>
         <mxCell id="2ntsihJUyPQ5D5TAJWJP-122" parent="2ntsihJUyPQ5D5TAJWJP-121" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- cbu: String&lt;div&gt;- aliasUsuario : String&lt;/div&gt;&lt;div&gt;- apiBancaria : ApiTransferenciaBancaria&lt;/div&gt;&lt;div&gt;- gestor : GestorDocumentos&amp;nbsp;&lt;/div&gt;" vertex="1">
           <mxGeometry height="74" width="470" y="26" as="geometry" />
@@ -415,7 +415,7 @@
           <mxGeometry height="120" width="430" y="20" as="geometry" />
         </mxCell>
         <mxCell id="2ntsihJUyPQ5D5TAJWJP-150" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;" value="&lt;div&gt;&lt;i&gt;&lt;span style=&quot;font-size: 10px; text-align: left; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ApiTarjetaCredito&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: left; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/span&gt;&lt;/i&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="140" width="430" x="2200" y="-620" as="geometry">
+          <mxGeometry height="140" width="430" x="1740" y="-995" as="geometry">
             <mxRectangle height="40" width="150" x="2678" y="190" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -816,7 +816,7 @@
           </mxCell>
         </UserObject>
         <mxCell id="_SW4fJNoXN1WjUY6Lf_G-11" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="GestorDocumentos" vertex="1">
-          <mxGeometry height="130" width="410" x="2250" y="1200" as="geometry" />
+          <mxGeometry height="130" width="410" x="590" y="420" as="geometry" />
         </mxCell>
         <mxCell id="_SW4fJNoXN1WjUY6Lf_G-12" parent="_SW4fJNoXN1WjUY6Lf_G-11" style="text;strokeColor=#b85450;fillColor=#f8cecc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- listaDocumentos : [ ] Documento&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="34" width="410" y="26" as="geometry" />
@@ -1065,7 +1065,7 @@
           </mxCell>
         </UserObject>
         <mxCell id="_SW4fJNoXN1WjUY6Lf_G-35" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Solicitud" vertex="1">
-          <mxGeometry height="200" width="400" x="2280" y="1400" as="geometry" />
+          <mxGeometry height="200" width="400" x="2344" y="1620" as="geometry" />
         </mxCell>
         <mxCell id="_SW4fJNoXN1WjUY6Lf_G-36" parent="_SW4fJNoXN1WjUY6Lf_G-35" style="text;strokeColor=#b85450;fillColor=#f8cecc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- codTrans : String&lt;div&gt;- servicios : [ ] Catalogo&lt;/div&gt;" vertex="1">
           <mxGeometry height="44" width="400" y="26" as="geometry" />
@@ -1132,6 +1132,18 @@
           <mxGeometry relative="1" width="160" as="geometry">
             <mxPoint x="2070" y="1390" as="sourcePoint" />
             <mxPoint x="2230" y="1390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-62" edge="1" parent="1" source="_SW4fJNoXN1WjUY6Lf_G-11" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" target="2ntsihJUyPQ5D5TAJWJP-117" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="660" y="-30" as="sourcePoint" />
+            <mxPoint x="820" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-63" edge="1" parent="1" source="_SW4fJNoXN1WjUY6Lf_G-11" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" target="2ntsihJUyPQ5D5TAJWJP-121" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="520.36" y="420" as="sourcePoint" />
+            <mxPoint x="768" y="-360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>

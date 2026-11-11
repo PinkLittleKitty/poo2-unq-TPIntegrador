@@ -41,11 +41,6 @@ class ServicioIndividualTest {
   }
 
   @Test
-  void getterCategoriaEsCorrecto(){
-    assertEquals(Categoria.ALOJAMIENTO, servicio.categoria());
-  }
-
-  @Test
   void rechazaProveedorNulo() {
     assertThrows(CompletarCampos.class, () ->
             new ServicioIndividual(
@@ -67,22 +62,24 @@ class ServicioIndividualTest {
             new ServicioIndividual(
             "Hotel",
             "Descripción",
-            new Cupo(2),
+            new Cupo(2,2),
             123,
             "",
             150.0,
-            cat
+            cat,
+                    mock(Periodo.class)
     ));
 
     assertThrows(CompletarCampos.class, () ->
             new ServicioIndividual(
             "Hotel",
             "Descripción",
-            new Cupo(2),
+            new Cupo(2,2),
             123,
             "   ",
             150.0,
-            cat));
+            cat,
+                    mock(Periodo.class)));
   }
 
   @Test

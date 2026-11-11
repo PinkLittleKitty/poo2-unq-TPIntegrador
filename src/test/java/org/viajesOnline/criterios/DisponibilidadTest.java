@@ -22,11 +22,10 @@ class DisponibilidadTest {
   }
 
   @Test
-  void satisfaceCriterio() {
+  void satisfaceCriterio() { //el testeo de al menos una fecha para el periodo disponible debe estar en PeriodoTest
     when(catalogo.estaDisponibleEn(periodo)).thenReturn(true);
     assertTrue(criterio.satisfaceCriterio(catalogo));
   }
-
 
   @Test
   void noSatisfaceCriterio() {

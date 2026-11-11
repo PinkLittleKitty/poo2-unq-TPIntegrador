@@ -39,7 +39,7 @@ class CatalogoTest {
   }
 
   @Test
-  void GetterCupoEsCorrecto(){
+  void GetterCupoEsCorrecto(){ //Ver si hay que renombrar equals. BAJO.
     Cupo c1 = new Cupo(10, 10);
 
     assertEquals(c1.getCupoInicial(), catalogo.getCupo().getCupoInicial());
@@ -49,6 +49,7 @@ class CatalogoTest {
 
   @Test
   void GetterPeriodoEsCorrecto(){
+    //2026/06/1 a 2026/06/10
     assertEquals(new Periodo( LocalDate.of(2026, 6, 1),LocalDate.of(2026, 6, 10)), catalogo.getPeriodoVigencia());
   }
 
@@ -64,7 +65,7 @@ class CatalogoTest {
   void lanzaCompletarCamposSiDescripcionEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Curso", null, 100.0, cupo, periodoMock, cat)
+            () -> new TestCatalogo("dfgdfgdfg", null, 100.0, cupo, periodoMock, cat)
     );
   }
 
@@ -72,7 +73,7 @@ class CatalogoTest {
   void lanzaCompletarCamposSiCupoEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Curso", "Descripción", 100.0, null,  periodoMock,cat)
+            () -> new TestCatalogo("asdfaefgh", "Descripción", 100.0, null,  periodoMock,cat)
     );
   }
 
@@ -125,7 +126,6 @@ class CatalogoTest {
 
   @Test
   void rechazaDescuentoMayorQueCien() {
-
     assertThrows(IllegalArgumentException.class,
             () -> catalogo.darDescuento(101));
   }
@@ -143,7 +143,8 @@ class CatalogoTest {
   }
 
   @Test
-  void pasaSiEstaContenidoEnPeriodoVigente() {
+  void pasaSiTieneCupoYEstaContenidoEnPeriodoVigente() {
+    //catalogo periodo = 2026/06/1 a 2026/06/10
     Periodo solicitado = new Periodo(
             LocalDate.of(2026, 6, 5),
             LocalDate.of(2026, 6, 12));
@@ -154,15 +155,13 @@ class CatalogoTest {
   @Test
   void rebotaPeriodoSiNoHayCupo() {
     Catalogo cat1 = new TestCatalogo("Hotel", "Descripción", 150.0, new Cupo(10, 0), periodoMock, cat);
-    assertFalse(cat1.estaDisponibleEn(new Periodo(LocalDate.of(2026, 6, 5), LocalDate.of(2026, 6, 12))));
+    assertFalse(cat1.estaDisponibleEn(periodoMock));
     //shortcircuit tiene que actuar primero.
   }
 
   @Test
-  void rebotaSiLosPeriodosNoSeSuperponen() {
-    Catalogo cat2 = new TestCatalogo("Hotel", "Descripción", 150.0, new Cupo(10, 10),
-            new Periodo( LocalDate.of(2026, 6, 1), LocalDate.of(2026, 6, 10)), cat);
-
-    assertFalse(cat2.estaDisponibleEn(new Periodo(LocalDate.of(2026, 6, 11), LocalDate.of(2026, 6, 15))));
+  void rebotaSiTieneCupoYLosPeriodosNoSeSuperponen() {
+    //catalogo periodo = 2026/06/1 a 2026/06/10; cupo 10.
+    assertFalse(catalogo.estaDisponibleEn(new Periodo(LocalDate.of(2026, 6, 11), LocalDate.of(2026, 6, 15))));
   }
 }

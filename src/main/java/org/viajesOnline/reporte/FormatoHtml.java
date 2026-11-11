@@ -1,47 +1,45 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.ServicioIndividual;
-
-import java.util.Map;
+import java.util.List;
 
 class FormatoHtml implements FormatoVisitanteReportes {
 
     private String reporteHtml;
 
-    public void visitar(ServicioMasReservado s){
-
-        //guarda la informacion para exportar en formato html
-        //reporteHtml = e.pideCosasALaClase
+    @Override
+    public void visitar(ServicioMasReservado s) {
+        List<List<String>> filas = FormatoUtils.serviciosOrdenados(s).stream()
+                .map(e -> List.of(e.getKey().getNombre(), String.valueOf(e.getValue()))).toList();
+        this.reporteHtml = FormatoUtils.construirTablaHtml(
+                "Servicios mas reservados",
+                List.of("Servicio", "Reservas"), filas);
     }
 
-    public void visitar(RegistroDeCupos r){
-        /*
-        var r = registrocupos.calcularDatos();
-
-        for (Map.entry<Categoria, Cupo> entrada : reporteCupos.entrySet()) {
-            Categoria cat = entrada.getKey();
-            Cupo cupo = entrada.getValue();
-
-            int totales = cupo.getCupoInicial();
-            libres;
-            reservados;
-
-            System.out.println("Categoria: " + categoria);
-            System.out.println(" - Totales: " + totales);
-            System.out.println(" - Reservados: " + reservados);
-            System.out.println(" - Libres: " + libres);
-        } */
+    @Override
+    public void visitar(RegistroDeCupos r) {
+        List<List<String>> filas = FormatoUtils.cuposOrdenados(r).stream()
+                .map(e -> List.of(
+                        e.getKey().name(),
+                        String.valueOf(e.getValue().getCupoInicial()),
+                        String.valueOf(e.getValue().getCupoReservado()),
+                        String.valueOf(e.getValue().getCupoDisponible())
+                )).toList();
+        this.reporteHtml = FormatoUtils.construirTablaHtml(
+                "Registro de cupos",
+                List.of("Categoria", "Totales", "Reservados", "Disponibles"), filas);
     }
 
-    public void visitar(RegistroDeOperadores o){
-
-        //guarda la informacion para exportar en formato html
-        //reporteHtml = e.pideCosasALaClase
+    @Override
+    public void visitar(RegistroDeOperadores o) {
+        List<List<String>> filas = FormatoUtils.operadoresOrdenados(o).stream()
+                .map(e -> List.of(e.getKey(), FormatoUtils.formatearPorcentaje(e.getValue()) + "%")).toList();
+        this.reporteHtml = FormatoUtils.construirTablaHtml(
+                "Registro de operadores",
+                List.of("Operador", "Porcentaje"), filas);
     }
 
-    public String obtenerReporte(){
-
-        //retorna el reporte en html
+    @Override
+    public String obtenerReporte() {
         return reporteHtml;
     }
 }

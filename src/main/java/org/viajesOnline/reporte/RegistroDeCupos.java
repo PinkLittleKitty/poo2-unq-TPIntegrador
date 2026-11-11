@@ -21,7 +21,12 @@ class RegistroDeCupos implements Reporte {
         this.catalogo = catalogo;
     }
 
-    public void accept(FormatoVisitanteReportes v){v.visitar(this);}
+    @Override
+    public void accept(FormatoVisitanteReportes v) { v.visitar(this); }
+
+    public Periodo getPeriodo() {
+        return periodo;
+    }
 
     public Map<Categoria, Cupo> calcularDatos() {
         return catalogo.stream()

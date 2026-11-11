@@ -1,7 +1,7 @@
 package org.viajesOnline.documento;
 
 
-public class VoucherParaFactura extends Documento{
+public class    VoucherParaFactura extends Documento{
 
     private String titular;
     private int cantidadDeServicios;

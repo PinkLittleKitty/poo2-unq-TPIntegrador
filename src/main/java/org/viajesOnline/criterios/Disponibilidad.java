@@ -1,20 +1,20 @@
 package org.viajesOnline.criterios;
 import org.viajesOnline.Catalogo;
-import java.time.LocalDate;
+import org.viajesOnline.utils.Periodo;
 
 public class Disponibilidad implements Criterio{
-  private LocalDate fecha;
+  private Periodo rangoFecha;
 
-  public Disponibilidad(LocalDate fecha) {
-    this.fecha = fecha;
+  public Periodo getRangoFecha() {
+    return rangoFecha;
   }
 
-  public LocalDate getFecha() {
-    return fecha;
+  public Disponibilidad(Periodo rangoFecha) {
+    this.rangoFecha = rangoFecha;
   }
 
   @Override
-  public boolean sastifaceCriterio(Catalogo cat) {
-    return false; // cat.hayCupoDisponibleEn(fecha)
+  public boolean satisfaceCriterio(Catalogo cat) {
+    return cat.estaDisponibleEn(rangoFecha);
   }
 }

@@ -7,7 +7,7 @@ class FormatoHtml implements FormatoVisitanteReportes {
     private String reporteHtml;
 
     @Override
-    public void visitar(ServicioMasReservado s){
+    public void visitar(ServicioMasReservado s) {
         List<List<String>> filas = FormatoUtils.serviciosOrdenados(s).stream()
                 .map(e -> List.of(e.getKey().getNombre(), String.valueOf(e.getValue()))).toList();
         this.reporteHtml = FormatoUtils.construirTablaHtml(
@@ -16,7 +16,7 @@ class FormatoHtml implements FormatoVisitanteReportes {
     }
 
     @Override
-    public void visitar(RegistroDeCupos r){
+    public void visitar(RegistroDeCupos r) {
         List<List<String>> filas = FormatoUtils.cuposOrdenados(r).stream()
                 .map(e -> List.of(
                         e.getKey().name(),
@@ -30,7 +30,7 @@ class FormatoHtml implements FormatoVisitanteReportes {
     }
 
     @Override
-    public void visitar(RegistroDeOperadores o){
+    public void visitar(RegistroDeOperadores o) {
         List<List<String>> filas = FormatoUtils.operadoresOrdenados(o).stream()
                 .map(e -> List.of(e.getKey(), FormatoUtils.formatearPorcentaje(e.getValue()) + "%")).toList();
         this.reporteHtml = FormatoUtils.construirTablaHtml(
@@ -39,7 +39,7 @@ class FormatoHtml implements FormatoVisitanteReportes {
     }
 
     @Override
-    public String obtenerReporte(){
+    public String obtenerReporte() {
         return reporteHtml;
     }
 }

@@ -7,14 +7,14 @@ class FormatoCsv implements FormatoVisitanteReportes {
     private String reporteCsv;
 
     @Override
-    public void visitar(ServicioMasReservado s){
+    public void visitar(ServicioMasReservado s) {
         List<List<String>> filas = FormatoUtils.serviciosOrdenados(s).stream()
                 .map(e -> List.of(e.getKey().getNombre(), String.valueOf(e.getValue()))).toList();
         this.reporteCsv = FormatoUtils.construirCsv(List.of("Servicio", "Reservas"), filas);
     }
 
     @Override
-    public void visitar(RegistroDeCupos r){
+    public void visitar(RegistroDeCupos r) {
         List<List<String>> filas = FormatoUtils.cuposOrdenados(r).stream()
                 .map(e -> List.of(
                         e.getKey().name(),
@@ -26,14 +26,14 @@ class FormatoCsv implements FormatoVisitanteReportes {
     }
 
     @Override
-    public void visitar(RegistroDeOperadores o){
+    public void visitar(RegistroDeOperadores o) {
         List<List<String>> filas = FormatoUtils.operadoresOrdenados(o).stream()
                 .map(e -> List.of(e.getKey(), FormatoUtils.formatearPorcentaje(e.getValue()))).toList();
         this.reporteCsv = FormatoUtils.construirCsv(List.of("Operador", "Porcentaje"), filas);
     }
 
     @Override
-    public String obtenerReporte(){
+    public String obtenerReporte() {
         return reporteCsv;
     }
 }

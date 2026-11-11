@@ -94,4 +94,18 @@ final class FormatoUtils {
                 .replace("\"", "&quot;")
                 .replace("'", "&#39;");
     }
+
+    static String construirTextoPlano(String titulo, List<String> lineas) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(titulo);
+        if (lineas.isEmpty()) {
+            sb.append("\n(sin datos)");
+            return sb.toString();
+        }
+
+        for (String linea : lineas) {
+            sb.append("\n").append(linea);
+        }
+        return sb.toString();
+    }
 }

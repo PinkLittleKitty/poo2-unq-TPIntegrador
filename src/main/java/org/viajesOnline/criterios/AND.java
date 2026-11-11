@@ -12,7 +12,7 @@ public class AND implements Criterio{
   }
 
   @Override
-  public boolean sastifaceCriterio(Catalogo cat) {
-    return crt1.sastifaceCriterio(cat) && crt2.sastifaceCriterio(cat);
+  public boolean satisfaceCriterio(Catalogo cat) {
+    return crt1.satisfaceCriterio(cat) && crt2.satisfaceCriterio(cat);
   }
 }

@@ -9,7 +9,7 @@ public class Busqueda {
   private List<Catalogo> items = new ArrayList<>();
 
   public List<Catalogo> buscarEnCatalogo(Criterio criterio){
-    return items.stream().filter(criterio::sastifaceCriterio).toList();
+    return items.stream().filter(criterio::satisfaceCriterio).toList();
   }
 
   public List<Catalogo> getItems() {

@@ -25,7 +25,7 @@ public class PrecioMax implements Criterio{
   }
 
   @Override
-  public boolean sastifaceCriterio(Catalogo cat) {
+  public boolean satisfaceCriterio(Catalogo cat) {
     return this.getValor() >= cat.getPrecioBase();
   }
 }

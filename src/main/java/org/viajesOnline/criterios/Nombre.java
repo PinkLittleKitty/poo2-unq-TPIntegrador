@@ -24,7 +24,7 @@ public class Nombre implements Criterio{
   }
 
   @Override
-  public boolean sastifaceCriterio(Catalogo cat) {
+  public boolean satisfaceCriterio(Catalogo cat) {
     return this.getNombre().equalsIgnoreCase(cat.getNombre());
   }
 

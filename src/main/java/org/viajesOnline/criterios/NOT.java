@@ -10,7 +10,7 @@ public class NOT implements Criterio{
   }
 
   @Override
-  public boolean sastifaceCriterio(Catalogo cat) {
-    return !crt1.sastifaceCriterio(cat);
+  public boolean satisfaceCriterio(Catalogo cat) {
+    return !crt1.satisfaceCriterio(cat);
   }
 }

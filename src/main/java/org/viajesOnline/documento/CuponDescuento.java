@@ -25,5 +25,4 @@ public class CuponDescuento extends Documento {
         System.out.println("Descuento Obtenido: " + this.porcentajeDescuento());
     }
 
-
 }

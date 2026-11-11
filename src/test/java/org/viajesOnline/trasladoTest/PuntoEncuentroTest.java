@@ -12,14 +12,14 @@ public class PuntoEncuentroTest {
 
     private ContextoTraslado contextoTrasladoMock;
     private PuntoEncuentro puntoEncuentro;
-    private LugarPuntoEncuentro terminalMock;
-    private LugarPuntoEncuentro aeropueroMock;
+    private LugarPuntoEncuentroMock terminalMock;
+    private LugarPuntoEncuentroMock aeropueroMock;
 
     @BeforeEach
     void setUp() {
 
-        terminalMock = mock(LugarPuntoEncuentro.class);
-        aeropueroMock = mock(LugarPuntoEncuentro.class);
+        terminalMock = mock(LugarPuntoEncuentroMock.class);
+        aeropueroMock = mock(LugarPuntoEncuentroMock.class);
         contextoTrasladoMock = mock(ContextoTraslado.class);
 
         puntoEncuentro = new PuntoEncuentro(terminalMock,false);

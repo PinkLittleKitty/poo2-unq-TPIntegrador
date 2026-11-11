@@ -26,6 +26,7 @@ class FormatoTextoPlano implements FormatoVisitanteReportes {
                             + " | Reservados: " + cupo.getCupoReservado()
                             + " | Disponibles: " + cupo.getCupoDisponible();
                 }).toList();
+        this.reporteTextoPlano = FormatoUtils.construirTextoPlano("Registro de cupos", lineas);
     }
 
     @Override

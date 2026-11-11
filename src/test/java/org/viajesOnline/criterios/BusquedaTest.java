@@ -25,14 +25,14 @@ class BusquedaTest {
 
   @Test
   void buscarEnCatalogoDevuelveSoloLosElementosQueCumplenElCriterio() {
-    when(criterio.sastifaceCriterio(item1)).thenReturn(true);
-    when(criterio.sastifaceCriterio(item2)).thenReturn(false);
+    when(criterio.satisfaceCriterio(item1)).thenReturn(true);
+    when(criterio.satisfaceCriterio(item2)).thenReturn(false);
 
     List<Catalogo> resultado = busqueda.buscarEnCatalogo(criterio);
 
     assertEquals(List.of(item1), resultado);
-    verify(criterio).sastifaceCriterio(item1);
-    verify(criterio).sastifaceCriterio(item2);
+    verify(criterio).satisfaceCriterio(item1);
+    verify(criterio).satisfaceCriterio(item2);
   }
 
   @Test

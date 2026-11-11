@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.viajesOnline.Catalogo;
 import org.viajesOnline.exceptions.CompletarCampos;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -28,38 +26,20 @@ class PrecioMaxTest {
   }
 
   @Test
-  void sastifaceCriterioCuandoElPrecioEsMenorOigual() {
+  void satisfaceCriterioCuandoElPrecioEsMenorOigual() {
     when(catalogo.getPrecioBase()).thenReturn(23.05);
 
     Catalogo cat2 = mock(Catalogo.class);
     when(cat2.getPrecioBase()).thenReturn(22.25);
 
-    assertTrue(precioMax.sastifaceCriterio(catalogo));
-    assertTrue(precioMax.sastifaceCriterio(cat2));
+    assertTrue(precioMax.satisfaceCriterio(catalogo));
+    assertTrue(precioMax.satisfaceCriterio(cat2));
   }
 
   @Test
-  void NosastifaceCriterioCuandoElPrecioEsMayor() {
+  void NosatisfaceCriterioCuandoElPrecioEsMayor() {
     when(catalogo.getPrecioBase()).thenReturn(50.0);
 
-    assertFalse(precioMax.sastifaceCriterio(catalogo));
-  }
-
-  @Test
-  void busquedaFiltraLosCatalogosPorPrecioMax() {
-    Busqueda busqueda = new Busqueda();
-    Catalogo coincide = mock(Catalogo.class);
-    Catalogo noCoincide = mock(Catalogo.class);
-
-    when(coincide.getPrecioBase()).thenReturn(21.0);
-    when(noCoincide.getPrecioBase()).thenReturn(100.0);
-
-    busqueda.addItem(coincide);
-    busqueda.addItem(noCoincide);
-
-    List<Catalogo> resultado =
-            busqueda.buscarEnCatalogo(precioMax);
-
-    assertEquals(List.of(coincide), resultado);
+    assertFalse(precioMax.satisfaceCriterio(catalogo));
   }
 }

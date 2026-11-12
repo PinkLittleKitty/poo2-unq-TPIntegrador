@@ -8,7 +8,8 @@ public class ReciboDeSolicitud extends Documento{
     private int cantidadItems;
     private String nombreRecibo;
 
-    public ReciboDeSolicitud(String codigoTransaccion, String estadoDeSolicitud, String emailDestinatario, double montoTotal, int cantidadItems) {
+    public ReciboDeSolicitud(String codigoTransaccion, String estadoDeSolicitud
+                             ,String emailDestinatario, double montoTotal, int cantidadItems) {
         super(codigoTransaccion);
         this.estadoDeSolicitud = estadoDeSolicitud;
         this.emailDestinatario = emailDestinatario;

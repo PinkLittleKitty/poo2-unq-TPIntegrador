@@ -19,7 +19,7 @@ public class VoucherParaPago extends Documento {
 
     public double monto() { return monto; }
 
-    public String codAutorizacion(){return cvv;}
+    public String ccv(){return cvv;}
 
     public String numeroTarjeta(){return nroTarjeta;}
 

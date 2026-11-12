@@ -47,3 +47,32 @@ public class GeneradorFactura implements ObservadorCambioEstado {
         return usuario.getDNI() != null ? usuario.getDNI() : "Consumidor Final";
     }
 }
+
+/*private GestorDeDocumentos gestor;
+    private Usuario usuario;
+    private int cantServicios;
+    private double total;
+    private String tipoFactura;
+    private String idFiscal;
+    private String nombre;
+
+    @Override
+    public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
+
+        String codTransaccion = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        usuario = reserva.getUsuario();
+        total = reserva.precioFinalReserva();
+        tipoFactura = this.tipoFactura(usuario);
+        idFiscal = this.IdFiscal(usuario);
+        cantServicios = reserva.getSolicitud().cantServicios();
+        this.gestor = gestor;
+
+        Documento comprobanteFiscal = new ComprobanteFiscal(codTransaccion, tipoFactura, nombre, idFiscal, total);
+        Documento voucherParaFactura = new VoucherParaFactura(codTransaccion, nombre, cantServicios, total);
+
+        gestor.registrarDocumento(comprobanteFiscal);
+        gestor.registrarDocumento(voucherParaFactura);
+
+
+    }
+*/

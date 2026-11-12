@@ -3,6 +3,7 @@ package org.viajesOnline.reservas;
 import org.viajesOnline.documento.GestorDeDocumentos;
 
 public interface ObservadorCambioEstado {
+
     default void reservaPendiente(ContextoReserva reserva) {
     }
 

@@ -1,9 +1,7 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.Catalogo;
 import org.viajesOnline.Categoria;
 import org.viajesOnline.ServicioIndividual;
-import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
 
@@ -21,7 +19,12 @@ class RegistroDeCupos implements Reporte {
         this.catalogo = catalogo;
     }
 
-    public void accept(FormatoVisitanteReportes v){v.visitar(this);}
+    @Override
+    public void accept(FormatoVisitanteReportes v) { v.visitar(this); }
+
+    public Periodo getPeriodo() {
+        return periodo;
+    }
 
     public Map<Categoria, Cupo> calcularDatos() {
         return catalogo.stream()

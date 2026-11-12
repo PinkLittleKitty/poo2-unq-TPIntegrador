@@ -1,31 +1,39 @@
 package org.viajesOnline.reporte;
 
-class FormatoCsv implements FormatoVisitanteReportes {
+import java.util.List;
+
+public class FormatoCsv implements FormatoVisitanteReportes {
 
     private String reporteCsv;
 
-    public void visitar(ServicioMasReservado s){
-
-        //guarda la informacion para exportar en formato csv
-        //reporteCsv= e.pideCosasALaClase
+    @Override
+    public void visitar(ServicioMasReservado s) {
+        List<List<String>> filas = FormatoUtils.serviciosOrdenados(s).stream()
+                .map(e -> List.of(e.getKey().getNombre(), String.valueOf(e.getValue()))).toList();
+        this.reporteCsv = FormatoUtils.construirCsv(List.of("Servicio", "Reservas"), filas);
     }
 
-    public void visitar(RegistroDeCupos r){
-
-        //guarda la informacion para exportar en formato csv
-        //reporteCsv = e.pideCosasALaClase
+    @Override
+    public void visitar(RegistroDeCupos r) {
+        List<List<String>> filas = FormatoUtils.cuposOrdenados(r).stream()
+                .map(e -> List.of(
+                        e.getKey().name(),
+                        String.valueOf(e.getValue().getCupoInicial()),
+                        String.valueOf(e.getValue().getCupoReservado()),
+                        String.valueOf(e.getValue().getCupoDisponible())
+                )).toList();
+        this.reporteCsv = FormatoUtils.construirCsv(List.of("Categoria", "Totales", "Reservados", "Disponibles"), filas);
     }
 
-    public void visitar(RegistroDeOperadores o){
-
-        //guarda la informacion para exportar en formato csv
-        //reporteCsv = e.pideCosasALaClase
+    @Override
+    public void visitar(RegistroDeOperadores o) {
+        List<List<String>> filas = FormatoUtils.operadoresOrdenados(o).stream()
+                .map(e -> List.of(e.getKey(), FormatoUtils.formatearPorcentaje(e.getValue()))).toList();
+        this.reporteCsv = FormatoUtils.construirCsv(List.of("Operador", "Porcentaje"), filas);
     }
 
-
-    public String obtenerReporte(){
-
-        //retorna para exportar en formato csv
+    @Override
+    public String obtenerReporte() {
         return reporteCsv;
     }
 }

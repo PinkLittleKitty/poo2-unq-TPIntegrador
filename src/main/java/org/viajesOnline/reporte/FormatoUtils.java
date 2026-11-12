@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 final class FormatoUtils {
+
     private FormatoUtils() {}
 
     static List<Map.Entry<Catalogo, Long>> serviciosOrdenados(ServicioMasReservado reporte) {

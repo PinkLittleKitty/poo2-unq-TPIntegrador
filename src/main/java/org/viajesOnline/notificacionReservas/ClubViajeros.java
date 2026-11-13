@@ -11,7 +11,6 @@ public class ClubViajeros implements ObservadorCambioEstado {
 
     private MailSender mailSender;
     private final double descuento = 5;
-    private Documento cupon;
 
     public ClubViajeros(MailSender mailSender){
 
@@ -24,7 +23,7 @@ public class ClubViajeros implements ObservadorCambioEstado {
     public void reservaCancelada(ContextoReserva reserva) {
 
         String codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        cupon = new CuponDescuento(codTrans,descuento);
+        Documento cupon = new CuponDescuento(codTrans,descuento);
         this.enviarMail(reserva, cupon);
     }
 

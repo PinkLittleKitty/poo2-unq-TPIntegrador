@@ -6,7 +6,7 @@ import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.Solicitud;
 
-public class SolicitudPendiente implements EstadoReserva {
+public class SolicitudPendiente extends EstadoReserva {
     @Override
     public void siguiente(ContextoReserva r) {
         Confirmada confirmada = new Confirmada();

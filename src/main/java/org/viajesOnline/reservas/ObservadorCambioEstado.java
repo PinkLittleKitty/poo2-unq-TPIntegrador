@@ -2,17 +2,17 @@ package org.viajesOnline.reservas;
 
 import org.viajesOnline.documento.GestorDeDocumentos;
 
-public interface ObservadorCambioEstado {
+public abstract class ObservadorCambioEstado {
 
-    default void reservaPendiente(ContextoReserva reserva) { }
+    public void reservaPendiente(ContextoReserva reserva) { }
 
-    default void reservaConfirmada(ContextoReserva reserva) { }
+    public void reservaConfirmada(ContextoReserva reserva) { }
 
-    default void reservaEnCheckin(ContextoReserva reserva) { }
+    public void reservaEnCheckin(ContextoReserva reserva) { }
 
-    default void reservaEnCurso(ContextoReserva reserva) { }
+    public void reservaEnCurso(ContextoReserva reserva) { }
 
-    default void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) { }
+    public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) { }
 
-    default void reservaCancelada(ContextoReserva reserva) { }
+    public void reservaCancelada(ContextoReserva reserva) { }
 }

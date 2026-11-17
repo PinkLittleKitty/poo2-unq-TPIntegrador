@@ -7,7 +7,7 @@ import org.viajesOnline.utils.Usuario;
 
 import java.util.UUID;
 
-public class GeneradorFactura implements ObservadorCambioEstado {
+public class GeneradorFactura extends ObservadorCambioEstado {
 
     @Override
     public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {

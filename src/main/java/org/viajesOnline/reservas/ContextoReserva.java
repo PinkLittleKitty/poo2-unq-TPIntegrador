@@ -36,7 +36,6 @@ public class ContextoReserva {
     }
 
     public void setEstadoActual(EstadoReserva nuevoEstado) {
-        EstadoReserva estadoAnterior = this.estadoActual;
         this.estadoActual = nuevoEstado;
         this.notificarObservadores(nuevoEstado);
     }

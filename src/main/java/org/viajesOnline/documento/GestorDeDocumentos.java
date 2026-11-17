@@ -16,6 +16,4 @@ public class GestorDeDocumentos{
     }
 
     public int cantidadDocumentos() {return this.listaDocumentos.size();}
-
-
 }

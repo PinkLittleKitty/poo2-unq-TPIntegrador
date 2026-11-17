@@ -1,33 +1,32 @@
 package org.viajesOnline.reservas.estados;
 
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.Solicitud;
 
-public interface EstadoReserva {
+public abstract class EstadoReserva {
 
-    public default void siguiente(ContextoReserva r) {
+    public void siguiente(ContextoReserva r) {
         throw new UnsupportedOperationException("No existe un estado siguiente.");
     }
 
-    public default void cancelar(ContextoReserva r) {
+    public void cancelar(ContextoReserva r) {
         r.setEstadoActual(new Cancelada());
     }
 
-    public default void agregarServicio(Catalogo servicio, Solicitud solicitud) {
+    public void agregarServicio(Catalogo servicio, Solicitud solicitud) {
         throw new UnsupportedOperationException("No se pueden agregar servicios en este estado de la reserva.");
     }
 
-    public default void decrementarCupo(Solicitud solicitud) {
+    public void decrementarCupo(Solicitud solicitud) {
         throw new UnsupportedOperationException("No se puede modificar el cupo en este estado de la reserva.");
     }
 
-    public default void notificar(GestorDeDocumentos gestor, ContextoReserva reserva, ObservadorCambioEstado observador) {
-    }
+    public void notificar(GestorDeDocumentos gestor, ContextoReserva reserva, ObservadorCambioEstado observador) {}
 
-    public default double tasasReembolsables(ContextoReserva r) {
+    public double tasasReembolsables(ContextoReserva r) {
         return 0.0;
     }
 }

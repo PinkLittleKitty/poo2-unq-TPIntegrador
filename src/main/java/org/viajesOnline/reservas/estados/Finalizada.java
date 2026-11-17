@@ -4,7 +4,7 @@ import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 
-public class Finalizada implements EstadoReserva {
+public class Finalizada extends EstadoReserva {
     public Finalizada() { }
 
     @Override

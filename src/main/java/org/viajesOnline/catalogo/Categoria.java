@@ -1,4 +1,4 @@
-package org.viajesOnline;
+package org.viajesOnline.catalogo;
 
 public enum Categoria {
   VUELO,

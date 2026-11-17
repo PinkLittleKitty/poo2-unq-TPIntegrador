@@ -1,4 +1,4 @@
-package org.viajesOnline;
+package org.viajesOnline.catalogo;
 
 import org.apache.commons.lang3.Validate;
 import org.viajesOnline.exceptions.CompletarCampos;

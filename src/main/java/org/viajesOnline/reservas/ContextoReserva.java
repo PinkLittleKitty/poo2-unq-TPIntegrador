@@ -1,6 +1,6 @@
 package org.viajesOnline.reservas;
 
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 import org.viajesOnline.documento.*;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.*;
@@ -12,7 +12,7 @@ public class ContextoReserva {
 
     private EstadoReserva estadoActual;
     private List<ObservadorCambioEstado> observadores = new ArrayList<>();
-    private Solicitud solicitud =  new Solicitud();
+    private Solicitud solicitud = new Solicitud();
     private Usuario usuario;
     private GestorDeDocumentos gestor;
     private Periodo periodo;
@@ -24,7 +24,8 @@ public class ContextoReserva {
         this.periodo = periodo;
     }
 
-    public ContextoReserva() {}
+    public ContextoReserva() {
+    }
 
     public void agregarObservador(ObservadorCambioEstado observador) {
         this.observadores.add(observador);
@@ -35,7 +36,6 @@ public class ContextoReserva {
     }
 
     public void setEstadoActual(EstadoReserva nuevoEstado) {
-        EstadoReserva estadoAnterior = this.estadoActual;
         this.estadoActual = nuevoEstado;
         this.notificarObservadores(nuevoEstado);
     }
@@ -44,11 +44,17 @@ public class ContextoReserva {
         observadores.forEach(observador -> nuevo.notificar(gestor, this, observador));
     }
 
-    public EstadoReserva getEstadoActual() {return this.estadoActual;}
+    public EstadoReserva getEstadoActual() {
+        return this.estadoActual;
+    }
 
-    public Solicitud getSolicitud() {return this.solicitud;}
+    public Solicitud getSolicitud() {
+        return this.solicitud;
+    }
 
-    public Usuario getUsuario() { return this.usuario; }
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
 
     public LocalDate getFechaCompra() {
         return fechaCompra;
@@ -84,10 +90,10 @@ public class ContextoReserva {
     }
 
     public double getCostoTasas() {
-        return 100.0; //TODO: Revisar cuánto costarían las tasas, por ahora lo pongo en 100.
+        return 100.0; // TODO: Revisar cuánto costarían las tasas, por ahora lo pongo en 100.
     }
 
-    public float precioFinalReserva(){
+    public float precioFinalReserva() {
         return (float) solicitud.getServicios().stream().mapToDouble(Catalogo::precioFinal).sum();
     }
 }

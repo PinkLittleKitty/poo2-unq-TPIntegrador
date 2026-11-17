@@ -1,6 +1,6 @@
 package org.viajesOnline.criterios;
-import org.viajesOnline.Catalogo;
-import org.viajesOnline.Categoria;
+import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Categoria;
 
 public class PorCategoria implements Criterio {
   private Categoria categoria;

@@ -4,7 +4,7 @@ import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 
-public class EnCurso implements EstadoReserva {
+public class EnCurso extends EstadoReserva {
     @Override
     public void siguiente(ContextoReserva r) {
         r.setEstadoActual(new Finalizada());
@@ -18,6 +18,6 @@ public class EnCurso implements EstadoReserva {
     @Override
     public void cancelar(ContextoReserva r) {
         r.reembolsar();
-        EstadoReserva.super.cancelar(r);
+        super.cancelar(r);
     }
 }

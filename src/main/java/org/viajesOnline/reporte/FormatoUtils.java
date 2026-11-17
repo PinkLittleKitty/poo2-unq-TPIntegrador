@@ -1,7 +1,7 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.Catalogo;
-import org.viajesOnline.Categoria;
+import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Categoria;
 import org.viajesOnline.reservas.Cupo;
 
 import java.util.Comparator;
@@ -10,11 +10,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-final class FormatoUtils {
+public final class FormatoUtils {
 
-    private FormatoUtils() {}
-
-    static List<Map.Entry<Catalogo, Long>> serviciosOrdenados(ServicioMasReservado reporte) {
+    public static List<Map.Entry<Catalogo, Long>> serviciosOrdenados(ServicioMasReservado reporte) {
         return reporte.calcularDatos().entrySet().stream()
                 .sorted(Map.Entry.<Catalogo, Long>comparingByValue(Comparator.reverseOrder())
                         .thenComparing(e -> e.getKey().getNombre())).toList();
@@ -25,13 +23,13 @@ final class FormatoUtils {
                 .sorted(Comparator.comparing(e -> e.getKey().name())).toList();
     }
 
-    static List<Map.Entry<String, Double>> operadoresOrdenados(RegistroDeOperadores reporte) {
+    public static List<Map.Entry<String, Double>> operadoresOrdenados(RegistroDeOperadores reporte) {
         return reporte.calcularDatos().entrySet().stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue(Comparator.reverseOrder())
                         .thenComparing(Map.Entry.comparingByKey())).toList();
     }
 
-    static String formatearPorcentaje(double porcentaje) {
+    public static String formatearPorcentaje(double porcentaje) {
         return String.format(Locale.US, "%.2f", porcentaje);
     }
 
@@ -50,7 +48,7 @@ final class FormatoUtils {
                 .collect(Collectors.joining(","));
     }
 
-    static String escaparCsv(String valor) {
+    public static String escaparCsv(String valor) {
         if (valor == null) {
             return "";
         }
@@ -81,7 +79,7 @@ final class FormatoUtils {
         return sb.toString();
     }
 
-    static String escaparHtml(String valor) {
+    public static String escaparHtml(String valor) {
         if (valor == null) {
             return "";
         }
@@ -94,7 +92,7 @@ final class FormatoUtils {
                 .replace("'", "&#39;");
     }
 
-    static String construirTextoPlano(String titulo, List<String> lineas) {
+    public static String construirTextoPlano(String titulo, List<String> lineas) {
         StringBuilder sb = new StringBuilder();
         sb.append(titulo);
         if (lineas.isEmpty()) {

@@ -5,7 +5,7 @@ import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.Solicitud;
 
-public class Confirmada implements EstadoReserva {
+public class Confirmada extends EstadoReserva {
     @Override
     public void siguiente(ContextoReserva r) {
         r.setEstadoActual(new EnCheckin());

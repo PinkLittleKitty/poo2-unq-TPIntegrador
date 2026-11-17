@@ -1,5 +1,5 @@
 package org.viajesOnline.criterios;
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 import org.viajesOnline.utils.Periodo;
 
 public class Disponibilidad implements Criterio{

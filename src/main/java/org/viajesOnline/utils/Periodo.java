@@ -22,12 +22,4 @@ public record Periodo(LocalDate fechaInicio, LocalDate fechaFin) {
     public boolean seSuperponeCon(Periodo otroPeriodo) {
         return !this.fechaInicio.isAfter(otroPeriodo.fechaFin) && !this.fechaFin.isBefore(otroPeriodo.fechaInicio);
     }
-
-    public long cantidadDias() {
-        return ChronoUnit.DAYS.between(fechaInicio, fechaFin) + 1;
-    }
-
-    public long cantidadNoches() {
-        return ChronoUnit.DAYS.between(fechaInicio, fechaFin);
-    }
 }

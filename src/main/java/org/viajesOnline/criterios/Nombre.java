@@ -1,7 +1,7 @@
 package org.viajesOnline.criterios;
 
 import org.apache.commons.lang3.Validate;
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 import org.viajesOnline.exceptions.CompletarCampos;
 
 import java.util.Objects;

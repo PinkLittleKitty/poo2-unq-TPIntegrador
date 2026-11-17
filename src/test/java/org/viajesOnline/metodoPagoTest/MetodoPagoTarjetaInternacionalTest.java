@@ -3,13 +3,10 @@ package org.viajesOnline.metodoPagoTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.exceptions.MetodoPagoExcepcion;
-
-import org.viajesOnline.documento.Documento;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.documento.VoucherParaPago;
 
 import org.viajesOnline.metodoPago.ApiTarjetaCredito;
-import org.viajesOnline.metodoPago.MetodoPago;
 import org.viajesOnline.metodoPago.MetodoPagoTarjetaInternacional;
 
 import java.time.YearMonth;
@@ -17,7 +14,7 @@ import java.time.YearMonth;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class metodoPagoTarjetaInternacionalTest {
+public class MetodoPagoTarjetaInternacionalTest {
 
     private ApiTarjetaCredito apiVisaInt;
     private ApiTarjetaCredito apiMastercardInt;

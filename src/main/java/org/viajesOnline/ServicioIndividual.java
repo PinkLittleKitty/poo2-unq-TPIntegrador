@@ -8,8 +8,6 @@ import org.viajesOnline.utils.Periodo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 
 public class ServicioIndividual extends Catalogo {
   private int idReserva; //??????

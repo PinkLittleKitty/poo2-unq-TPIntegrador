@@ -7,7 +7,6 @@ import org.viajesOnline.documento.ComprobanteCbu;
 
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.metodoPago.ApiTransferenciaBancaria;
-import org.viajesOnline.metodoPago.MetodoPago;
 import org.viajesOnline.metodoPago.MetodoPagoTransferenciaBancaria;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -24,9 +24,6 @@ public class ContextoReserva {
         this.periodo = periodo;
     }
 
-    public ContextoReserva() {
-    }
-
     public void agregarObservador(ObservadorCambioEstado observador) {
         this.observadores.add(observador);
     }

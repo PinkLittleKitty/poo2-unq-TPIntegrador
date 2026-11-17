@@ -2,14 +2,17 @@ package org.viajesOnline.reporteTest;
 
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.catalogo.*;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reporte.*;
 import org.viajesOnline.reservas.*;
 import org.viajesOnline.utils.Periodo;
+import org.viajesOnline.utils.Usuario;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class FormatoUtilsTest {
 
@@ -50,11 +53,11 @@ class FormatoUtilsTest {
         ServicioIndividual sB = new ServicioIndividual("Servicio B", "Desc", new Cupo(10, 10), 1, "Op", 100.0, Categoria.VUELO, vigencia);
         ServicioIndividual sA = new ServicioIndividual("Servicio A", "Desc", new Cupo(10, 10), 2, "Op", 100.0, Categoria.VUELO, vigencia);
 
-        ContextoReserva r1 = new ContextoReserva();
+        ContextoReserva r1 = new ContextoReserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
         r1.setFechaCompra(LocalDate.of(2026, 1, 15));
         r1.getSolicitud().agregarServicio(sB);
 
-        ContextoReserva r2 = new ContextoReserva();
+        ContextoReserva r2 = new ContextoReserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
         r2.setFechaCompra(LocalDate.of(2026, 1, 15));
         r2.getSolicitud().agregarServicio(sA);
 

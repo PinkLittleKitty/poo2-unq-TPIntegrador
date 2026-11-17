@@ -5,15 +5,18 @@ import org.junit.jupiter.api.Test;
 import org.viajesOnline.catalogo.Categoria;
 import org.viajesOnline.catalogo.Paquete;
 import org.viajesOnline.catalogo.ServicioIndividual;
+import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reporte.*;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
+import org.viajesOnline.utils.Usuario;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ReportesVisitorTest {
     private Periodo periodoReporte;
@@ -22,6 +25,12 @@ class ReportesVisitorTest {
     private ServicioIndividual trasladoAeropuerto;
     private Paquete packEscapadaUrbana;
     private GeneradorDeReportes generador;
+
+    private ContextoReserva crearReserva(LocalDate fechaCompra) {
+        ContextoReserva r = new ContextoReserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodoReporte);
+        r.setFechaCompra(fechaCompra);
+        return r;
+    }
 
     @BeforeEach
     void setUp() {
@@ -71,25 +80,22 @@ class ReportesVisitorTest {
         packEscapadaUrbana.agregarItem(trasladoAeropuerto);
         packEscapadaUrbana.darDescuento(10);
 
-        ContextoReserva r1 = new ContextoReserva();
-        r1.setFechaCompra(LocalDate.of(2026, 1, 12));
+        ContextoReserva r1 = crearReserva(LocalDate.of(2026, 1, 12));
         r1.getSolicitud().agregarServicio(packEscapadaUrbana);
         r1.getSolicitud().agregarServicio(hotelCentral);
 
-        ContextoReserva r2 = new ContextoReserva();
-        r2.setFechaCompra(LocalDate.of(2026, 1, 15));
+        ContextoReserva r2 = crearReserva(LocalDate.of(2026, 1, 15));
         r2.getSolicitud().agregarServicio(packEscapadaUrbana);
         r2.getSolicitud().agregarServicio(hotelCentral);
         r2.getSolicitud().agregarServicio(excursionMuseo);
 
-        ContextoReserva r3 = new ContextoReserva();
-        r3.setFechaCompra(LocalDate.of(2026, 1, 20));
+        ContextoReserva r3 = crearReserva(LocalDate.of(2026, 1, 20));
         r3.getSolicitud().agregarServicio(packEscapadaUrbana);
 
-        ContextoReserva reservaSinFecha = new ContextoReserva();
+        ContextoReserva reservaSinFecha = crearReserva(null);
         reservaSinFecha.getSolicitud().agregarServicio(trasladoAeropuerto);
 
-        ContextoReserva reservaFueraDePeriodo = new ContextoReserva();
+        ContextoReserva reservaFueraDePeriodo = crearReserva(LocalDate.of(2026, 2, 20));
         reservaFueraDePeriodo.setFechaCompra(LocalDate.of(2026, 2, 10));
         reservaFueraDePeriodo.getSolicitud().agregarServicio(trasladoAeropuerto);
 

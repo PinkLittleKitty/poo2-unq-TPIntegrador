@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36">
   <diagram name="Page-1" id="MEMsVOg9I4byTbGzPSWV">
-    <mxGraphModel dx="8476" dy="4678" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="7418" dy="4039" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1144,7 +1144,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-140" connectable="0" parent="1" style="group" value="" vertex="1">
-          <mxGeometry height="341.0500000000002" width="1730" x="5948" y="1610" as="geometry" />
+          <mxGeometry height="341.0500000000002" width="1730" x="5980" y="1830" as="geometry" />
         </mxCell>
         <UserObject label="&lt;i&gt;&amp;nbsp;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;div&gt;&lt;i&gt;Criterio&lt;/i&gt;&lt;/div&gt;" mermaidId="n:Adaptador" mermaidBaseStyle="swimlane;html=1;fontStyle=1;fontSize=16;align=center;verticalAlign=middle;horizontal=1;childLayout=stackLayout;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginTop=12;marginBottom=12;stackSpacing=0;swimlaneFillColor=#F7FEE7;whiteSpace=wrap;fillColor=#F7FEE7;strokeColor=#A3E635;fontColor=#28253D;fontFamily=Recursive;strokeWidth=2;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="&lt;b&gt;Adaptador&lt;/b&gt;" id="Wfu1TY1uJvCHMqnp-xcW-81">
           <mxCell parent="Wfu1TY1uJvCHMqnp-xcW-140" style="swimlane;html=1;fontStyle=1;fontSize=14;align=center;verticalAlign=middle;horizontal=1;childLayout=stackLayout;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginTop=12;marginBottom=12;stackSpacing=0;swimlaneFillColor=#F7FEE7;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Recursive;strokeWidth=2;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;container=0;" vertex="1">
@@ -1313,30 +1313,6 @@
             </mxGeometry>
           </mxCell>
         </UserObject>
-        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-142" connectable="0" parent="1" style="group" value="" vertex="1">
-          <mxGeometry height="200" width="885" x="4648" y="1230" as="geometry" />
-        </mxCell>
-        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-162" parent="Wfu1TY1uJvCHMqnp-xcW-142" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Cupo" vertex="1">
-          <mxGeometry height="200" width="270" as="geometry" />
-        </mxCell>
-        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-163" parent="_SW4fJNoXN1WjUY6Lf_G-162" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- cupoInicial : int&lt;div&gt;- cupoDisponible : int&amp;nbsp;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="44" width="270" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-164" parent="_SW4fJNoXN1WjUY6Lf_G-162" style="line;strokeWidth=1;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#6c8ebf;" value="" vertex="1">
-          <mxGeometry height="8" width="270" y="70" as="geometry" />
-        </mxCell>
-        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-165" parent="_SW4fJNoXN1WjUY6Lf_G-162" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;u&gt;+ cupo ( cupoIni&amp;nbsp; int, cupoDisponible int)&lt;/u&gt;&lt;div&gt;+ sumar ( otroCupo Cupo ) : Cupo&lt;/div&gt;&lt;div&gt;+ decrementarCupo ( ) : void&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ incrementarCupo ( ) : void&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ getCupoInicial ( ) : int&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getCupoDisponible ( ) : int&amp;nbsp;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;div&gt;+ getCupoReservado ( ) : int&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="122" width="270" y="78" as="geometry" />
-        </mxCell>
-        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-72" parent="Wfu1TY1uJvCHMqnp-xcW-142" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#CC0000;fontFamily=Verdana;" value="Periodo &lt;i&gt;&amp;lt;&amp;lt;Record&amp;gt;&amp;gt;&lt;/i&gt;" vertex="1">
-          <mxGeometry height="100" width="360" x="525" as="geometry" />
-        </mxCell>
-        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-74" parent="Wfu1TY1uJvCHMqnp-xcW-72" style="line;strokeWidth=1;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#CC0000;fontFamily=Verdana;" value="" vertex="1">
-          <mxGeometry height="8" width="360" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-75" parent="Wfu1TY1uJvCHMqnp-xcW-72" style="text;strokeColor=#CC0000;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Verdana;" value="&lt;u&gt;+ Periodo( fechaInicio : Date, fechaFin : Date)&lt;/u&gt;&lt;div&gt;+ incluye (fecha : Date) : Boolean&lt;/div&gt;&lt;div&gt;+ seSuperponeCon (otroPeriodo :&amp;nbsp;Periodo) : Boolean&lt;/div&gt;" vertex="1">
-          <mxGeometry height="66" width="360" y="34" as="geometry" />
-        </mxCell>
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-143" connectable="0" parent="1" style="group" value="" vertex="1">
           <mxGeometry height="170" width="568" x="2850" y="2260" as="geometry" />
         </mxCell>
@@ -1489,13 +1465,13 @@
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-78" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;horizontal=1;" value="periodoVigencia" vertex="1">
           <mxGeometry height="48" width="110" x="5138" y="1927" as="geometry" />
         </mxCell>
-        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-84" connectable="0" parent="1" style="group" value="" vertex="1">
+        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-84" connectable="0" parent="1" style="group;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
           <mxGeometry height="134.95" width="385" x="5488" y="1810" as="geometry" />
         </mxCell>
-        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-85" parent="Wfu1TY1uJvCHMqnp-xcW-84" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;container=0;" value="Busqueda" vertex="1">
+        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-85" parent="Wfu1TY1uJvCHMqnp-xcW-84" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;container=0;" value="Busqueda" vertex="1">
           <mxGeometry height="105.38235294117646" width="385" as="geometry" />
         </mxCell>
-        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-86" parent="Wfu1TY1uJvCHMqnp-xcW-85" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=14;container=0;" value="&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ del&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;Item(item :&amp;nbsp;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;Catalogo&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;)() : void&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ agregarItem(item :&amp;nbsp;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;Catalogo&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;)() : void&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+&amp;nbsp; getItems() : [] Catalogo&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ buscarEnCatalogo(criterio : Criterio) : [] Catalogo&lt;/font&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-86" parent="Wfu1TY1uJvCHMqnp-xcW-85" style="text;strokeColor=#b85450;fillColor=#f8cecc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=14;container=0;" value="&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ del&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;Item(item :&amp;nbsp;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;Catalogo&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;)() : void&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ agregarItem(item :&amp;nbsp;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;Catalogo&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;)() : void&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+&amp;nbsp; getItems() : [] Catalogo&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ buscarEnCatalogo(criterio : Criterio) : [] Catalogo&lt;/font&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="79.38235294117646" width="385" y="26" as="geometry" />
         </mxCell>
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-87" edge="1" parent="1" source="Wfu1TY1uJvCHMqnp-xcW-86" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;endArrow=open;endFill=0;endSize=16;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="Wfu1TY1uJvCHMqnp-xcW-37">
@@ -1552,7 +1528,7 @@
           <mxGeometry height="30" width="155" x="3217" y="2079" as="geometry" />
         </mxCell>
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-31" connectable="0" parent="1" style="group;fontSize=14;" value="" vertex="1">
-          <mxGeometry height="230" width="1210" x="3320" y="1700" as="geometry" />
+          <mxGeometry height="230" width="1210" x="3330" y="1660" as="geometry" />
         </mxCell>
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-32" parent="Wfu1TY1uJvCHMqnp-xcW-31" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="&lt;b&gt;ServicioIndividual&lt;/b&gt;" vertex="1">
           <mxGeometry height="88.94736842105263" width="1210" as="geometry" />
@@ -1562,6 +1538,27 @@
         </mxCell>
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-34" parent="Wfu1TY1uJvCHMqnp-xcW-31" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=14;" value="&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;+ ServicioIndividual(nombre :&amp;nbsp;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;String&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;, descripcion :&amp;nbsp;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;String&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;, cupo : Cupo, idReserva :&amp;nbsp;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;int&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;, proveedor :&amp;nbsp;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;String&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;, precio :&amp;nbsp;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;double&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;, categoria : Categoria, periodo : Periodo)&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;font&gt;+ proveedor() : String&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;font&gt;+getIdReserva() : Real&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ agregarAtributoExtra(DefinicionAtributo _atributo) : void&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ getAtributosDinamicos()&amp;nbsp;: [] DefinicionAtributo&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;&lt;br&gt;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="121.05263157894737" width="1210" y="94.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-162" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Cupo" vertex="1">
+          <mxGeometry height="200" width="270" x="4648" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-163" parent="_SW4fJNoXN1WjUY6Lf_G-162" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- cupoInicial : int&lt;div&gt;- cupoDisponible : int&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="44" width="270" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-164" parent="_SW4fJNoXN1WjUY6Lf_G-162" style="line;strokeWidth=1;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="8" width="270" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_SW4fJNoXN1WjUY6Lf_G-165" parent="_SW4fJNoXN1WjUY6Lf_G-162" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;u&gt;+ cupo ( cupoIni&amp;nbsp; int, cupoDisponible int)&lt;/u&gt;&lt;div&gt;+ sumar ( otroCupo Cupo ) : Cupo&lt;/div&gt;&lt;div&gt;+ decrementarCupo ( ) : void&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ incrementarCupo ( ) : void&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ getCupoInicial ( ) : int&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getCupoDisponible ( ) : int&amp;nbsp;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;div&gt;+ getCupoReservado ( ) : int&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="122" width="270" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-72" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#CC0000;fontFamily=Verdana;" value="Periodo &lt;i&gt;&amp;lt;&amp;lt;Record&amp;gt;&amp;gt;&lt;/i&gt;" vertex="1">
+          <mxGeometry height="100" width="360" x="5173" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-74" parent="Wfu1TY1uJvCHMqnp-xcW-72" style="line;strokeWidth=1;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#CC0000;fontFamily=Verdana;" value="" vertex="1">
+          <mxGeometry height="8" width="360" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-75" parent="Wfu1TY1uJvCHMqnp-xcW-72" style="text;strokeColor=#CC0000;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Verdana;" value="&lt;u&gt;+ Periodo( fechaInicio : Date, fechaFin : Date)&lt;/u&gt;&lt;div&gt;+ incluye (fecha : Date) : Boolean&lt;/div&gt;&lt;div&gt;+ seSuperponeCon (otroPeriodo :&amp;nbsp;Periodo) : Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="66" width="360" y="34" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

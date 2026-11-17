@@ -1,14 +1,22 @@
 package org.viajesOnline.utils;
 
 public class Usuario {
-    private String Nombre;
+    private String nombre;
     private String email;
     private String CUIT;
     private String DNI;
     private Boolean esResponsableInscripto;
 
+    public Usuario(String nombre, String email, String cuit, String dni, Boolean esResoinsableInscripto) {
+        this.nombre = nombre;
+        this.email = email;
+        this.CUIT = cuit;
+        this.DNI = dni;
+        this.esResponsableInscripto = esResoinsableInscripto;
+    }
+
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public String getEmail() {

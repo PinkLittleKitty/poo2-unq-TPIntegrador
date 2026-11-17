@@ -1,4 +1,4 @@
-package org.viajesOnline;
+package org.viajesOnline.catalogo;
 
 import org.viajesOnline.atributos.DefinicionAtributo;
 import org.viajesOnline.exceptions.CompletarCampos;

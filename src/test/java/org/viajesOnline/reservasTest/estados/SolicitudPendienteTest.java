@@ -2,7 +2,7 @@ package org.viajesOnline.reservasTest.estados;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.*;
 import org.viajesOnline.reservas.estados.*;

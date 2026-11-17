@@ -1,7 +1,7 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.Catalogo;
-import org.viajesOnline.Categoria;
+import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Categoria;
 import org.viajesOnline.reservas.Cupo;
 
 import java.util.Comparator;
@@ -11,8 +11,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 final class FormatoUtils {
-
-    private FormatoUtils() {}
 
     static List<Map.Entry<Catalogo, Long>> serviciosOrdenados(ServicioMasReservado reporte) {
         return reporte.calcularDatos().entrySet().stream()

@@ -1,6 +1,6 @@
 package org.viajesOnline.criterios;
 
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 
 import java.util.ArrayList;
 import java.util.List;

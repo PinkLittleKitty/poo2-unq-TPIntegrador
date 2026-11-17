@@ -1,7 +1,7 @@
 package org.viajesOnline.reservasTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 import org.viajesOnline.reservas.Solicitud;
 
 import static org.junit.jupiter.api.Assertions.*;

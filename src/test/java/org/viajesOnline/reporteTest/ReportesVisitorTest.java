@@ -2,9 +2,9 @@ package org.viajesOnline.reporteTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.Categoria;
-import org.viajesOnline.Paquete;
-import org.viajesOnline.ServicioIndividual;
+import org.viajesOnline.catalogo.Categoria;
+import org.viajesOnline.catalogo.Paquete;
+import org.viajesOnline.catalogo.ServicioIndividual;
 import org.viajesOnline.reporte.*;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.Cupo;

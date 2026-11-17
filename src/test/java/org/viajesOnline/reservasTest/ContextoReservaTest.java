@@ -2,7 +2,7 @@ package org.viajesOnline.reservasTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
@@ -27,7 +27,7 @@ class ContextoReservaTest {
         estadoNuevoMock = mock(EstadoReserva.class);
         observerMock = mock(ObservadorCambioEstado.class);
         gestor = mock(GestorDeDocumentos.class);
-        contexto = new ContextoReserva(gestor, new Usuario(), mock(Periodo.class));
+        contexto = new ContextoReserva(gestor, mock(Usuario.class), mock(Periodo.class));
         contexto.setEstadoActual(estadoMock);
     }
 

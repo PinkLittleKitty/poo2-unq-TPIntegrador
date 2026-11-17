@@ -1,6 +1,6 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.ServicioIndividual;
+import org.viajesOnline.catalogo.ServicioIndividual;
 
 import java.util.List;
 import java.util.Map;

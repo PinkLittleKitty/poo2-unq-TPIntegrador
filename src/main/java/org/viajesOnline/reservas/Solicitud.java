@@ -1,13 +1,9 @@
 package org.viajesOnline.reservas;
 
-import org.viajesOnline.Catalogo;
-import org.viajesOnline.documento.Documento;
-import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.documento.VoucherReembolso;
+import org.viajesOnline.catalogo.Catalogo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Solicitud {
 

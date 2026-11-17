@@ -1,7 +1,7 @@
 package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.Catalogo;
+import org.viajesOnline.catalogo.Catalogo;
 import org.viajesOnline.criterios.Disponibilidad;
 import org.viajesOnline.utils.Periodo;
 

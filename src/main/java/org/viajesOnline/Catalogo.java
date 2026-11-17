@@ -5,7 +5,6 @@ import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public abstract class Catalogo {
@@ -16,15 +15,17 @@ public abstract class Catalogo {
   private Cupo cupo;
   private Periodo periodoVigencia;
   private Categoria categoria;
+  private String proveedor;
 
-  public Catalogo(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia,Categoria categoria){
-    validar(nombre, descripcion,precioBase,cupoDisponible,periodoVigencia, categoria);
+  public Catalogo(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia,Categoria categoria, String proveedor){
+    validar(nombre, descripcion,precioBase,cupoDisponible,periodoVigencia, categoria, proveedor);
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.precioBase = precioBase;
     this.cupo = cupoDisponible;
     this.periodoVigencia = periodoVigencia;
     this.categoria = categoria;
+    this.proveedor = proveedor;
   }
 
   public void darDescuento(int descuento){
@@ -40,13 +41,15 @@ public abstract class Catalogo {
     return this.getPrecioBase() - this.descuentoAplicable();
   }
 
-  private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodo,Categoria categoria){
+  private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodo,Categoria categoria, String proveedor){
     try {
       Objects.requireNonNull(periodo);
       Objects.requireNonNull(categoria);
       Objects.requireNonNull(nombre);
       Objects.requireNonNull(descripcion);
       Objects.requireNonNull(cupoDisponible);
+      Objects.requireNonNull(proveedor);
+      Validate.notBlank(proveedor);
       Validate.notBlank(nombre, descripcion, "Es obligatorio completar estos campos");
       Validate.validState(precioBase > 0);
     } catch (Exception e) {
@@ -87,6 +90,10 @@ public abstract class Catalogo {
 
   public int getDescuento() {
     return descuento;
+  }
+
+  public String proveedor(){
+    return proveedor;
   }
 
   public Categoria categoria() {

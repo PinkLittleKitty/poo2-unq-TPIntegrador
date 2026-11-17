@@ -2,8 +2,6 @@ package org.viajesOnline;
 
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.atributos.DefinicionAtributo;
-import org.viajesOnline.atributos.Numerico;
-import org.viajesOnline.criterios.Nombre;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
@@ -21,7 +19,7 @@ class ServicioIndividualTest {
   private ServicioIndividual servicio = new ServicioIndividual(
           "Hotel",
           "Descripción",
-          new Cupo(2, 2),
+          mock(Cupo.class),
           123,
           "ProveedorA",
           150.0,
@@ -36,17 +34,12 @@ class ServicioIndividualTest {
   }
 
   @Test
-  void getterProveedorEsCorrecto(){
-    assertEquals("ProveedorA", servicio.proveedor());
-  }
-
-  @Test
   void rechazaProveedorNulo() {
     assertThrows(CompletarCampos.class, () ->
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    new Cupo(2, 2),
+                    mock(Cupo.class),
                     123,
                     null,
                     150.0,
@@ -62,7 +55,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
             "Hotel",
             "Descripción",
-            new Cupo(2,2),
+                    mock(Cupo.class),
             123,
             "",
             150.0,
@@ -74,7 +67,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
             "Hotel",
             "Descripción",
-            new Cupo(2,2),
+            mock(Cupo.class),
             123,
             "   ",
             150.0,
@@ -88,7 +81,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    new Cupo(2, 2),
+                    mock(Cupo.class),
                     123,
                     "Proveedor A",
                     150.0,

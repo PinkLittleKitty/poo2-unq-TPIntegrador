@@ -64,7 +64,8 @@ class ReportesVisitorTest {
                 1.0,
                 new Cupo(5, 3),
                 vigenciaEnero,
-                Categoria.EXCURSION);
+                Categoria.EXCURSION,
+                "ProveedorA");
         packEscapadaUrbana.agregarItem(hotelCentral);
         packEscapadaUrbana.agregarItem(excursionMuseo);
         packEscapadaUrbana.agregarItem(trasladoAeropuerto);

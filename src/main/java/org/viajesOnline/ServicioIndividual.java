@@ -8,18 +8,13 @@ import org.viajesOnline.utils.Periodo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 
 public class ServicioIndividual extends Catalogo {
   private int idReserva; //??????
-  private String proveedor;
   private List<DefinicionAtributo> atributosDinamicos = new ArrayList<DefinicionAtributo>();
 
-  private static void verificacionCons(String proveedor,int idReserva){
+  private static void verificacionCons(int idReserva){
     try{
-      Objects.requireNonNull(proveedor);
-      Validate.notBlank(proveedor);
       Validate.validState(idReserva > 0);
     } catch (Exception e) {
       throw new CompletarCampos("Se requiere que se completen todos los campos");
@@ -35,10 +30,9 @@ public class ServicioIndividual extends Catalogo {
   }
 
   public ServicioIndividual(String nombre, String descripcion, Cupo cupo, int idReserva, String proveedor, double precio, Categoria categoria, Periodo periodo){
-    super(nombre, descripcion, precio, cupo, periodo, categoria);
-    this.verificacionCons(proveedor,idReserva);
+    super(nombre, descripcion, precio, cupo, periodo, categoria, proveedor);
+    this.verificacionCons(idReserva);
     this.idReserva = idReserva;
-    this.proveedor = proveedor;
   }
 
   public void agregarAtributoExtra(DefinicionAtributo _atributo){
@@ -49,10 +43,6 @@ public class ServicioIndividual extends Catalogo {
 
   public List<DefinicionAtributo> getAtributosDinamicos() {
     return List.copyOf(atributosDinamicos);
-  }
-
-  public String proveedor(){
-    return proveedor;
   }
 
   public int getIdReserva() {

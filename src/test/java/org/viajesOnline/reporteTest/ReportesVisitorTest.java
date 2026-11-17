@@ -106,7 +106,7 @@ class ReportesVisitorTest {
                         + "Pack Escapada Urbana,3\n"
                         + "Noche de Hotel Central,2\n"
                         + "Excursión Guiada Museo,1",
-                reporte.exportar(new FormatoCsv()));
+                generador.exportar(reporte, new FormatoCsv()));
 
         assertEquals(
                 "<h2>Servicios mas reservados</h2>\n"
@@ -118,14 +118,14 @@ class ReportesVisitorTest {
                         + "<tr><td>Excursión Guiada Museo</td><td>1</td></tr>\n"
                         + "</tbody>\n"
                         + "</table>",
-                reporte.exportar(new FormatoHtml()));
+                generador.exportar(reporte, new FormatoHtml()));
 
         assertEquals(
                 "Servicios más reservados\n"
                         + "- Pack Escapada Urbana: 3 reservas\n"
                         + "- Noche de Hotel Central: 2 reservas\n"
                         + "- Excursión Guiada Museo: 1 reservas",
-                reporte.exportar(new FormatoTextoPlano()));
+                generador.exportar(reporte, new FormatoTextoPlano()));
     }
 
     @Test
@@ -137,7 +137,7 @@ class ReportesVisitorTest {
                         + "ALOJAMIENTO,10,4,6\n"
                         + "ALQUILER_DE_AUTOS,8,3,5\n"
                         + "EXCURSION,15,5,10",
-                reporte.exportar(new FormatoCsv()));
+                generador.exportar(reporte, new FormatoCsv()));
 
         assertEquals(
                 "<h2>Registro de cupos</h2>\n"
@@ -149,13 +149,13 @@ class ReportesVisitorTest {
                         + "<tr><td>EXCURSION</td><td>15</td><td>5</td><td>10</td></tr>\n"
                         + "</tbody>\n"
                         + "</table>",
-                reporte.exportar(new FormatoHtml()));
+                generador.exportar(reporte, new FormatoHtml()));
         assertEquals(
                 "Registro de cupos\n"
                         + "Categoría: ALOJAMIENTO | Totales: 10 | Reservados: 4 | Disponibles: 6\n"
                         + "Categoría: ALQUILER_DE_AUTOS | Totales: 8 | Reservados: 3 | Disponibles: 5\n"
                         + "Categoría: EXCURSION | Totales: 15 | Reservados: 5 | Disponibles: 10",
-                reporte.exportar(new FormatoTextoPlano()));
+                generador.exportar(reporte, new FormatoTextoPlano()));
     }
 
     @Test

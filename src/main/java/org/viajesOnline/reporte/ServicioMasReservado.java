@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-class ServicioMasReservado implements Reporte {
+public class ServicioMasReservado implements Reporte {
 
     private Periodo periodo;
     private List<ContextoReserva> reservas;

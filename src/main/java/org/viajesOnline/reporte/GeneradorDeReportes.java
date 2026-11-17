@@ -5,6 +5,7 @@ import org.viajesOnline.reservas.ContextoReserva;
 import org.viajesOnline.utils.Periodo;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GeneradorDeReportes {
     private final List<ServicioIndividual> servicios;
@@ -28,7 +29,9 @@ public class GeneradorDeReportes {
     }
 
     public String exportar(Reporte reporte, FormatoVisitanteReportes formato) {
-        return reporte.exportar(formato);
+        Objects.requireNonNull(formato, "El formato no puede ser nulo");
+        reporte.accept(formato);
+        return formato.obtenerReporte();
     }
 
 }

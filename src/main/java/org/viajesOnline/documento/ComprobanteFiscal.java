@@ -18,8 +18,8 @@ public class ComprobanteFiscal extends Documento {
         this.nombreCliente = nombreCliente;
         this.identificacionFiscal = identificacionFiscal;
         this.montoTotal = montoTotal;
-        this.importeNeto = this.calcularIva(montoTotal / 1.21);
-        this.iva = this.calcularIva(montoTotal - this.importeNeto);
+        this.importeNeto = this.redondear(montoTotal / 1.21);
+        this.iva = this.redondear(montoTotal - this.importeNeto);
         this.nombreComprobante = "Comprobante Fiscal";
     }
 
@@ -31,7 +31,7 @@ public class ComprobanteFiscal extends Documento {
     public double getIva() { return iva;}
     public double monto() { return montoTotal; }
 
-    public double calcularIva(double montoInicial) {
+    public double redondear(double montoInicial) {
         return Math.round(montoInicial * 100.0) / 100.0;
     }
 

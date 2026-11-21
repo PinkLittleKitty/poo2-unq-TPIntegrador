@@ -18,7 +18,9 @@ public abstract class Item {
   private Categoria categoria;
   private String proveedor;
 
-  public Item(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia, Categoria categoria, String proveedor){
+  public Item(String nombre, String descripcion, double precioBase, Cupo cupoDisponible
+              ,Periodo periodoVigencia, Categoria categoria, String proveedor){
+
     validar(nombre, descripcion,precioBase,cupoDisponible,periodoVigencia, categoria, proveedor);
     this.nombre = nombre;
     this.descripcion = descripcion;

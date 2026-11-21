@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmpresaTurismo {
-    private static final List<Item> items = new ArrayList<>();
-    private static final List<Reserva> reservas = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
+    private final List<Reserva> reservas = new ArrayList<>();
 
-    public static void agregarItem(Item i) {
+    public void addItem(Item i) {
         items.add(i);
     }
 
-    public static void sacarItem(Item i) {
+    public void delItem(Item i) {
         items.remove(i);
     }
 
-    public static List<Item> getItems() {
+    public List<Item> getItems() {
         return List.copyOf(items);
     }
 

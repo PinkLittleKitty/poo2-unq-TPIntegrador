@@ -27,7 +27,6 @@ public abstract class Item {
     this.periodoVigencia = periodoVigencia;
     this.categoria = categoria;
     this.proveedor = proveedor;
-    EmpresaTurismo.agregarItem(this);
   }
 
   public void darDescuento(int descuento){

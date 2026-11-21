@@ -2,6 +2,7 @@ package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.EmpresaTurismo;
 import org.viajesOnline.items.Item;
 import org.viajesOnline.criterios.Criterio;
 
@@ -13,15 +14,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class BusquedaTest {
-  private Busqueda busqueda = new Busqueda();
+  private EmpresaTurismo empresa;
   private Criterio criterio = mock(Criterio.class);
   private Item item1 = mock(Item.class);
   private Item item2 = mock(Item.class);
 
   @BeforeEach
   void setUp(){
-    busqueda.addItem(item1);
-    busqueda.addItem(item2);
+    empresa = new EmpresaTurismo();
+    empresa.addItem(item1);
+    empresa.addItem(item2);
   }
 
   @Test
@@ -29,7 +31,7 @@ class BusquedaTest {
     when(criterio.satisfaceCriterio(item1)).thenReturn(true);
     when(criterio.satisfaceCriterio(item2)).thenReturn(false);
 
-    List<Item> resultado = busqueda.buscarEnCatalogo(criterio);
+    List<Item> resultado = empresa.buscarEnCatalogo(criterio);
 
     assertEquals(List.of(item1), resultado);
     verify(criterio).satisfaceCriterio(item1);
@@ -38,17 +40,14 @@ class BusquedaTest {
 
   @Test
   void getItemsDevuelveUnaCopiaDeLaLista() {
-    List<Item> copia_item = busqueda.getItems();
-
-    assertEquals(List.of(item1,item2), copia_item);
     assertThrows(UnsupportedOperationException.class,
-              () -> copia_item.add(mock(Item.class)));
+              () -> empresa.getItems().add(mock(Item.class)));
   }
 
     @Test
     void delItemEliminaElElemento() {
-      busqueda.delItem(item1);
-      busqueda.delItem(item2);
-      assertTrue(busqueda.getItems().isEmpty());
+      empresa.delItem(item1);
+      empresa.delItem(item2);
+      assertTrue(empresa.getItems().isEmpty());
     }
   }

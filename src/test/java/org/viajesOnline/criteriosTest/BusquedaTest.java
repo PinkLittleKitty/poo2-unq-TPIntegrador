@@ -21,7 +21,7 @@ class BusquedaTest {
 
   @BeforeEach
   void setUp(){
-    empresa = new EmpresaTurismo();
+    empresa = EmpresaTurismo.getInstance();
     empresa.addItem(item1);
     empresa.addItem(item2);
   }

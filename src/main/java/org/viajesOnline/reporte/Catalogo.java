@@ -1,8 +1,7 @@
-package org.viajesOnline;
+package org.viajesOnline.reporte;
 
 import org.viajesOnline.criterios.Criterio;
 import org.viajesOnline.items.*;
-import org.viajesOnline.reservas.Reserva;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class Catalogo {
         return items.stream().filter(criterio::satisfaceCriterio).toList();
     }
 
-    public void borrarTodo(){
+    void borrarTodo(){
         items.clear();
     }
 }

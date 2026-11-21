@@ -1,4 +1,4 @@
-package org.viajesOnline.catalogo;
+package org.viajesOnline.items;
 
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;

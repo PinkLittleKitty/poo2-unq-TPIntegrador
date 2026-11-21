@@ -2,10 +2,10 @@ package org.viajesOnline.catalogoTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Item;
-import org.viajesOnline.catalogo.Categoria;
-import org.viajesOnline.catalogo.Paquete;
-import org.viajesOnline.catalogo.ServicioIndividual;
+import org.viajesOnline.items.Item;
+import org.viajesOnline.items.Categoria;
+import org.viajesOnline.items.Paquete;
+import org.viajesOnline.items.ServicioIndividual;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
 

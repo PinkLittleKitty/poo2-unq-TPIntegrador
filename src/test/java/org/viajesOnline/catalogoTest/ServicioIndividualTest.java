@@ -2,8 +2,8 @@ package org.viajesOnline.catalogoTest;
 
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.atributos.DefinicionAtributo;
-import org.viajesOnline.catalogo.Categoria;
-import org.viajesOnline.catalogo.ServicioIndividual;
+import org.viajesOnline.items.Categoria;
+import org.viajesOnline.items.ServicioIndividual;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;

@@ -1,7 +1,7 @@
 package org.viajesOnline.reporteTest;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.*;
+import org.viajesOnline.items.*;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reporte.*;
 import org.viajesOnline.reservas.*;

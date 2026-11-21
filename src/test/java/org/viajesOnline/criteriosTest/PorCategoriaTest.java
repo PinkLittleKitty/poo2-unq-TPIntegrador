@@ -2,14 +2,14 @@ package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Item;
+import org.viajesOnline.items.Item;
 import org.viajesOnline.criterios.PorCategoria;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.viajesOnline.catalogo.Categoria.ALOJAMIENTO;
-import static org.viajesOnline.catalogo.Categoria.VUELO;
+import static org.viajesOnline.items.Categoria.ALOJAMIENTO;
+import static org.viajesOnline.items.Categoria.VUELO;
 
 class PorCategoriaTest {
   PorCategoria criterio = new PorCategoria(ALOJAMIENTO);

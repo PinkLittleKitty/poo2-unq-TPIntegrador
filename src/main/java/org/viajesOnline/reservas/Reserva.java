@@ -1,6 +1,6 @@
 package org.viajesOnline.reservas;
 
-import org.viajesOnline.catalogo.Item;
+import org.viajesOnline.items.Item;
 import org.viajesOnline.documento.*;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.*;

@@ -1,6 +1,6 @@
 package org.viajesOnline.criterios;
 
-import org.viajesOnline.catalogo.Item;
+import org.viajesOnline.items.Item;
 
 public class AND implements Criterio{
   private Criterio crt1;

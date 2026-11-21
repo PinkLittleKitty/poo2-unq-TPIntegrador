@@ -1,7 +1,7 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.catalogo.Item;
-import org.viajesOnline.catalogo.Categoria;
+import org.viajesOnline.items.Item;
+import org.viajesOnline.items.Categoria;
 import org.viajesOnline.reservas.Cupo;
 
 import java.util.Comparator;

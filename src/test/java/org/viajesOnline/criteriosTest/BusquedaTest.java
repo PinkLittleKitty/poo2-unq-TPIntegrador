@@ -2,8 +2,7 @@ package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Item;
-import org.viajesOnline.criterios.Busqueda;
+import org.viajesOnline.items.Item;
 import org.viajesOnline.criterios.Criterio;
 
 import java.util.List;

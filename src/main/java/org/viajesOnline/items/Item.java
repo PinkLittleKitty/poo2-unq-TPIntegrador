@@ -1,6 +1,7 @@
-package org.viajesOnline.catalogo;
+package org.viajesOnline.items;
 
 import org.apache.commons.lang3.Validate;
+import org.viajesOnline.EmpresaTurismo;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
@@ -26,6 +27,7 @@ public abstract class Item {
     this.periodoVigencia = periodoVigencia;
     this.categoria = categoria;
     this.proveedor = proveedor;
+    EmpresaTurismo.agregarItem(this);
   }
 
   public void darDescuento(int descuento){

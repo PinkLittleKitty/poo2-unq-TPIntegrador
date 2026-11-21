@@ -1,6 +1,6 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.catalogo.Item;
+import org.viajesOnline.items.Item;
 import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.utils.Periodo;
 

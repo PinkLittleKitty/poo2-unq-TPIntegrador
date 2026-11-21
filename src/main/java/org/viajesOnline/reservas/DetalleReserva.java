@@ -1,6 +1,6 @@
 package org.viajesOnline.reservas;
 
-import org.viajesOnline.catalogo.Item;
+import org.viajesOnline.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;

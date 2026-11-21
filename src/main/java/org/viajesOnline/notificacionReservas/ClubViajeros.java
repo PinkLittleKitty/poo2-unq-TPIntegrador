@@ -2,7 +2,7 @@ package org.viajesOnline.notificacionReservas;
 
 import org.viajesOnline.documento.CuponDescuento;
 import org.viajesOnline.documento.Documento;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 
 import java.util.UUID;
@@ -20,14 +20,14 @@ public class ClubViajeros extends ObservadorCambioEstado {
     public double descuento(){return descuento;}
 
     @Override
-    public void reservaCancelada(ContextoReserva reserva) {
+    public void reservaCancelada(Reserva reserva) {
 
         String codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Documento cupon = new CuponDescuento(codTrans,descuento);
         this.enviarMail(reserva, cupon);
     }
 
-    private void enviarMail(ContextoReserva reserva,Documento adjunto) {
+    private void enviarMail(Reserva reserva, Documento adjunto) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
                 "Cupon de Descuento",

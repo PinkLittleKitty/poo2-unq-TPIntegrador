@@ -9,7 +9,7 @@ import org.viajesOnline.utils.Periodo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicioIndividual extends Catalogo {
+public class ServicioIndividual extends Item {
   private int idReserva; //??????
   private List<DefinicionAtributo> atributosDinamicos = new ArrayList<DefinicionAtributo>();
 

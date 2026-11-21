@@ -4,15 +4,15 @@ import org.viajesOnline.documento.GestorDeDocumentos;
 
 public abstract class ObservadorCambioEstado {
 
-    public void reservaPendiente(ContextoReserva reserva) { }
+    public void reservaPendiente(Reserva reserva) { }
 
-    public void reservaConfirmada(ContextoReserva reserva) { }
+    public void reservaConfirmada(Reserva reserva) { }
 
-    public void reservaEnCheckin(ContextoReserva reserva) { }
+    public void reservaEnCheckin(Reserva reserva) { }
 
-    public void reservaEnCurso(ContextoReserva reserva) { }
+    public void reservaEnCurso(Reserva reserva) { }
 
-    public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) { }
+    public void reservaFinalizada(GestorDeDocumentos gestor, Reserva reserva) { }
 
-    public void reservaCancelada(ContextoReserva reserva) { }
+    public void reservaCancelada(Reserva reserva) { }
 }

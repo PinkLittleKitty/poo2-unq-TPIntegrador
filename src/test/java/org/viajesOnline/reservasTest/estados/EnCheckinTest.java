@@ -10,18 +10,18 @@ import static org.mockito.Mockito.*;
 
 public class EnCheckinTest {
     private EnCheckin estado;
-    private ContextoReserva contextoMock;
-    private Solicitud solicitudMock;
+    private Reserva contextoMock;
+    private DetalleReserva detalleReservaMock;
     private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
         estado = new EnCheckin();
-        contextoMock = mock(ContextoReserva.class);
-        solicitudMock = mock(Solicitud.class);
+        contextoMock = mock(Reserva.class);
+        detalleReservaMock = mock(DetalleReserva.class);
         gestor = mock(GestorDeDocumentos.class);
 
-        when(contextoMock.getSolicitud()).thenReturn(solicitudMock);
+        when(contextoMock.getSolicitud()).thenReturn(detalleReservaMock);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class EnCheckinTest {
     void cancelar() {
         estado.cancelar(contextoMock);
 
-        verify(solicitudMock).incrementarCupo();
+        verify(detalleReservaMock).incrementarCupo();
         verify(contextoMock).reembolsar();
         verify(contextoMock).setEstadoActual(any(Cancelada.class));
     }

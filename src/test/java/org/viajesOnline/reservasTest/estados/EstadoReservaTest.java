@@ -2,11 +2,11 @@ package org.viajesOnline.reservasTest.estados;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
-import org.viajesOnline.reservas.Solicitud;
+import org.viajesOnline.reservas.DetalleReserva;
 import org.viajesOnline.reservas.estados.*;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -15,14 +15,14 @@ import static org.mockito.Mockito.*;
 
 class EstadoReservaTest {
 
-    private Catalogo servicioMock;
-    private Solicitud solicitudMock;
+    private Item servicioMock;
+    private DetalleReserva detalleReservaMock;
     private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
-        servicioMock = mock(Catalogo.class);
-        solicitudMock = mock(Solicitud.class);
+        servicioMock = mock(Item.class);
+        detalleReservaMock = mock(DetalleReserva.class);
         gestor = mock(GestorDeDocumentos.class);
     }
 
@@ -31,10 +31,10 @@ class EstadoReservaTest {
         EstadoReserva estadoPorDefecto = new EstadoReserva() {};
 
         assertThrows(UnsupportedOperationException.class, () -> {
-            estadoPorDefecto.agregarServicio(servicioMock, solicitudMock);
+            estadoPorDefecto.agregarServicio(servicioMock, detalleReservaMock);
         });
 
-        verifyNoInteractions(solicitudMock);
+        verifyNoInteractions(detalleReservaMock);
         verifyNoInteractions(servicioMock);
     }
 
@@ -43,37 +43,37 @@ class EstadoReservaTest {
         EstadoReserva estadoConfirmada = new Confirmada();
 
         assertThrows(UnsupportedOperationException.class, () -> {
-            estadoConfirmada.agregarServicio(servicioMock, solicitudMock);
+            estadoConfirmada.agregarServicio(servicioMock, detalleReservaMock);
         });
 
-        verifyNoInteractions(solicitudMock);
+        verifyNoInteractions(detalleReservaMock);
     }
 
     @Test
     void solicitudPendiente_agregarServicio() {
         EstadoReserva solicitudPendiente = new SolicitudPendiente();
 
-        solicitudPendiente.agregarServicio(servicioMock, solicitudMock);
+        solicitudPendiente.agregarServicio(servicioMock, detalleReservaMock);
 
-        verify(solicitudMock, times(1)).agregarServicio(servicioMock);
+        verify(detalleReservaMock, times(1)).agregarServicio(servicioMock);
     }
 
     @Test
     void default_siguiente() {
         EstadoReserva estado = new EstadoReserva() {};
-        assertThrows(UnsupportedOperationException.class, () -> estado.siguiente(mock(ContextoReserva.class)));
+        assertThrows(UnsupportedOperationException.class, () -> estado.siguiente(mock(Reserva.class)));
     }
 
     @Test
     void default_decrementarCupo() {
         EstadoReserva estado = new EstadoReserva() {};
-        assertThrows(UnsupportedOperationException.class, () -> estado.decrementarCupo(mock(Solicitud.class)));
+        assertThrows(UnsupportedOperationException.class, () -> estado.decrementarCupo(mock(DetalleReserva.class)));
     }
 
     @Test
     void default_cancelar() {
         EstadoReserva estado = new EstadoReserva() {};
-        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        Reserva contextoMock = mock(Reserva.class);
         estado.cancelar(contextoMock);
 
         verify(contextoMock).setEstadoActual(any(Cancelada.class));
@@ -82,7 +82,7 @@ class EstadoReservaTest {
     @Test
     void default_notificar() {
         EstadoReserva estado = new EstadoReserva() {};
-        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        Reserva contextoMock = mock(Reserva.class);
         ObservadorCambioEstado observerMock = mock(ObservadorCambioEstado.class);
 
         assertDoesNotThrow(() -> estado.notificar(gestor, contextoMock, observerMock));

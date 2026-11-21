@@ -11,7 +11,7 @@ public class EnCursoTest {
     @Test
     void siguiente() {
         EnCurso estado = new EnCurso();
-        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        Reserva contextoMock = mock(Reserva.class);
 
         estado.siguiente(contextoMock);
 
@@ -21,7 +21,7 @@ public class EnCursoTest {
     @Test
     void notificar() {
         EnCurso estado = new EnCurso();
-        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        Reserva contextoMock = mock(Reserva.class);
         ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
         GestorDeDocumentos gestor = mock(GestorDeDocumentos.class);
 

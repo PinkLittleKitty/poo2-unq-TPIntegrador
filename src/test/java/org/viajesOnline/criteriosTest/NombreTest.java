@@ -1,6 +1,6 @@
 package org.viajesOnline.criteriosTest;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.criterios.Nombre;
 import org.viajesOnline.exceptions.CompletarCampos;
 
@@ -10,24 +10,24 @@ import static org.mockito.Mockito.when;
 
 class NombreTest {
   Nombre criterio = new Nombre("caribe");
-  Catalogo catalogo = mock(Catalogo.class);
+  Item item = mock(Item.class);
 
   @Test
   void satisfaceCriterioCuandoElNombreCoincide() {
-    when(catalogo.getNombre()).thenReturn("caribe");
-    assertTrue(criterio.satisfaceCriterio(catalogo));
+    when(item.getNombre()).thenReturn("caribe");
+    assertTrue(criterio.satisfaceCriterio(item));
   }
 
   @Test
   void satisfaceCriterioCuandoCoincideSinImportarMayus() {
-    when(catalogo.getNombre()).thenReturn("CArIbE");
-    assertTrue(criterio.satisfaceCriterio(catalogo));
+    when(item.getNombre()).thenReturn("CArIbE");
+    assertTrue(criterio.satisfaceCriterio(item));
   }
 
   @Test
   void noSatisfaceCriterioCuandoElNombreNoCoincide() {
-    when(catalogo.getNombre()).thenReturn("otraCosa");
-    assertFalse(criterio.satisfaceCriterio(catalogo));
+    when(item.getNombre()).thenReturn("otraCosa");
+    assertFalse(criterio.satisfaceCriterio(item));
   }
 
   @Test

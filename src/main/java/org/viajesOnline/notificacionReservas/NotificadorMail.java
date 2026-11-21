@@ -19,21 +19,21 @@ public class NotificadorMail extends ObservadorCambioEstado {
     public String estadoANotificar(){ return estadoANotificar; }
 
     @Override
-    public void reservaConfirmada(ContextoReserva reserva) {
+    public void reservaConfirmada(Reserva reserva) {
         notificar(reserva, "Confirmada");
     }
 
     @Override
-    public void reservaEnCurso(ContextoReserva reserva) {
+    public void reservaEnCurso(Reserva reserva) {
         notificar(reserva, "En Curso");
     }
 
     @Override
-    public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
+    public void reservaFinalizada(GestorDeDocumentos gestor, Reserva reserva) {
         notificar(reserva, "Finalizada");
     }
 
-    private void notificar(ContextoReserva reserva, String estado) {
+    private void notificar(Reserva reserva, String estado) {
         estadoANotificar = estado;
         codTrans = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
@@ -45,7 +45,7 @@ public class NotificadorMail extends ObservadorCambioEstado {
         this.enviarMail(reserva, reciboSolicitud);
     }
 
-    private void enviarMail(ContextoReserva reserva, Documento adjunto) {
+    private void enviarMail(Reserva reserva, Documento adjunto) {
         mailSender.enviarMail(
                 reserva.getUsuario().getEmail(),
                 "Cambio de estado",

@@ -1,7 +1,7 @@
 package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.criterios.PrecioMax;
 import org.viajesOnline.exceptions.CompletarCampos;
 
@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 
 class PrecioMaxTest {
   private PrecioMax precioMax = new PrecioMax(23.05);
-  private Catalogo catalogo = mock(Catalogo.class);
+  private Item item = mock(Item.class);
 
   @Test
   void getValorEsCorrecto() {
@@ -28,19 +28,19 @@ class PrecioMaxTest {
 
   @Test
   void satisfaceCriterioCuandoElPrecioEsMenorOigual() {
-    when(catalogo.getPrecioBase()).thenReturn(23.05);
+    when(item.getPrecioBase()).thenReturn(23.05);
 
-    Catalogo cat2 = mock(Catalogo.class);
+    Item cat2 = mock(Item.class);
     when(cat2.getPrecioBase()).thenReturn(22.25);
 
-    assertTrue(precioMax.satisfaceCriterio(catalogo));
+    assertTrue(precioMax.satisfaceCriterio(item));
     assertTrue(precioMax.satisfaceCriterio(cat2));
   }
 
   @Test
   void NosatisfaceCriterioCuandoElPrecioEsMayor() {
-    when(catalogo.getPrecioBase()).thenReturn(50.0);
+    when(item.getPrecioBase()).thenReturn(50.0);
 
-    assertFalse(precioMax.satisfaceCriterio(catalogo));
+    assertFalse(precioMax.satisfaceCriterio(item));
   }
 }

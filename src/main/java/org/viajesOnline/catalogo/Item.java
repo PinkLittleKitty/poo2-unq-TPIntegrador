@@ -7,7 +7,7 @@ import org.viajesOnline.utils.Periodo;
 
 import java.util.Objects;
 
-public abstract class Catalogo {
+public abstract class Item {
   private String nombre;
   private String descripcion;
   private double precioBase;
@@ -17,7 +17,7 @@ public abstract class Catalogo {
   private Categoria categoria;
   private String proveedor;
 
-  public Catalogo(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia,Categoria categoria, String proveedor){
+  public Item(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia, Categoria categoria, String proveedor){
     validar(nombre, descripcion,precioBase,cupoDisponible,periodoVigencia, categoria, proveedor);
     this.nombre = nombre;
     this.descripcion = descripcion;

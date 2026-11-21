@@ -2,7 +2,7 @@ package org.viajesOnline.reservasTest.estados;
 
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.estados.Finalizada;
 
@@ -13,7 +13,7 @@ public class FinalizadaTest {
     @Test
     void siguiente() {
         Finalizada estado = new Finalizada();
-        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        Reserva contextoMock = mock(Reserva.class);
 
         assertThrows(UnsupportedOperationException.class, () -> estado.siguiente(contextoMock));
     }
@@ -21,7 +21,7 @@ public class FinalizadaTest {
     @Test
     void notificar() {
         Finalizada estado = new Finalizada();
-        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        Reserva contextoMock = mock(Reserva.class);
         ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
         GestorDeDocumentos gestor = mock(GestorDeDocumentos.class);
 

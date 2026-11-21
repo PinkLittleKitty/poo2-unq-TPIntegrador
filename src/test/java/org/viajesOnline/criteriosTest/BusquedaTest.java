@@ -2,7 +2,7 @@ package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.criterios.Busqueda;
 import org.viajesOnline.criterios.Criterio;
 
@@ -16,8 +16,8 @@ import static org.mockito.Mockito.when;
 class BusquedaTest {
   private Busqueda busqueda = new Busqueda();
   private Criterio criterio = mock(Criterio.class);
-  private Catalogo item1 = mock(Catalogo.class);
-  private Catalogo item2 = mock(Catalogo.class);
+  private Item item1 = mock(Item.class);
+  private Item item2 = mock(Item.class);
 
   @BeforeEach
   void setUp(){
@@ -30,7 +30,7 @@ class BusquedaTest {
     when(criterio.satisfaceCriterio(item1)).thenReturn(true);
     when(criterio.satisfaceCriterio(item2)).thenReturn(false);
 
-    List<Catalogo> resultado = busqueda.buscarEnCatalogo(criterio);
+    List<Item> resultado = busqueda.buscarEnCatalogo(criterio);
 
     assertEquals(List.of(item1), resultado);
     verify(criterio).satisfaceCriterio(item1);
@@ -39,11 +39,11 @@ class BusquedaTest {
 
   @Test
   void getItemsDevuelveUnaCopiaDeLaLista() {
-    List<Catalogo> copia_item = busqueda.getItems();
+    List<Item> copia_item = busqueda.getItems();
 
     assertEquals(List.of(item1,item2), copia_item);
     assertThrows(UnsupportedOperationException.class,
-              () -> copia_item.add(mock(Catalogo.class)));
+              () -> copia_item.add(mock(Item.class)));
   }
 
     @Test

@@ -1,7 +1,7 @@
 package org.viajesOnline.reporte;
 
 import org.viajesOnline.catalogo.ServicioIndividual;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.utils.Periodo;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.Objects;
 
 public class GeneradorDeReportes {
     private final List<ServicioIndividual> servicios;
-    private final List<ContextoReserva> reservas;
+    private final List<Reserva> reservas;
 
-    public GeneradorDeReportes(List<ServicioIndividual> servicios, List<ContextoReserva> reservas) {
+    public GeneradorDeReportes(List<ServicioIndividual> servicios, List<Reserva> reservas) {
         this.servicios = List.copyOf(servicios);
         this.reservas = List.copyOf(reservas);
     }

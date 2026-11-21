@@ -1,6 +1,6 @@
 package org.viajesOnline.criterios;
 
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 
 public class NOT implements Criterio{
   private Criterio crt1;
@@ -10,7 +10,7 @@ public class NOT implements Criterio{
   }
 
   @Override
-  public boolean satisfaceCriterio(Catalogo cat) {
+  public boolean satisfaceCriterio(Item cat) {
     return !crt1.satisfaceCriterio(cat);
   }
 }

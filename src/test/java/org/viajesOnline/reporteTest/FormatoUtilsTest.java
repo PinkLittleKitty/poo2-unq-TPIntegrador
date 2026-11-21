@@ -53,11 +53,11 @@ class FormatoUtilsTest {
         ServicioIndividual sB = new ServicioIndividual("Servicio B", "Desc", new Cupo(10, 10), 1, "Op", 100.0, Categoria.VUELO, vigencia);
         ServicioIndividual sA = new ServicioIndividual("Servicio A", "Desc", new Cupo(10, 10), 2, "Op", 100.0, Categoria.VUELO, vigencia);
 
-        ContextoReserva r1 = new ContextoReserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
+        Reserva r1 = new Reserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
         r1.setFechaCompra(LocalDate.of(2026, 1, 15));
         r1.getSolicitud().agregarServicio(sB);
 
-        ContextoReserva r2 = new ContextoReserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
+        Reserva r2 = new Reserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
         r2.setFechaCompra(LocalDate.of(2026, 1, 15));
         r2.getSolicitud().agregarServicio(sA);
 

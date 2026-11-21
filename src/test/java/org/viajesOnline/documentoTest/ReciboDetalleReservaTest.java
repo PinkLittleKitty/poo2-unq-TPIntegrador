@@ -6,7 +6,7 @@ import org.viajesOnline.documento.ReciboDeSolicitud;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ReciboSolicitudTest {
+public class ReciboDetalleReservaTest {
     private ReciboDeSolicitud recibo;
 
     @BeforeEach
@@ -19,7 +19,7 @@ public class ReciboSolicitudTest {
         assertEquals("000", recibo.codTransaccion());
         assertEquals("Empresa Turismo", recibo.emisor());
         assertNotNull(recibo.fechaEmision());
-        assertEquals("Recibo Solicitud", recibo.tipoDocumento());
+        assertEquals("Recibo DetalleReserva", recibo.tipoDocumento());
         assertEquals("Confirmada", recibo.getEstadoDeSolicitud());
         assertEquals("test@test.com", recibo.getEmailDestinatario());
         assertEquals(15000.0, recibo.getMontoTotal());

@@ -2,7 +2,7 @@ package org.viajesOnline.catalogoTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.catalogo.Categoria;
 import org.viajesOnline.catalogo.Paquete;
 import org.viajesOnline.catalogo.ServicioIndividual;
@@ -26,9 +26,9 @@ class PaqueteTest {
           "ProveedorA"
   );
 
-  Catalogo item1 = mock(Catalogo.class);
-  Catalogo item2 = mock(Paquete.class);
-  Catalogo item3 = mock(ServicioIndividual.class);
+  Item item1 = mock(Item.class);
+  Item item2 = mock(Paquete.class);
+  Item item3 = mock(ServicioIndividual.class);
 
   @BeforeEach
   void setUp() {
@@ -44,7 +44,7 @@ class PaqueteTest {
 
   @Test
   void agregarUno() {
-    Catalogo item = mock(Catalogo.class);
+    Item item = mock(Item.class);
     paquete.agregarItem(item);
     assertEquals(1, paquete.verItems().size());
     assertSame(item, paquete.verItems().getFirst());
@@ -54,7 +54,7 @@ class PaqueteTest {
   void modificarLaListaDevueltaNoAfectaAlPaquete() {
     paquete.agregarItem(item1);
 
-    List<Catalogo> items = paquete.verItems();
+    List<Item> items = paquete.verItems();
 
     assertThrows(
             UnsupportedOperationException.class,

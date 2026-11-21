@@ -1,7 +1,7 @@
 package org.viajesOnline.criterios;
 
 import org.apache.commons.lang3.Validate;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.exceptions.CompletarCampos;
 
 public class PrecioMax implements Criterio{
@@ -25,7 +25,7 @@ public class PrecioMax implements Criterio{
   }
 
   @Override
-  public boolean satisfaceCriterio(Catalogo cat) {
+  public boolean satisfaceCriterio(Item cat) {
     return this.getValor() >= cat.getPrecioBase();
   }
 }

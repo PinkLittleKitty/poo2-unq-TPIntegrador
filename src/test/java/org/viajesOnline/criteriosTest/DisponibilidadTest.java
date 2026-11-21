@@ -1,7 +1,7 @@
 package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.criterios.Disponibilidad;
 import org.viajesOnline.utils.Periodo;
 
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 class DisponibilidadTest {
   private Periodo periodo = mock(Periodo.class);
   private Disponibilidad criterio = new Disponibilidad(periodo);
-  private Catalogo catalogo = mock(Catalogo.class);
+  private Item item = mock(Item.class);
 
   @Test
   void getFechaEsCorrecto() {
@@ -24,13 +24,13 @@ class DisponibilidadTest {
 
   @Test
   void satisfaceCriterio() { //el testeo de al menos una fecha para el periodo disponible debe estar en PeriodoTest
-    when(catalogo.estaDisponibleEn(periodo)).thenReturn(true);
-    assertTrue(criterio.satisfaceCriterio(catalogo));
+    when(item.estaDisponibleEn(periodo)).thenReturn(true);
+    assertTrue(criterio.satisfaceCriterio(item));
   }
 
   @Test
   void noSatisfaceCriterio() {
-    when(catalogo.estaDisponibleEn(periodo)).thenReturn(false);
-    assertFalse(criterio.satisfaceCriterio(catalogo));
+    when(item.estaDisponibleEn(periodo)).thenReturn(false);
+    assertFalse(criterio.satisfaceCriterio(item));
   }
 }

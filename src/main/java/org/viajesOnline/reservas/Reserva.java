@@ -1,6 +1,6 @@
 package org.viajesOnline.reservas;
 
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.documento.*;
 import org.viajesOnline.reservas.estados.*;
 import org.viajesOnline.utils.*;
@@ -8,17 +8,17 @@ import org.viajesOnline.utils.*;
 import java.time.LocalDate;
 import java.util.*;
 
-public class ContextoReserva {
+public class Reserva {
 
-    private EstadoReserva estadoActual;
+    private EstadoReserva estadoActual = new SolicitudPendiente();
     private List<ObservadorCambioEstado> observadores = new ArrayList<>();
-    private Solicitud solicitud = new Solicitud();
+    private DetalleReserva detalleReserva = new DetalleReserva();
     private Usuario usuario;
     private GestorDeDocumentos gestor;
     private Periodo periodo;
     private LocalDate fechaCompra;
 
-    public ContextoReserva(GestorDeDocumentos gestor, Usuario usuario, Periodo periodo) {
+    public Reserva(GestorDeDocumentos gestor, Usuario usuario, Periodo periodo) {
         this.gestor = gestor;
         this.usuario = usuario;
         this.periodo = periodo;
@@ -45,8 +45,8 @@ public class ContextoReserva {
         return this.estadoActual;
     }
 
-    public Solicitud getSolicitud() {
-        return this.solicitud;
+    public DetalleReserva getSolicitud() {
+        return this.detalleReserva;
     }
 
     public Usuario getUsuario() {
@@ -73,13 +73,13 @@ public class ContextoReserva {
         estadoActual.cancelar(this);
     }
 
-    public void agregarServicio(Catalogo servicio) {
-        estadoActual.agregarServicio(servicio, solicitud);
+    public void agregarServicio(Item servicio) {
+        estadoActual.agregarServicio(servicio, detalleReserva);
     }
 
     public void reembolsar() {
         double tasas = this.estadoActual.tasasReembolsables(this);
-        double costoServicios = this.solicitud.precioTotalServicios();
+        double costoServicios = this.detalleReserva.precioTotalServicios();
         String cod = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
         Documento voucher = new VoucherReembolso(cod, costoServicios, tasas);
@@ -91,6 +91,6 @@ public class ContextoReserva {
     }
 
     public float precioFinalReserva() {
-        return (float) solicitud.getServicios().stream().mapToDouble(Catalogo::precioFinal).sum();
+        return (float) detalleReserva.getServicios().stream().mapToDouble(Item::precioFinal).sum();
     }
 }

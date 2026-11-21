@@ -1,6 +1,6 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.catalogo.Categoria;
 import org.viajesOnline.reservas.Cupo;
 
@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 public final class FormatoUtils {
 
-    public static List<Map.Entry<Catalogo, Long>> serviciosOrdenados(ServicioMasReservado reporte) {
+    public static List<Map.Entry<Item, Long>> serviciosOrdenados(ServicioMasReservado reporte) {
         return reporte.calcularDatos().entrySet().stream()
-                .sorted(Map.Entry.<Catalogo, Long>comparingByValue(Comparator.reverseOrder())
+                .sorted(Map.Entry.<Item, Long>comparingByValue(Comparator.reverseOrder())
                         .thenComparing(e -> e.getKey().getNombre())).toList();
     }
 

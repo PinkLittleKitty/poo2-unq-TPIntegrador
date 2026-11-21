@@ -1,7 +1,7 @@
 package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.criterios.Criterio;
 import org.viajesOnline.criterios.NOT;
 
@@ -11,19 +11,19 @@ import static org.mockito.Mockito.when;
 
 class NOTTest {
   private Criterio crt = mock(Criterio.class);
-  private Catalogo catalogo = mock(Catalogo.class);
+  private Item item = mock(Item.class);
   private NOT criterio = new NOT(crt);
 
   @Test
   void satisfaceCriterioCuandoCoincide() { // opuesto del criterio elegido
-    when(crt.satisfaceCriterio(catalogo)).thenReturn(false);
-    assertTrue(criterio.satisfaceCriterio(catalogo));
+    when(crt.satisfaceCriterio(item)).thenReturn(false);
+    assertTrue(criterio.satisfaceCriterio(item));
   }
 
   @Test
   void noSatisfaceCriterioCuandoNoCoincide() {
-    when(crt.satisfaceCriterio(catalogo)).thenReturn(true);
-    assertFalse(criterio.satisfaceCriterio(catalogo));
+    when(crt.satisfaceCriterio(item)).thenReturn(true);
+    assertFalse(criterio.satisfaceCriterio(item));
   }
 
 }

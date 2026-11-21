@@ -1,29 +1,29 @@
 package org.viajesOnline.reservas.estados;
 
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 
 public class EnCheckin extends EstadoReserva {
     @Override
-    public void siguiente(ContextoReserva r) {
+    public void siguiente(Reserva r) {
         r.setEstadoActual(new EnCurso());
     }
 
     @Override
-    public double tasasReembolsables(ContextoReserva r) {
+    public double tasasReembolsables(Reserva r) {
         return r.getCostoTasas();
     }
 
     @Override
-    public void cancelar(ContextoReserva r) {
+    public void cancelar(Reserva r) {
         r.getSolicitud().incrementarCupo();
         r.reembolsar();
         super.cancelar(r);
     }
 
     @Override
-    public void notificar(GestorDeDocumentos gestor, ContextoReserva reserva, ObservadorCambioEstado observador) {
+    public void notificar(GestorDeDocumentos gestor, Reserva reserva, ObservadorCambioEstado observador) {
         observador.reservaEnCheckin(reserva);
     }
 }

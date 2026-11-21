@@ -1,14 +1,14 @@
 package org.viajesOnline.traslados;
 
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 
 public class ContextoTraslado {
 
     private Traslado tipoTraslado;
-    private ContextoReserva reserva;
+    private Reserva reserva;
     private int cantPasajeros;
 
-    public ContextoTraslado(Traslado tipoTraslado,int cantPasajeros,ContextoReserva reserva){
+    public ContextoTraslado(Traslado tipoTraslado, int cantPasajeros, Reserva reserva){
 
         this.setReserva(reserva);
         this.setTraslado(tipoTraslado);
@@ -17,7 +17,7 @@ public class ContextoTraslado {
 
     public void setCantPasajeros(int cantPasajeros) {this.cantPasajeros = cantPasajeros;}
 
-    public void setReserva(ContextoReserva reserva){this.reserva = reserva;}
+    public void setReserva(Reserva reserva){this.reserva = reserva;}
 
     public void setTraslado(Traslado tipoTraslado){this.tipoTraslado = tipoTraslado;}
 

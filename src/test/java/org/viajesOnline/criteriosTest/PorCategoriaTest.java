@@ -2,7 +2,7 @@ package org.viajesOnline.criteriosTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.criterios.PorCategoria;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +13,7 @@ import static org.viajesOnline.catalogo.Categoria.VUELO;
 
 class PorCategoriaTest {
   PorCategoria criterio = new PorCategoria(ALOJAMIENTO);
-  Catalogo catalogo = mock(Catalogo.class);
+  Item item = mock(Item.class);
 
   @BeforeEach
   void setUp() {
@@ -21,14 +21,14 @@ class PorCategoriaTest {
 
   @Test
   void satisfaceCriterioCuandoCoincide() {
-    when(catalogo.categoria()).thenReturn(ALOJAMIENTO);
-    assertTrue(criterio.satisfaceCriterio(catalogo));
+    when(item.categoria()).thenReturn(ALOJAMIENTO);
+    assertTrue(criterio.satisfaceCriterio(item));
   }
 
   @Test
   void noSatisfaceCriterioCuandoNoCoincide() {
-    when(catalogo.categoria()).thenReturn(VUELO);
-    assertFalse(criterio.satisfaceCriterio(catalogo));
+    when(item.categoria()).thenReturn(VUELO);
+    assertFalse(criterio.satisfaceCriterio(item));
   }
 
   @Test

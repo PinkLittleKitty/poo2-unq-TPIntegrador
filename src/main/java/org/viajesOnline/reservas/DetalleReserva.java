@@ -1,39 +1,39 @@
 package org.viajesOnline.reservas;
 
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solicitud {
+public class DetalleReserva {
 
     private String codTrans;
-    private List<Catalogo> servicios = new ArrayList<>();
+    private List<Item> servicios = new ArrayList<>();
 
-    public List<Catalogo> getServicios() { return servicios; }
+    public List<Item> getServicios() { return servicios; }
     public int cantServicios() { return servicios.size(); }
 
-    public void agregarServicio(Catalogo s) {
+    public void agregarServicio(Item s) {
         servicios.add(s);
     }
 
-    public void eliminarServicio(Catalogo s) {
+    public void eliminarServicio(Item s) {
         servicios.remove(s);
     }
 
     public void decrementarCupo() {
-        for (Catalogo s: servicios) {
+        for (Item s: servicios) {
             s.decrementarCupo();
         }
     }
 
     public void incrementarCupo() {
-        for (Catalogo s: servicios) {
+        for (Item s: servicios) {
             s.incrementarCupo();
         }
     }
 
     public double precioTotalServicios() {
-        return servicios.stream().mapToDouble(Catalogo::precioFinal).sum();
+        return servicios.stream().mapToDouble(Item::precioFinal).sum();
     }
 }

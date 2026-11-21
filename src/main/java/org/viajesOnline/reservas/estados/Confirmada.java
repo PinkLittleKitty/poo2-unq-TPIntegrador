@@ -1,23 +1,23 @@
 package org.viajesOnline.reservas.estados;
 
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
-import org.viajesOnline.reservas.Solicitud;
+import org.viajesOnline.reservas.DetalleReserva;
 
 public class Confirmada extends EstadoReserva {
     @Override
-    public void siguiente(ContextoReserva r) {
+    public void siguiente(Reserva r) {
         r.setEstadoActual(new EnCheckin());
     }
 
     @Override
-    public void decrementarCupo(Solicitud solicitud) {
-        solicitud.decrementarCupo();
+    public void decrementarCupo(DetalleReserva detalleReserva) {
+        detalleReserva.decrementarCupo();
     }
 
     @Override
-    public void notificar(GestorDeDocumentos gestor, ContextoReserva reserva, ObservadorCambioEstado observador) {
+    public void notificar(GestorDeDocumentos gestor, Reserva reserva, ObservadorCambioEstado observador) {
         observador.reservaConfirmada(reserva);
     }
 }

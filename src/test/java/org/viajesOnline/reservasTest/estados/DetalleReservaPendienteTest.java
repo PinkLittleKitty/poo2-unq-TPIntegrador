@@ -2,27 +2,27 @@ package org.viajesOnline.reservasTest.estados;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.*;
 import org.viajesOnline.reservas.estados.*;
 
 import static org.mockito.Mockito.*;
 
-public class SolicitudPendienteTest {
+public class DetalleReservaPendienteTest {
     private SolicitudPendiente estado;
-    private ContextoReserva contextoMock;
-    private Solicitud solicitudMock;
+    private Reserva contextoMock;
+    private DetalleReserva detalleReservaMock;
     private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
         estado = new SolicitudPendiente();
-        contextoMock = mock(ContextoReserva.class);
-        solicitudMock  = mock(Solicitud.class);
+        contextoMock = mock(Reserva.class);
+        detalleReservaMock = mock(DetalleReserva.class);
         gestor = mock(GestorDeDocumentos.class);
 
-        when (contextoMock.getSolicitud()).thenReturn(solicitudMock);
+        when (contextoMock.getSolicitud()).thenReturn(detalleReservaMock);
     }
 
     @Test
@@ -31,16 +31,16 @@ public class SolicitudPendienteTest {
 
         verify(contextoMock).setEstadoActual(any(Confirmada.class));
 
-        verify(solicitudMock).decrementarCupo();
+        verify(detalleReservaMock).decrementarCupo();
     }
 
     @Test
     void agregarServicio() {
-        Catalogo servicioMock = mock(Catalogo.class);
+        Item servicioMock = mock(Item.class);
 
-        estado.agregarServicio(servicioMock, solicitudMock);
+        estado.agregarServicio(servicioMock, detalleReservaMock);
 
-        verify(solicitudMock).agregarServicio(servicioMock);
+        verify(detalleReservaMock).agregarServicio(servicioMock);
     }
 
     @Test

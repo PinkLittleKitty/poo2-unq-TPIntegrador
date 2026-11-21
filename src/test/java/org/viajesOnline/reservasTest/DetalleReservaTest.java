@@ -1,31 +1,31 @@
 package org.viajesOnline.reservasTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
-import org.viajesOnline.reservas.Solicitud;
+import org.viajesOnline.catalogo.Item;
+import org.viajesOnline.reservas.DetalleReserva;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class SolicitudTest {
+public class DetalleReservaTest {
 
-    private Solicitud solicitud;
-    private Catalogo servicioA;
-    private Catalogo servicioB;
+    private DetalleReserva detalleReserva;
+    private Item servicioA;
+    private Item servicioB;
 
     @BeforeEach
     public void setUp() {
-        solicitud = new Solicitud();
-        servicioA = mock(Catalogo.class);
-        servicioB = mock(Catalogo.class);
+        detalleReserva = new DetalleReserva();
+        servicioA = mock(Item.class);
+        servicioB = mock(Item.class);
 
-        solicitud.agregarServicio(servicioA);
-        solicitud.agregarServicio(servicioB);
+        detalleReserva.agregarServicio(servicioA);
+        detalleReserva.agregarServicio(servicioB);
     }
 
     @Test
     public void decrementarCupo() {
-        solicitud.decrementarCupo();
+        detalleReserva.decrementarCupo();
 
         verify(servicioA, times(1)).decrementarCupo();
         verify(servicioB, times(1)).decrementarCupo();
@@ -33,7 +33,7 @@ public class SolicitudTest {
 
     @Test
     public void incrementarCupo() {
-        solicitud.incrementarCupo();
+        detalleReserva.incrementarCupo();
 
         verify(servicioA, times(1)).incrementarCupo();
         verify(servicioB, times(1)).incrementarCupo();
@@ -41,10 +41,10 @@ public class SolicitudTest {
 
     @Test
     public void eliminarServicio() {
-        solicitud.eliminarServicio(servicioA);
+        detalleReserva.eliminarServicio(servicioA);
 
-        assertFalse(solicitud.getServicios().contains(servicioA));
-        assertTrue(solicitud.getServicios().contains(servicioB));
+        assertFalse(detalleReserva.getServicios().contains(servicioA));
+        assertTrue(detalleReserva.getServicios().contains(servicioB));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class SolicitudTest {
         when(servicioA.precioFinal()).thenReturn(1500.0);
         when(servicioB.precioFinal()).thenReturn(2500.0);
 
-        double total = solicitud.precioTotalServicios();
+        double total = detalleReserva.precioTotalServicios();
 
         assertEquals(4000.0, total, 0.001);
         verify(servicioA).precioFinal();

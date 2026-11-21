@@ -1,5 +1,5 @@
 package org.viajesOnline.criterios;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.utils.Periodo;
 
 public class Disponibilidad implements Criterio{
@@ -14,7 +14,7 @@ public class Disponibilidad implements Criterio{
   }
 
   @Override
-  public boolean satisfaceCriterio(Catalogo cat) {
+  public boolean satisfaceCriterio(Item cat) {
     return cat.estaDisponibleEn(rangoFecha);
   }
 }

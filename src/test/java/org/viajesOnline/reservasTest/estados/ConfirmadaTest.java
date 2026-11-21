@@ -10,15 +10,15 @@ import static org.mockito.Mockito.*;
 
 public class ConfirmadaTest {
     private Confirmada estado;
-    private ContextoReserva contextoMock;
-    private Solicitud solicitudMock;
+    private Reserva contextoMock;
+    private DetalleReserva detalleReservaMock;
     private GestorDeDocumentos gestor;
 
     @BeforeEach
     void setUp() {
         estado = new Confirmada();
-        contextoMock = mock(ContextoReserva.class);
-        solicitudMock = mock(Solicitud.class);
+        contextoMock = mock(Reserva.class);
+        detalleReservaMock = mock(DetalleReserva.class);
         gestor = mock(GestorDeDocumentos.class);
     }
 
@@ -31,9 +31,9 @@ public class ConfirmadaTest {
 
     @Test
     void decrementarCupo() {
-        estado.decrementarCupo(solicitudMock);
+        estado.decrementarCupo(detalleReservaMock);
 
-        verify(solicitudMock).decrementarCupo();
+        verify(detalleReservaMock).decrementarCupo();
     }
 
     @Test

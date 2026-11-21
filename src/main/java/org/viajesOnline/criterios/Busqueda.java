@@ -1,26 +1,26 @@
 package org.viajesOnline.criterios;
 
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Busqueda {
-  private List<Catalogo> items = new ArrayList<>();
+  private List<Item> items = new ArrayList<>();
 
-  public List<Catalogo> buscarEnCatalogo(Criterio criterio){
+  public List<Item> buscarEnCatalogo(Criterio criterio){
     return items.stream().filter(criterio::satisfaceCriterio).toList();
   }
 
-  public List<Catalogo> getItems() {
+  public List<Item> getItems() {
     return List.copyOf(items);
   }
 
-  public void addItem(Catalogo i){
+  public void addItem(Item i){
     items.add(i);
   }
 
-  public void delItem(Catalogo i){
+  public void delItem(Item i){
     items.remove(i);
   }
 }

@@ -15,7 +15,7 @@ public class ReciboDeSolicitud extends Documento{
         this.emailDestinatario = emailDestinatario;
         this.montoTotal = montoTotal;
         this.cantidadItems = cantidadItems;
-        this.nombreRecibo = "Recibo Solicitud";
+        this.nombreRecibo = "Recibo DetalleReserva";
     }
 
     public String tipoDocumento() { return nombreRecibo; }

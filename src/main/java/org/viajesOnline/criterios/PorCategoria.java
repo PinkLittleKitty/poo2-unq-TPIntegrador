@@ -1,5 +1,5 @@
 package org.viajesOnline.criterios;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.catalogo.Categoria;
 
 public class PorCategoria implements Criterio {
@@ -10,7 +10,7 @@ public class PorCategoria implements Criterio {
   }
 
   @Override
-  public boolean satisfaceCriterio(Catalogo cat) {
+  public boolean satisfaceCriterio(Item cat) {
     return this.getCategoria().equals(cat.categoria());
   }
 

@@ -12,7 +12,7 @@ public class CanceladaTest {
     @Test
     void cancelada_siguiente() {
         Cancelada estado = new Cancelada();
-        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        Reserva contextoMock = mock(Reserva.class);
 
         assertThrows(UnsupportedOperationException.class, () -> estado.siguiente(contextoMock));
     }
@@ -20,7 +20,7 @@ public class CanceladaTest {
     @Test
     void notificar() {
         Cancelada estado = new Cancelada();
-        ContextoReserva contextoMock = mock(ContextoReserva.class);
+        Reserva contextoMock = mock(Reserva.class);
         ObservadorCambioEstado observadorMock = mock(ObservadorCambioEstado.class);
         GestorDeDocumentos gestor = mock(GestorDeDocumentos.class);
 

@@ -1,14 +1,14 @@
 package org.viajesOnline.reservas.estados;
 
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 
 public class Cancelada extends EstadoReserva {
     public Cancelada() { }
 
     @Override
-    public void notificar(GestorDeDocumentos gestor, ContextoReserva reserva, ObservadorCambioEstado observador) {
+    public void notificar(GestorDeDocumentos gestor, Reserva reserva, ObservadorCambioEstado observador) {
         observador.reservaCancelada(reserva);
     }
 }

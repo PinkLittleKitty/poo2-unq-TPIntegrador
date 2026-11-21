@@ -1,7 +1,7 @@
 package org.viajesOnline.notificacionReservas;
 
 import org.viajesOnline.documento.*;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.utils.Usuario;
 
@@ -10,7 +10,7 @@ import java.util.UUID;
 public class GeneradorFactura extends ObservadorCambioEstado {
 
     @Override
-    public void reservaFinalizada(GestorDeDocumentos gestor, ContextoReserva reserva) {
+    public void reservaFinalizada(GestorDeDocumentos gestor, Reserva reserva) {
 
         String codTransaccion = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Usuario usuario = reserva.getUsuario();

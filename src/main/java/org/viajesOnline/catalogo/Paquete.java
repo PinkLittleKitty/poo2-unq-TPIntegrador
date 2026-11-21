@@ -6,25 +6,25 @@ import org.viajesOnline.utils.Periodo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paquete extends Catalogo{
-  private List<Catalogo> items = new ArrayList<>();
+public class Paquete extends Item {
+  private List<Item> items = new ArrayList<>();
 
   public Paquete(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodo, Categoria categoria, String proveedor) {
     super(nombre, descripcion, precioBase, cupoDisponible, periodo, categoria, proveedor);
   }
 
-  public List<Catalogo> verItems() {
+  public List<Item> verItems() {
     return List.copyOf(items);
   }
 
-  public void agregarItem(Catalogo item) {
+  public void agregarItem(Item item) {
     this.items.add(item);
   }
 
   @Override
   public double getPrecioBase() {
     return items.stream()
-            .mapToDouble(Catalogo::getPrecioBase)
+            .mapToDouble(Item::getPrecioBase)
             .sum();
   }
 }

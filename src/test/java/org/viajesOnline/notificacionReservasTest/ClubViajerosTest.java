@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.notificacionReservas.ClubViajeros;
 import org.viajesOnline.notificacionReservas.MailSender;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.utils.Usuario;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -15,7 +15,7 @@ class ClubViajerosTest {
 
     private MailSender mailSenderMock;
     private ClubViajeros clubViajeros;
-    private ContextoReserva reservaMock;
+    private Reserva reservaMock;
     private GestorDeDocumentos gestor;
 
     @BeforeEach
@@ -23,7 +23,7 @@ class ClubViajerosTest {
 
         mailSenderMock = mock(MailSender.class);
         clubViajeros = new ClubViajeros(mailSenderMock);
-        reservaMock = mock(ContextoReserva.class);
+        reservaMock = mock(Reserva.class);
         gestor = mock(GestorDeDocumentos.class);
     }
 

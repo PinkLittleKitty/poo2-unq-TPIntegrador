@@ -1,7 +1,7 @@
 package org.viajesOnline.trasladoTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.traslados.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,14 +15,14 @@ public class ContextoTrasladoVipTest {
 
     private TrasladoVip trasladoVipMock;
     private TrasladoVip otroTrasladoVipMock;
-    private ContextoReserva reservaMock;
-    private ContextoReserva nuevaReservaMock;
+    private Reserva reservaMock;
+    private Reserva nuevaReservaMock;
     private AdaptadorTrasladoVip adaptadorTrasladoVip;;
 
     @BeforeEach
     void setUp() {
 
-        reservaMock = mock(ContextoReserva.class);
+        reservaMock = mock(Reserva.class);
         trasladoVipMock = mock(TrasladoVip.class);
         otroTrasladoVipMock = mock(TrasladoVip.class);
         adaptadorTrasladoVip = new AdaptadorTrasladoVip(trasladoVipMock);

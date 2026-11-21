@@ -2,9 +2,9 @@ package org.viajesOnline.reservasTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.catalogo.Catalogo;
+import org.viajesOnline.catalogo.Item;
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reservas.ContextoReserva;
+import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.estados.EstadoReserva;
 import org.viajesOnline.utils.Periodo;
@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 class ContextoReservaTest {
 
-    private ContextoReserva contexto;
+    private Reserva contexto;
     private EstadoReserva estadoMock;
     private EstadoReserva estadoNuevoMock;
     private ObservadorCambioEstado observerMock;
@@ -27,7 +27,7 @@ class ContextoReservaTest {
         estadoNuevoMock = mock(EstadoReserva.class);
         observerMock = mock(ObservadorCambioEstado.class);
         gestor = mock(GestorDeDocumentos.class);
-        contexto = new ContextoReserva(gestor, mock(Usuario.class), mock(Periodo.class));
+        contexto = new Reserva(gestor, mock(Usuario.class), mock(Periodo.class));
         contexto.setEstadoActual(estadoMock);
     }
 
@@ -47,7 +47,7 @@ class ContextoReservaTest {
 
     @Test
     void agregarServicio() {
-        Catalogo servicioMock = mock(Catalogo.class);
+        Item servicioMock = mock(Item.class);
 
         contexto.agregarServicio(servicioMock);
 
@@ -87,7 +87,7 @@ class ContextoReservaTest {
 
     @Test
     void precioFinalReserva() {
-        Catalogo servicioMock = mock(Catalogo.class);
+        Item servicioMock = mock(Item.class);
         when(servicioMock.precioFinal()).thenReturn(100.0);
 
         contexto.getSolicitud().agregarServicio(servicioMock);

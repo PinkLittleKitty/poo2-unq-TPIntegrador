@@ -10,6 +10,16 @@ import java.util.List;
 public class EmpresaTurismo {
     private final List<Item> items = new ArrayList<>();
     private final List<Reserva> reservas = new ArrayList<>();
+    private static EmpresaTurismo instance;
+
+    private EmpresaTurismo() {} // Private constructor
+
+    public static EmpresaTurismo getInstance() {
+        if (instance == null) {
+            instance = new EmpresaTurismo();
+        }
+            return instance;
+        }
 
     public void addItem(Item i) {
         items.add(i);

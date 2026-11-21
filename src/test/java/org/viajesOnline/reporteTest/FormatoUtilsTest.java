@@ -50,8 +50,8 @@ class FormatoUtilsTest {
         Periodo periodo = new Periodo(LocalDate.of(2026, 1, 1), LocalDate.of(2026, 1, 31));
         Periodo vigencia = new Periodo(LocalDate.of(2026, 1, 10), LocalDate.of(2026, 1, 20));
 
-        ServicioIndividual sB = new ServicioIndividual("Servicio B", "Desc", new Cupo(10, 10), 1, "Op", 100.0, Categoria.VUELO, vigencia);
-        ServicioIndividual sA = new ServicioIndividual("Servicio A", "Desc", new Cupo(10, 10), 2, "Op", 100.0, Categoria.VUELO, vigencia);
+        ServicioIndividual sB = new ServicioIndividual("Servicio B", "Desc", 10, 1, "Op", 100.0, Categoria.VUELO, vigencia);
+        ServicioIndividual sA = new ServicioIndividual("Servicio A", "Desc", 10, 2, "Op", 100.0, Categoria.VUELO, vigencia);
 
         Reserva r1 = new Reserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
         r1.setFechaCompra(LocalDate.of(2026, 1, 15));
@@ -73,8 +73,8 @@ class FormatoUtilsTest {
     void operadoresOrdenadosDesempatePorNombre() {
         Periodo vigencia = new Periodo(LocalDate.of(2026, 1, 10), LocalDate.of(2026, 1, 20));
 
-        ServicioIndividual s1 = new ServicioIndividual("S1", "Desc", new Cupo(10, 10), 1, "Operador Z", 100.0, Categoria.VUELO, vigencia);
-        ServicioIndividual s2 = new ServicioIndividual("S2", "Desc", new Cupo(10, 10), 2, "Operador A", 100.0, Categoria.VUELO, vigencia);
+        ServicioIndividual s1 = new ServicioIndividual("S1", "Desc", 10, 1, "Operador Z", 100.0, Categoria.VUELO, vigencia);
+        ServicioIndividual s2 = new ServicioIndividual("S2", "Desc", 10, 2, "Operador A", 100.0, Categoria.VUELO, vigencia);
 
         RegistroDeOperadores reporte = new RegistroDeOperadores(List.of(s1, s2));
 

@@ -10,18 +10,16 @@ import java.util.Objects;
 public abstract class Item {
   private String nombre;
   private String descripcion;
-  private double precioBase;
   private int descuento = 0;
   private Cupo cupo;
   private Periodo periodoVigencia;
   private Categoria categoria;
   private String proveedor;
 
-  public Item(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodoVigencia, Categoria categoria, String proveedor){
-    validar(nombre, descripcion,precioBase,cupoDisponible,periodoVigencia, categoria, proveedor);
+  public Item(String nombre, String descripcion, Cupo cupoDisponible, Periodo periodoVigencia, Categoria categoria, String proveedor){
+    validar(nombre, descripcion,cupoDisponible,periodoVigencia, categoria, proveedor);
     this.nombre = nombre;
     this.descripcion = descripcion;
-    this.precioBase = precioBase;
     this.cupo = cupoDisponible;
     this.periodoVigencia = periodoVigencia;
     this.categoria = categoria;
@@ -73,9 +71,7 @@ public abstract class Item {
     return descripcion;
   }
 
-  public double getPrecioBase() {
-    return precioBase;
-  }
+  public abstract double getPrecioBase();
 
   public int getCupoDisponible() {
     return cupo.getCupoDisponible();

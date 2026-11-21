@@ -77,7 +77,6 @@ class ReportesVisitorTest {
         packEscapadaUrbana = new Paquete(
                 "Pack Escapada Urbana",
                 "Hotel + Excursión + Traslado",
-                1.0,
                 new Cupo(5, 3),
                 vigenciaEnero,
                 Categoria.EXCURSION,

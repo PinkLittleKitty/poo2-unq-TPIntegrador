@@ -1,4 +1,4 @@
-package org.viajesOnline.catalogoTest;
+package org.viajesOnline.itemTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

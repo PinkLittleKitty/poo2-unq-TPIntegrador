@@ -39,7 +39,7 @@ public abstract class Item {
     return this.getPrecioBase() - this.descuentoAplicable();
   }
 
-  private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodo,Categoria categoria, String proveedor){
+  private static void validar(String nombre, String descripcion, Cupo cupoDisponible, Periodo periodo,Categoria categoria, String proveedor){
     try {
       Objects.requireNonNull(periodo);
       Objects.requireNonNull(categoria);
@@ -49,7 +49,6 @@ public abstract class Item {
       Objects.requireNonNull(proveedor);
       Validate.notBlank(proveedor);
       Validate.notBlank(nombre, descripcion, "Es obligatorio completar estos campos");
-      Validate.validState(precioBase > 0);
     } catch (Exception e) {
       throw new CompletarCampos("Se requiere que se completen todos los campos");
     }

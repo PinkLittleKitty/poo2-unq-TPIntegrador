@@ -9,8 +9,8 @@ import java.util.List;
 public class Paquete extends Item {
   private List<Item> items = new ArrayList<>();
 
-  public Paquete(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodo, Categoria categoria, String proveedor) {
-    super(nombre, descripcion, precioBase, cupoDisponible, periodo, categoria, proveedor);
+  public Paquete(String nombre, String descripcion, Cupo cupoDisponible, Periodo periodo, Categoria categoria, String proveedor) {
+    super(nombre, descripcion, cupoDisponible, periodo, categoria, proveedor);
   }
 
   public List<Item> verItems() {

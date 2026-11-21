@@ -1,4 +1,4 @@
-package org.viajesOnline.catalogoTest;
+package org.viajesOnline.itemTest;
 
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.items.Item;
@@ -15,15 +15,20 @@ import static org.mockito.Mockito.when;
 class ItemTest {
 
   private static class TestCatalogo extends Item { //le subi categoria a catalogo
-    TestCatalogo(String nombre, String descripcion, double precio, Cupo cupo, Periodo periodo, Categoria categoria, String proveedor) {
-      super(nombre, descripcion, precio, cupo, periodo, categoria, proveedor);
+    TestCatalogo(String nombre, String descripcion, Cupo cupo, Periodo periodo, Categoria categoria, String proveedor) {
+      super(nombre, descripcion, cupo, periodo, categoria, proveedor);
+    }
+
+    @Override
+    public double getPrecioBase() {
+      return 150.0;
     }
   }
 
   Categoria cat = Categoria.ALOJAMIENTO;
   Cupo cupo = mock(Cupo.class);
   Periodo periodoMock = mock(Periodo.class);
-  Item item = new TestCatalogo("Hotel", "Descripción", 150.0, cupo, periodoMock, cat, "ProveedorA");
+  Item item = new TestCatalogo("Hotel", "Descripción", cupo, periodoMock, cat, "ProveedorA");
 
   @Test
   void GetterNombreEsCorrecto(){
@@ -60,7 +65,7 @@ class ItemTest {
   void lanzaCompletarCamposSiNombreEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo(null, "Descripción", 100.0, cupo, periodoMock, cat, "ProvvedorA")
+            () -> new TestCatalogo(null, "Descripción", cupo, periodoMock, cat, "ProvvedorA")
     );
   }
 
@@ -68,7 +73,7 @@ class ItemTest {
   void lanzaCompletarCamposSiDescripcionEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("dfgdfgdfg", null, 100.0, cupo, periodoMock, cat, "ProvvedorA")
+            () -> new TestCatalogo("Hotel", null, cupo, periodoMock, cat, "ProvvedorA")
     );
   }
 
@@ -76,7 +81,7 @@ class ItemTest {
   void lanzaCompletarCamposSiCupoEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("asdfaefgh", "Descripción", 100.0, null,  periodoMock,cat, "ProvvedorA")
+            () -> new TestCatalogo("Hotel", "Descripción", null,  periodoMock,cat, "ProvvedorA")
     );
   }
 
@@ -84,7 +89,7 @@ class ItemTest {
   void lanzaCompletarCamposSiPeriodoEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("khjdfjhj", "Descripción", 100.0, cupo, null, cat, "ProvvedorA")
+            () -> new TestCatalogo("Hotel", "Descripción", cupo, null, cat, "ProvvedorA")
     );
   }
 
@@ -92,16 +97,8 @@ class ItemTest {
   void lanzaCompletarCamposSiCategoriaEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("khjdfjhj", "Descripción", 100.0, cupo, periodoMock, null, "ProvvedorA")
+            () -> new TestCatalogo("Hotel", "Descripción", cupo, periodoMock, null, "ProvvedorA")
     );
-  }
-
-  @Test
-  void rechazaSiPrecioEsNegativoOCero() {
-    assertThrows(CompletarCampos.class,
-            () -> new TestCatalogo("Hotel", "Descripción", 0.0, cupo, periodoMock, cat, "ProvvedorA"));
-    assertThrows(CompletarCampos.class,
-                    () -> new TestCatalogo("Hotel", "Descripción", -1.0, cupo, periodoMock, cat, "ProvvedorA"));
   }
 
   @Test
@@ -110,7 +107,6 @@ class ItemTest {
             new TestCatalogo(
                     "Hotel",
                     "Descripción",
-                    12.3,
                     cupo,
                     periodoMock,
                     cat,
@@ -125,7 +121,6 @@ class ItemTest {
             new TestCatalogo(
                     "Hotel",
                     "Descripción",
-                    12.3,
                     cupo,
                     periodoMock,
                     cat,

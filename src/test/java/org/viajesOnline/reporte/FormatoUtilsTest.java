@@ -1,9 +1,9 @@
-package org.viajesOnline.reporteTest;
+package org.viajesOnline.reporte;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.items.*;
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reporte.*;
 import org.viajesOnline.reservas.*;
 import org.viajesOnline.utils.Periodo;
 import org.viajesOnline.utils.Usuario;
@@ -15,6 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class FormatoUtilsTest {
+    private Catalogo catalogo = Catalogo.getInstance();
+    private GestorReservas gestor = GestorReservas.getInstance();
+
+    @AfterEach
+    void reset(){
+        catalogo.borrarTodo();
+        gestor.borrarTodo();
+    }
 
     @Test
     void escaparCsv() {
@@ -61,7 +69,10 @@ class FormatoUtilsTest {
         r2.setFechaCompra(LocalDate.of(2026, 1, 15));
         r2.getSolicitud().agregarServicio(sA);
 
-        ServicioMasReservado reporte = new ServicioMasReservado(periodo, List.of(r1, r2));
+        gestor.addReserva(r1);
+        gestor.addReserva(r2);
+
+        ServicioMasReservado reporte = new ServicioMasReservado(periodo);
 
         var lista = FormatoUtils.serviciosOrdenados(reporte);
         assertEquals(2, lista.size());
@@ -76,7 +87,9 @@ class FormatoUtilsTest {
         ServicioIndividual s1 = new ServicioIndividual("S1", "Desc", 10, 1, "Operador Z", 100.0, Categoria.VUELO, vigencia);
         ServicioIndividual s2 = new ServicioIndividual("S2", "Desc", 10, 2, "Operador A", 100.0, Categoria.VUELO, vigencia);
 
-        RegistroDeOperadores reporte = new RegistroDeOperadores(List.of(s1, s2));
+        catalogo.addItem(s1);
+        catalogo.addItem(s2);
+        RegistroDeOperadores reporte = new RegistroDeOperadores();
 
         var lista = FormatoUtils.operadoresOrdenados(reporte);
         assertEquals(2, lista.size());

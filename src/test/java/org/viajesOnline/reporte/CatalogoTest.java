@@ -1,9 +1,8 @@
-package org.viajesOnline.reporteTest;
+package org.viajesOnline.reporte;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.reporte.Catalogo;
 import org.viajesOnline.items.Item;
 import org.viajesOnline.criterios.Criterio;
 

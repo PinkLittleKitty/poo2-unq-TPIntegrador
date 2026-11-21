@@ -1,11 +1,9 @@
-package org.viajesOnline.reporteTest;
+package org.viajesOnline.reporte;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.reporte.Catalogo;
 import org.viajesOnline.items.*;
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reporte.*;
 import org.viajesOnline.reservas.*;
 import org.viajesOnline.utils.Periodo;
 import org.viajesOnline.utils.Usuario;

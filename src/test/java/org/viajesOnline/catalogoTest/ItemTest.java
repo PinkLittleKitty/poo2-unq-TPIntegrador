@@ -48,7 +48,7 @@ class ItemTest {
 
   @Test
   void GetterCupoEsCorrecto(){
-    assertEquals(cupoInicial, item.getCupo());
+    assertEquals(cupoInicial, item.getCupo().getCupoDisponible());
   }
 
   @Test
@@ -169,25 +169,20 @@ class ItemTest {
   @Test
   void pasaSiTieneCupoYEstaContenidoEnPeriodoVigente() {
     //catalogo periodo = 2026/06/1 a 2026/06/10
-    Periodo solicitado = mock(Periodo.class);
-
-    when(periodoVigente.seSuperponeCon(solicitado)).thenReturn(true);
+    Periodo solicitado = new Periodo(LocalDate.of(2026, 6, 2), LocalDate.of(2026, 6, 5));
 
     assertTrue(item.estaDisponibleEn(solicitado));
   }
 
   @Test
   void rebotaPeriodoSiNoHayCupo() {
-    assertFalse(item.estaDisponibleEn(periodoVigente));
-    //shortcircuit tiene que actuar primero.
+    Item itemSinCupo = new TestCatalogo("Hotel", "Descripción", 150.0, 0, periodoVigente, cat, "ProveedorA");
+    assertFalse(itemSinCupo.estaDisponibleEn(periodoVigente));
   }
 
   @Test
   void rebotaSiTieneCupoYLosPeriodosNoSeSuperponen() {
-    //catalogo periodo = 2026/06/1 a 2026/06/10; cupo 10.
-    Periodo solicitado = mock(Periodo.class);
-
-    when(periodoVigente.seSuperponeCon(solicitado)).thenReturn(false);
-    assertFalse(item.estaDisponibleEn(solicitado));
+    Periodo fueraDeVigencia = new Periodo(LocalDate.of(2026, 7, 1), LocalDate.of(2026, 7, 5));
+    assertFalse(item.estaDisponibleEn(fueraDeVigencia));
   }
 }

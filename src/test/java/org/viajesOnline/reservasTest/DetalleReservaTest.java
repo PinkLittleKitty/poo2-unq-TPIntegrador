@@ -1,8 +1,10 @@
 package org.viajesOnline.reservasTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito.*;
 import org.viajesOnline.items.Item;
 import org.viajesOnline.reservas.DetalleReserva;
+import org.viajesOnline.utils.Periodo;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -12,12 +14,15 @@ public class DetalleReservaTest {
     private DetalleReserva detalleReserva;
     private Item servicioA;
     private Item servicioB;
+    private Periodo periodoMock;
 
     @BeforeEach
     public void setUp() {
         detalleReserva = new DetalleReserva();
         servicioA = mock(Item.class);
         servicioB = mock(Item.class);
+        periodoMock = mock(Periodo.class);
+
 
         detalleReserva.agregarServicio(servicioA);
         detalleReserva.agregarServicio(servicioB);
@@ -25,18 +30,18 @@ public class DetalleReservaTest {
 
     @Test
     public void decrementarCupo() {
-        detalleReserva.decrementarCupo();
+        detalleReserva.decrementarCupo(periodoMock);
 
-        verify(servicioA, times(1)).decrementarCupo();
-        verify(servicioB, times(1)).decrementarCupo();
+        verify(servicioA, times(1)).decrementarCupo(periodoMock);
+        verify(servicioB, times(1)).decrementarCupo(periodoMock);
     }
 
     @Test
     public void incrementarCupo() {
-        detalleReserva.incrementarCupo();
+        detalleReserva.incrementarCupo(periodoMock);
 
-        verify(servicioA, times(1)).incrementarCupo();
-        verify(servicioB, times(1)).incrementarCupo();
+        verify(servicioA, times(1)).incrementarCupo(periodoMock);
+        verify(servicioB, times(1)).incrementarCupo(periodoMock);
     }
 
     @Test

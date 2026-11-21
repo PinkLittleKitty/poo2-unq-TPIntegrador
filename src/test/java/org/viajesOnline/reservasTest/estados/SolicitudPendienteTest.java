@@ -9,7 +9,7 @@ import org.viajesOnline.reservas.estados.*;
 
 import static org.mockito.Mockito.*;
 
-public class DetalleReservaPendienteTest {
+public class SolicitudPendienteTest {
     private SolicitudPendiente estado;
     private Reserva contextoMock;
     private DetalleReserva detalleReservaMock;
@@ -31,7 +31,7 @@ public class DetalleReservaPendienteTest {
 
         verify(contextoMock).setEstadoActual(any(Confirmada.class));
 
-        verify(detalleReservaMock).decrementarCupo();
+        verify(contextoMock).decrementarCupo();
     }
 
     @Test

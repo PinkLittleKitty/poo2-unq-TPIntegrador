@@ -47,7 +47,7 @@ class ReportesVisitorTest {
         hotelCentral = new ServicioIndividual(
                 "Noche de Hotel Central",
                 "Un hotel en el centro",
-                new Cupo(10, 6),
+                10,
                 1,
                 "Hilton",
                 1500.0,
@@ -57,7 +57,7 @@ class ReportesVisitorTest {
         excursionMuseo = new ServicioIndividual(
                 "Excursión Guiada Museo",
                 "Recorrido guiado",
-                new Cupo(15, 10),
+                15,
                 2,
                 "Malba",
                 2000.0,
@@ -67,7 +67,7 @@ class ReportesVisitorTest {
         trasladoAeropuerto = new ServicioIndividual(
                 "Traslado Aeropuerto-Hotel",
                 "Traslado privado",
-                new Cupo(8, 5),
+                8,
                 3,
                 "Chofer privado",
                 2000.0,
@@ -77,10 +77,24 @@ class ReportesVisitorTest {
         packEscapadaUrbana = new Paquete(
                 "Pack Escapada Urbana",
                 "Hotel + Excursión + Traslado",
-                new Cupo(5, 3),
+                5,
                 vigenciaEnero,
                 Categoria.EXCURSION,
                 "ProveedorA");
+
+        // Simulo cupo ya reservado
+        for (int i = 0; i < 4; i++) {
+            hotelCentral.decrementarCupo(vigenciaEnero);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            excursionMuseo.decrementarCupo(vigenciaEnero);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            trasladoAeropuerto.decrementarCupo(vigenciaEnero);
+        }
+
         packEscapadaUrbana.agregarItem(hotelCentral);
         packEscapadaUrbana.agregarItem(excursionMuseo);
         packEscapadaUrbana.agregarItem(trasladoAeropuerto);

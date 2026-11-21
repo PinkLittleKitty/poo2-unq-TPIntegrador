@@ -93,4 +93,12 @@ public class Reserva {
     public float precioFinalReserva() {
         return (float) detalleReserva.getServicios().stream().mapToDouble(Item::precioFinal).sum();
     }
+
+    public void decrementarCupo() {
+        this.detalleReserva.decrementarCupo(this.periodo); //TODO: Ver is añadir comportamiento especial para paquete
+    }
+
+    public void incrementarCupo() {
+        this.detalleReserva.incrementarCupo(this.periodo);
+    }
 }

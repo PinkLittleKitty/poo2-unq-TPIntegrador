@@ -1,4 +1,4 @@
-package org.viajesOnline.itemTest;
+package org.viajesOnline.catalogoTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ class PaqueteTest {
   private Paquete paquete = new Paquete(
           "Paquete de prueba",
           "Descripción",
-          mock(Cupo.class),
+          10,
           mock(Periodo.class),
           mock(Categoria.class),
           "ProveedorA"

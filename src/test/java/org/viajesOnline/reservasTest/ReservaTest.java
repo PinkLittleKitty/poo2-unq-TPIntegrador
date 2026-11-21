@@ -13,7 +13,7 @@ import org.viajesOnline.utils.Usuario;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ContextoReservaTest {
+class ReservaTest {
 
     private Reserva contexto;
     private EstadoReserva estadoMock;

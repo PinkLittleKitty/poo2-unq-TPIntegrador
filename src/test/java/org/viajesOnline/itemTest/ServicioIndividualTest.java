@@ -21,10 +21,10 @@ class ServicioIndividualTest {
   private ServicioIndividual servicio = new ServicioIndividual(
           "Hotel",
           "Descripción",
-          mock(Cupo.class),
+          10,
           123,
           "ProveedorA",
-          150.0,
+          150,
           cat,
           mock(Periodo.class)
   );
@@ -46,7 +46,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    mock(Cupo.class),
+                    10,
                     123,
                     null,
                     150.0,
@@ -62,7 +62,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
             "Hotel",
             "Descripción",
-                    mock(Cupo.class),
+            10,
             123,
             "",
             150.0,
@@ -74,7 +74,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
             "Hotel",
             "Descripción",
-            mock(Cupo.class),
+            10,
             123,
             "   ",
             150.0,
@@ -88,7 +88,7 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    mock(Cupo.class),
+                    10,
                     123,
                     "Proveedor A",
                     150.0,
@@ -107,9 +107,9 @@ class ServicioIndividualTest {
   @Test
   void rechazaSiPrecioEsNegativoOCero() {
     assertThrows(CompletarCampos.class,
-                        () -> new ServicioIndividual("Hotel", "Descripción", mock(Cupo.class), 123,"ProvvedorA",0.0,  cat, mock(Periodo.class)));
+                        () -> new ServicioIndividual("Hotel", "Descripción", 10, 123,"ProvvedorA",0.0,  cat, mock(Periodo.class)));
     assertThrows(CompletarCampos.class,
-                        () -> new ServicioIndividual("Hotel", "Descripción",  mock(Cupo.class), 123, "ProvvedorA",-1.0, cat, mock(Periodo.class)));
+                        () -> new ServicioIndividual("Hotel", "Descripción",  10, 123, "ProvvedorA",-1.0, cat, mock(Periodo.class)));
   }
 
   @Test

@@ -31,9 +31,9 @@ public class ServicioIndividual extends Item {
     }
   }
 
-  public ServicioIndividual(String nombre, String descripcion, Cupo cupo, int idReserva, String proveedor, double precioBase, Categoria categoria, Periodo periodo){
+  public ServicioIndividual(String nombre, String descripcion, int cupo, int idReserva, String proveedor, double precioBase, Categoria categoria, Periodo periodo){
     super(nombre, descripcion, cupo, periodo, categoria, proveedor);
-    this.verificacionCons(idReserva, precioBase);
+    verificacionCons(idReserva, precioBase);
     this.idReserva = idReserva;
     this.precioBase = precioBase;
   }

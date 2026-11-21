@@ -35,7 +35,7 @@ public class EnCheckinTest {
     void cancelar() {
         estado.cancelar(contextoMock);
 
-        verify(detalleReservaMock).incrementarCupo();
+        verify(contextoMock).incrementarCupo();
         verify(contextoMock).reembolsar();
         verify(contextoMock).setEstadoActual(any(Cancelada.class));
     }

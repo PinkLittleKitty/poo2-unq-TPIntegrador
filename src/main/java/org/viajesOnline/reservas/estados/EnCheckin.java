@@ -17,7 +17,7 @@ public class EnCheckin extends EstadoReserva {
 
     @Override
     public void cancelar(Reserva r) {
-        r.getSolicitud().incrementarCupo();
+        r.incrementarCupo();
         r.reembolsar();
         super.cancelar(r);
     }

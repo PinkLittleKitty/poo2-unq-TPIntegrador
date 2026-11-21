@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class GeneradorDeReportes {
+    private final List<ServicioIndividual> servicios;
     private final List<Reserva> reservas;
 
-    public GeneradorDeReportes(List<Reserva> reservas) {
+    public GeneradorDeReportes(List<ServicioIndividual> servicios, List<Reserva> reservas) {
+        this.servicios = List.copyOf(servicios);
         this.reservas = List.copyOf(reservas);
     }
 
@@ -19,11 +21,11 @@ public class GeneradorDeReportes {
     }
 
     public RegistroDeCupos registroDeCupos(Periodo periodo) {
-        return new RegistroDeCupos(periodo);
+        return new RegistroDeCupos(periodo, servicios);
     }
 
     public RegistroDeOperadores registroDeOperadores() {
-        return new RegistroDeOperadores();
+        return new RegistroDeOperadores(servicios);
     }
 
     public String exportar(Reporte reporte, FormatoVisitanteReportes formato) {

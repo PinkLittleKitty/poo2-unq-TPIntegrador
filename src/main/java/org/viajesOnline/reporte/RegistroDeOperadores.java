@@ -1,7 +1,5 @@
 package org.viajesOnline.reporte;
 
-import org.viajesOnline.EmpresaTurismo;
-import org.viajesOnline.items.Item;
 import org.viajesOnline.items.ServicioIndividual;
 
 import java.util.List;
@@ -10,15 +8,22 @@ import java.util.stream.Collectors;
 
 public class RegistroDeOperadores implements Reporte {
 
+    private List<ServicioIndividual> catalogo;
+
+    public RegistroDeOperadores(List<ServicioIndividual> catalogo){
+
+        this.catalogo = catalogo;
+    }
+
     @Override
     public void accept(FormatoVisitanteReportes v) { v.visitar(this); }
 
     public Map<String, Double> calcularDatos() {
-        double total = EmpresaTurismo.getItems().size();
+        double total = catalogo.size();
 
-        return EmpresaTurismo.getItems().stream()
+        return catalogo.stream()
                 .collect(Collectors.groupingBy(
-                        Item::proveedor,
+                        ServicioIndividual::proveedor,
                         Collectors.collectingAndThen(
                                 Collectors.counting(),
                                 count -> (count * 100.0) / total

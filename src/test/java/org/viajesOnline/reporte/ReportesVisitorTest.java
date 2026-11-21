@@ -1,19 +1,18 @@
-package org.viajesOnline.reporteTest;
+package org.viajesOnline.reporte;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.items.Categoria;
 import org.viajesOnline.items.Paquete;
 import org.viajesOnline.items.ServicioIndividual;
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reporte.*;
 import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
 import org.viajesOnline.utils.Usuario;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -25,11 +24,19 @@ class ReportesVisitorTest {
     private ServicioIndividual trasladoAeropuerto;
     private Paquete packEscapadaUrbana;
     private GeneradorDeReportes generador;
+    private Catalogo catalogo = Catalogo.getInstance();
+    private GestorReservas gestorReservas = GestorReservas.getInstance();
 
     private Reserva crearReserva(LocalDate fechaCompra) {
         Reserva r = new Reserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodoReporte);
         r.setFechaCompra(fechaCompra);
         return r;
+    }
+
+    @AfterEach
+    void reset(){
+        catalogo.borrarTodo();
+        gestorReservas.borrarTodo();
     }
 
     @BeforeEach
@@ -99,9 +106,17 @@ class ReportesVisitorTest {
         reservaFueraDePeriodo.setFechaCompra(LocalDate.of(2026, 2, 10));
         reservaFueraDePeriodo.getSolicitud().agregarServicio(trasladoAeropuerto);
 
-        generador = new GeneradorDeReportes(
-                List.of(hotelCentral, excursionMuseo, trasladoAeropuerto),
-                List.of(r1, r2, r3, reservaSinFecha, reservaFueraDePeriodo));
+        catalogo.addItem(hotelCentral);
+        catalogo.addItem(excursionMuseo);
+        catalogo.addItem(trasladoAeropuerto);
+
+        gestorReservas.addReserva(r1);
+        gestorReservas.addReserva(r2);
+        gestorReservas.addReserva(r3);
+        gestorReservas.addReserva(reservaSinFecha);
+        gestorReservas.addReserva(reservaFueraDePeriodo);
+
+        generador = new GeneradorDeReportes();
     }
 
     @Test

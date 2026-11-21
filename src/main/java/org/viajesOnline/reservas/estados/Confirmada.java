@@ -12,10 +12,10 @@ public class Confirmada extends EstadoReserva {
     }
 
     @Override
-    public void decrementarCupo(DetalleReserva detalleReserva) {
-        detalleReserva.decrementarCupo();
+    public void cancelar(Reserva r) {
+        r.setEstadoActual(new Cancelada());
+        r.decrementarCupo();
     }
-
     @Override
     public void notificar(GestorDeDocumentos gestor, Reserva reserva, ObservadorCambioEstado observador) {
         observador.reservaConfirmada(reserva);

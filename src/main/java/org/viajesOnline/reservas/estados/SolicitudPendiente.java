@@ -11,7 +11,7 @@ public class SolicitudPendiente extends EstadoReserva {
     public void siguiente(Reserva r) {
         Confirmada confirmada = new Confirmada();
         r.setEstadoActual(confirmada);
-        confirmada.decrementarCupo(r.getSolicitud());
+        r.decrementarCupo();
     }
 
     @Override

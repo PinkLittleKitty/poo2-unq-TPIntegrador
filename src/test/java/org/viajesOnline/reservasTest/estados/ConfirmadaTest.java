@@ -30,10 +30,11 @@ public class ConfirmadaTest {
     }
 
     @Test
-    void decrementarCupo() {
-        estado.decrementarCupo(detalleReservaMock);
+    void cancelar() {
+        estado.cancelar(contextoMock);
 
-        verify(detalleReservaMock).decrementarCupo();
+        verify(contextoMock).setEstadoActual(any(Cancelada.class));
+        verify(contextoMock).decrementarCupo();
     }
 
     @Test

@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.viajesOnline.items.Item;
 import org.viajesOnline.items.Categoria;
 import org.viajesOnline.exceptions.CompletarCampos;
-import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -15,15 +16,15 @@ import static org.mockito.Mockito.when;
 class ItemTest {
 
   private static class TestCatalogo extends Item { //le subi categoria a catalogo
-    TestCatalogo(String nombre, String descripcion, double precio, Cupo cupo, Periodo periodo, Categoria categoria, String proveedor) {
+    TestCatalogo(String nombre, String descripcion, double precio, int cupo, Periodo periodo, Categoria categoria, String proveedor) {
       super(nombre, descripcion, precio, cupo, periodo, categoria, proveedor);
     }
   }
 
   Categoria cat = Categoria.ALOJAMIENTO;
-  Cupo cupo = mock(Cupo.class);
-  Periodo periodoMock = mock(Periodo.class);
-  Item item = new TestCatalogo("Hotel", "Descripción", 150.0, cupo, periodoMock, cat, "ProveedorA");
+  int cupoInicial = 10;
+  Periodo periodoVigente = new Periodo(LocalDate.of(2026, 6, 1), LocalDate.of(2026, 6, 10));
+  Item item = new TestCatalogo("Hotel", "Descripción", 150.0, cupoInicial, periodoVigente, cat, "ProveedorA");
 
   @Test
   void GetterNombreEsCorrecto(){
@@ -47,20 +48,20 @@ class ItemTest {
 
   @Test
   void GetterCupoEsCorrecto(){
-    assertEquals(cupo, item.getCupo());
+    assertEquals(cupoInicial, item.getCupo().getCupoDisponible());
   }
 
   @Test
   void GetterPeriodoEsCorrecto(){
     //2026/06/1 a 2026/06/10
-    assertEquals(periodoMock, item.getPeriodoVigencia());
+    assertEquals(periodoVigente, item.getPeriodoVigencia());
   }
 
   @Test
   void lanzaCompletarCamposSiNombreEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo(null, "Descripción", 100.0, cupo, periodoMock, cat, "ProvvedorA")
+            () -> new TestCatalogo(null, "Descripción", 100.0, cupoInicial, periodoVigente, cat, "ProvvedorA")
     );
   }
 
@@ -68,15 +69,7 @@ class ItemTest {
   void lanzaCompletarCamposSiDescripcionEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("dfgdfgdfg", null, 100.0, cupo, periodoMock, cat, "ProvvedorA")
-    );
-  }
-
-  @Test
-  void lanzaCompletarCamposSiCupoEsNull() {
-    assertThrows(
-            CompletarCampos.class,
-            () -> new TestCatalogo("asdfaefgh", "Descripción", 100.0, null,  periodoMock,cat, "ProvvedorA")
+            () -> new TestCatalogo("dfgdfgdfg", null, 100.0, cupoInicial, periodoVigente, cat, "ProvvedorA")
     );
   }
 
@@ -84,7 +77,7 @@ class ItemTest {
   void lanzaCompletarCamposSiPeriodoEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("khjdfjhj", "Descripción", 100.0, cupo, null, cat, "ProvvedorA")
+            () -> new TestCatalogo("khjdfjhj", "Descripción", 100.0, cupoInicial, null, cat, "ProvvedorA")
     );
   }
 
@@ -92,16 +85,16 @@ class ItemTest {
   void lanzaCompletarCamposSiCategoriaEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("khjdfjhj", "Descripción", 100.0, cupo, periodoMock, null, "ProvvedorA")
+            () -> new TestCatalogo("khjdfjhj", "Descripción", 100.0, cupoInicial, periodoVigente, null, "ProvvedorA")
     );
   }
 
   @Test
   void rechazaSiPrecioEsNegativoOCero() {
     assertThrows(CompletarCampos.class,
-            () -> new TestCatalogo("Hotel", "Descripción", 0.0, cupo, periodoMock, cat, "ProvvedorA"));
+            () -> new TestCatalogo("Hotel", "Descripción", 0.0, cupoInicial, periodoVigente, cat, "ProvvedorA"));
     assertThrows(CompletarCampos.class,
-                    () -> new TestCatalogo("Hotel", "Descripción", -1.0, cupo, periodoMock, cat, "ProvvedorA"));
+                    () -> new TestCatalogo("Hotel", "Descripción", -1.0, cupoInicial, periodoVigente, cat, "ProvvedorA"));
   }
 
   @Test
@@ -111,8 +104,8 @@ class ItemTest {
                     "Hotel",
                     "Descripción",
                     12.3,
-                    cupo,
-                    periodoMock,
+                    cupoInicial,
+                    periodoVigente,
                     cat,
                     null
             )
@@ -126,8 +119,8 @@ class ItemTest {
                     "Hotel",
                     "Descripción",
                     12.3,
-                    cupo,
-                    periodoMock,
+                    cupoInicial,
+                    periodoVigente,
                     cat,
                     ""
             ));
@@ -163,41 +156,33 @@ class ItemTest {
 
   @Test
   void incrementarCupoAumentaElCupoDisponible() {
-    item.incrementarCupo();
-    verify(cupo).incrementarCupo();
+    item.incrementarCupo(periodoVigente);
+    assertEquals(11, item.getCupo().getCupoDisponible());
   }
 
   @Test
   void decrementarReduceElCupoDisponible() {
-    item.decrementarCupo();
-    verify(cupo).decrementarCupo();
+    item.decrementarCupo(periodoVigente);
+    assertEquals(9, item.getCupo().getCupoDisponible());
   }
 
   @Test
   void pasaSiTieneCupoYEstaContenidoEnPeriodoVigente() {
     //catalogo periodo = 2026/06/1 a 2026/06/10
-    Periodo solicitado = mock(Periodo.class);
-
-    when(cupo.getCupoDisponible()).thenReturn(10);
-    when(periodoMock.seSuperponeCon(solicitado)).thenReturn(true);
+    Periodo solicitado = new Periodo(LocalDate.of(2026, 6, 2), LocalDate.of(2026, 6, 5));
 
     assertTrue(item.estaDisponibleEn(solicitado));
   }
 
   @Test
   void rebotaPeriodoSiNoHayCupo() {
-    when(cupo.getCupoDisponible()).thenReturn(0);
-    assertFalse(item.estaDisponibleEn(periodoMock));
-    //shortcircuit tiene que actuar primero.
+    Item itemSinCupo = new TestCatalogo("Hotel", "Descripción", 150.0, 0, periodoVigente, cat, "ProveedorA");
+    assertFalse(itemSinCupo.estaDisponibleEn(periodoVigente));
   }
 
   @Test
   void rebotaSiTieneCupoYLosPeriodosNoSeSuperponen() {
-    //catalogo periodo = 2026/06/1 a 2026/06/10; cupo 10.
-    Periodo solicitado = mock(Periodo.class);
-
-    when(cupo.getCupoDisponible()).thenReturn(10);
-    when(periodoMock.seSuperponeCon(solicitado)).thenReturn(false);
-    assertFalse(item.estaDisponibleEn(solicitado));
+    Periodo fueraDeVigencia = new Periodo(LocalDate.of(2026, 7, 1), LocalDate.of(2026, 7, 5));
+    assertFalse(item.estaDisponibleEn(fueraDeVigencia));
   }
 }

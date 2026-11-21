@@ -7,19 +7,19 @@ import org.viajesOnline.reservas.Reserva;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpresaTurismo {
+public class Catalogo {
     private final List<Item> items = new ArrayList<>();
-    private final List<Reserva> reservas = new ArrayList<>();
-    private static EmpresaTurismo instance;
+//    private final List<Reserva> reservas = new ArrayList<>();
+    private static Catalogo instance;
 
-    private EmpresaTurismo() {} // Private constructor
+    private Catalogo() {} // Private constructor
 
-    public static EmpresaTurismo getInstance() {
+    public static Catalogo getInstance() {
         if (instance == null) {
-            instance = new EmpresaTurismo();
+            instance = new Catalogo();
         }
             return instance;
-        }
+    }
 
     public void addItem(Item i) {
         items.add(i);
@@ -35,5 +35,9 @@ public class EmpresaTurismo {
 
     public List<Item> buscarEnCatalogo(Criterio criterio){
         return items.stream().filter(criterio::satisfaceCriterio).toList();
+    }
+
+    public void borrarTodo(){
+        items.clear();
     }
 }

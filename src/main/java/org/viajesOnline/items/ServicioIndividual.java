@@ -10,12 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServicioIndividual extends Item {
-<<<<<<< HEAD
-  private int idReserva;
-=======
+
   private double precioBase;
   private int idReserva; //??????
->>>>>>> origin/master
+
   private List<DefinicionAtributo> atributosDinamicos = new ArrayList<DefinicionAtributo>();
 
   private static void verificacionCons(int idReserva, double precioBase){

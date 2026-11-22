@@ -19,8 +19,7 @@ class PaqueteTest {
   private Paquete paquete = new Paquete(
           "Paquete de prueba",
           "Descripción",
-          100.0,
-          mock(Cupo.class),
+          10,
           mock(Periodo.class),
           mock(Categoria.class),
           "ProveedorA"

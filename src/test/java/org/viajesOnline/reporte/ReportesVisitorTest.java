@@ -1,19 +1,18 @@
-package org.viajesOnline.reporteTest;
+package org.viajesOnline.reporte;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.viajesOnline.items.Categoria;
 import org.viajesOnline.items.Paquete;
 import org.viajesOnline.items.ServicioIndividual;
 import org.viajesOnline.documento.GestorDeDocumentos;
-import org.viajesOnline.reporte.*;
 import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.Periodo;
 import org.viajesOnline.utils.Usuario;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -25,11 +24,19 @@ class ReportesVisitorTest {
     private ServicioIndividual trasladoAeropuerto;
     private Paquete packEscapadaUrbana;
     private GeneradorDeReportes generador;
+    private Catalogo catalogo = Catalogo.getInstance();
+    private GestorReservas gestorReservas = GestorReservas.getInstance();
 
     private Reserva crearReserva(LocalDate fechaCompra) {
         Reserva r = new Reserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodoReporte);
         r.setFechaCompra(fechaCompra);
         return r;
+    }
+
+    @AfterEach
+    void reset(){
+        catalogo.borrarTodo();
+        gestorReservas.borrarTodo();
     }
 
     @BeforeEach
@@ -40,7 +47,7 @@ class ReportesVisitorTest {
         hotelCentral = new ServicioIndividual(
                 "Noche de Hotel Central",
                 "Un hotel en el centro",
-                new Cupo(10, 6),
+                10,
                 1,
                 "Hilton",
                 1500.0,
@@ -50,7 +57,7 @@ class ReportesVisitorTest {
         excursionMuseo = new ServicioIndividual(
                 "Excursión Guiada Museo",
                 "Recorrido guiado",
-                new Cupo(15, 10),
+                15,
                 2,
                 "Malba",
                 2000.0,
@@ -60,7 +67,7 @@ class ReportesVisitorTest {
         trasladoAeropuerto = new ServicioIndividual(
                 "Traslado Aeropuerto-Hotel",
                 "Traslado privado",
-                new Cupo(8, 5),
+                8,
                 3,
                 "Chofer privado",
                 2000.0,
@@ -70,11 +77,24 @@ class ReportesVisitorTest {
         packEscapadaUrbana = new Paquete(
                 "Pack Escapada Urbana",
                 "Hotel + Excursión + Traslado",
-                1.0,
-                new Cupo(5, 3),
+                5,
                 vigenciaEnero,
                 Categoria.EXCURSION,
                 "ProveedorA");
+
+        // Simulo cupo ya reservado
+        for (int i = 0; i < 4; i++) {
+            hotelCentral.decrementarCupo(vigenciaEnero);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            excursionMuseo.decrementarCupo(vigenciaEnero);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            trasladoAeropuerto.decrementarCupo(vigenciaEnero);
+        }
+
         packEscapadaUrbana.agregarItem(hotelCentral);
         packEscapadaUrbana.agregarItem(excursionMuseo);
         packEscapadaUrbana.agregarItem(trasladoAeropuerto);
@@ -99,9 +119,17 @@ class ReportesVisitorTest {
         reservaFueraDePeriodo.setFechaCompra(LocalDate.of(2026, 2, 10));
         reservaFueraDePeriodo.getSolicitud().agregarServicio(trasladoAeropuerto);
 
-        generador = new GeneradorDeReportes(
-                List.of(hotelCentral, excursionMuseo, trasladoAeropuerto),
-                List.of(r1, r2, r3, reservaSinFecha, reservaFueraDePeriodo));
+        catalogo.addItem(hotelCentral);
+        catalogo.addItem(excursionMuseo);
+        catalogo.addItem(trasladoAeropuerto);
+
+        gestorReservas.addReserva(r1);
+        gestorReservas.addReserva(r2);
+        gestorReservas.addReserva(r3);
+        gestorReservas.addReserva(reservaSinFecha);
+        gestorReservas.addReserva(reservaFueraDePeriodo);
+
+        generador = new GeneradorDeReportes();
     }
 
     @Test

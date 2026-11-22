@@ -1,8 +1,8 @@
-package org.viajesOnline.criteriosTest;
+package org.viajesOnline.reporte;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.EmpresaTurismo;
 import org.viajesOnline.items.Item;
 import org.viajesOnline.criterios.Criterio;
 
@@ -13,17 +13,22 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-class BusquedaTest {
-  private EmpresaTurismo empresa;
+class CatalogoTest {
+  private Catalogo empresa;
   private Criterio criterio = mock(Criterio.class);
   private Item item1 = mock(Item.class);
   private Item item2 = mock(Item.class);
 
   @BeforeEach
   void setUp(){
-    empresa = new EmpresaTurismo();
+    empresa = Catalogo.getInstance();
     empresa.addItem(item1);
     empresa.addItem(item2);
+  }
+
+  @AfterEach
+  void reset(){
+    empresa.borrarTodo();
   }
 
   @Test

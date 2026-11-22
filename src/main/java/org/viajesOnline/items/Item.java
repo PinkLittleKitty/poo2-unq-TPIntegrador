@@ -1,9 +1,9 @@
 package org.viajesOnline.items;
 
 import org.apache.commons.lang3.Validate;
-import org.viajesOnline.EmpresaTurismo;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.CalendarioCupos;
 import org.viajesOnline.utils.Periodo;
 
 import java.util.Objects;
@@ -11,21 +11,24 @@ import java.util.Objects;
 public abstract class Item {
   private String nombre;
   private String descripcion;
-  private double precioBase;
   private int descuento = 0;
-  private Cupo cupo;
+  private CalendarioCupos calendarioCupos;
   private Periodo periodoVigencia;
   private Categoria categoria;
   private String proveedor;
 
+<<<<<<< HEAD
   public Item(String nombre, String descripcion, double precioBase, Cupo cupoDisponible
               ,Periodo periodoVigencia, Categoria categoria, String proveedor){
 
     validar(nombre, descripcion,precioBase,cupoDisponible,periodoVigencia, categoria, proveedor);
+=======
+  public Item(String nombre, String descripcion, int cupoPorDia, Periodo periodoVigencia, Categoria categoria, String proveedor){
+    validar(nombre, descripcion, cupoPorDia, periodoVigencia, categoria, proveedor);
+>>>>>>> origin/master
     this.nombre = nombre;
     this.descripcion = descripcion;
-    this.precioBase = precioBase;
-    this.cupo = cupoDisponible;
+    this.calendarioCupos = new CalendarioCupos(periodoVigencia, cupoPorDia);
     this.periodoVigencia = periodoVigencia;
     this.categoria = categoria;
     this.proveedor = proveedor;
@@ -44,8 +47,12 @@ public abstract class Item {
     return this.getPrecioBase() - this.descuentoAplicable();
   }
 
+<<<<<<< HEAD
   private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible
                             ,Periodo periodo,Categoria categoria, String proveedor){
+=======
+  private static void validar(String nombre, String descripcion, int cupoDisponible, Periodo periodo,Categoria categoria, String proveedor){
+>>>>>>> origin/master
     try {
       Objects.requireNonNull(periodo);
       Objects.requireNonNull(categoria);
@@ -55,14 +62,13 @@ public abstract class Item {
       Objects.requireNonNull(proveedor);
       Validate.notBlank(proveedor);
       Validate.notBlank(nombre, descripcion, "Es obligatorio completar estos campos");
-      Validate.validState(precioBase > 0);
     } catch (Exception e) {
       throw new CompletarCampos("Se requiere que se completen todos los campos");
     }
   }
 
   public boolean estaDisponibleEn(Periodo periodo) {
-    return this.getCupoDisponible() > 0 && this.periodoVigencia.seSuperponeCon(periodo);
+    return this.calendarioCupos.estaDisponibleEn(periodo);
   }
 
   public String getNombre() {
@@ -73,20 +79,16 @@ public abstract class Item {
     return descripcion;
   }
 
-  public double getPrecioBase() {
-    return precioBase;
-  }
-
-  public int getCupoDisponible() {
-    return cupo.getCupoDisponible();
-  }
-
-  public Cupo getCupo() { return cupo; }
+  public abstract double getPrecioBase();
 
   public Periodo getPeriodoVigencia() { return periodoVigencia; }
 
-  public void incrementarCupo() { cupo.incrementarCupo(); }
-  public void decrementarCupo() { cupo.decrementarCupo(); }
+  public Cupo getCupo() {
+    return this.calendarioCupos.getCupoDelDia(this.periodoVigencia.fechaInicio());
+  }
+
+  public void incrementarCupo(Periodo periodo) { calendarioCupos.incrementarCupo(periodo); }
+  public void decrementarCupo(Periodo periodo) { calendarioCupos.decrementarCupo(periodo); }
 
   public int getDescuento() {
     return descuento;

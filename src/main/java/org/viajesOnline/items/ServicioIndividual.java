@@ -10,12 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServicioIndividual extends Item {
+<<<<<<< HEAD
   private int idReserva;
+=======
+  private double precioBase;
+  private int idReserva; //??????
+>>>>>>> origin/master
   private List<DefinicionAtributo> atributosDinamicos = new ArrayList<DefinicionAtributo>();
 
-  private static void verificacionCons(int idReserva){
+  private static void verificacionCons(int idReserva, double precioBase){
     try{
       Validate.validState(idReserva > 0);
+      Validate.validState(precioBase > 0);
     } catch (Exception e) {
       throw new CompletarCampos("Se requiere que se completen todos los campos");
     }
@@ -29,10 +35,11 @@ public class ServicioIndividual extends Item {
     }
   }
 
-  public ServicioIndividual(String nombre, String descripcion, Cupo cupo, int idReserva, String proveedor, double precio, Categoria categoria, Periodo periodo){
-    super(nombre, descripcion, precio, cupo, periodo, categoria, proveedor);
-    this.verificacionCons(idReserva);
+  public ServicioIndividual(String nombre, String descripcion, int cupo, int idReserva, String proveedor, double precioBase, Categoria categoria, Periodo periodo){
+    super(nombre, descripcion, cupo, periodo, categoria, proveedor);
+    verificacionCons(idReserva, precioBase);
     this.idReserva = idReserva;
+    this.precioBase = precioBase;
   }
 
   public void agregarAtributoExtra(DefinicionAtributo _atributo){
@@ -47,5 +54,10 @@ public class ServicioIndividual extends Item {
 
   public int getIdReserva() {
     return idReserva;
+  }
+
+  @Override
+  public double getPrecioBase() {
+    return precioBase;
   }
 }

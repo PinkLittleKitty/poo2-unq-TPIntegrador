@@ -1,6 +1,7 @@
 package org.viajesOnline.reservas;
 
 import org.viajesOnline.items.Item;
+import org.viajesOnline.utils.Periodo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +22,15 @@ public class DetalleReserva {
         servicios.remove(s);
     }
 
-    public void decrementarCupo() {
+    public void decrementarCupo(Periodo periodo) {
         for (Item s: servicios) {
-            s.decrementarCupo();
+            s.decrementarCupo(periodo);
         }
     }
 
-    public void incrementarCupo() {
+    public void incrementarCupo(Periodo periodo) {
         for (Item s: servicios) {
-            s.incrementarCupo();
+            s.incrementarCupo(periodo);
         }
     }
 

@@ -7,12 +7,12 @@ public class Usuario {
     private String DNI;
     private Boolean esResponsableInscripto;
 
-    public Usuario(String nombre, String email, String cuit, String dni, Boolean esResoinsableInscripto) {
+    public Usuario(String nombre, String email, String cuit, String dni, Boolean esResponsableInscripto) {
         this.nombre = nombre;
         this.email = email;
         this.CUIT = cuit;
         this.DNI = dni;
-        this.esResponsableInscripto = esResoinsableInscripto;
+        this.esResponsableInscripto = esResponsableInscripto;
     }
 
     public String getNombre() {

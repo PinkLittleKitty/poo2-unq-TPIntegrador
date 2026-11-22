@@ -17,8 +17,15 @@ public abstract class Item {
   private Categoria categoria;
   private String proveedor;
 
+<<<<<<< HEAD
+  public Item(String nombre, String descripcion, double precioBase, Cupo cupoDisponible
+              ,Periodo periodoVigencia, Categoria categoria, String proveedor){
+
+    validar(nombre, descripcion,precioBase,cupoDisponible,periodoVigencia, categoria, proveedor);
+=======
   public Item(String nombre, String descripcion, int cupoPorDia, Periodo periodoVigencia, Categoria categoria, String proveedor){
     validar(nombre, descripcion, cupoPorDia, periodoVigencia, categoria, proveedor);
+>>>>>>> origin/master
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.calendarioCupos = new CalendarioCupos(periodoVigencia, cupoPorDia);
@@ -40,7 +47,12 @@ public abstract class Item {
     return this.getPrecioBase() - this.descuentoAplicable();
   }
 
+<<<<<<< HEAD
+  private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible
+                            ,Periodo periodo,Categoria categoria, String proveedor){
+=======
   private static void validar(String nombre, String descripcion, int cupoDisponible, Periodo periodo,Categoria categoria, String proveedor){
+>>>>>>> origin/master
     try {
       Objects.requireNonNull(periodo);
       Objects.requireNonNull(categoria);

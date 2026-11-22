@@ -45,6 +45,7 @@ public class Reserva {
         return this.estadoActual;
     }
 
+    ///TO DO combiar nombre del metodo a getDetalle     q
     public DetalleReserva getSolicitud() {
         return this.detalleReserva;
     }

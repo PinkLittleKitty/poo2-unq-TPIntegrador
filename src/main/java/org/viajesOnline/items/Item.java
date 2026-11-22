@@ -44,7 +44,8 @@ public abstract class Item {
     return this.getPrecioBase() - this.descuentoAplicable();
   }
 
-  private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible, Periodo periodo,Categoria categoria, String proveedor){
+  private static void validar(String nombre, String descripcion, double precioBase, Cupo cupoDisponible
+                            ,Periodo periodo,Categoria categoria, String proveedor){
     try {
       Objects.requireNonNull(periodo);
       Objects.requireNonNull(categoria);
@@ -59,10 +60,6 @@ public abstract class Item {
       throw new CompletarCampos("Se requiere que se completen todos los campos");
     }
   }
-
-//  public boolean estaDisponibleEn(LocalDate fecha) {
-//    return this.getCupoDisponible() > 0 && this.periodoVigencia.incluye(fecha);
-//  }
 
   public boolean estaDisponibleEn(Periodo periodo) {
     return this.getCupoDisponible() > 0 && this.periodoVigencia.seSuperponeCon(periodo);

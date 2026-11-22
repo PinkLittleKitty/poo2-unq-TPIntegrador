@@ -10,8 +10,6 @@ import static org.mockito.Mockito.*;
 public class ContextoTrasladoVipTest {
 
     private ContextoTraslado contextoTraslado;
-    //private AdaptadorTrasladoVip adaptadorTrasladoVip;
-
 
     private TrasladoVip trasladoVipMock;
     private TrasladoVip otroTrasladoVipMock;
@@ -53,6 +51,11 @@ public class ContextoTrasladoVipTest {
         assertEquals(900f, costo,0.001f);
         verify(reservaMock).precioFinalReserva();
         verify(trasladoVipMock).calcularCosto(1000f);
+    }
+
+    @Test
+    void cantPasajeros() {
+        assertEquals(4, contextoTraslado.cantPasajeros());
     }
 
 }

@@ -29,4 +29,15 @@ public class EnCursoTest {
 
         verify(observadorMock, times(1)).reservaEnCurso(contextoMock);
     }
+
+    @Test
+    void cancelar() {
+        EnCurso estado = new EnCurso();
+        Reserva contextoMock = mock(Reserva.class);
+
+        estado.cancelar(contextoMock);
+
+        verify(contextoMock).reembolsar();
+        verify(contextoMock).setEstadoActual(any(Cancelada.class));
+    }
 }

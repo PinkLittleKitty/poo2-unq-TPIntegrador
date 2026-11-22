@@ -18,7 +18,8 @@ public abstract class Item {
   private String proveedor;
 
   public Item(String nombre, String descripcion, int cupoPorDia, Periodo periodoVigencia, Categoria categoria, String proveedor){
-              validar(nombre, descripcion, cupoPorDia, periodoVigencia, categoria, proveedor);
+
+    validar(nombre, descripcion, cupoPorDia, periodoVigencia, categoria, proveedor);
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.calendarioCupos = new CalendarioCupos(periodoVigencia, cupoPorDia);

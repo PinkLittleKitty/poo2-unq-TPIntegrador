@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
   <diagram name="Page-1" id="MEMsVOg9I4byTbGzPSWV">
-    <mxGraphModel dx="4285" dy="2133" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3541" dy="1690" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1132,7 +1132,7 @@
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-143" connectable="0" parent="1" style="group" value="" vertex="1">
           <mxGeometry height="170" width="568" x="2840" y="2260" as="geometry" />
         </mxCell>
-        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-15" parent="Wfu1TY1uJvCHMqnp-xcW-143" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;container=0;" value="&lt;b&gt;DefinicionAtributo&lt;/b&gt;" vertex="1">
+        <mxCell id="Wfu1TY1uJvCHMqnp-xcW-15" parent="Wfu1TY1uJvCHMqnp-xcW-143" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;container=0;" value="AtributoDinamico" vertex="1">
           <mxGeometry height="70" width="568" as="geometry" />
         </mxCell>
         <mxCell id="Wfu1TY1uJvCHMqnp-xcW-18" parent="Wfu1TY1uJvCHMqnp-xcW-143" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=14;container=0;" value="&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;+ DefinicionAtributo(&lt;/font&gt;&lt;font&gt;_nombre :&amp;nbsp;&lt;/font&gt;&lt;font&gt;String ,&amp;nbsp; _valor :&amp;nbsp;&lt;/font&gt;&lt;font&gt;Object&lt;/font&gt;&lt;font&gt;, _tipo :&amp;nbsp;&lt;/font&gt;&lt;font&gt;TipoDato&lt;/font&gt;&lt;font&gt;)&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ getNombre()&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ getValor()&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;+ getTipo()&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;u&gt;&lt;font&gt;&lt;br&gt;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">

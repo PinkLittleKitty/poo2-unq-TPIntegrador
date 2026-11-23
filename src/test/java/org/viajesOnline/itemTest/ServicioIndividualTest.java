@@ -1,7 +1,7 @@
 package org.viajesOnline.itemTest;
 
 import org.junit.jupiter.api.Test;
-import org.viajesOnline.atributos.DefinicionAtributo;
+import org.viajesOnline.atributos.AtributoDinamico;
 import org.viajesOnline.items.Categoria;
 import org.viajesOnline.items.ServicioIndividual;
 import org.viajesOnline.exceptions.CompletarCampos;
@@ -28,7 +28,7 @@ class ServicioIndividualTest {
           catAloj,
           mock(Periodo.class)
   );
-  private DefinicionAtributo attDinamico = mock(DefinicionAtributo.class);
+  private AtributoDinamico attDinamico = mock(AtributoDinamico.class);
 
   @Test
   void getterIdReservaEsCorrecto(){
@@ -126,7 +126,7 @@ class ServicioIndividualTest {
 
   @Test
   void listaDevueltaNoEsLaListaInterna() {
-    List<DefinicionAtributo> lista = servicio.getAtributosDinamicos();
+    List<AtributoDinamico> lista = servicio.getAtributosDinamicos();
     servicio.agregarAtributoExtra(attDinamico);
 
     assertTrue(lista.isEmpty());

@@ -1,6 +1,6 @@
 package org.viajesOnline.items;
 
-import org.viajesOnline.atributos.DefinicionAtributo;
+import org.viajesOnline.atributos.AtributoDinamico;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 import org.apache.commons.lang3.Validate;
@@ -14,7 +14,16 @@ public class ServicioIndividual extends Item {
   private double precioBase;
   private int idReserva; //??????
 
-  private List<DefinicionAtributo> atributosDinamicos = new ArrayList<DefinicionAtributo>();
+  private List<AtributoDinamico> atributosDinamicos = new ArrayList<AtributoDinamico>();
+
+
+  public ServicioIndividual(String nombre, String descripcion, int cupo, int idReserva, String proveedor, double precioBase, Categoria categoria, Periodo periodo){
+    super(nombre, descripcion, cupo, periodo, categoria, proveedor);
+    verificacionCons(idReserva, precioBase);
+    this.idReserva = idReserva;
+    this.precioBase = precioBase;
+  }
+
 
   private static void verificacionCons(int idReserva, double precioBase){
     try{
@@ -25,7 +34,14 @@ public class ServicioIndividual extends Item {
     }
   }
 
-  private void verificacionNuevoAtt(DefinicionAtributo att){
+
+  public void agregarAtributoExtra(AtributoDinamico _atributo){
+
+    this.verificacionNuevoAtt(_atributo);
+    atributosDinamicos.add(_atributo);
+  }
+
+  private void verificacionNuevoAtt(AtributoDinamico att){
     try{
       Validate.notNull(att, "Se requiere un atributo");
     } catch (Exception e) {
@@ -33,20 +49,8 @@ public class ServicioIndividual extends Item {
     }
   }
 
-  public ServicioIndividual(String nombre, String descripcion, int cupo, int idReserva, String proveedor, double precioBase, Categoria categoria, Periodo periodo){
-    super(nombre, descripcion, cupo, periodo, categoria, proveedor);
-    verificacionCons(idReserva, precioBase);
-    this.idReserva = idReserva;
-    this.precioBase = precioBase;
-  }
 
-  public void agregarAtributoExtra(DefinicionAtributo _atributo){
-    //_atributo deberia internamente verificar que no tiene nada null
-    this.verificacionNuevoAtt(_atributo);
-    atributosDinamicos.add(_atributo);
-  }
-
-  public List<DefinicionAtributo> getAtributosDinamicos() {
+  public List<AtributoDinamico> getAtributosDinamicos() {
     return List.copyOf(atributosDinamicos);
   }
 

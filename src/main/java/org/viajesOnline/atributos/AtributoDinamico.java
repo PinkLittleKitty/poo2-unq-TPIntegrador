@@ -5,11 +5,18 @@ import org.viajesOnline.exceptions.CompletarCampos;
 
 import java.util.Objects;
 
-public class DefinicionAtributo {
+public class AtributoDinamico {
 
   private String nombre;
   private Object valor;
   private TipoDato tipo;
+
+  public AtributoDinamico(String _nombre, Object _valor, TipoDato _tipo) {
+    this.verificaciones(_nombre,_valor,_tipo);
+    this.nombre = _nombre;
+    this.valor = _valor;
+    this.tipo = _tipo;
+  }
 
   private static void verificaciones(String _nombre, Object _valor, TipoDato _tipo){
     try{
@@ -21,13 +28,6 @@ public class DefinicionAtributo {
     } catch (Exception e) {
       throw new CompletarCampos("Se requiere que se completen todos los campos");
     }
-  }
-
-  public DefinicionAtributo(String _nombre, Object _valor, TipoDato _tipo) {
-    this.verificaciones(_nombre,_valor,_tipo);
-    this.nombre = _nombre;
-    this.valor = _valor;
-    this.tipo = _tipo;
   }
 
   public String getNombre() {

@@ -38,8 +38,6 @@ public class GestorDeDocumentosTest {
         assertEquals(2, gestor.cantidadDocumentos());
     }
 
-
-
     @Test
     void listaDeDocumentosNoSePuedeModificarDesdeAfuera() {
         assertThrows(UnsupportedOperationException.class,

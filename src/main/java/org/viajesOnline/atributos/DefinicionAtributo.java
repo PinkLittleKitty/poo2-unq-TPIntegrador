@@ -6,7 +6,7 @@ import org.viajesOnline.exceptions.CompletarCampos;
 import java.util.Objects;
 
 public class DefinicionAtributo {
-  // saque esObligatorio porque no tiene sentido, se convierte en obligatorio cuando lo guardamos en un servicio.
+
   private String nombre;
   private Object valor;
   private TipoDato tipo;

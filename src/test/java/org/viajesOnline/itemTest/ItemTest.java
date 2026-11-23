@@ -16,8 +16,8 @@ import static org.mockito.Mockito.when;
 
 class ItemTest {
 
-  private static class TestCatalogo extends Item { //le subi categoria a catalogo
-    TestCatalogo(String nombre, String descripcion, int cupo, Periodo periodo, Categoria categoria, String proveedor) {
+  private static class TestItem extends Item { //le subi categoria a catalogo
+    TestItem(String nombre, String descripcion, int cupo, Periodo periodo, Categoria categoria, String proveedor) {
       super(nombre, descripcion, cupo, periodo, categoria, proveedor);
     }
 
@@ -27,10 +27,10 @@ class ItemTest {
     }
   }
 
-  Categoria cat = Categoria.ALOJAMIENTO;
+  Categoria catAloj = Categoria.ALOJAMIENTO;
   int cupoInicial = 10;
   Periodo periodoVigente = new Periodo(LocalDate.of(2026, 6, 1), LocalDate.of(2026, 6, 10));
-  Item item = new TestCatalogo("Hotel", "Descripción", cupoInicial, periodoVigente, cat, "ProveedorA");
+  Item item = new TestItem("Hotel", "Descripción", cupoInicial, periodoVigente, catAloj, "ProveedorA");
 
   @Test
   void GetterNombreEsCorrecto(){
@@ -67,7 +67,7 @@ class ItemTest {
   void lanzaCompletarCamposSiNombreEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo(null, "Descripción", cupoInicial, periodoVigente, cat, "ProvvedorA")
+            () -> new TestItem(null, "Descripción", cupoInicial, periodoVigente, catAloj, "ProvvedorA")
     );
   }
 
@@ -75,7 +75,7 @@ class ItemTest {
   void lanzaCompletarCamposSiDescripcionEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Hotel", null, cupoInicial, periodoVigente, cat, "ProvvedorA")
+            () -> new TestItem("Hotel", null, cupoInicial, periodoVigente, catAloj, "ProvvedorA")
     );
   }
 
@@ -83,7 +83,7 @@ class ItemTest {
   void lanzaCompletarCamposSiPeriodoEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Hotel", "Descripción", cupoInicial, null, cat, "ProvvedorA")
+            () -> new TestItem("Hotel", "Descripción", cupoInicial, null, catAloj, "ProvvedorA")
     );
   }
 
@@ -91,19 +91,19 @@ class ItemTest {
   void lanzaCompletarCamposSiCategoriaEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestCatalogo("Hotel", "Descripción", cupoInicial, periodoVigente, null, "ProvvedorA")
+            () -> new TestItem("Hotel", "Descripción", cupoInicial, periodoVigente, null, "ProvvedorA")
     );
   }
 
   @Test
   void rechazaProveedorNulo() {
     assertThrows(CompletarCampos.class, () ->
-            new TestCatalogo(
+            new TestItem(
                     "Hotel",
                     "Descripción",
                     cupoInicial,
                     periodoVigente,
-                    cat,
+                    catAloj,
                     null
             )
     );
@@ -112,12 +112,12 @@ class ItemTest {
   @Test
   void rechazaProveedorVacio() {
     assertThrows(CompletarCampos.class, () ->
-            new TestCatalogo(
+            new TestItem(
                     "Hotel",
                     "Descripción",
                     cupoInicial,
                     periodoVigente,
-                    cat,
+                    catAloj,
                     ""
             ));
   }
@@ -172,7 +172,7 @@ class ItemTest {
 
   @Test
   void rebotaPeriodoSiNoHayCupo() {
-    Item itemSinCupo = new TestCatalogo("Hotel", "Descripción", 0, periodoVigente, cat, "ProveedorA");
+    Item itemSinCupo = new TestItem("Hotel", "Descripción", 0, periodoVigente, catAloj, "ProveedorA");
     assertFalse(itemSinCupo.estaDisponibleEn(periodoVigente));
   }
 

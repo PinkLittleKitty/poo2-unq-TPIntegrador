@@ -15,7 +15,7 @@ class CupoTest {
 
     assertEquals(15, resultado.getCupoInicial());
     assertEquals(10, resultado.getCupoDisponible());
-    assertEquals(5, resultado.getCupoReservado());
+    assertEquals(5, resultado.getCantCupoReservados());
   }
 
   @Test
@@ -25,7 +25,7 @@ class CupoTest {
     cupo.decrementarCupo();
 
     assertEquals(6, cupo.getCupoDisponible());
-    assertEquals(4, cupo.getCupoReservado());
+    assertEquals(4, cupo.getCantCupoReservados());
   }
 
   @Test
@@ -35,13 +35,13 @@ class CupoTest {
     cupo.incrementarCupo();
 
     assertEquals(8, cupo.getCupoDisponible());
-    assertEquals(2, cupo.getCupoReservado());
+    assertEquals(2, cupo.getCantCupoReservados());
   }
 
   @Test
   void cupoReservadoEsLaDiferenciaEntreInicialYDisponible() {
     Cupo cupo = new Cupo(10, 7);
 
-    assertEquals(3, cupo.getCupoReservado());
+    assertEquals(3, cupo.getCantCupoReservados());
   }
 }

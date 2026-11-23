@@ -29,5 +29,5 @@ public class Cupo {
         return cupoInicial;
     }
 
-    public int getCupoReservado() { return cupoInicial - cupoDisponible; }
+    public int getCantCupoReservados() { return cupoInicial - cupoDisponible; }
 }

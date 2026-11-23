@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
 class ServicioIndividualTest {
-  private Categoria cat = Categoria.ALOJAMIENTO;
+  private Categoria catAloj = Categoria.ALOJAMIENTO;
   private ServicioIndividual servicio = new ServicioIndividual(
           "Hotel",
           "Descripción",
@@ -25,7 +25,7 @@ class ServicioIndividualTest {
           123,
           "ProveedorA",
           150,
-          cat,
+          catAloj,
           mock(Periodo.class)
   );
   private DefinicionAtributo attDinamico = mock(DefinicionAtributo.class);
@@ -50,7 +50,7 @@ class ServicioIndividualTest {
                     123,
                     null,
                     150.0,
-                    cat,
+                    catAloj,
                     mock(Periodo.class)
             )
     );
@@ -66,7 +66,7 @@ class ServicioIndividualTest {
             123,
             "",
             150.0,
-            cat,
+            catAloj,
                     mock(Periodo.class)
     ));
 
@@ -78,7 +78,7 @@ class ServicioIndividualTest {
             123,
             "   ",
             150.0,
-            cat,
+            catAloj,
                     mock(Periodo.class)));
   }
 
@@ -107,9 +107,9 @@ class ServicioIndividualTest {
   @Test
   void rechazaSiPrecioEsNegativoOCero() {
     assertThrows(CompletarCampos.class,
-                        () -> new ServicioIndividual("Hotel", "Descripción", 10, 123,"ProvvedorA",0.0,  cat, mock(Periodo.class)));
+                        () -> new ServicioIndividual("Hotel", "Descripción", 10, 123,"ProvvedorA",0.0,  catAloj, mock(Periodo.class)));
     assertThrows(CompletarCampos.class,
-                        () -> new ServicioIndividual("Hotel", "Descripción",  10, 123, "ProvvedorA",-1.0, cat, mock(Periodo.class)));
+                        () -> new ServicioIndividual("Hotel", "Descripción",  10, 123, "ProvvedorA",-1.0, catAloj, mock(Periodo.class)));
   }
 
   @Test

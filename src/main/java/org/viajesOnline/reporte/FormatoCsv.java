@@ -19,7 +19,7 @@ public class FormatoCsv implements FormatoVisitanteReportes {
                 .map(e -> List.of(
                         e.getKey().name(),
                         String.valueOf(e.getValue().getCupoInicial()),
-                        String.valueOf(e.getValue().getCupoReservado()),
+                        String.valueOf(e.getValue().getCantCupoReservados()),
                         String.valueOf(e.getValue().getCupoDisponible())
                 )).toList();
         this.reporteCsv = FormatoUtils.construirCsv(List.of("Categoria", "Totales", "Reservados", "Disponibles"), filas);

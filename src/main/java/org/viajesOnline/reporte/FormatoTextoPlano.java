@@ -22,7 +22,7 @@ public class FormatoTextoPlano implements FormatoVisitanteReportes {
                     Cupo cupo = e.getValue();
                     return "Categoría: " + e.getKey().name()
                             + " | Totales: " + cupo.getCupoInicial()
-                            + " | Reservados: " + cupo.getCupoReservado()
+                            + " | Reservados: " + cupo.getCantCupoReservados()
                             + " | Disponibles: " + cupo.getCupoDisponible();
                 }).toList();
         this.reporteTextoPlano = FormatoUtils.construirTextoPlano("Registro de cupos", lineas);

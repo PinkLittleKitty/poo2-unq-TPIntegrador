@@ -5,9 +5,8 @@ import org.viajesOnline.documento.ComprobanteCbu;
 import org.viajesOnline.documento.Documento;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.documento.VoucherParaPago;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
@@ -37,6 +36,14 @@ public class GestorDeDocumentosTest {
         assertTrue(gestor.obtenerDocumentos().contains(comprobanteCbuMock));
 
         assertEquals(2, gestor.cantidadDocumentos());
+    }
+
+
+
+    @Test
+    void listaDeDocumentosNoSePuedeModificarDesdeAfuera() {
+        assertThrows(UnsupportedOperationException.class,
+                () -> gestor.obtenerDocumentos().add(voucherParaPagoMock));
     }
 
 }

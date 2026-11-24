@@ -9,9 +9,9 @@ public class CalendarioCupos {
     private final int cupoPorDiaInicial;
     private final Map<LocalDate, Cupo> cupoPorDia = new HashMap<>();
 
-    public CalendarioCupos(Periodo vigencia, int cupoPorDiaInicial) {
+    public CalendarioCupos(Periodo periodo, int cupoPorDiaInicial) {
         this.cupoPorDiaInicial = cupoPorDiaInicial;
-        for (LocalDate dia : vigencia.fechas()) {
+        for (LocalDate dia : periodo.fechas()) {
             cupoPorDia.put(dia, new Cupo(cupoPorDiaInicial, cupoPorDiaInicial));
         }
     }

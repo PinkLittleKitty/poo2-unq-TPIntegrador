@@ -11,7 +11,7 @@ class CupoTest {
     Cupo primero = new Cupo(10, 7);
     Cupo segundo = new Cupo(5, 3);
 
-    Cupo resultado = primero.sumar(segundo);
+    Cupo resultado = primero.sumarCupos(segundo);
 
     assertEquals(15, resultado.getCupoInicial());
     assertEquals(10, resultado.getCupoDisponible());

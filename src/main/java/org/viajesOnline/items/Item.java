@@ -17,6 +17,7 @@ public abstract class Item {
   private Categoria categoria;
   private String proveedor;
 
+  /// TO DO NO ES MEJOR PASARLE EL NEW CALENDARIO POR PARAMETRO?
   public Item(String nombre, String descripcion, int cupoPorDia, Periodo periodoVigencia, Categoria categoria, String proveedor){
 
     validar(nombre, descripcion, cupoPorDia, periodoVigencia, categoria, proveedor);

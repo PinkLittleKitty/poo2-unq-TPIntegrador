@@ -97,17 +97,17 @@ class ReservaTest {
 
     @Test
     void getPeriodo() {
-        assertNotNull(contexto.getPeriodo());
+        assertNotNull(nuevaReserva.getPeriodo());
     }
 
     @Test
     void getCostoTasas() {
-        assertEquals(100.0, contexto.getCostoTasas());
+        assertEquals(100.0, nuevaReserva.getCostoTasas());
     }
 
     @Test
     void decrementarEIncrementarCupo() {
-        contexto.decrementarCupo();
-        contexto.incrementarCupo();
+        nuevaReserva.decrementarCupo();
+        nuevaReserva.incrementarCupo();
     }
 }

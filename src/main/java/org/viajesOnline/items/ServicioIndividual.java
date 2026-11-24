@@ -16,7 +16,6 @@ public class ServicioIndividual extends Item {
 
   private List<AtributoDinamico> atributosDinamicos = new ArrayList<AtributoDinamico>();
 
-
   public ServicioIndividual(String nombre, String descripcion, int cupo, int idReserva, String proveedor, double precioBase, Categoria categoria, Periodo periodo){
     super(nombre, descripcion, cupo, periodo, categoria, proveedor);
     verificacionCons(idReserva, precioBase);

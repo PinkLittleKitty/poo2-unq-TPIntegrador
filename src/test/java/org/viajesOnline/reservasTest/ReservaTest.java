@@ -51,7 +51,7 @@ class ReservaTest {
 
         contexto.agregarServicio(servicioMock);
 
-        verify(estadoMock, times(1)).agregarServicio(servicioMock, contexto.getSolicitud());
+        verify(estadoMock, times(1)).agregarServicio(servicioMock, contexto.getDetalle());
     }
 
     @Test
@@ -90,7 +90,7 @@ class ReservaTest {
         Item servicioMock = mock(Item.class);
         when(servicioMock.precioFinal()).thenReturn(100.0);
 
-        contexto.getSolicitud().agregarServicio(servicioMock);
+        contexto.getDetalle().agregarServicio(servicioMock);
 
         assertEquals(100.0f, contexto.precioFinalReserva());
     }

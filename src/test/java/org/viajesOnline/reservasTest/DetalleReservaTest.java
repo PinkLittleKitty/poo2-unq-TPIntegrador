@@ -63,4 +63,9 @@ public class DetalleReservaTest {
         verify(servicioA).precioFinal();
         verify(servicioB).precioFinal();
     }
+
+    @Test
+    void cantServicios() {
+        assertEquals(2, detalleReserva.cantServicios());
+    }
 }

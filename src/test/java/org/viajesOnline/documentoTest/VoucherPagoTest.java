@@ -45,6 +45,8 @@ public class VoucherPagoTest {
 
         assertEquals("Empresa Turismo",voucherParaPago.emisor());
 
+        assertEquals("111", voucherParaPago.ccv());
+
         assertEquals(LocalDate.now(),voucherParaPago.fechaEmision().toLocalDate());
 
         voucherParaPago.mostrarDetalles();
@@ -73,7 +75,6 @@ public class VoucherPagoTest {
 
     @AfterEach
     public void tearDown() {
-
         System.setOut(originalOut);
     }
 

@@ -5,9 +5,11 @@ import org.viajesOnline.items.Item;
 import org.viajesOnline.items.Categoria;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.CalendarioCupos;
 import org.viajesOnline.utils.Periodo;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -61,6 +63,12 @@ class ItemTest {
   void GetterPeriodoEsCorrecto(){
     //2026/06/1 a 2026/06/10
     assertEquals(periodoVigente, item.getPeriodoVigencia());
+  }
+
+  @Test
+  void getCupoPorDiaInicial() {
+    CalendarioCupos calendario = new CalendarioCupos(periodoVigente, 10);
+    assertEquals(10, calendario.getCupoPorDiaInicial());
   }
 
   @Test

@@ -94,4 +94,20 @@ class ReservaTest {
 
         assertEquals(100.0f, nuevaReserva.precioFinalReserva());
     }
+
+    @Test
+    void getPeriodo() {
+        assertNotNull(contexto.getPeriodo());
+    }
+
+    @Test
+    void getCostoTasas() {
+        assertEquals(100.0, contexto.getCostoTasas());
+    }
+
+    @Test
+    void decrementarEIncrementarCupo() {
+        contexto.decrementarCupo();
+        contexto.incrementarCupo();
+    }
 }

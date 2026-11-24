@@ -9,8 +9,7 @@ import org.viajesOnline.reservas.ObservadorCambioEstado;
 import org.viajesOnline.reservas.DetalleReserva;
 import org.viajesOnline.reservas.estados.*;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class EstadoReservaTest {
@@ -87,6 +86,13 @@ class EstadoReservaTest {
 
         assertDoesNotThrow(() -> estado.notificar(gestor, contextoMock, observerMock));
         verifyNoInteractions(observerMock);
+    }
+
+    @Test
+    void default_tasasReembolsables() {
+        EstadoReserva estado = new EstadoReserva() {};
+        Reserva r = mock(Reserva.class);
+        assertEquals(0.0, estado.tasasReembolsables(r));
     }
 }
 

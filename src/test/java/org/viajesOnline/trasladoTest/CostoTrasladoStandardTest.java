@@ -2,6 +2,7 @@ package org.viajesOnline.trasladoTest;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
+import org.viajesOnline.traslados.ContextoTraslado;
 import org.viajesOnline.traslados.TrasladoStandard;
 
 import org.viajesOnline.traslados.DireccionMock;
@@ -37,5 +38,15 @@ public class CostoTrasladoStandardTest {
 
         plataforma.estimarTraslado(4, direccionDestino);
         verify(plataforma).estimarTraslado(4, direccionDestino);
+    }
+
+    @Test
+    void calcularCostoLlamaAPlataforma() {
+        ContextoTraslado contexto = mock(ContextoTraslado.class);
+        when(contexto.cantPasajeros()).thenReturn(3);
+        when(plataforma.estimarTraslado(3, direccionDestino)).thenReturn(500f);
+
+        assertEquals(500f, trasladoStandard.calcularCosto(contexto), 0.001f);
+        verify(plataforma).estimarTraslado(3, direccionDestino);
     }
 }

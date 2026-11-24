@@ -13,6 +13,7 @@ import org.viajesOnline.utils.Periodo;
 import org.viajesOnline.utils.Usuario;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -220,5 +221,14 @@ class ReportesVisitorTest {
                         + "- Hilton: 33.33%\n"
                         + "- Malba: 33.33%",
                 generador.exportar(reporte, new FormatoTextoPlano()));
+    }
+
+    @Test
+    void gestorReservasMetodosAux() {
+        Reserva r = mock(Reserva.class);
+        gestorReservas.addReserva(List.of(r));
+        assertTrue(gestorReservas.getReservas().contains(r));
+        gestorReservas.delReserva(r);
+        assertFalse(gestorReservas.getReservas().contains(r));
     }
 }

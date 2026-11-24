@@ -6,6 +6,7 @@ import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.*;
 import org.viajesOnline.reservas.estados.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class EnCheckinTest {
@@ -47,5 +48,11 @@ public class EnCheckinTest {
         estado.notificar(gestor, contextoMock, observadorMock);
 
         verify(observadorMock, times(1)).reservaEnCheckin(contextoMock);
+    }
+
+    @Test
+    void tasasReembolsables() {
+        when(contextoMock.getCostoTasas()).thenReturn(50.0);
+        assertEquals(50.0, estado.tasasReembolsables(contextoMock));
     }
 }

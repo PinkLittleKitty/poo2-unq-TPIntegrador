@@ -18,7 +18,7 @@ public class GeneradorFactura extends ObservadorCambioEstado {
         String tipoFactura = this.tipoFactura(usuario);
         String idFiscal = this.IdFiscal(usuario);
         String nombre = usuario.getNombre();
-        int cantServicios = reserva.getSolicitud().cantServicios();
+        int cantServicios = reserva.getDetalle().cantServicios();
 
         Documento comprobanteFiscal = new ComprobanteFiscal(codTransaccion, tipoFactura, nombre, idFiscal, total);
         Documento voucherParaFactura = new VoucherParaFactura(codTransaccion, nombre, cantServicios, total);

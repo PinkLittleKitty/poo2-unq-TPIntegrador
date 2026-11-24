@@ -101,23 +101,23 @@ class ReportesVisitorTest {
         packEscapadaUrbana.darDescuento(10);
 
         Reserva r1 = crearReserva(LocalDate.of(2026, 1, 12));
-        r1.getSolicitud().agregarServicio(packEscapadaUrbana);
-        r1.getSolicitud().agregarServicio(hotelCentral);
+        r1.getDetalle().agregarServicio(packEscapadaUrbana);
+        r1.getDetalle().agregarServicio(hotelCentral);
 
         Reserva r2 = crearReserva(LocalDate.of(2026, 1, 15));
-        r2.getSolicitud().agregarServicio(packEscapadaUrbana);
-        r2.getSolicitud().agregarServicio(hotelCentral);
-        r2.getSolicitud().agregarServicio(excursionMuseo);
+        r2.getDetalle().agregarServicio(packEscapadaUrbana);
+        r2.getDetalle().agregarServicio(hotelCentral);
+        r2.getDetalle().agregarServicio(excursionMuseo);
 
         Reserva r3 = crearReserva(LocalDate.of(2026, 1, 20));
-        r3.getSolicitud().agregarServicio(packEscapadaUrbana);
+        r3.getDetalle().agregarServicio(packEscapadaUrbana);
 
         Reserva reservaSinFecha = crearReserva(null);
-        reservaSinFecha.getSolicitud().agregarServicio(trasladoAeropuerto);
+        reservaSinFecha.getDetalle().agregarServicio(trasladoAeropuerto);
 
         Reserva reservaFueraDePeriodo = crearReserva(LocalDate.of(2026, 2, 20));
         reservaFueraDePeriodo.setFechaCompra(LocalDate.of(2026, 2, 10));
-        reservaFueraDePeriodo.getSolicitud().agregarServicio(trasladoAeropuerto);
+        reservaFueraDePeriodo.getDetalle().agregarServicio(trasladoAeropuerto);
 
         catalogo.addItem(hotelCentral);
         catalogo.addItem(excursionMuseo);

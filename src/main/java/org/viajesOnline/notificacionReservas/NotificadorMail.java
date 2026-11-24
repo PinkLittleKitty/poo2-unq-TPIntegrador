@@ -39,7 +39,7 @@ public class NotificadorMail extends ObservadorCambioEstado {
 
         String email = reserva.getUsuario().getEmail();
         double total = reserva.precioFinalReserva();
-        int items = reserva.getSolicitud().cantServicios();
+        int items = reserva.getDetalle().cantServicios();
 
         reciboSolicitud = new ReciboDeSolicitud(codTrans, estadoANotificar, email, total, items);
         this.enviarMail(reserva, reciboSolicitud);

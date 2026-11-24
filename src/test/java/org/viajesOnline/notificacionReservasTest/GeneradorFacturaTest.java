@@ -30,7 +30,7 @@ class GeneradorFacturaTest {
         detalleReservaMock = mock(DetalleReserva.class);
 
         when(reservaMock.getUsuario()).thenReturn(usuarioMock);
-        when(reservaMock.getSolicitud()).thenReturn(detalleReservaMock);
+        when(reservaMock.getDetalle()).thenReturn(detalleReservaMock);
         when(reservaMock.precioFinalReserva()).thenReturn(5000f);
         when(usuarioMock.getNombre()).thenReturn("Test");
         when(usuarioMock.getDNI()).thenReturn("12345678");

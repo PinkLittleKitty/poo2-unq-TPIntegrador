@@ -21,7 +21,7 @@ public class EnCheckinTest {
         detalleReservaMock = mock(DetalleReserva.class);
         gestor = mock(GestorDeDocumentos.class);
 
-        when(contextoMock.getSolicitud()).thenReturn(detalleReservaMock);
+        when(contextoMock.getDetalle()).thenReturn(detalleReservaMock);
     }
 
     @Test

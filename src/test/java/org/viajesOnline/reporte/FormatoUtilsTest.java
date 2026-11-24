@@ -63,11 +63,11 @@ class FormatoUtilsTest {
 
         Reserva r1 = new Reserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
         r1.setFechaCompra(LocalDate.of(2026, 1, 15));
-        r1.getSolicitud().agregarServicio(sB);
+        r1.getDetalle().agregarServicio(sB);
 
         Reserva r2 = new Reserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
         r2.setFechaCompra(LocalDate.of(2026, 1, 15));
-        r2.getSolicitud().agregarServicio(sA);
+        r2.getDetalle().agregarServicio(sA);
 
         gestor.addReserva(r1);
         gestor.addReserva(r2);

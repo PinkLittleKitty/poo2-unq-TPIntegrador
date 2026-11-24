@@ -23,7 +23,7 @@ public class ServicioMasReservado implements Reporte {
     public Map<Item, Long> calcularDatos() {
         return reservas.getReservas().stream()
                 .filter(r -> r.getFechaCompra() != null && periodo.incluye(r.getFechaCompra())) //r.fueCompradaEn(periodo)
-                .flatMap(r -> r.getSolicitud().getServicios().stream())
+                .flatMap(r -> r.getDetalle().getServicios().stream())
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }

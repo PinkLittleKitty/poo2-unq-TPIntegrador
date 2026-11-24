@@ -25,6 +25,11 @@ public class RegistroDeCupos implements Reporte {
                 .filter(s -> s.getPeriodoVigencia().seSuperponeCon(periodo))
                 .collect(Collectors.groupingBy(
                         Item::categoria,
-                        Collectors.reducing(new Cupo(0, 0), Item::getCupo, Cupo::sumarCupos)));
+                        Collectors.reducing(
+                                new Cupo(0, 0),
+                                s -> s.getCuposPorDia(periodo).values().stream().findFirst().orElse(new Cupo(0,0)),
+                                (c1, c2) -> new Cupo(
+                                        c1.getCupoInicial() + c2.getCupoInicial(),
+                                        c1.getCupoDisponible() + c2.getCupoDisponible()))));
     }
 }

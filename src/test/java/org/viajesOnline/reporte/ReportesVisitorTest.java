@@ -9,6 +9,7 @@ import org.viajesOnline.items.ServicioIndividual;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.Reserva;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.CalendarioCupos;
 import org.viajesOnline.utils.Periodo;
 import org.viajesOnline.utils.Usuario;
 
@@ -48,38 +49,34 @@ class ReportesVisitorTest {
         hotelCentral = new ServicioIndividual(
                 "Noche de Hotel Central",
                 "Un hotel en el centro",
-                10,
+                new CalendarioCupos(vigenciaEnero, 10),
                 1,
                 "Hilton",
                 1500.0,
-                Categoria.ALOJAMIENTO,
-                vigenciaEnero);
+                Categoria.ALOJAMIENTO);
 
         excursionMuseo = new ServicioIndividual(
                 "Excursión Guiada Museo",
                 "Recorrido guiado",
-                15,
+                new CalendarioCupos(vigenciaEnero, 15),
                 2,
                 "Malba",
                 2000.0,
-                Categoria.EXCURSION,
-                vigenciaEnero);
+                Categoria.EXCURSION);
 
         trasladoAeropuerto = new ServicioIndividual(
                 "Traslado Aeropuerto-Hotel",
                 "Traslado privado",
-                8,
+                new CalendarioCupos(vigenciaEnero, 8),
                 3,
                 "Chofer privado",
                 2000.0,
-                Categoria.ALQUILER_DE_AUTOS,
-                vigenciaEnero);
+                Categoria.ALQUILER_DE_AUTOS);
 
         packEscapadaUrbana = new Paquete(
                 "Pack Escapada Urbana",
                 "Hotel + Excursión + Traslado",
-                5,
-                vigenciaEnero,
+                new CalendarioCupos(vigenciaEnero, 5),
                 Categoria.EXCURSION,
                 "ProveedorA");
 

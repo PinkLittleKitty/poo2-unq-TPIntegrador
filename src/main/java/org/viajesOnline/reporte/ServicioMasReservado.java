@@ -24,7 +24,7 @@ public class ServicioMasReservado implements Reporte {
         return reservas.getReservas().stream()
                 .filter(r -> r.getFechaCompra() != null && periodo.incluye(r.getFechaCompra())) //r.fueCompradaEn(periodo)
                 .flatMap(r -> r.getDetalle().getServicios().stream())
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())); //TODO: estamos incluyendo el precio promedio?
     }
 }
 

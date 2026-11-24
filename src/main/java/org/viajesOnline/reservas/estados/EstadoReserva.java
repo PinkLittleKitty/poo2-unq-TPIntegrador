@@ -20,11 +20,6 @@ public abstract class EstadoReserva {
         throw new UnsupportedOperationException("No se pueden agregar servicios en este estado de la reserva.");
     }
 
-    // TODO: QUIEN LLAMA A DECREMENTAR CUPO EN NINGUN ESTADO LO VEO
-    public void decrementarCupo(DetalleReserva detalleReserva) {
-        throw new UnsupportedOperationException("No se puede modificar el cupo en este estado de la reserva.");
-    }
-
     public void notificar(GestorDeDocumentos gestor, Reserva reserva, ObservadorCambioEstado observador) {}
 
     public double tasasReembolsables(Reserva r) {

@@ -7,10 +7,12 @@ import java.util.*;
 
 public class CalendarioCupos {
     private final int cupoPorDiaInicial;
+    private final Periodo periodoVigencia;
     private final Map<LocalDate, Cupo> cupoPorDia = new HashMap<>();
 
     public CalendarioCupos(Periodo periodo, int cupoPorDiaInicial) {
         this.cupoPorDiaInicial = cupoPorDiaInicial;
+        this.periodoVigencia = periodo;
         for (LocalDate dia : periodo.fechas()) {
             cupoPorDia.put(dia, new Cupo(cupoPorDiaInicial, cupoPorDiaInicial));
         }
@@ -46,8 +48,32 @@ public class CalendarioCupos {
         }
     }
 
+    public Map<LocalDate, Cupo> getCuposPorDia(Periodo periodo) {
+        Map<LocalDate, Cupo> resultado = new HashMap<>();
+        for (LocalDate dia : periodo.fechas()) {
+            if (this.cupoPorDia.containsKey(dia)) {
+                resultado.put(dia, this.cupoPorDia.get(dia));
+            }
+        }
+        return Collections.unmodifiableMap(resultado);
+    }
+
+    public Map<LocalDate, Cupo> getCuposPorDia() {
+        return Collections.unmodifiableMap(this.cupoPorDia);
+    }
+
     public Cupo getCupoDelDia(LocalDate dia) {
         return cupoPorDia.getOrDefault(dia, new Cupo(0, 0));
+    }
+
+    public Periodo getPeriodoVigencia() { return  periodoVigencia; }
+
+    public Cupo getCupoEn(Periodo periodo) {
+        for (LocalDate dia : periodo.fechas()) {
+            Cupo c = cupoPorDia.get(dia);
+            return c;
+        }
+        return new Cupo(0,0);
     }
 
     public int getCupoPorDiaInicial() {

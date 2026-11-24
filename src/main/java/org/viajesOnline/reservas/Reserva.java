@@ -95,7 +95,7 @@ public class Reserva {
     }
 
     public void decrementarCupo() {
-        this.detalleReserva.decrementarCupo(this.periodo); //TODO: Ver is añadir comportamiento especial para paquete
+        this.detalleReserva.decrementarCupo(this.periodo);
     }
 
     public void incrementarCupo() {

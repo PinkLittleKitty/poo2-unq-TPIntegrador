@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.viajesOnline.items.*;
 import org.viajesOnline.documento.GestorDeDocumentos;
 import org.viajesOnline.reservas.*;
+import org.viajesOnline.utils.CalendarioCupos;
 import org.viajesOnline.utils.Periodo;
 import org.viajesOnline.utils.Usuario;
 
@@ -58,8 +59,8 @@ class FormatoUtilsTest {
         Periodo periodo = new Periodo(LocalDate.of(2026, 1, 1), LocalDate.of(2026, 1, 31));
         Periodo vigencia = new Periodo(LocalDate.of(2026, 1, 10), LocalDate.of(2026, 1, 20));
 
-        ServicioIndividual sB = new ServicioIndividual("Servicio B", "Desc", 10, 1, "Op", 100.0, Categoria.VUELO, vigencia);
-        ServicioIndividual sA = new ServicioIndividual("Servicio A", "Desc", 10, 2, "Op", 100.0, Categoria.VUELO, vigencia);
+        ServicioIndividual sB = new ServicioIndividual("Servicio B", "Desc", new CalendarioCupos(vigencia, 10), 1, "Op", 100.0, Categoria.VUELO);
+        ServicioIndividual sA = new ServicioIndividual("Servicio A", "Desc", new CalendarioCupos(vigencia, 10), 2, "Op", 100.0, Categoria.VUELO);
 
         Reserva r1 = new Reserva(mock(GestorDeDocumentos.class), mock(Usuario.class), periodo);
         r1.setFechaCompra(LocalDate.of(2026, 1, 15));
@@ -84,8 +85,8 @@ class FormatoUtilsTest {
     void operadoresOrdenadosDesempatePorNombre() {
         Periodo vigencia = new Periodo(LocalDate.of(2026, 1, 10), LocalDate.of(2026, 1, 20));
 
-        ServicioIndividual s1 = new ServicioIndividual("S1", "Desc", 10, 1, "Operador Z", 100.0, Categoria.VUELO, vigencia);
-        ServicioIndividual s2 = new ServicioIndividual("S2", "Desc", 10, 2, "Operador A", 100.0, Categoria.VUELO, vigencia);
+        ServicioIndividual s1 = new ServicioIndividual("S1", "Desc", new CalendarioCupos(vigencia, 10), 1, "Operador Z", 100.0, Categoria.VUELO);
+        ServicioIndividual s2 = new ServicioIndividual("S2", "Desc", new CalendarioCupos(vigencia, 10), 2, "Operador A", 100.0, Categoria.VUELO);
 
         catalogo.addItem(s1);
         catalogo.addItem(s2);

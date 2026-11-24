@@ -64,12 +64,6 @@ class EstadoReservaTest {
     }
 
     @Test
-    void default_decrementarCupo() {
-        EstadoReserva estado = new EstadoReserva() {};
-        assertThrows(UnsupportedOperationException.class, () -> estado.decrementarCupo(mock(DetalleReserva.class)));
-    }
-
-    @Test
     void default_cancelar() {
         EstadoReserva estado = new EstadoReserva() {};
         Reserva contextoMock = mock(Reserva.class);

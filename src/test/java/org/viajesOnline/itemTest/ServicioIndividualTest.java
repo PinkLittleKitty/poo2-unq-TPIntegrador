@@ -6,6 +6,7 @@ import org.viajesOnline.items.Categoria;
 import org.viajesOnline.items.ServicioIndividual;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.CalendarioCupos;
 import org.viajesOnline.utils.Periodo;
 
 import java.util.List;
@@ -21,12 +22,11 @@ class ServicioIndividualTest {
   private ServicioIndividual servicio = new ServicioIndividual(
           "Hotel",
           "Descripción",
-          10,
+          new CalendarioCupos(mock(Periodo.class), 10),
           123,
           "ProveedorA",
           150,
-          catAloj,
-          mock(Periodo.class)
+          catAloj
   );
   private AtributoDinamico attDinamico = mock(AtributoDinamico.class);
 
@@ -46,12 +46,11 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    10,
+                    new CalendarioCupos(mock(Periodo.class), 10),
                     123,
                     null,
                     150.0,
-                    catAloj,
-                    mock(Periodo.class)
+                    catAloj
             )
     );
   }
@@ -59,27 +58,28 @@ class ServicioIndividualTest {
   @Test
   void rechazaProveedorVacio() {
     assertThrows(CompletarCampos.class, () ->
-            new ServicioIndividual(
-            "Hotel",
-            "Descripción",
-            10,
-            123,
-            "",
-            150.0,
-            catAloj,
-                    mock(Periodo.class)
-    ));
+              new ServicioIndividual(
+                      "Hotel",
+                      "Descripción",
+                      new CalendarioCupos(mock(Periodo.class), 10),
+                      123,
+                      "",
+                      150.0,
+                      catAloj
+            )
+    );
 
     assertThrows(CompletarCampos.class, () ->
             new ServicioIndividual(
-            "Hotel",
-            "Descripción",
-            10,
-            123,
-            "   ",
-            150.0,
-            catAloj,
-                    mock(Periodo.class)));
+                    "Hotel",
+                    "Descripción",
+                    new CalendarioCupos(mock(Periodo.class), 10),
+                    123,
+                    "   ",
+                    150.0,
+                    catAloj
+            )
+    );
   }
 
   @Test
@@ -88,12 +88,11 @@ class ServicioIndividualTest {
             new ServicioIndividual(
                     "Hotel",
                     "Descripción",
-                    10,
+                    new CalendarioCupos(mock(Periodo.class), 10),
                     123,
                     "Proveedor A",
                     150.0,
-                    null,
-                    mock(Periodo.class)
+                    null
             )
     );
   }
@@ -107,9 +106,9 @@ class ServicioIndividualTest {
   @Test
   void rechazaSiPrecioEsNegativoOCero() {
     assertThrows(CompletarCampos.class,
-                        () -> new ServicioIndividual("Hotel", "Descripción", 10, 123,"ProvvedorA",0.0,  catAloj, mock(Periodo.class)));
+                        () -> new ServicioIndividual("Hotel", "Descripción", new CalendarioCupos(mock(Periodo.class), 10), 123,"ProvvedorA",0.0,  catAloj));
     assertThrows(CompletarCampos.class,
-                        () -> new ServicioIndividual("Hotel", "Descripción",  10, 123, "ProvvedorA",-1.0, catAloj, mock(Periodo.class)));
+                        () -> new ServicioIndividual("Hotel", "Descripción",  new CalendarioCupos(mock(Periodo.class), 10), 123, "ProvvedorA",-1.0, catAloj));
   }
 
   @Test

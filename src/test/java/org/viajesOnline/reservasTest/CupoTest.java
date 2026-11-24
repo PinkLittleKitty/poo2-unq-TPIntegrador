@@ -7,18 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CupoTest {
   @Test
-  void sumarSumaLosValoresDeAmbosObjetos() {
-    Cupo primero = new Cupo(10, 7);
-    Cupo segundo = new Cupo(5, 3);
-
-    Cupo resultado = primero.sumarCupos(segundo);
-
-    assertEquals(15, resultado.getCupoInicial());
-    assertEquals(10, resultado.getCupoDisponible());
-    assertEquals(5, resultado.getCantCupoReservados());
-  }
-
-  @Test
   void decrementarCupoDisminuyeElDisponible() {
     Cupo cupo = new Cupo(10, 7);
 

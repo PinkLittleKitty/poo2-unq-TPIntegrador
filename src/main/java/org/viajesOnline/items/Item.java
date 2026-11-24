@@ -6,6 +6,8 @@ import org.viajesOnline.reservas.Cupo;
 import org.viajesOnline.utils.CalendarioCupos;
 import org.viajesOnline.utils.Periodo;
 
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.Objects;
 
 public abstract class Item {
@@ -13,18 +15,15 @@ public abstract class Item {
   private String descripcion;
   private int descuento = 0;
   private CalendarioCupos calendarioCupos;
-  private Periodo periodoVigencia;
   private Categoria categoria;
   private String proveedor;
 
-  /// TO DO NO ES MEJOR PASARLE EL NEW CALENDARIO POR PARAMETRO?
-  public Item(String nombre, String descripcion, int cupoPorDia, Periodo periodoVigencia, Categoria categoria, String proveedor){
+  public Item(String nombre, String descripcion, CalendarioCupos calendario, Categoria categoria, String proveedor){
 
-    validar(nombre, descripcion, cupoPorDia, periodoVigencia, categoria, proveedor);
+    validar(nombre, descripcion, calendario, categoria, proveedor);
     this.nombre = nombre;
     this.descripcion = descripcion;
-    this.calendarioCupos = new CalendarioCupos(periodoVigencia, cupoPorDia);
-    this.periodoVigencia = periodoVigencia;
+    this.calendarioCupos = calendario;
     this.categoria = categoria;
     this.proveedor = proveedor;
   }
@@ -42,13 +41,12 @@ public abstract class Item {
     return this.getPrecioBase() - this.descuentoAplicable();
   }
 
-  private static void validar(String nombre, String descripcion, int cupoDisponible, Periodo periodo,Categoria categoria, String proveedor){
+  private static void validar(String nombre, String descripcion, CalendarioCupos calendario, Categoria categoria, String proveedor){
     try {
-      Objects.requireNonNull(periodo);
+      Objects.requireNonNull(calendario);
       Objects.requireNonNull(categoria);
       Objects.requireNonNull(nombre);
       Objects.requireNonNull(descripcion);
-      Objects.requireNonNull(cupoDisponible);
       Objects.requireNonNull(proveedor);
       Validate.notBlank(proveedor);
       Validate.notBlank(nombre, descripcion, "Es obligatorio completar estos campos");
@@ -71,10 +69,18 @@ public abstract class Item {
 
   public abstract double getPrecioBase();
 
-  public Periodo getPeriodoVigencia() { return periodoVigencia; }
+  public Periodo getPeriodoVigencia() { return this.calendarioCupos.getPeriodoVigencia(); }
 
-  public Cupo getCupo() {
-    return this.calendarioCupos.getCupoDelDia(this.periodoVigencia.fechaInicio());
+  public Map<LocalDate, Cupo> getCuposPorDia(Periodo periodo) {
+    return this.calendarioCupos.getCuposPorDia(periodo);
+  }
+
+  public Map<LocalDate, Cupo> getCuposPorDia() {
+    return this.calendarioCupos.getCuposPorDia();
+  }
+
+  public Cupo getCupoDelDia(LocalDate dia) {
+    return this.calendarioCupos.getCupoDelDia(dia);
   }
 
   public void incrementarCupo(Periodo periodo) { calendarioCupos.incrementarCupo(periodo); }

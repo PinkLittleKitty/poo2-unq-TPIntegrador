@@ -9,10 +9,6 @@ public class Cupo {
         this.cupoDisponible = cupoDisponible;
     }
 
-    public Cupo sumarCupos(Cupo otroCupo) {
-        return new Cupo(this.cupoInicial + otroCupo.getCupoInicial(), this.cupoDisponible + otroCupo.getCupoDisponible());
-    }
-
     public void decrementarCupo() {
         this.cupoDisponible--;
     }

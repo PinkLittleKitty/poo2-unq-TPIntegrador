@@ -7,6 +7,7 @@ import org.viajesOnline.items.Categoria;
 import org.viajesOnline.items.Paquete;
 import org.viajesOnline.items.ServicioIndividual;
 import org.viajesOnline.reservas.Cupo;
+import org.viajesOnline.utils.CalendarioCupos;
 import org.viajesOnline.utils.Periodo;
 
 import java.util.List;
@@ -19,8 +20,7 @@ class PaqueteTest {
   private Paquete paquete = new Paquete(
           "Paquete de prueba",
           "Descripción",
-          10,
-          mock(Periodo.class),
+          new CalendarioCupos(mock(Periodo.class), 10),
           mock(Categoria.class),
           "ProveedorA"
   );

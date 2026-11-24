@@ -4,6 +4,7 @@ import org.viajesOnline.atributos.AtributoDinamico;
 import org.viajesOnline.exceptions.CompletarCampos;
 import org.viajesOnline.reservas.Cupo;
 import org.apache.commons.lang3.Validate;
+import org.viajesOnline.utils.CalendarioCupos;
 import org.viajesOnline.utils.Periodo;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class ServicioIndividual extends Item {
 
   private List<AtributoDinamico> atributosDinamicos = new ArrayList<AtributoDinamico>();
 
-  public ServicioIndividual(String nombre, String descripcion, int cupo, int idReserva, String proveedor, double precioBase, Categoria categoria, Periodo periodo){
-    super(nombre, descripcion, cupo, periodo, categoria, proveedor);
+  public ServicioIndividual(String nombre, String descripcion, CalendarioCupos calendario, int idReserva, String proveedor, double precioBase, Categoria categoria){
+    super(nombre, descripcion, calendario, categoria, proveedor);
     verificacionCons(idReserva, precioBase);
     this.idReserva = idReserva;
     this.precioBase = precioBase;

@@ -19,8 +19,8 @@ import static org.mockito.Mockito.when;
 class ItemTest {
 
   private static class TestItem extends Item { //le subi categoria a catalogo
-    TestItem(String nombre, String descripcion, int cupo, Periodo periodo, Categoria categoria, String proveedor) {
-      super(nombre, descripcion, cupo, periodo, categoria, proveedor);
+    TestItem(String nombre, String descripcion, CalendarioCupos calendario, Categoria categoria, String proveedor) {
+      super(nombre, descripcion, calendario, categoria, proveedor);
     }
 
     @Override
@@ -32,7 +32,7 @@ class ItemTest {
   Categoria catAloj = Categoria.ALOJAMIENTO;
   int cupoInicial = 10;
   Periodo periodoVigente = new Periodo(LocalDate.of(2026, 6, 1), LocalDate.of(2026, 6, 10));
-  Item item = new TestItem("Hotel", "Descripción", cupoInicial, periodoVigente, catAloj, "ProveedorA");
+  Item item = new TestItem("Hotel", "Descripción", new CalendarioCupos(periodoVigente, cupoInicial), catAloj, "ProveedorA");
 
   @Test
   void GetterNombreEsCorrecto(){
@@ -56,7 +56,7 @@ class ItemTest {
 
   @Test
   void GetterCupoEsCorrecto(){
-    assertEquals(cupoInicial, item.getCupo().getCupoDisponible());
+    assertEquals(cupoInicial, item.getCupoDelDia(periodoVigente.fechaInicio()).getCupoDisponible());
   }
 
   @Test
@@ -75,7 +75,7 @@ class ItemTest {
   void lanzaCompletarCamposSiNombreEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestItem(null, "Descripción", cupoInicial, periodoVigente, catAloj, "ProvvedorA")
+            () -> new TestItem(null, "Descripción", new CalendarioCupos(periodoVigente, cupoInicial), catAloj, "ProvvedorA")
     );
   }
 
@@ -83,15 +83,7 @@ class ItemTest {
   void lanzaCompletarCamposSiDescripcionEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestItem("Hotel", null, cupoInicial, periodoVigente, catAloj, "ProvvedorA")
-    );
-  }
-
-  @Test
-  void lanzaCompletarCamposSiPeriodoEsNull() {
-    assertThrows(
-            CompletarCampos.class,
-            () -> new TestItem("Hotel", "Descripción", cupoInicial, null, catAloj, "ProvvedorA")
+            () -> new TestItem("Hotel", null, new CalendarioCupos(periodoVigente, cupoInicial), catAloj, "ProvvedorA")
     );
   }
 
@@ -99,7 +91,7 @@ class ItemTest {
   void lanzaCompletarCamposSiCategoriaEsNull() {
     assertThrows(
             CompletarCampos.class,
-            () -> new TestItem("Hotel", "Descripción", cupoInicial, periodoVigente, null, "ProvvedorA")
+            () -> new TestItem("Hotel", "Descripción", new CalendarioCupos(periodoVigente, cupoInicial), null, "ProvvedorA")
     );
   }
 
@@ -109,8 +101,7 @@ class ItemTest {
             new TestItem(
                     "Hotel",
                     "Descripción",
-                    cupoInicial,
-                    periodoVigente,
+                    new CalendarioCupos(periodoVigente, cupoInicial),
                     catAloj,
                     null
             )
@@ -123,8 +114,7 @@ class ItemTest {
             new TestItem(
                     "Hotel",
                     "Descripción",
-                    cupoInicial,
-                    periodoVigente,
+                    new CalendarioCupos(periodoVigente, cupoInicial),
                     catAloj,
                     ""
             ));
@@ -161,13 +151,13 @@ class ItemTest {
   @Test
   void incrementarCupoAumentaElCupoDisponible() {
     item.incrementarCupo(periodoVigente);
-    assertEquals(11, item.getCupo().getCupoDisponible());
+    assertEquals(11, item.getCupoDelDia(periodoVigente.fechaInicio()).getCupoDisponible());
   }
 
   @Test
   void decrementarReduceElCupoDisponible() {
     item.decrementarCupo(periodoVigente);
-    assertEquals(9, item.getCupo().getCupoDisponible());
+    assertEquals(9, item.getCupoDelDia(periodoVigente.fechaInicio()).getCupoDisponible());
   }
 
   @Test
@@ -180,7 +170,7 @@ class ItemTest {
 
   @Test
   void rebotaPeriodoSiNoHayCupo() {
-    Item itemSinCupo = new TestItem("Hotel", "Descripción", 0, periodoVigente, catAloj, "ProveedorA");
+    Item itemSinCupo = new TestItem("Hotel", "Descripción", new CalendarioCupos(periodoVigente, 0), catAloj, "ProveedorA");
     assertFalse(itemSinCupo.estaDisponibleEn(periodoVigente));
   }
 

@@ -14,17 +14,20 @@ public class ServicioMasReservado implements Reporte {
 
     public ServicioMasReservado(Periodo periodo) {
         this.periodo = periodo;
-//        this.reservas = reservas;
     }
 
     @Override
     public void accept(FormatoVisitanteReportes v){ v.visitar(this); }
 
-    public Map<Item, Long> calcularDatos() {
+    public Map<Item, EstadisticaServicio> calcularDatos() {
         return reservas.getReservas().stream()
                 .filter(r -> r.getFechaCompra() != null && periodo.incluye(r.getFechaCompra())) //r.fueCompradaEn(periodo)
                 .flatMap(r -> r.getDetalle().getServicios().stream())
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())); //TODO: estamos incluyendo el precio promedio?
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        items -> new EstadisticaServicio(items.size(),
+                                items.stream().mapToDouble(Item::precioFinal).average().orElse(0.0))
+                )));
     }
 }
 

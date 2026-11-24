@@ -133,30 +133,27 @@ class ReportesVisitorTest {
     @Test
     void servicioMasReservadoExporta() {
         Reporte reporte = generador.serviciosMasReservados(periodoReporte);
-
-        assertEquals("Servicio,Reservas\n"
-                        + "Pack Escapada Urbana,3\n"
-                        + "Noche de Hotel Central,2\n"
-                        + "Excursión Guiada Museo,1",
+        assertEquals("Servicio,Reservas,Precio Promedio\n"
+                        + "Pack Escapada Urbana,3,4950.00\n"
+                        + "Noche de Hotel Central,2,1500.00\n"
+                        + "Excursión Guiada Museo,1,2000.00",
                 generador.exportar(reporte, new FormatoCsv()));
-
         assertEquals(
                 "<h2>Servicios mas reservados</h2>\n"
                         + "<table>\n"
-                        + "<thead><tr><th>Servicio</th><th>Reservas</th></tr></thead>\n"
+                        + "<thead><tr><th>Servicio</th><th>Reservas</th><th>Precio Promedio</th></tr></thead>\n"
                         + "<tbody>\n"
-                        + "<tr><td>Pack Escapada Urbana</td><td>3</td></tr>\n"
-                        + "<tr><td>Noche de Hotel Central</td><td>2</td></tr>\n"
-                        + "<tr><td>Excursión Guiada Museo</td><td>1</td></tr>\n"
+                        + "<tr><td>Pack Escapada Urbana</td><td>3</td><td>$4950.00</td></tr>\n"
+                        + "<tr><td>Noche de Hotel Central</td><td>2</td><td>$1500.00</td></tr>\n"
+                        + "<tr><td>Excursión Guiada Museo</td><td>1</td><td>$2000.00</td></tr>\n"
                         + "</tbody>\n"
                         + "</table>",
                 generador.exportar(reporte, new FormatoHtml()));
-
         assertEquals(
                 "Servicios más reservados\n"
-                        + "- Pack Escapada Urbana: 3 reservas\n"
-                        + "- Noche de Hotel Central: 2 reservas\n"
-                        + "- Excursión Guiada Museo: 1 reservas",
+                        + "- Pack Escapada Urbana: 3 reservas (Precio promedio: $4950.00)\n"
+                        + "- Noche de Hotel Central: 2 reservas (Precio promedio: $1500.00)\n"
+                        + "- Excursión Guiada Museo: 1 reservas (Precio promedio: $2000.00)",
                 generador.exportar(reporte, new FormatoTextoPlano()));
     }
 

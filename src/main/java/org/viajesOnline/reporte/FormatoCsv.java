@@ -9,8 +9,11 @@ public class FormatoCsv implements FormatoVisitanteReportes {
     @Override
     public void visitar(ServicioMasReservado s) {
         List<List<String>> filas = FormatoUtils.serviciosOrdenados(s).stream()
-                .map(e -> List.of(e.getKey().getNombre(), String.valueOf(e.getValue()))).toList();
-        this.reporteCsv = FormatoUtils.construirCsv(List.of("Servicio", "Reservas"), filas);
+                .map(e -> List.of(
+                        e.getKey().getNombre(),
+                        String.valueOf(e.getValue().reservas()),
+                        FormatoUtils.formatearPrecio(e.getValue().precioPromedio()))).toList();
+        this.reporteCsv = FormatoUtils.construirCsv(List.of("Servicio", "Reservas", "Precio Promedio"), filas);
     }
 
     @Override

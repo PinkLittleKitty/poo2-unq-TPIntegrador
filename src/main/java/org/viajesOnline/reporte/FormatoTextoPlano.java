@@ -11,7 +11,9 @@ public class FormatoTextoPlano implements FormatoVisitanteReportes {
     @Override
     public void visitar(ServicioMasReservado s) {
         List<String> lineas = FormatoUtils.serviciosOrdenados(s).stream()
-                .map(e -> "- " + e.getKey().getNombre() + ": " + e.getValue() + " reservas").toList();
+                .map(e -> "- " + e.getKey().getNombre() + ": " + e.getValue().reservas()
+                + " reservas (Precio promedio: $" +
+                        FormatoUtils.formatearPrecio(e.getValue().precioPromedio()) + ")").toList();
         this.reporteTextoPlano = FormatoUtils.construirTextoPlano("Servicios más reservados", lineas);
     }
 

@@ -12,10 +12,15 @@ import java.util.stream.Collectors;
 
 public final class FormatoUtils {
 
-    public static List<Map.Entry<Item, Long>> serviciosOrdenados(ServicioMasReservado reporte) {
+    public static List<Map.Entry<Item, EstadisticaServicio>> serviciosOrdenados(ServicioMasReservado reporte) {
         return reporte.calcularDatos().entrySet().stream()
-                .sorted(Map.Entry.<Item, Long>comparingByValue(Comparator.reverseOrder())
+                .sorted(Comparator.<Map.Entry<Item, EstadisticaServicio>>comparingLong(e -> e.getValue().reservas())
+                        .reversed()
                         .thenComparing(e -> e.getKey().getNombre())).toList();
+    }
+
+    public static String formatearPrecio(double precio) {
+        return String.format(Locale.US, "%.2f", precio);
     }
 
     static List<Map.Entry<Categoria, Cupo>> cuposOrdenados(RegistroDeCupos reporte) {

@@ -9,10 +9,14 @@ public class FormatoHtml implements FormatoVisitanteReportes {
     @Override
     public void visitar(ServicioMasReservado s) {
         List<List<String>> filas = FormatoUtils.serviciosOrdenados(s).stream()
-                .map(e -> List.of(e.getKey().getNombre(), String.valueOf(e.getValue()))).toList();
+                .map(e -> List.of(
+                        e.getKey().getNombre(),
+                        String.valueOf(e.getValue().reservas()),
+                        "$" + FormatoUtils.formatearPrecio(e.getValue().precioPromedio()
+                        ))).toList();
         this.reporteHtml = FormatoUtils.construirTablaHtml(
                 "Servicios mas reservados",
-                List.of("Servicio", "Reservas"), filas);
+                List.of("Servicio", "Reservas", "Precio Promedio"), filas);
     }
 
     @Override

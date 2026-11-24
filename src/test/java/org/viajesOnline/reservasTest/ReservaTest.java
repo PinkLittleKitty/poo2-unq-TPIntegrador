@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 class ReservaTest {
 
-    private Reserva contexto;
+    private Reserva nuevaReserva;
     private EstadoReserva estadoMock;
     private EstadoReserva estadoNuevoMock;
     private ObservadorCambioEstado observerMock;
@@ -27,62 +27,62 @@ class ReservaTest {
         estadoNuevoMock = mock(EstadoReserva.class);
         observerMock = mock(ObservadorCambioEstado.class);
         gestor = mock(GestorDeDocumentos.class);
-        contexto = new Reserva(gestor, mock(Usuario.class), mock(Periodo.class));
-        contexto.setEstadoActual(estadoMock);
+        nuevaReserva = new Reserva(gestor, mock(Usuario.class), mock(Periodo.class));
+        nuevaReserva.setEstadoActual(estadoMock);
     }
 
     @Test
     void siguiente() {
-        contexto.siguiente();
+        nuevaReserva.siguiente();
 
-        verify(estadoMock, times(1)).siguiente(contexto);
+        verify(estadoMock, times(1)).siguiente(nuevaReserva);
     }
 
     @Test
     void cancelar() {
-        contexto.cancelar();
+        nuevaReserva.cancelar();
 
-        verify(estadoMock, times(1)).cancelar(contexto);
+        verify(estadoMock, times(1)).cancelar(nuevaReserva);
     }
 
     @Test
     void agregarServicio() {
         Item servicioMock = mock(Item.class);
 
-        contexto.agregarServicio(servicioMock);
+        nuevaReserva.agregarServicio(servicioMock);
 
-        verify(estadoMock, times(1)).agregarServicio(servicioMock, contexto.getDetalle());
+        verify(estadoMock, times(1)).agregarServicio(servicioMock, nuevaReserva.getDetalle());
     }
 
     @Test
     void setEstado() {
-        contexto.agregarObservador(observerMock);
+        nuevaReserva.agregarObservador(observerMock);
 
-        contexto.setEstadoActual(estadoNuevoMock);
+        nuevaReserva.setEstadoActual(estadoNuevoMock);
 
-        assertEquals(estadoNuevoMock, contexto.getEstadoActual());
-        verify(estadoNuevoMock, times(1)).notificar(gestor, contexto, observerMock);
+        assertEquals(estadoNuevoMock, nuevaReserva.getEstadoActual());
+        verify(estadoNuevoMock, times(1)).notificar(gestor, nuevaReserva, observerMock);
     }
 
     @Test
     void quitarNotificador() {
         EstadoReserva estadoNuevo = mock(EstadoReserva.class);
-        contexto.agregarObservador(observerMock);
-        contexto.quitarObservador(observerMock);
+        nuevaReserva.agregarObservador(observerMock);
+        nuevaReserva.quitarObservador(observerMock);
 
-        contexto.setEstadoActual(estadoNuevo);
+        nuevaReserva.setEstadoActual(estadoNuevo);
 
-        verify(estadoNuevo, never()).notificar(gestor, contexto, observerMock);
+        verify(estadoNuevo, never()).notificar(gestor, nuevaReserva, observerMock);
     }
 
     @Test
     void getUsuario() {
-        assertNotNull(contexto.getUsuario());
+        assertNotNull(nuevaReserva.getUsuario());
     }
 
     @Test
     void reembolsar() {
-        contexto.reembolsar();
+        nuevaReserva.reembolsar();
     }
 
     @Test
@@ -90,8 +90,8 @@ class ReservaTest {
         Item servicioMock = mock(Item.class);
         when(servicioMock.precioFinal()).thenReturn(100.0);
 
-        contexto.getDetalle().agregarServicio(servicioMock);
+        nuevaReserva.getDetalle().agregarServicio(servicioMock);
 
-        assertEquals(100.0f, contexto.precioFinalReserva());
+        assertEquals(100.0f, nuevaReserva.precioFinalReserva());
     }
 }
